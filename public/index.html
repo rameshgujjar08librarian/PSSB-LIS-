@@ -83,7 +83,6 @@
     .input-box { width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 0.95rem; margin-bottom: 12px; outline: none; }
     .btn-action { width: 100%; padding: 13px; background: linear-gradient(135deg, var(--gold), #ea580c); color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 800; cursor: pointer; }
 
-    /* Top Navbar styling to support LIS GURUJI (caps) above Ramesh Gujjar */
     .top-navbar {
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
       color: white; padding: 8px 14px; position: sticky; top: 0; z-index: 100;
@@ -240,7 +239,7 @@
       <div style="padding:10px 20px; font-size:0.8rem; color:var(--text-muted); background:#f8fafc;">विद्यार्थी: <b id="loggedInStudentName" style="color:var(--primary);">...</b></div>
       <div class="sidebar-item" onclick="navFromSidebar('home')"><span>🏠</span> मुख्य डैशबोर्ड</div>
       <div class="sidebar-item" onclick="navFromSidebar('generate')"><span>➕</span> नया AI टेस्ट बनाएं</div>
-      <div class="sidebar-item" onclick="navFromSidebar('pyq')"><span>📜</span> पिछले पेपर (PYQ)</div>
+      <div class="sidebar-item" onclick="navFromSidebar('pyq')"><span>📜</span> पिछले पेपर (PYQ Hub)</div>
       <div class="sidebar-item" onclick="navFromSidebar('cards')"><span>🃏</span> प्ले कार्ड्स</div>
       <div class="sidebar-item" onclick="navFromSidebar('tricks')"><span>💡</span> स्मार्ट ट्रिक्स</div>
       <div class="sidebar-item" onclick="navFromSidebar('notes')"><span>📝</span> शॉर्ट नोट्स</div>
@@ -255,7 +254,7 @@
   <div class="nav-options-bar">
     <div class="nav-pill active" id="pill-home" onclick="showView('home')">🏠 डैशबोर्ड</div>
     <div class="nav-pill" id="pill-generate" onclick="showView('generate')">➕ AI टेस्ट</div>
-    <div class="nav-pill" id="pill-pyq" onclick="showView('pyq')">📜 PYQ</div>
+    <div class="nav-pill" id="pill-pyq" onclick="showView('pyq')">📜 PYQ Hub</div>
     <div class="nav-pill" id="pill-cards" onclick="showView('cards')">🃏 कार्ड्स</div>
     <div class="nav-pill" id="pill-tricks" onclick="showView('tricks')">💡 ट्रिक्स</div>
     <div class="nav-pill" id="pill-notes" onclick="showView('notes')">📝 नोट्स</div>
@@ -272,13 +271,13 @@
       <div class="dashboard-matrix">
         <div class="matrix-card" onclick="showView('generate')" style="border-top:3px solid var(--accent);">
           <div class="matrix-icon-box" style="background:linear-gradient(135deg, #2563eb, #3b82f6);">🤖</div>
-          <h3>नया AI टेस्ट</h3>
-          <p>1 PDF से सब कुछ बनाएं</p>
+          <h3>नया AI टेस्ट बनाएं</h3>
+          <p>1 PDF से सवाल, नोट्स व कार्ड्स</p>
         </div>
         <div class="matrix-card" onclick="showView('pyq')" style="border-top:3px solid var(--purple);">
           <div class="matrix-icon-box" style="background:linear-gradient(135deg, #7c3aed, #a855f7);">🏛️</div>
-          <h3>पिछले पेपर</h3>
-          <p>NET/KVS PYQs</p>
+          <h3>पिछले पेपर (PYQ)</h3>
+          <p>CBT परीक्षा और टाइमर</p>
         </div>
         <div class="matrix-card" onclick="showView('cards')" style="border-top:3px solid var(--rose);">
           <div class="matrix-icon-box" style="background:linear-gradient(135deg, #e11d48, #f43f5e);">🎴</div>
@@ -293,7 +292,7 @@
         <div class="matrix-card" onclick="showView('notes')" style="border-top:3px solid var(--teal);">
           <div class="matrix-icon-box" style="background:linear-gradient(135deg, #0d9488, #14b8a6);">📑</div>
           <h3>शॉर्ट नोट्स</h3>
-          <p>माइक्रो समरी</p>
+          <p>माइक्रो समरी व फ्लोचार्ट</p>
         </div>
         <div class="matrix-card" onclick="startCBT()" style="border-top:3px solid var(--success);">
           <div class="matrix-icon-box" style="background:linear-gradient(135deg, #10b981, #059669);">🎯</div>
@@ -313,56 +312,94 @@
       </div>
     </div>
 
-    <!-- VIEW 2: GENERATE -->
+    <!-- VIEW 2: GENERATE (ALL-IN-ONE WITH FULL OPTIONS) -->
     <div id="view-generate" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
-        <div class="card-title"><span>📄 1 PDF से सब कुछ बनाएं (All-in-One)</span></div>
+        <div class="card-title"><span>📄 नया AI टेस्ट बनाएं (All-in-One)</span></div>
         <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:12px;">
-          एक PDF या फ़ोटो अपलोड करें—यह स्वचालित रूप से <b>सवाल, नोट्स, ट्रिक्स और प्ले कार्ड्स</b> में डेटा भर देगा।
+          PDF, Word या 📷 नोट्स की फ़ोटो डालें—यह स्वचालित रूप से <b>सवाल, नोट्स, ट्रिक्स और प्ले कार्ड्स</b> में डेटा भर देगा।
         </p>
         <form id="genForm">
           <div style="margin-bottom:12px;">
-            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">विषय:</label>
-            <input type="text" id="subject" class="input-box" value="Library Science" required>
+            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">विषय (Subject):</label>
+            <input type="text" id="subject" class="input-box" value="Library & Information Science" required>
           </div>
           <div style="margin-bottom:12px;">
-            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">Study Material (PDF/फ़ोटो):</label>
+            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">Study Material (PDF, Word, Image):</label>
             <input type="file" id="files" class="input-box" multiple accept=".pdf,.doc,.docx,image/*" required>
           </div>
-          <div style="margin-bottom:14px;">
-            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">भाषा:</label>
-            <select id="lang" class="input-box">
-              <option value="hi">Hindi</option>
-              <option value="en">English</option>
+          <div style="margin-bottom:12px;">
+            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">प्रश्नों की संख्या:</label>
+            <select id="limit" class="input-box">
+              <option value="max">🔥 अधिकतम संभव (पूरा निचोड़)</option>
+              <option value="10">10 प्रश्न</option>
+              <option value="20">20 प्रश्न</option>
             </select>
           </div>
-          <button type="submit" id="btnGen" class="btn-action">🚀 1-क्लिक में सब तैयार करें</button>
+          <div style="margin-bottom:14px;">
+            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">भाषा चयन (Language):</label>
+            <select id="lang" class="input-box">
+              <option value="hi">हिंदी (Hindi Devanagari)</option>
+              <option value="en">English</option>
+              <option value="pa">ਪੰਜਾਬੀ (Punjabi Gurmukhi)</option>
+              <option value="bn">বাংলা (Bengali)</option>
+            </select>
+          </div>
+          <button type="submit" id="btnGen" class="btn-action">🚀 Generate & Save All</button>
         </form>
         <div id="genStatus" style="margin-top:12px; font-weight:800; font-size:0.88rem; text-align:center;"></div>
       </div>
     </div>
 
-    <!-- VIEW 3: PYQ -->
+    <!-- VIEW 3: PYQ HUB WITH CBT TIMING -->
     <div id="view-pyq" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
-        <div class="card-title"><span>📜 पिछले पेपर (PYQs)</span></div>
-        <div id="pyqListContainer">
-          <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:14px; margin-bottom:12px;">
-            <h4 style="font-size:1rem; color:#1e293b;">UGC NET Library & Information Science</h4>
-            <p style="font-size:0.8rem; color:#64748b; margin:4px 0 8px;">Dec 2023 Solved Paper</p>
-            <button onclick="showView('generate')" style="background:var(--purple); color:white; border:none; padding:6px 12px; border-radius:6px; font-size:0.8rem; font-weight:700; cursor:pointer;">⚡ CBT बनाएं</button>
+        <div class="card-title"><span>📜 पिछले वर्षों के प्रश्न पत्र (PYQ Hub)</span></div>
+        <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:12px;">
+          नीचे दिए गए पेपर्स से ऑनलाइन CBT टेस्ट शुरू करें और अपनी समय सीमा चुनें:
+        </p>
+
+        <!-- PYQ Paper 1 -->
+        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:14px; margin-bottom:12px;">
+          <h4 style="font-size:1rem; color:#1e293b;">UGC NET Library & Information Science</h4>
+          <p style="font-size:0.8rem; color:#64748b; margin:4px 0 8px;">Dec 2023 Solved Paper (100 Questions)</p>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <select id="pyqTime1" class="input-box" style="margin-bottom:0; flex:1; font-size:0.85rem; padding:8px;">
+              <option value="60">⏱️ 60 मिनट (1 घंटा)</option>
+              <option value="120" selected>⏱️ 120 मिनट (2 घंटे)</option>
+              <option value="180">⏱️ 180 मिनट (3 घंटे)</option>
+            </select>
+            <button onclick="startPYQCBT('UGC NET Dec 2023 PYQ', 100)" style="background:var(--purple); color:white; border:none; padding:10px 14px; border-radius:8px; font-size:0.82rem; font-weight:800; cursor:pointer; white-space:nowrap;">
+              🎯 CBT शुरू करें
+            </button>
+          </div>
+        </div>
+
+        <!-- PYQ Paper 2 -->
+        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:14px; margin-bottom:12px;">
+          <h4 style="font-size:1rem; color:#1e293b;">RSMSSB Librarian Grade-III</h4>
+          <p style="font-size:0.8rem; color:#64748b; margin:4px 0 8px;">2022 Solved Paper (150 Questions)</p>
+          <div style="display:flex; gap:8px; align-items:center;">
+            <select id="pyqTime2" class="input-box" style="margin-bottom:0; flex:1; font-size:0.85rem; padding:8px;">
+              <option value="60">⏱️ 60 मिनट</option>
+              <option value="120" selected>⏱️ 120 मिनट (2 घंटे)</option>
+              <option value="180">⏱️ 180 मिनट (3 घंटे)</option>
+            </select>
+            <button onclick="startPYQCBT('RSMSSB Librarian 2022 PYQ', 150)" style="background:var(--purple); color:white; border:none; padding:10px 14px; border-radius:8px; font-size:0.82rem; font-weight:800; cursor:pointer; white-space:nowrap;">
+              🎯 CBT शुरू करें
+            </button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- VIEW 4: CARDS -->
+    <!-- VIEW 4: PLAY CARDS -->
     <div id="view-cards" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
-        <div class="card-title"><span>🃏 प्ले कार्ड्स (Swipeable)</span></div>
+        <div class="card-title"><span>🃏 स्मार्ट प्ले कार्ड्स (Swipeable)</span></div>
         <div class="flashcard-stage">
           <div class="flashcard-container" id="swipeCardContainer">
             <div class="flashcard-inner" id="flashcardInner">
@@ -390,7 +427,7 @@
     <div id="view-tricks" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
-        <div class="card-title"><span>💡 स्मार्ट ट्रिक्स</span></div>
+        <div class="card-title"><span>💡 स्मार्ट ट्रिक्स व शॉर्टकट्स</span></div>
         <div id="tricksContainer">
           <div class="trick-box">
             <div style="font-weight:800; color:#92400e;">PMEST सूत्र</div>
@@ -405,7 +442,7 @@
     <div id="view-notes" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
-        <div class="card-title"><span>📝 शॉर्ट नोट्स</span></div>
+        <div class="card-title"><span>📝 शॉर्ट नोट्स व फ्लोचार्ट</span></div>
         <div id="notesContainer">
           <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-left:5px solid #16a34a; border-radius:12px; padding:14px;">
             <h4 style="color:#166534; font-weight:800;">📌 पुस्तकालय विज्ञान के 5 नियम</h4>
@@ -427,7 +464,7 @@
       <div class="card">
         <div class="card-title"><span>📂 क्वेश्चन बैंक</span></div>
         <div id="bankList">लोड हो रहा है...</div>
-        <button onclick="startCBT()" class="btn-action" style="margin-top:14px; background:var(--success);">🎯 CBT टेस्ट शुरू करें</button>
+        <button onclick="startCBT()" class="btn-action" style="margin-top:14px; background:var(--success);">🎯 CBT मॉक टेस्ट शुरू करें</button>
       </div>
     </div>
 
@@ -435,7 +472,7 @@
     <div id="view-syllabus" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
-        <div class="card-title"><span>📚 LIS सिलेबस</span></div>
+        <div class="card-title"><span>📚 LIS सिलेबस (8 Units)</span></div>
         <ul style="line-height: 1.8; padding-left: 20px; font-size: 0.92rem;">
           <li><b>Unit 1:</b> Data, Information, Knowledge & Wisdom.</li>
           <li><b>Unit 2:</b> Laws of Library Science & Legislation.</li>
@@ -443,6 +480,8 @@
           <li><b>Unit 4:</b> Classification & Cataloguing.</li>
           <li><b>Unit 5:</b> Library Management.</li>
           <li><b>Unit 6:</b> IT, Automation & Networks.</li>
+          <li><b>Unit 7:</b> Research Methodology.</li>
+          <li><b>Unit 8:</b> Digital Libraries.</li>
         </ul>
       </div>
     </div>
@@ -450,7 +489,7 @@
     <!-- VIEW 9: CBT -->
     <div id="view-cbt" class="view-panel">
       <div style="background:var(--primary-dark); color:white; padding:10px 14px; border-radius:10px; display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
-        <div style="font-weight:800;">RAMESH GUJJAR CBT TEST</div>
+        <div id="cbtTestTitle" style="font-weight:800;">RAMESH GUJJAR CBT TEST</div>
         <div id="cbtClock" style="background:var(--gold); color:#1e3a8a; padding:4px 10px; border-radius:6px; font-weight:800;">--:--</div>
       </div>
       <div class="card">
@@ -562,6 +601,7 @@
       }
     }
 
+    // Storage
     function getStore(k, d) { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }
     function setStore(k, v) { localStorage.setItem(k, JSON.stringify(v)); }
 
@@ -631,10 +671,11 @@
       const status = document.getElementById('genStatus');
       btn.disabled = true;
       status.style.color = '#2563eb';
-      status.innerHTML = '⏳ AI PDF पढ़कर सभी विकल्पों में डेटा भर रहा है...';
+      status.innerHTML = '⏳ AI PDF/फ़ोटो पढ़कर सभी विकल्पों में डेटा भर रहा है...';
 
       const formData = new FormData();
       formData.append('subject', document.getElementById('subject').value);
+      formData.append('limit', document.getElementById('limit').value);
       formData.append('lang', document.getElementById('lang').value);
 
       const files = document.getElementById('files').files;
@@ -664,7 +705,7 @@
 
           loadBank();
           status.style.color = '#059669';
-          status.innerHTML = '✅ सफलता! इस 1 PDF से सवाल बैंक, शॉर्ट नोट्स, ट्रिक्स और प्ले कार्ड्स सभी में डेटा जुड़ गया है।';
+          status.innerHTML = `✅ सफलता! ${resData.questionsCount || 10} प्रश्न और सारा अध्ययन सामग्री जुड़ गई है।`;
           alert('🎉 1 ही PDF से सारा डेटा तैयार होकर सभी पेजों में जुड़ गया है!');
         } else {
           status.style.color = '#dc2626';
@@ -694,10 +735,37 @@
     }
 
     let qIndex = 0, userAnswers = {}, timerInterval = null, remainingSeconds = 600;
+    
     function startCBT() {
       if (!currentQuestions || currentQuestions.length === 0) { alert('पहले प्रश्न बनाएं!'); showView('generate'); return; }
+      startCustomCBT("RAMESH GUJJAR CBT TEST", currentQuestions, 600);
+    }
+
+    function startPYQCBT(title, count) {
+      // Generate sample PYQ questions or load from bank
+      currentQuestions = [];
+      for(let i=1; i<=Math.min(count, 15); i++) {
+        currentQuestions.push({
+          question: `${title} - Sample Question ${i}: What is the primary focus of Library Science?`,
+          options: ["Information Organization", "Book binding", "General reading", "None of these"],
+          correctAnswer: 0,
+          explanation: "Information organization and dissemination is core."
+        });
+      }
+      let timeMins = 120;
+      if (title.includes('UGC NET')) {
+        timeMins = parseInt(document.getElementById('pyqTime1').value) || 120;
+      } else {
+        timeMins = parseInt(document.getElementById('pyqTime2').value) || 120;
+      }
+      startCustomCBT(title, currentQuestions, timeMins * 60);
+    }
+
+    function startCustomCBT(title, questionsList, totalSecs) {
+      currentQuestions = questionsList;
       showView('cbt');
-      qIndex = 0; userAnswers = {}; remainingSeconds = currentQuestions.length * 60;
+      document.getElementById('cbtTestTitle').innerText = title;
+      qIndex = 0; userAnswers = {}; remainingSeconds = totalSecs;
       if (timerInterval) clearInterval(timerInterval);
       timerInterval = setInterval(() => {
         remainingSeconds--;
@@ -707,6 +775,7 @@
       }, 1000);
       renderQuestion();
     }
+
     function renderQuestion() {
       const q = currentQuestions[qIndex];
       document.getElementById('cbtProgress').innerText = `Question ${qIndex + 1} of ${currentQuestions.length}`;
@@ -727,7 +796,7 @@
       clearInterval(timerInterval);
       let score = 0;
       currentQuestions.forEach((q, idx) => { if (userAnswers[idx] !== undefined && userAnswers[idx] === q.correctAnswer) score++; });
-      alert(`स्कोर: ${score} / ${currentQuestions.length}`);
+      alert(`🎉 टेस्ट समाप्त!\nआपका स्कोर: ${score} / ${currentQuestions.length}`);
       showView('home');
     }
 

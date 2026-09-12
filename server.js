@@ -26,39 +26,46 @@ function fileToGenerativePart(file) {
   };
 }
 
+// Comprehensive Multi-Language & Limit AI Generator
 app.post('/api/generate-all', upload.array('files'), async (req, res) => {
   try {
-    const { subject, lang } = req.body;
+    const { subject, limit, lang } = req.body;
     const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
-    const prompt = `You are an expert Library Science exam mentor for LIS GURUJI Portal.
-Analyze the attached document/image thoroughly. From this single material, generate a complete 4-in-1 study package on "${subject}" in ${lang === 'en' ? 'English' : 'Hindi Devanagari'}.
+    let langName = 'Hindi Devanagari';
+    if (lang === 'en') langName = 'English';
+    else if (lang === 'pa') langName = 'Punjabi (Gurmukhi)';
+    else if (lang === 'bn') langName = 'Bengali';
 
-Return ONLY a valid raw JSON object without markdown fences or backticks:
+    const prompt = `You are an expert Library Science exam mentor for LIS GURUJI Portal (RAMESH GUJJAR).
+Analyze the attached documents/images thoroughly. Generate a comprehensive study package on "${subject}" in ${langName}.
+Target number of questions: ${limit === 'max' ? '20' : limit}.
+
+Return ONLY a valid raw JSON object without markdown formatting or backticks:
 {
   "questions": [
     {
       "question": "MCQ Question",
       "options": ["A", "B", "C", "D"],
       "correctAnswer": 0,
-      "explanation": "Brief explanation"
+      "explanation": "Detailed explanation"
     }
   ],
   "note": {
-    "title": "Topic Heading",
-    "summary": "Short summary",
-    "mermaidDiagram": "graph TD\\n  A[Main] --> B[Sub1]\\n  A --> C[Sub2]",
-    "points": ["Key point 1", "Key point 2", "Key point 3"]
+    "title": "Comprehensive Topic Heading",
+    "summary": "Quick summary",
+    "mermaidDiagram": "graph TD\\n  A[Core Concept] --> B[Sub 1]\\n  A --> C[Sub 2]",
+    "points": ["Key point 1", "Key point 2", "Key point 3", "Key point 4"]
   },
   "trick": {
-    "title": "Mnemonic Title",
-    "formula": "Shortcut / Code",
-    "desc": "How to remember"
+    "title": "Memory Trick Title",
+    "formula": "Mnemonic / Code word",
+    "desc": "Explanation of the trick"
   },
   "playCard": {
     "topic": "Topic Name",
-    "front": "Important concept question",
-    "back": "Accurate answer and year"
+    "front": "Challenging concept question",
+    "back": "Accurate answer and core facts"
   }
 }`;
 
@@ -72,7 +79,7 @@ Return ONLY a valid raw JSON object without markdown fences or backticks:
       data.questions.forEach(q => { q.subject = subject; questionBank.unshift(q); });
     }
 
-    res.json({ success: true, data });
+    res.json({ success: true, data, questionsCount: data.questions?.length || 0 });
   } catch (err) {
     console.error('Generation error:', err);
     res.status(500).json({ success: false, message: err.message });

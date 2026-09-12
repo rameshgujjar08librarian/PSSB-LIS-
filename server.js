@@ -28,6 +28,11 @@ function fileToGenerativePart(file) {
 
 app.post('/api/generate-all', upload.array('files'), async (req, res) => {
   try {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      return res.status(500).json({ success: false, message: 'API Key missing on server! Render पर GEMINI_API_KEY चेक करें।' });
+    }
+
     const { subject, limit, lang } = req.body;
     const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
@@ -42,7 +47,7 @@ app.post('/api/generate-all', upload.array('files'), async (req, res) => {
     const prompt = `You are an expert Library Science exam mentor for LIS GURUJI Portal (RAMESH GUJJAR).
 Analyze the attached documents/images thoroughly. Generate exactly or up to ${count} high-quality MCQs on "${subject}" in ${langName}, along with short notes, trick, and play card.
 
-Return ONLY a valid raw JSON object. Do not wrap in markdown or backticks:
+Return ONLY a valid raw JSON object without markdown or backticks:
 {
   "questions": [
     {
@@ -74,7 +79,6 @@ Return ONLY a valid raw JSON object. Do not wrap in markdown or backticks:
     const result = await model.generateContent([prompt, ...fileParts]);
     let text = result.response.text().trim();
 
-    // Robust JSON extraction in case AI adds extra text
     const jsonMatch = text.match(/\{[\s\S]*\}/);
     if (jsonMatch) {
       text = jsonMatch[0];
@@ -90,7 +94,7 @@ Return ONLY a valid raw JSON object. Do not wrap in markdown or backticks:
     res.json({ success: true, data, questionsCount: data.questions?.length || 0 });
   } catch (err) {
     console.error('Generation error:', err);
-    res.status(500).json({ success: false, message: err.message });
+    res.status(500).json({ success: false, message: err.message || 'AI Generation Failed' });
   }
 });
 

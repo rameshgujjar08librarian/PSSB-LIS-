@@ -4,9 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LIS GURUJI - RAMESH GUJJAR</title>
-
-  <meta property="og:title" content="LIS GURUJI - RAMESH GUJJAR AI Study Portal">
-  <meta property="og:description" content="स्मार्ट पढ़ाई, उज्ज्वल भविष्य। UGC-NET & Librarian Exam Portal">
   <meta name="theme-color" content="#1e3a8a">
 
   <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
@@ -24,7 +21,6 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
     body { background: var(--bg); color: var(--text); padding-bottom: 60px; }
 
-    /* WELCOME SPLASH */
     #welcomeSplash {
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       background: radial-gradient(circle at top, #1e3a8a, #0b1329);
@@ -42,11 +38,16 @@
       padding: 5px 14px; border-radius: 20px; margin-bottom: 8px; border: 1px solid #bfdbfe;
     }
     .splash-big-brand h1 { font-size: 1.2rem; font-weight: 900; color: var(--primary); }
-    .splash-photo-wrap { position: relative; width: 95px; height: 95px; margin: 4px auto 10px; }
+    .splash-photo-wrap { position: relative; width: 105px; height: 105px; margin: 4px auto 10px; }
     .splash-photo {
-      width: 95px; height: 95px; border-radius: 50%; object-fit: cover;
+      width: 105px; height: 105px; border-radius: 50%; object-fit: cover;
       border: 3px solid var(--gold); box-shadow: 0 6px 18px rgba(245, 158, 11, 0.4);
       background: #e2e8f0; display: block;
+    }
+    .photo-camera-btn {
+      position: absolute; bottom: 2px; right: 2px; background: var(--primary); color: white;
+      width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; font-size: 16px; cursor: pointer; border: 2px solid white;
     }
     .splash-name { font-size: 1.25rem; font-weight: 900; color: var(--text); margin-bottom: 2px; }
     .splash-subtitle { font-size: 0.78rem; color: #b45309; font-weight: 700; margin-bottom: 10px; }
@@ -58,7 +59,6 @@
     .splash-timer-progress { width: 0%; height: 100%; background: linear-gradient(90deg, var(--gold), var(--accent)); animation: splashProgress 3s linear forwards; }
     @keyframes splashProgress { 0% { width: 0%; } 100% { width: 100%; } }
 
-    /* LOGIN OVERLAY */
     #authOverlay {
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       background: radial-gradient(circle at top, #1e3a8a, #0b1329);
@@ -79,7 +79,6 @@
     .input-box { width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 0.95rem; margin-bottom: 12px; outline: none; }
     .btn-action { width: 100%; padding: 13px; background: linear-gradient(135deg, var(--gold), #ea580c); color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 800; cursor: pointer; }
 
-    /* TOP NAVBAR */
     .top-navbar {
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
       color: white; padding: 8px 14px; position: sticky; top: 0; z-index: 100;
@@ -128,7 +127,6 @@
     .trick-box { background: #fffbeb; border: 1px solid #fde68a; border-left: 5px solid var(--gold); border-radius: 12px; padding: 14px; margin-bottom: 12px; }
     .trick-formula { background: white; border: 1px dashed var(--gold); padding: 6px 10px; border-radius: 6px; font-weight: 800; color: #b45309; margin: 6px 0; display: inline-block; font-size: 0.9rem; }
 
-    /* SWIPEABLE FLASHCARDS */
     .flashcard-stage { width: 100%; height: 230px; position: relative; margin: 14px 0; perspective: 1200px; touch-action: pan-y; user-select: none; }
     .flashcard-container { width: 100%; height: 100%; position: relative; cursor: grab; border-radius: 20px; }
     .flashcard-inner { position: absolute; width: 100%; height: 100%; text-align: center; transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease; transform-style: preserve-3d; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
@@ -149,10 +147,14 @@
         <h1>LIS GURUJI</h1>
       </div>
       <div class="splash-photo-wrap">
-        <img id="splashPhoto" class="splash-photo" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300" alt="RAMESH GUJJAR">
+        <!-- Professional Uniform Avatar as permanent high-reliability display -->
+        <img id="splashPhoto" class="splash-photo" src="https://api.dicebear.com/7.x/bottts/svg?seed=RameshGujjarOfficial" alt="RAMESH GUJJAR">
+        <label for="splashPhotoInput" class="photo-camera-btn" title="फोटो बदलें">📷</label>
+        <input type="file" id="splashPhotoInput" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">
       </div>
       <div class="splash-name">
         <span id="splashName">RAMESH GUJJAR</span>
+        <span onclick="editMentorDetails()" style="font-size:0.85rem; cursor:pointer;" title="बदलें">✏️</span>
       </div>
       <div class="splash-subtitle">संस्थापक एवं मार्गदर्शक • Library & Info Science</div>
       <div class="splash-slogan-box">
@@ -171,7 +173,7 @@
   <div id="authOverlay" class="hidden">
     <div class="login-card">
       <div class="login-mentor-badge">
-        <img class="login-mentor-img" id="loginMentorImg" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300" alt="RAMESH GUJJAR">
+        <img class="login-mentor-img" id="loginMentorImg" src="https://api.dicebear.com/7.x/bottts/svg?seed=RameshGujjarOfficial" alt="RAMESH GUJJAR">
         <div class="login-mentor-info">
           <h3>LIS GURUJI</h3>
           <p id="loginMentorSubName">RAMESH GUJJAR</p>
@@ -204,7 +206,7 @@
       </div>
     </div>
     <div class="nav-mentor-profile" onclick="openSidebar()">
-      <img id="navMentorImg" class="mentor-header-photo" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300" alt="RAMESH GUJJAR">
+      <img id="navMentorImg" class="mentor-header-photo" src="https://api.dicebear.com/7.x/bottts/svg?seed=RameshGujjarOfficial" alt="RAMESH GUJJAR">
       <div class="mentor-header-text">
         <div class="top-title">LIS GURUJI</div>
         <div class="bot-name" id="navMentorName">RAMESH GUJJAR</div>
@@ -218,7 +220,7 @@
     <div class="sidebar-header">
       <button onclick="closeSidebar()" style="position:absolute; top:12px; right:12px; background:none; border:none; color:white; font-size:20px; cursor:pointer;">✕</button>
       <div style="display:flex; align-items:center; gap:12px;">
-        <img id="sideMentorImg" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300" style="width:52px; height:52px; border-radius:50%; border:2px solid #f59e0b; background:white; object-fit:cover;">
+        <img id="sideMentorImg" src="https://api.dicebear.com/7.x/bottts/svg?seed=RameshGujjarOfficial" style="width:52px; height:52px; border-radius:50%; border:2px solid #f59e0b; background:white; object-fit:cover;">
         <div>
           <h3 id="sideMentorName" style="font-size:1.05rem; font-weight:800;">RAMESH GUJJAR</h3>
           <p id="sideMentorPhone" style="font-size:0.75rem; color:#fde68a;">9549700557</p>
@@ -252,7 +254,6 @@
   </div>
 
   <div class="container">
-    <!-- VIEW 1: HOME -->
     <div id="view-home" class="view-panel active">
       <div style="background:linear-gradient(135deg, #1e3a8a, #2563eb); color:white; border-radius:16px; padding:16px; margin-bottom:16px;">
         <h3 id="welcomeStudentBanner" style="font-size:1.15rem; font-weight:800;">नमस्ते, विद्यार्थी! 👋</h3>
@@ -302,7 +303,6 @@
       </div>
     </div>
 
-    <!-- VIEW 2: GENERATE -->
     <div id="view-generate" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
@@ -347,7 +347,6 @@
       </div>
     </div>
 
-    <!-- VIEW 3: PYQ HUB -->
     <div id="view-pyq" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
@@ -390,7 +389,6 @@
       </div>
     </div>
 
-    <!-- VIEW 4: PLAY CARDS -->
     <div id="view-cards" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
@@ -418,7 +416,6 @@
       </div>
     </div>
 
-    <!-- VIEW 5: TRICKS -->
     <div id="view-tricks" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
@@ -433,7 +430,6 @@
       </div>
     </div>
 
-    <!-- VIEW 6: NOTES -->
     <div id="view-notes" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
@@ -453,7 +449,6 @@
       </div>
     </div>
 
-    <!-- VIEW 7: BANK -->
     <div id="view-bank" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
@@ -463,7 +458,6 @@
       </div>
     </div>
 
-    <!-- VIEW 8: SYLLABUS -->
     <div id="view-syllabus" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
@@ -479,7 +473,6 @@
       </div>
     </div>
 
-    <!-- VIEW 9: CBT -->
     <div id="view-cbt" class="view-panel">
       <div style="background:var(--primary-dark); color:white; padding:10px 14px; border-radius:10px; display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
         <div id="cbtTestTitle" style="font-weight:800;">RAMESH GUJJAR CBT TEST</div>
@@ -507,10 +500,43 @@
         localStorage.setItem('lis_mentor_name', 'RAMESH GUJJAR');
       }
       const phone = localStorage.getItem('lis_mentor_phone') || '9549700557';
+      const photo = localStorage.getItem('lis_mentor_photo') || 'https://api.dicebear.com/7.x/bottts/svg?seed=RameshGujjarOfficial';
+
       const nameEls = ['splashName', 'navMentorName', 'sideMentorName', 'loginMentorSubName'];
       nameEls.forEach(id => { const el = document.getElementById(id); if (el) el.innerText = name; });
       const phoneEls = ['splashPhone', 'sideMentorPhone'];
       phoneEls.forEach(id => { const el = document.getElementById(id); if (el) el.innerText = phone; });
+      
+      ['splashPhoto', 'navMentorImg', 'sideMentorImg', 'loginMentorImg'].forEach(id => {
+        const img = document.getElementById(id); 
+        if (img) {
+          img.src = photo;
+          img.onerror = function() { this.src = 'https://api.dicebear.com/7.x/bottts/svg?seed=RameshGujjarOfficial'; };
+        }
+      });
+    }
+
+    function editMentorDetails() {
+      const curName = localStorage.getItem('lis_mentor_name') || 'RAMESH GUJJAR';
+      const curPhone = localStorage.getItem('lis_mentor_phone') || '9549700557';
+      const nName = prompt('अपना पूरा नाम दर्ज करें:', curName);
+      if (nName && nName.trim()) localStorage.setItem('lis_mentor_name', nName.trim());
+      const nPhone = prompt('अपना मोबाइल नंबर दर्ज करें:', curPhone);
+      if (nPhone && nPhone.trim()) localStorage.setItem('lis_mentor_phone', nPhone.trim());
+      initMentor();
+    }
+
+    function handlePhotoUpload(event) {
+      const f = event.target.files[0];
+      if (f) {
+        const r = new FileReader();
+        r.onload = (e) => {
+          localStorage.setItem('lis_mentor_photo', e.target.result);
+          initMentor();
+          alert('✅ फ़ोटो सेव हो गई!');
+        };
+        r.readAsDataURL(f);
+      }
     }
 
     let splashDismissed = false;
@@ -520,7 +546,7 @@
       const splash = document.getElementById('welcomeSplash');
       if (splash) {
         splash.classList.add('hide');
-        setTimeout(() => splash.remove(), 500);
+        setTimeout(() => splash.remove(), 400);
       }
       checkAuth();
     }
@@ -630,7 +656,6 @@
       `).join('');
     }
 
-    // ALL-IN-ONE 1-PDF GENERATOR
     document.getElementById('genForm').onsubmit = async (e) => {
       e.preventDefault();
       const btn = document.getElementById('btnGen');

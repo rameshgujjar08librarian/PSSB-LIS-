@@ -282,7 +282,7 @@
     .btn-enter-app:active { transform: scale(0.98); }
 
     /* =========================================
-       PAGE 2: MATRIX GRID DASHBOARD
+       PAGE 2: MATRIX GRID DASHBOARD (8 BLOCKS)
        ========================================= */
     .dashboard-header-banner {
       background: linear-gradient(135deg, #1e3a8a, #2563eb);
@@ -298,7 +298,6 @@
     .dash-greeting h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 2px; }
     .dash-greeting p { font-size: 0.78rem; opacity: 0.9; }
 
-    /* The 2-Column App Matrix Grid (8 Tiles) */
     .dashboard-matrix {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -390,7 +389,6 @@
     }
     .btn-submit:disabled { opacity: 0.6; }
 
-    /* PYQ Section Styling */
     .pyq-box {
       background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px;
       padding: 14px; margin-bottom: 12px; position: relative;
@@ -418,133 +416,48 @@
       border-radius: 18px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     }
-    .flashcard-inner.flipped {
-      transform: rotateY(180deg);
-    }
+    .flashcard-inner.flipped { transform: rotateY(180deg); }
     .flashcard-front, .flashcard-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-      border-radius: 18px;
-      padding: 24px 18px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      border: 2px solid var(--border);
+      position: absolute; width: 100%; height: 100%;
+      -webkit-backface-visibility: hidden; backface-visibility: hidden;
+      border-radius: 18px; padding: 24px 18px; display: flex; flex-direction: column;
+      justify-content: center; align-items: center; border: 2px solid var(--border);
     }
-    .flashcard-front {
-      background: linear-gradient(145deg, #ffffff, #eff6ff);
-      color: #1e3a8a;
-    }
-    .flashcard-back {
-      background: linear-gradient(145deg, #1e3a8a, #0f172a);
-      color: #fef08a;
-      transform: rotateY(180deg);
-    }
-    .flashcard-title {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-weight: 800;
-      opacity: 0.75;
-      margin-bottom: 8px;
-    }
-    .flashcard-text {
-      font-size: 1.15rem;
-      font-weight: 800;
-      line-height: 1.4;
-    }
-    .flashcard-hint {
-      font-size: 0.75rem;
-      margin-top: 12px;
-      opacity: 0.7;
-    }
-    .flashcard-controls {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      margin-top: 14px;
-    }
-    .btn-card-nav {
-      padding: 10px 18px;
-      border-radius: 10px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      border: 1px solid var(--border);
-      background: white;
-      cursor: pointer;
-    }
+    .flashcard-front { background: linear-gradient(145deg, #ffffff, #eff6ff); color: #1e3a8a; }
+    .flashcard-back { background: linear-gradient(145deg, #1e3a8a, #0f172a); color: #fef08a; transform: rotateY(180deg); }
+    .flashcard-title { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; opacity: 0.75; margin-bottom: 8px; }
+    .flashcard-text { font-size: 1.15rem; font-weight: 800; line-height: 1.4; }
+    .flashcard-hint { font-size: 0.75rem; margin-top: 12px; opacity: 0.7; }
+    .flashcard-controls { display: flex; gap: 10px; justify-content: center; margin-top: 14px; }
+    .btn-card-nav { padding: 10px 18px; border-radius: 10px; font-size: 0.9rem; font-weight: 700; border: 1px solid var(--border); background: white; cursor: pointer; }
 
     /* SMART TRICKS STYLING */
     .trick-card {
-      background: #fffbeb;
-      border: 1px solid #fde68a;
-      border-left: 5px solid #f59e0b;
-      border-radius: 12px;
-      padding: 14px;
-      margin-bottom: 14px;
+      background: #fffbeb; border: 1px solid #fde68a; border-left: 5px solid #f59e0b;
+      border-radius: 12px; padding: 14px; margin-bottom: 14px;
     }
-    .trick-title {
-      font-size: 1rem;
-      font-weight: 800;
-      color: #92400e;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 6px;
-    }
-    .trick-formula {
-      background: white;
-      border: 1px dashed #f59e0b;
-      padding: 8px 12px;
-      border-radius: 8px;
-      font-weight: 800;
-      color: #b45309;
-      font-size: 0.92rem;
-      margin-bottom: 6px;
-    }
-    .trick-desc {
-      font-size: 0.82rem;
-      color: #78350f;
-      line-height: 1.4;
-    }
+    .trick-title { font-size: 1rem; font-weight: 800; color: #92400e; display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+    .trick-formula { background: white; border: 1px dashed #f59e0b; padding: 8px 12px; border-radius: 8px; font-weight: 800; color: #b45309; font-size: 0.92rem; margin-bottom: 6px; }
+    .trick-desc { font-size: 0.82rem; color: #78350f; line-height: 1.4; }
 
     /* SHORT NOTES STYLING */
     .note-card {
-      background: #f0fdf4;
-      border: 1px solid #bbf7d0;
-      border-left: 5px solid #16a34a;
-      border-radius: 12px;
-      padding: 14px;
-      margin-bottom: 12px;
+      background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 5px solid #16a34a;
+      border-radius: 12px; padding: 14px; margin-bottom: 12px;
     }
     .note-card h4 { font-size: 0.98rem; font-weight: 800; color: #166534; margin-bottom: 6px; }
     .note-card ul { padding-left: 18px; font-size: 0.85rem; color: #14532d; line-height: 1.6; }
 
-    /* Modal Styling */
+    /* Modals */
     .modal-overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.6);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      padding: 16px;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center;
+      z-index: 1000; padding: 16px;
     }
     .modal-overlay.open { display: flex; }
     .modal-content {
-      background: white;
-      border-radius: 16px;
-      padding: 20px;
-      width: 100%;
-      max-width: 480px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      max-height: 90vh;
-      overflow-y: auto;
+      background: white; border-radius: 16px; padding: 20px; width: 100%;
+      max-width: 480px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); max-height: 90vh; overflow-y: auto;
     }
 
     /* CBT View */
@@ -579,7 +492,7 @@
       </div>
     </div>
     <div style="font-size: 0.78rem; background: rgba(255,255,255,0.2); padding: 4px 8px; border-radius: 6px;">
-      v2.5
+      v2.6
     </div>
   </div>
 
@@ -654,33 +567,27 @@
 
   <div class="container">
 
-    <!-- ===================================================
-         VIEW 1: WELCOME / INTRO LOGO PAGE (FIRST SCREEN)
-         =================================================== -->
+    <!-- VIEW 1: WELCOME SCREEN -->
     <div id="view-welcome" class="view-panel active">
       <div class="welcome-card">
         
-        <!-- Profile Photo with Instant Upload Button -->
         <div class="profile-photo-wrapper">
           <img id="mentorPhoto" class="profile-photo" src="https://api.dicebear.com/7.x/bottts/svg?seed=lis" alt="LIS Guruji">
           <label for="photoFileInput" class="photo-upload-badge" title="अपनी फ़ोटो चुनें">📷</label>
           <input type="file" id="photoFileInput" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">
         </div>
 
-        <!-- Mentor Name & Title -->
         <div class="welcome-name">
           <span id="mentorNameText">LIS GURUJI</span>
           <span style="font-size:0.9rem; cursor:pointer;" onclick="editMentorDetails()" title="नाम व मोबाइल बदलें">✏️</span>
         </div>
         <div class="welcome-designation">संस्थापक एवं मार्गदर्शक • Library & Info Science</div>
 
-        <!-- Slogan Card -->
         <div class="slogan-card">
           <div class="slogan-text">"स्मार्ट पढ़ाई, उज्ज्वल भविष्य।"</div>
           <div class="slogan-sub">⚡ AI संचालित आधुनिक टेस्ट व क्वेश्चन पोर्टल</div>
         </div>
 
-        <!-- Mobile & Contact Section -->
         <div class="contact-box">
           <div class="contact-row">
             <span>📞 संपर्क सूत्र:</span>
@@ -696,7 +603,6 @@
           </div>
         </div>
 
-        <!-- Big Enter App Button -->
         <button class="btn-enter-app" onclick="showView('home')">
           🚀 ऐप में प्रवेश करें (Start Now) →
         </button>
@@ -704,9 +610,7 @@
       </div>
     </div>
 
-    <!-- ===================================================
-         VIEW 2: MATRIX GRID DASHBOARD (SECOND SCREEN - 8 BLOCKS)
-         =================================================== -->
+    <!-- VIEW 2: MATRIX GRID DASHBOARD (8 BLOCKS) -->
     <div id="view-home" class="view-panel">
       
       <div class="dashboard-header-banner">
@@ -719,89 +623,62 @@
         </button>
       </div>
 
-      <!-- 8-BLOCK APP MATRIX GRID -->
       <div class="dashboard-matrix">
-
-        <!-- 1: AI Generator -->
         <div class="matrix-card" onclick="showView('generate')">
           <span class="matrix-badge" style="background:#dbeafe; color:#1d4ed8;">⚡ AI Smart</span>
-          <div class="matrix-icon-box" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">
-            🤖
-          </div>
+          <div class="matrix-icon-box" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">🤖</div>
           <h3>नया AI टेस्ट</h3>
           <p>PDF/फ़ोटो से प्रश्न बैंक बनाएं</p>
         </div>
 
-        <!-- 2: PYQ Papers -->
         <div class="matrix-card" onclick="showView('pyq')">
           <span class="matrix-badge" style="background:#ede9fe; color:#6d28d9;">📜 NET/KVS</span>
-          <div class="matrix-icon-box" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9);">
-            🏛️
-          </div>
+          <div class="matrix-icon-box" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9);">🏛️</div>
           <h3>पिछले पेपर (PYQ)</h3>
           <p>विगत वर्ष हल प्रश्न पत्र</p>
         </div>
 
-        <!-- 3: Play Cards (Flashcards) -->
         <div class="matrix-card" onclick="showView('cards')">
           <span class="matrix-badge" style="background:#fce7f3; color:#be185d;">🃏 रैपिड रिवीज़न</span>
-          <div class="matrix-icon-box" style="background: linear-gradient(135deg, #ec4899, #be185d);">
-            🎴
-          </div>
+          <div class="matrix-icon-box" style="background: linear-gradient(135deg, #ec4899, #be185d);">🎴</div>
           <h3>स्मार्ट प्ले कार्ड्स</h3>
           <p>फ़्लैशकार्ड्स से त्वरित तैयारी</p>
         </div>
 
-        <!-- 4: Smart Tricks -->
         <div class="matrix-card" onclick="showView('tricks')">
           <span class="matrix-badge" style="background:#fef3c7; color:#b45309;">💡 जादुई सूत्र</span>
-          <div class="matrix-icon-box" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
-            🧠
-          </div>
+          <div class="matrix-icon-box" style="background: linear-gradient(135deg, #f59e0b, #d97706);">🧠</div>
           <h3>स्मार्ट ट्रिक्स</h3>
           <p>याद रखने के अचूक शॉर्टकट्स</p>
         </div>
 
-        <!-- 5: Short Notes -->
         <div class="matrix-card" onclick="showView('notes')">
           <span class="matrix-badge" style="background:#dcfce7; color:#15803d;">📝 5-Min Summary</span>
-          <div class="matrix-icon-box" style="background: linear-gradient(135deg, #10b981, #047857);">
-            📑
-          </div>
+          <div class="matrix-icon-box" style="background: linear-gradient(135deg, #10b981, #047857);">📑</div>
           <h3>शॉर्ट नोट्स</h3>
           <p>टॉपिक वार मुख्य बिंदु</p>
         </div>
 
-        <!-- 6: Live CBT Test -->
         <div class="matrix-card" onclick="startCBT()">
           <span class="matrix-badge" style="background:#ccfbf1; color:#0f766e;">⏱️ Real Test</span>
-          <div class="matrix-icon-box" style="background: linear-gradient(135deg, #14b8a6, #0f766e);">
-            🎯
-          </div>
+          <div class="matrix-icon-box" style="background: linear-gradient(135deg, #14b8a6, #0f766e);">🎯</div>
           <h3>लाइव CBT टेस्ट</h3>
           <p>टाइमर के साथ परीक्षा अभ्यास</p>
         </div>
 
-        <!-- 7: Question Bank -->
         <div class="matrix-card" onclick="showView('bank')">
           <span class="matrix-badge" style="background:#e0e7ff; color:#4338ca;">📂 बैंक</span>
-          <div class="matrix-icon-box" style="background: linear-gradient(135deg, #6366f1, #4338ca);">
-            📁
-          </div>
+          <div class="matrix-icon-box" style="background: linear-gradient(135deg, #6366f1, #4338ca);">📁</div>
           <h3>क्वेश्चन बैंक</h3>
           <p>सहेजे गए सभी प्रश्न व उत्तर</p>
         </div>
 
-        <!-- 8: Syllabus Guide -->
         <div class="matrix-card" onclick="showView('syllabus')">
           <span class="matrix-badge" style="background:#cffafe; color:#0e7490;">📚 8 Units</span>
-          <div class="matrix-icon-box" style="background: linear-gradient(135deg, #06b6d4, #0e7490);">
-            📖
-          </div>
+          <div class="matrix-icon-box" style="background: linear-gradient(135deg, #06b6d4, #0e7490);">📖</div>
           <h3>LIS सिलेबस</h3>
           <p>संपूर्ण पाठ्यक्रम एवं गाइड</p>
         </div>
-
       </div>
 
     </div>
@@ -854,7 +731,7 @@
       </div>
     </div>
 
-    <!-- VIEW 4: PYQ PAPERS + ADD NEW PAPER -->
+    <!-- VIEW 4: PYQ PAPERS -->
     <div id="view-pyq" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
       <div class="card">
@@ -864,18 +741,14 @@
             ➕ नया पेपर जोड़ें
           </button>
         </div>
-        
         <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:14px;">
           💡 आप किसी भी पेपर का लाइव CBT टेस्ट दे सकते हैं या सीधे नया पेपर जोड़ सकते हैं।
         </p>
-
-        <div id="pyqListContainer">
-          <!-- Dynamic papers will load here -->
-        </div>
+        <div id="pyqListContainer"></div>
       </div>
     </div>
 
-    <!-- VIEW 5: PLAY CARDS / FLASHCARDS -->
+    <!-- VIEW 5: PLAY CARDS -->
     <div id="view-cards" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
       <div class="card">
@@ -885,18 +758,13 @@
             ➕ नया कार्ड जोड़ें
           </button>
         </div>
-
-        <p style="font-size:0.84rem; color:var(--text-muted);">
-          कार्ड पर टैप करें उत्तर देखने के लिए (Tap to Flip):
-        </p>
-
-        <!-- 3D Flip Card Container -->
+        <p style="font-size:0.84rem; color:var(--text-muted);">कार्ड पर टैप करें उत्तर देखने के लिए:</p>
         <div class="flashcard-container" onclick="flipFlashcard()">
           <div class="flashcard-inner" id="flashcardInner">
             <div class="flashcard-front">
               <div class="flashcard-title" id="cardTopicDisplay">TOPIC: CLASSIFICATION</div>
               <div class="flashcard-text" id="cardQuestionDisplay">प्रश्न लोड हो रहा है...</div>
-              <div class="flashcard-hint">👆 उत्तर देखने के लिए टैप करें (Click to reveal)</div>
+              <div class="flashcard-hint">👆 उत्तर देखने के लिए टैप करें</div>
             </div>
             <div class="flashcard-back">
               <div class="flashcard-title" style="color:#cbd5e1;">सही उत्तर / व्याख्या:</div>
@@ -905,8 +773,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Card navigation -->
         <div class="flashcard-controls">
           <button class="btn-card-nav" onclick="prevCard()">← पिछला कार्ड</button>
           <span id="cardCountDisplay" style="align-self:center; font-weight:800; font-size:0.9rem; color:var(--primary);">1 / 5</span>
@@ -915,7 +781,7 @@
       </div>
     </div>
 
-    <!-- VIEW 6: SMART TRICKS & MNEMONICS -->
+    <!-- VIEW 6: SMART TRICKS -->
     <div id="view-tricks" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
       <div class="card">
@@ -925,10 +791,7 @@
             ➕ नई ट्रिक जोड़ें
           </button>
         </div>
-
-        <div id="tricksContainer">
-          <!-- Dynamic tricks load here -->
-        </div>
+        <div id="tricksContainer"></div>
       </div>
     </div>
 
@@ -942,10 +805,7 @@
             ➕ नए नोट्स जोड़ें
           </button>
         </div>
-
-        <div id="notesContainer">
-          <!-- Dynamic notes load here -->
-        </div>
+        <div id="notesContainer"></div>
       </div>
     </div>
 
@@ -997,24 +857,21 @@
 
   </div>
 
-  <!-- ===================================================
-       MODALS: FOR ADDING PAPERS, CARDS, TRICKS & NOTES
-       =================================================== -->
-  <!-- 1. Add Paper Modal -->
+  <!-- MODALS -->
   <div class="modal-overlay" id="paperModal">
     <div class="modal-content">
       <h3 style="margin-bottom:12px; color:var(--primary);">➕ नया पेपर जोड़ें</h3>
       <div class="form-group">
-        <label>परीक्षा का नाम (Exam Name):</label>
+        <label>परीक्षा का नाम:</label>
         <input type="text" id="newPaperTitle" class="form-control" placeholder="उदा: RSMSSB Librarian Grade-II">
       </div>
       <div class="form-group">
-        <label>वर्ष एवं शिफ्ट (Year/Shift):</label>
+        <label>वर्ष एवं शिफ्ट:</label>
         <input type="text" id="newPaperYear" class="form-control" placeholder="उदा: 2024 Shift-1">
       </div>
       <div class="form-group">
-        <label>प्रश्नों की संख्या या विवरण:</label>
-        <input type="text" id="newPaperDesc" class="form-control" placeholder="उदा: 100 Solved Questions with Explanations">
+        <label>विवरण:</label>
+        <input type="text" id="newPaperDesc" class="form-control" placeholder="उदा: 100 Solved Questions">
       </div>
       <div style="display:flex; gap:10px;">
         <button class="btn-submit" onclick="saveNewPaper()">सेव करें</button>
@@ -1023,21 +880,20 @@
     </div>
   </div>
 
-  <!-- 2. Add Flashcard Modal -->
   <div class="modal-overlay" id="cardModal">
     <div class="modal-content">
-      <h3 style="margin-bottom:12px; color:var(--rose);">➕ नया प्ले कार्ड (Flashcard) जोड़ें</h3>
+      <h3 style="margin-bottom:12px; color:var(--rose);">➕ नया प्ले कार्ड जोड़ें</h3>
       <div class="form-group">
         <label>टॉपिक का नाम:</label>
         <input type="text" id="newCardTopic" class="form-control" placeholder="उदा: DDC या Laws of Library">
       </div>
       <div class="form-group">
-        <label>प्रश्न / कार्ड का सामने वाला भाग (Front):</label>
-        <textarea id="newCardFront" class="form-control" rows="3" placeholder="प्रश्न या अवधारणा लिखें"></textarea>
+        <label>प्रश्न (Front):</label>
+        <textarea id="newCardFront" class="form-control" rows="3"></textarea>
       </div>
       <div class="form-group">
-        <label>उत्तर / कार्ड का पीछे वाला भाग (Back):</label>
-        <textarea id="newCardBack" class="form-control" rows="3" placeholder="सही उत्तर, वर्ष या ट्रिक लिखें"></textarea>
+        <label>उत्तर (Back):</label>
+        <textarea id="newCardBack" class="form-control" rows="3"></textarea>
       </div>
       <div style="display:flex; gap:10px;">
         <button class="btn-submit" style="background:var(--rose);" onclick="saveNewCard()">कार्ड सेव करें</button>
@@ -1046,21 +902,20 @@
     </div>
   </div>
 
-  <!-- 3. Add Trick Modal -->
   <div class="modal-overlay" id="trickModal">
     <div class="modal-content">
       <h3 style="margin-bottom:12px; color:#b45309;">➕ नई स्मार्ट ट्रिक जोड़ें</h3>
       <div class="form-group">
-        <label>ट्रिक का शीर्षक:</label>
-        <input type="text" id="newTrickTitle" class="form-control" placeholder="उदा: Colon Classification PMEST सूत्र">
+        <label>शीर्षक:</label>
+        <input type="text" id="newTrickTitle" class="form-control">
       </div>
       <div class="form-group">
         <label>स्मार्ट फ़ॉर्मूला / कोडवर्ड:</label>
-        <input type="text" id="newTrickFormula" class="form-control" placeholder="उदा: P - M - E - S - T (Personality Matter...)">
+        <input type="text" id="newTrickFormula" class="form-control">
       </div>
       <div class="form-group">
-        <label>सरल व्याख्या / याद रखने का तरीक़ा:</label>
-        <textarea id="newTrickDesc" class="form-control" rows="3" placeholder="विस्तार से समझाएं"></textarea>
+        <label>सरल व्याख्या:</label>
+        <textarea id="newTrickDesc" class="form-control" rows="3"></textarea>
       </div>
       <div style="display:flex; gap:10px;">
         <button class="btn-submit" style="background:var(--gold); color:#1e3a8a;" onclick="saveNewTrick()">ट्रिक सेव करें</button>
@@ -1069,17 +924,16 @@
     </div>
   </div>
 
-  <!-- 4. Add Note Modal -->
   <div class="modal-overlay" id="noteModal">
     <div class="modal-content">
       <h3 style="margin-bottom:12px; color:var(--teal);">➕ नए शॉर्ट नोट्स जोड़ें</h3>
       <div class="form-group">
         <label>टॉपिक शीर्षक:</label>
-        <input type="text" id="newNoteTitle" class="form-control" placeholder="उदा: पुस्तकालय अधिनियम (Library Legislation)">
+        <input type="text" id="newNoteTitle" class="form-control">
       </div>
       <div class="form-group">
-        <label>मुख्य बिंदु (अलग-अलग लाइन में लिखें):</label>
-        <textarea id="newNotePoints" class="form-control" rows="4" placeholder="• तमिलनाडु: 1948&#10;• आंध्र प्रदेश: 1960&#10;• कर्नाटक: 1965"></textarea>
+        <label>मुख्य बिंदु (अलग-अलग लाइन में):</label>
+        <textarea id="newNotePoints" class="form-control" rows="4"></textarea>
       </div>
       <div style="display:flex; gap:10px;">
         <button class="btn-submit" style="background:var(--teal);" onclick="saveNewNote()">नोट्स सेव करें</button>
@@ -1089,18 +943,13 @@
   </div>
 
   <script>
-    // ==========================================
-    // 1. DATA INITIALIZATION & LOCAL PERSISTENCE
-    // ==========================================
-
-    // Default Papers
+    // Data structures
     const defaultPapers = [
       { id: 1, title: 'UGC NET Library & Information Science', year: 'Dec 2023 Official', desc: 'कुल प्रश्न: 100 | NTA Pattern Full Solved Paper' },
       { id: 2, title: 'RSMSSB Librarian Grade-III', year: '2022 Solved', desc: 'राजस्थान कर्मचारी चयन बोर्ड भर्ती परीक्षा हल प्रश्न पत्र' },
       { id: 3, title: 'KVS / NVS Librarian Recruitment Exam', year: '2023 Shift Paper', desc: 'केंद्रीय एवं नवोदय विद्यालय लाइब्रेरियन परीक्षा' }
     ];
 
-    // Default Flashcards
     const defaultCards = [
       { topic: 'LAWS OF LIBRARY', front: 'पुस्तकालय विज्ञान के 5 नियम कब प्रतिपादित और कब पुस्तक रूप में प्रकाशित हुए?', back: 'प्रतिपादित: 1928 (मीनाक्षी कॉलेज, अन्नामलाई नगर)\nपुस्तक प्रकाशित: 1931' },
       { topic: 'CLASSIFICATION', front: 'DDC (Dewey Decimal Classification) का प्रथम संस्करण कब और किसके द्वारा आया?', back: 'वर्ष: 1876\nरचयिता: मेलविल डेवी (कुल 44 पृष्ठ)' },
@@ -1109,59 +958,30 @@
       { topic: 'ACTS & COPYRIGHT', front: 'Delivery of Books Act और भारतीय कॉपीराइट अधिनियम किस-किस वर्ष बने?', back: 'Delivery of Books Act: 1954 (1956 में पत्रिकाएं शामिल)\nIndian Copyright Act: 1957' }
     ];
 
-    // Default Smart Tricks
     const defaultTricks = [
-      {
-        title: 'PMEST सूत्र (रंगनाथन के 5 मौलिक श्रेणियां)',
-        formula: 'P = Personality, M = Matter, E = Energy, S = Space, T = Time',
-        desc: 'समय (Time) सबसे अधिक ठोस और व्यक्तित्व (Personality) सबसे सूक्ष्म व जटिल होता है।'
-      },
-      {
-        title: 'प्रथम चार पुस्तकालय अधिनियम याद रखने की ट्रिक',
-        formula: 'MAD = Madras (1948), AP (1960), Karnataka (1965), Maharashtra (1967)',
-        desc: 'क्रम याद रखें: मद्रास (48) ➔ आंध्र (60) ➔ कर्नाटक (65) ➔ महाराष्ट्र (67)'
-      },
-      {
-        title: 'DDC 10 Main Classes (000 - 900)',
-        formula: '000-सामान्य, 100-दर्शन, 200-धर्म, 300-सामाजिक, 400-भाषा, 500-विज्ञान, 600-प्रौद्योगिकी, 700-कला, 800-साहित्य, 900-इतिहास',
-        desc: 'इस कोडवर्ड से दसों मुख्य वर्ग कभी नहीं भूलेंगे।'
-      }
+      { title: 'PMEST सूत्र (रंगनाथन के 5 मौलिक श्रेणियां)', formula: 'P = Personality, M = Matter, E = Energy, S = Space, T = Time', desc: 'समय सबसे अधिक ठोस और व्यक्तित्व सबसे सूक्ष्म होता है।' },
+      { title: 'प्रथम चार पुस्तकालय अधिनियम याद रखने की ट्रिक', formula: 'MAD = Madras (1948), AP (1960), Karnataka (1965), Maharashtra (1967)', desc: 'मद्रास (48) ➔ आंध्र (60) ➔ कर्नाटक (65) ➔ महाराष्ट्र (67)' }
     ];
 
-    // Default Notes
     const defaultNotes = [
-      {
-        title: 'पुस्तकालय विज्ञान के 5 आधारभूत नियम (Dr. S.R. Ranganathan)',
-        points: ['1. पुस्तकें उपयोग के लिए हैं (Books are for use).', '2. प्रत्येक पाठक को उसकी पुस्तक मिले (Every reader his/her book).', '3. प्रत्येक पुस्तक को उसका पाठक मिले (Every book its reader).', '4. पाठक का समय बचाएं (Save the time of the reader).', '5. पुस्तकालय एक वर्धनशील संस्था है (Library is a growing organism).']
-      },
-      {
-        title: 'प्रमुख पुस्तकालय नेटवर्क व डेटाबेस',
-        points: ['INFLIBNET: 1991 में गांधीनगर में स्थापित।', 'DELNET: 1988 (मूल नाम: दिल्ली लाइब्रेरी नेटवर्क, अब डेवलपिंग लाइब्रेरी नेटवर्क)।', 'OCLC: 1967 (Ohio College Library Center)।', 'AGRIS: 1974 (FAO द्वारा कृषि सूचना प्रणाली)।']
-      }
+      { title: 'पुस्तकालय विज्ञान के 5 आधारभूत नियम', points: ['1. पुस्तकें उपयोग के लिए हैं।', '2. प्रत्येक पाठक को उसकी पुस्तक मिले।', '3. प्रत्येक पुस्तक को उसका पाठक मिले।', '4. पाठक का समय बचाएं।', '5. पुस्तकालय एक वर्धनशील संस्था है।'] },
+      { title: 'प्रमुख पुस्तकालय नेटवर्क', points: ['INFLIBNET: 1991 (गांधीनगर)', 'DELNET: 1988 (दिल्ली)', 'OCLC: 1967 (USA)'] }
     ];
 
-    // Load or Initialize
-    function getStoredData(key, def) {
-      const data = localStorage.getItem(key);
-      return data ? JSON.parse(data) : def;
-    }
-    function setStoredData(key, val) {
-      localStorage.setItem(key, JSON.stringify(val));
-    }
+    function getStoredData(key, def) { const d = localStorage.getItem(key); return d ? JSON.parse(d) : def; }
+    function setStoredData(key, val) { localStorage.setItem(key, JSON.stringify(val)); }
 
     let papersList = getStoredData('lis_papers', defaultPapers);
     let cardsList = getStoredData('lis_cards', defaultCards);
     let tricksList = getStoredData('lis_tricks', defaultTricks);
     let notesList = getStoredData('lis_notes', defaultNotes);
 
-    // ==========================================
-    // 2. RENDER FUNCTIONS
-    // ==========================================
+    // Active View Tracker
+    let currentActiveView = 'welcome';
 
-    // Render Papers
+    // Renders
     function renderPapers() {
-      const container = document.getElementById('pyqListContainer');
-      container.innerHTML = papersList.map((p, index) => `
+      document.getElementById('pyqListContainer').innerHTML = papersList.map((p, idx) => `
         <div class="pyq-box">
           <div style="display:flex; justify-content:space-between; align-items:flex-start;">
             <h4 style="font-size:1rem; color:#1e293b; margin-bottom:4px;">${p.title}</h4>
@@ -1170,36 +990,30 @@
           <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">${p.desc}</p>
           <div style="display:flex; gap:8px;">
             <button class="btn-pyq-test" onclick="showView('generate')">⚡ इस पेपर का CBT बनाएं</button>
-            <button onclick="deletePaper(${index})" style="background:#fee2e2; color:#b91c1c; border:none; padding:6px 10px; border-radius:6px; font-size:0.75rem; cursor:pointer;">हटाएं</button>
+            <button onclick="deletePaper(${idx})" style="background:#fee2e2; color:#b91c1c; border:none; padding:6px 10px; border-radius:6px; font-size:0.75rem; cursor:pointer;">हटाएं</button>
           </div>
         </div>
       `).join('');
     }
 
-    // Render Flashcard
     let currentCardIndex = 0;
     function renderCurrentCard() {
       if (cardsList.length === 0) return;
       if (currentCardIndex >= cardsList.length) currentCardIndex = 0;
       if (currentCardIndex < 0) currentCardIndex = cardsList.length - 1;
-
-      const card = cardsList[currentCardIndex];
-      document.getElementById('cardTopicDisplay').innerText = `TOPIC: ${card.topic || 'LIBRARY SCIENCE'}`;
-      document.getElementById('cardQuestionDisplay').innerText = card.front;
-      document.getElementById('cardAnswerDisplay').innerText = card.back;
+      const c = cardsList[currentCardIndex];
+      document.getElementById('cardTopicDisplay').innerText = `TOPIC: ${c.topic || 'GENERAL'}`;
+      document.getElementById('cardQuestionDisplay').innerText = c.front;
+      document.getElementById('cardAnswerDisplay').innerText = c.back;
       document.getElementById('cardCountDisplay').innerText = `${currentCardIndex + 1} / ${cardsList.length}`;
       document.getElementById('flashcardInner').classList.remove('flipped');
     }
-    function flipFlashcard() {
-      document.getElementById('flashcardInner').classList.toggle('flipped');
-    }
+    function flipFlashcard() { document.getElementById('flashcardInner').classList.toggle('flipped'); }
     function nextCard() { currentCardIndex++; renderCurrentCard(); }
     function prevCard() { currentCardIndex--; renderCurrentCard(); }
 
-    // Render Tricks
     function renderTricks() {
-      const container = document.getElementById('tricksContainer');
-      container.innerHTML = tricksList.map((t, idx) => `
+      document.getElementById('tricksContainer').innerHTML = tricksList.map((t, idx) => `
         <div class="trick-card">
           <div style="display:flex; justify-content:space-between;">
             <div class="trick-title">🧠 ${t.title}</div>
@@ -1211,10 +1025,8 @@
       `).join('');
     }
 
-    // Render Notes
     function renderNotes() {
-      const container = document.getElementById('notesContainer');
-      container.innerHTML = notesList.map((n, idx) => `
+      document.getElementById('notesContainer').innerHTML = notesList.map((n, idx) => `
         <div class="note-card">
           <div style="display:flex; justify-content:space-between;">
             <h4>📌 ${n.title}</h4>
@@ -1225,9 +1037,6 @@
       `).join('');
     }
 
-    // ==========================================
-    // 3. ADD NEW ITEMS HANDLERS
-    // ==========================================
     function saveNewPaper() {
       const title = document.getElementById('newPaperTitle').value.trim();
       const year = document.getElementById('newPaperYear').value.trim();
@@ -1238,29 +1047,25 @@
       renderPapers();
       closeModal('paperModal');
       document.getElementById('newPaperTitle').value = '';
-      alert('✅ नया पेपर सफलतापूर्वक जुड़ गया!');
+      alert('✅ नया पेपर जुड़ गया!');
     }
     function deletePaper(idx) {
-      if (confirm('क्या आप इस पेपर को हटाना चाहते हैं?')) {
-        papersList.splice(idx, 1);
-        setStoredData('lis_papers', papersList);
-        renderPapers();
-      }
+      if (confirm('हटाना चाहते हैं?')) { papersList.splice(idx, 1); setStoredData('lis_papers', papersList); renderPapers(); }
     }
 
     function saveNewCard() {
       const topic = document.getElementById('newCardTopic').value.trim();
       const front = document.getElementById('newCardFront').value.trim();
       const back = document.getElementById('newCardBack').value.trim();
-      if (!front || !back) return alert('कार्ड का प्रश्न और उत्तर दोनों भरें!');
-      cardsList.push({ topic: topic || 'GENERAL LIS', front, back });
+      if (!front || !back) return alert('कार्ड का प्रश्न और उत्तर भरें!');
+      cardsList.push({ topic: topic || 'GENERAL', front, back });
       setStoredData('lis_cards', cardsList);
       currentCardIndex = cardsList.length - 1;
       renderCurrentCard();
       closeModal('cardModal');
       document.getElementById('newCardFront').value = '';
       document.getElementById('newCardBack').value = '';
-      alert('✅ नया प्ले कार्ड सफलतापूर्वक जुड़ गया!');
+      alert('✅ नया प्ले कार्ड जुड़ गया!');
     }
 
     function saveNewTrick() {
@@ -1273,16 +1078,10 @@
       renderTricks();
       closeModal('trickModal');
       document.getElementById('newTrickTitle').value = '';
-      document.getElementById('newTrickFormula').value = '';
-      document.getElementById('newTrickDesc').value = '';
       alert('✅ नई स्मार्ट ट्रिक जुड़ गई!');
     }
     function deleteTrick(idx) {
-      if (confirm('हटाना चाहते हैं?')) {
-        tricksList.splice(idx, 1);
-        setStoredData('lis_tricks', tricksList);
-        renderTricks();
-      }
+      if (confirm('हटाना चाहते हैं?')) { tricksList.splice(idx, 1); setStoredData('lis_tricks', tricksList); renderTricks(); }
     }
 
     function saveNewNote() {
@@ -1295,24 +1094,16 @@
       renderNotes();
       closeModal('noteModal');
       document.getElementById('newNoteTitle').value = '';
-      document.getElementById('newNotePoints').value = '';
       alert('✅ नए शॉर्ट नोट्स जुड़ गए!');
     }
     function deleteNote(idx) {
-      if (confirm('हटाना चाहते हैं?')) {
-        notesList.splice(idx, 1);
-        setStoredData('lis_notes', notesList);
-        renderNotes();
-      }
+      if (confirm('हटाना चाहते हैं?')) { notesList.splice(idx, 1); setStoredData('lis_notes', notesList); renderNotes(); }
     }
 
-    // Modal Helpers
     function openModal(id) { document.getElementById(id).classList.add('open'); }
     function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 
-    // ==========================================
-    // 4. MENTOR PROFILE & APP CONTROLS
-    // ==========================================
+    // Mentor Info
     function initMentor() {
       const name = localStorage.getItem('lis_mentor_name') || 'LIS GURUJI';
       const phone = localStorage.getItem('lis_mentor_phone') || '+91 9876543210';
@@ -1320,7 +1111,6 @@
 
       document.getElementById('mentorNameText').innerText = name;
       document.getElementById('sideMentorName').innerText = name;
-
       document.getElementById('mentorPhoneText').innerText = phone;
       document.getElementById('sideMentorPhone').innerText = phone;
 
@@ -1335,34 +1125,29 @@
     }
 
     function editMentorDetails() {
-      const currentName = localStorage.getItem('lis_mentor_name') || 'LIS GURUJI';
-      const currentPhone = localStorage.getItem('lis_mentor_phone') || '+91 9876543210';
-
-      const newName = prompt('अपना पूरा नाम दर्ज करें:', currentName);
-      if (newName && newName.trim()) localStorage.setItem('lis_mentor_name', newName.trim());
-
-      const newPhone = prompt('अपना मोबाइल नंबर दर्ज करें (WhatsApp):', currentPhone);
-      if (newPhone && newPhone.trim()) localStorage.setItem('lis_mentor_phone', newPhone.trim());
-
+      const curName = localStorage.getItem('lis_mentor_name') || 'LIS GURUJI';
+      const curPhone = localStorage.getItem('lis_mentor_phone') || '+91 9876543210';
+      const nName = prompt('अपना पूरा नाम दर्ज करें:', curName);
+      if (nName && nName.trim()) localStorage.setItem('lis_mentor_name', nName.trim());
+      const nPhone = prompt('अपना मोबाइल नंबर (WhatsApp):', curPhone);
+      if (nPhone && nPhone.trim()) localStorage.setItem('lis_mentor_phone', nPhone.trim());
       initMentor();
     }
 
     function handlePhotoUpload(event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const base64Img = e.target.result;
-          localStorage.setItem('lis_mentor_photo', base64Img);
-          document.getElementById('mentorPhoto').src = base64Img;
-          document.getElementById('sideMentorImg').src = base64Img;
-          alert('✅ आपकी फ़ोटो सफलतापूर्वक सेव हो गई!');
+      const f = event.target.files[0];
+      if (f) {
+        const r = new FileReader();
+        r.onload = (e) => {
+          localStorage.setItem('lis_mentor_photo', e.target.result);
+          document.getElementById('mentorPhoto').src = e.target.result;
+          document.getElementById('sideMentorImg').src = e.target.result;
+          alert('✅ फ़ोटो सेव हो गई!');
         };
-        reader.readAsDataURL(file);
+        r.readAsDataURL(f);
       }
     }
 
-    // Sidebar
     function openSidebar() {
       document.getElementById('sidebar').classList.add('open');
       document.getElementById('sidebarOverlay').classList.add('open');
@@ -1371,19 +1156,28 @@
       document.getElementById('sidebar').classList.remove('open');
       document.getElementById('sidebarOverlay').classList.remove('open');
     }
-    function navFromSidebar(viewId) {
-      closeSidebar();
-      showView(viewId);
-    }
+    function navFromSidebar(viewId) { closeSidebar(); showView(viewId); }
+    
+    // Core Logout Logic
     function handleLogout() {
-      if (confirm('लॉगआउट करना चाहते हैं?')) {
-        alert('लॉगआउट सफल!');
-        location.reload();
+      const confirmLogout = confirm('क्या आप लॉगआउट करके ऐप से बाहर निकलना चाहते हैं?');
+      if (confirmLogout) {
+        localStorage.removeItem('lis_username');
+        alert('🚪 आप सफलतापूर्वक लॉगआउट हो चुके हैं!');
+        try {
+          window.close();
+        } catch(e) {}
+        location.href = "about:blank";
       }
     }
 
-    // View Switching
-    function showView(viewId) {
+    // View Switching with History Push
+    function showView(viewId, pushHistory = true) {
+      if (pushHistory && viewId !== currentActiveView) {
+        history.pushState({ view: viewId }, '', '#' + viewId);
+      }
+      currentActiveView = viewId;
+
       document.querySelectorAll('.view-panel').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.nav-pill').forEach(el => el.classList.remove('active'));
 
@@ -1402,13 +1196,71 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Generator Form
+    // ====================================================
+    // HARDWARE / GESTURE BACK BUTTON LOGOUT & POPSTATE HANDLER
+    // ====================================================
+    window.addEventListener('popstate', (e) => {
+      // 1. If any modal is open, close it first
+      const openModalElem = document.querySelector('.modal-overlay.open');
+      if (openModalElem) {
+        openModalElem.classList.remove('open');
+        history.pushState({ view: currentActiveView }, '', '#' + currentActiveView);
+        return;
+      }
+
+      // 2. If sidebar is open, close it first
+      const sidebarElem = document.getElementById('sidebar');
+      if (sidebarElem.classList.contains('open')) {
+        closeSidebar();
+        history.pushState({ view: currentActiveView }, '', '#' + currentActiveView);
+        return;
+      }
+
+      // 3. If in active CBT exam, confirm before exit
+      if (currentActiveView === 'cbt') {
+        if (confirm('क्या आप टेस्ट छोड़कर वापस जाना चाहते हैं?')) {
+          clearInterval(timerInterval);
+          showView('home', false);
+        } else {
+          history.pushState({ view: 'cbt' }, '', '#cbt');
+        }
+        return;
+      }
+
+      // 4. If in inner section (not on Welcome), navigate back towards Welcome
+      if (currentActiveView !== 'welcome') {
+        if (currentActiveView === 'home') {
+          showView('welcome', false);
+        } else {
+          showView('home', false);
+        }
+        return;
+      }
+
+      // 5. If already on Welcome Screen, prompt to LOGOUT & EXIT
+      if (currentActiveView === 'welcome') {
+        const exitApp = confirm('क्या आप लॉगआउट करके ऐप से बाहर निकलना चाहते हैं?');
+        if (exitApp) {
+          localStorage.removeItem('lis_username');
+          alert('🚪 आप लॉगआउट हो चुके हैं!');
+          try {
+            window.close();
+          } catch(err) {}
+          location.href = "about:blank";
+        } else {
+          // Keep user on the welcome screen
+          history.pushState({ view: 'welcome' }, '', '#welcome');
+        }
+      }
+    });
+
+    // AI Generator Form
     document.getElementById('genForm').onsubmit = async (e) => {
       e.preventDefault();
       const btn = document.getElementById('btnGen');
       const status = document.getElementById('genStatus');
       btn.disabled = true;
-      status.innerHTML = '⏳ AI अध्ययन कर रहा है... 1-2 मिनट प्रतीक्षा करें।';
+      status.innerHTML = '⏳ AI अध्ययन कर रहा है... कृपया 1-2 मिनट प्रतीक्षा करें।';
 
       const formData = new FormData();
       formData.append('subject', document.getElementById('subject').value);
@@ -1503,6 +1355,10 @@
       renderCurrentCard();
       renderTricks();
       renderNotes();
+
+      // Seed initial history state for hardware back button handling
+      history.replaceState({ view: 'welcome' }, '', '#welcome');
+      history.pushState({ view: 'welcome' }, '', '#welcome');
     };
   </script>
 </body>

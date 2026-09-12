@@ -249,7 +249,7 @@
   <div class="container">
     <div id="view-home" class="view-panel active">
       <div style="background:linear-gradient(135deg, #1e3a8a, #2563eb); color:white; border-radius:16px; padding:16px; margin-bottom:16px;">
-        <h3 id="welcomeStudentBanner" style="font-size:1.15rem; font-weight:800;">नमस्ते, Student! 👋</h3>
+        <h3 id="welcomeStudentBanner" style="font-size:1.15rem; font-weight:800;">Welcome, Student! 🙏</h3>
         <p style="font-size:0.8rem; opacity:0.9;">RAMESH GUJJAR LIS Study Portal</p>
       </div>
       <div class="dashboard-matrix">
@@ -534,7 +534,7 @@
         const student = JSON.parse(session);
         document.getElementById('authOverlay').classList.add('hidden');
         document.getElementById('loggedInStudentName').innerText = student.name;
-        document.getElementById('welcomeStudentBanner').innerText = `नमस्ते, ${student.name}! 👋`;
+        document.getElementById('welcomeStudentBanner').innerText = `Welcome, ${student.name}! 🙏`;
       } else {
         document.getElementById('authOverlay').classList.remove('hidden');
       }

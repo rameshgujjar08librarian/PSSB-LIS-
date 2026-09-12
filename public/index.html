@@ -77,24 +77,28 @@
     .login-mentor-badge { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid #e2e8f0; }
     .login-mentor-img { width: 58px; height: 58px; border-radius: 50%; border: 3px solid var(--gold); object-fit: cover; background: #e2e8f0; }
     .login-mentor-info { text-align: left; }
-    .login-mentor-info h3 { font-size: 1.25rem; color: var(--primary); font-weight: 900; margin-bottom: 2px; }
+    .login-mentor-info h3 { font-size: 1.15rem; color: var(--primary); font-weight: 900; margin-bottom: 2px; text-transform: uppercase; }
     .login-mentor-info p { font-size: 0.92rem; color: #b45309; font-weight: 800; margin-bottom: 1px; }
     .login-mentor-info span { font-size: 0.72rem; color: var(--text-muted); display: block; }
     .input-box { width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 0.95rem; margin-bottom: 12px; outline: none; }
     .btn-action { width: 100%; padding: 13px; background: linear-gradient(135deg, var(--gold), #ea580c); color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 800; cursor: pointer; }
 
+    /* Top Navbar styling to support LIS GURUJI (caps) above Ramesh Gujjar */
     .top-navbar {
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-      color: white; padding: 10px 14px; position: sticky; top: 0; z-index: 100;
+      color: white; padding: 8px 14px; position: sticky; top: 0; z-index: 100;
       box-shadow: 0 4px 10px rgba(0,0,0,0.15); display: flex; justify-content: space-between; align-items: center;
     }
     .nav-left { display: flex; align-items: center; gap: 10px; }
     .menu-btn { background: transparent; border: none; color: white; font-size: 24px; cursor: pointer; }
     .brand { display: flex; align-items: center; gap: 8px; cursor: pointer; }
     .brand-logo-small { width: 32px; height: 32px; border-radius: 8px; background: #f59e0b; color: #1e3a8a; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 800; }
-    .nav-mentor-profile { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.15); padding: 4px 12px 4px 4px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.25); cursor: pointer; }
-    .mentor-header-photo { width: 34px; height: 34px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover; background: #e2e8f0; }
-    .mentor-header-text h4 { font-size: 0.84rem; font-weight: 900; }
+    
+    .nav-mentor-profile { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.15); padding: 4px 10px 4px 4px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.25); cursor: pointer; }
+    .mentor-header-photo { width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover; background: #e2e8f0; }
+    .mentor-header-text { line-height: 1.15; text-align: left; }
+    .mentor-header-text .top-title { font-size: 0.68rem; font-weight: 900; color: #fef08a; letter-spacing: 0.5px; text-transform: uppercase; }
+    .mentor-header-text .bot-name { font-size: 0.82rem; font-weight: 800; color: white; }
 
     .sidebar-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.55); z-index: 998; opacity: 0; visibility: hidden; transition: all 0.3s; }
     .sidebar-overlay.open { opacity: 1; visibility: visible; }
@@ -153,7 +157,7 @@
         <h1>LIS GURUJI</h1>
       </div>
       <div class="splash-photo-wrap">
-        <img id="splashPhoto" class="splash-photo" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" alt="RAMESH GUJJAR">
+        <img id="splashPhoto" class="splash-photo" src="/profile.jpg" alt="RAMESH GUJJAR">
         <label for="splashPhotoInput" class="photo-camera-btn">📷</label>
         <input type="file" id="splashPhotoInput" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">
       </div>
@@ -178,7 +182,7 @@
   <div id="authOverlay" class="hidden">
     <div class="login-card">
       <div class="login-mentor-badge">
-        <img class="login-mentor-img" id="loginMentorImg" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" alt="RAMESH GUJJAR">
+        <img class="login-mentor-img" id="loginMentorImg" src="/profile.jpg" alt="RAMESH GUJJAR">
         <div class="login-mentor-info">
           <h3>LIS GURUJI</h3>
           <p id="loginMentorSubName">RAMESH GUJJAR</p>
@@ -211,8 +215,11 @@
       </div>
     </div>
     <div class="nav-mentor-profile" onclick="openSidebar()">
-      <img id="navMentorImg" class="mentor-header-photo" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" alt="RAMESH GUJJAR">
-      <div class="mentor-header-text"><h4 id="navMentorName">RAMESH GUJJAR</h4></div>
+      <img id="navMentorImg" class="mentor-header-photo" src="/profile.jpg" alt="RAMESH GUJJAR">
+      <div class="mentor-header-text">
+        <div class="top-title">LIS GURUJI</div>
+        <div class="bot-name" id="navMentorName">RAMESH GUJJAR</div>
+      </div>
     </div>
   </div>
 
@@ -222,7 +229,7 @@
     <div class="sidebar-header">
       <button onclick="closeSidebar()" style="position:absolute; top:12px; right:12px; background:none; border:none; color:white; font-size:20px; cursor:pointer;">✕</button>
       <div style="display:flex; align-items:center; gap:12px;">
-        <img id="sideMentorImg" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" style="width:52px; height:52px; border-radius:50%; border:2px solid #f59e0b; background:white; object-fit:cover;">
+        <img id="sideMentorImg" src="/profile.jpg" style="width:52px; height:52px; border-radius:50%; border:2px solid #f59e0b; background:white; object-fit:cover;">
         <div>
           <h3 id="sideMentorName" style="font-size:1.05rem; font-weight:800;">RAMESH GUJJAR</h3>
           <p id="sideMentorPhone" style="font-size:0.75rem; color:#fde68a;">9549700557</p>
@@ -306,7 +313,7 @@
       </div>
     </div>
 
-    <!-- VIEW 2: GENERATE (ALL-IN-ONE 1 PDF UPLOAD) -->
+    <!-- VIEW 2: GENERATE -->
     <div id="view-generate" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
@@ -351,7 +358,7 @@
       </div>
     </div>
 
-    <!-- VIEW 4: CARDS (SWIPEABLE) -->
+    <!-- VIEW 4: CARDS -->
     <div id="view-cards" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
@@ -468,17 +475,16 @@
         localStorage.setItem('lis_mentor_name', 'RAMESH GUJJAR');
       }
       const phone = localStorage.getItem('lis_mentor_phone') || '9549700557';
-      const photo = localStorage.getItem('lis_mentor_photo');
+      const photo = localStorage.getItem('lis_mentor_photo') || '/profile.jpg';
 
-      const nameEls = ['splashName', 'navMentorName', 'sideMentorName'];
+      const nameEls = ['splashName', 'navMentorName', 'sideMentorName', 'loginMentorSubName'];
       nameEls.forEach(id => { const el = document.getElementById(id); if (el) el.innerText = name; });
       const phoneEls = ['splashPhone', 'sideMentorPhone'];
       phoneEls.forEach(id => { const el = document.getElementById(id); if (el) el.innerText = phone; });
-      if (photo) {
-        ['splashPhoto', 'navMentorImg', 'sideMentorImg', 'loginMentorImg'].forEach(id => {
-          const img = document.getElementById(id); if (img) img.src = photo;
-        });
-      }
+      
+      ['splashPhoto', 'navMentorImg', 'sideMentorImg', 'loginMentorImg'].forEach(id => {
+        const img = document.getElementById(id); if (img) img.src = photo;
+      });
     }
 
     function editMentorDetails() {
@@ -754,7 +760,7 @@
       if (sidebar && sidebar.classList.contains('open')) { closeSidebar(); return; }
       if (currentActiveView === 'cbt') { if (timerInterval) clearInterval(timerInterval); showView('home', false); return; }
       if (currentActiveView !== 'home') { showView('home', false); return; }
-      try { window.close(); if (window.navigator?.app?.exitApp) window.navigator.app.exitApp(); } catch (err) {}
+      try { window.close(); if (window.navigator?.app?.exitApp) window.navigator.app.exitAPP?.(); } catch (err) {}
     });
 
     window.onload = () => {

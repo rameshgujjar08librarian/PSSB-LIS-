@@ -31,7 +31,7 @@ app.post('/api/generate-all', upload.array('files'), async (req, res) => {
     const { subject, lang } = req.body;
     const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
-    const prompt = `You are an expert Library Science exam mentor for RAMESH GUJJAR LIS Portal.
+    const prompt = `You are an expert Library Science exam mentor for LIS GURUJI Portal.
 Analyze the attached document/image thoroughly. From this single material, generate a complete 4-in-1 study package on "${subject}" in ${lang === 'en' ? 'English' : 'Hindi Devanagari'}.
 
 Return ONLY a valid raw JSON object without markdown fences or backticks:

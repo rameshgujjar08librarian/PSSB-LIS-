@@ -25,6 +25,115 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
     body { background: var(--bg); color: var(--text); padding-bottom: 55px; }
 
+    /* =========================================
+       3-SECOND AUTO SPLASH SCREEN (INTRO PAGE)
+       ========================================= */
+    #splashScreen {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at top, #ffffff, #f1f5f9);
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 20px;
+      text-align: center;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    #splashScreen.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .splash-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px 20px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 12px 36px rgba(30, 58, 138, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+    .splash-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--gold), var(--accent), var(--gold));
+    }
+    .splash-photo {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--gold);
+      box-shadow: 0 8px 22px rgba(245, 158, 11, 0.35);
+      margin: 6px auto 14px;
+      display: block;
+      background: #e2e8f0;
+    }
+    .splash-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 2px;
+    }
+    .splash-subtitle {
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .splash-slogan {
+      background: linear-gradient(135deg, #fffbeb, #fef3c7);
+      border: 2px dashed var(--gold);
+      border-radius: 14px;
+      padding: 12px;
+      margin: 12px 0 16px;
+    }
+    .splash-slogan h3 {
+      font-size: 1.22rem;
+      font-weight: 800;
+      color: #92400e;
+    }
+    .splash-slogan p {
+      font-size: 0.76rem;
+      color: #b45309;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    .splash-contact {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    /* 3s Auto-progress bar */
+    .splash-loader-bar {
+      width: 100%;
+      height: 4px;
+      background: #e2e8f0;
+      border-radius: 10px;
+      margin-top: 20px;
+      overflow: hidden;
+    }
+    .splash-loader-progress {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--accent));
+      animation: loadProgress 3s linear forwards;
+    }
+    @keyframes loadProgress {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+
     /* Top Sticky Header */
     .top-navbar {
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
@@ -139,150 +248,7 @@
     .container { max-width: 680px; margin: 16px auto; padding: 0 12px; }
 
     /* =========================================
-       PAGE 1: WELCOME / INTRO (SPLASH SCREEN)
-       ========================================= */
-    .welcome-card {
-      background: linear-gradient(165deg, #ffffff 0%, #f8fafc 100%);
-      border: 1px solid #e2e8f0;
-      border-radius: 20px;
-      padding: 26px 18px;
-      text-align: center;
-      box-shadow: 0 8px 24px rgba(30, 58, 138, 0.08);
-      position: relative;
-      overflow: hidden;
-    }
-    .welcome-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, var(--gold), var(--accent), var(--gold));
-    }
-    .profile-photo-wrapper {
-      position: relative;
-      width: 120px;
-      height: 120px;
-      margin: 10px auto 14px;
-    }
-    .profile-photo {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--gold);
-      box-shadow: 0 6px 18px rgba(245, 158, 11, 0.35);
-      background: #e2e8f0;
-    }
-    .photo-upload-badge {
-      position: absolute;
-      bottom: 2px;
-      right: 4px;
-      background: var(--primary);
-      color: white;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 15px;
-      cursor: pointer;
-      border: 2px solid white;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-    }
-    .welcome-name {
-      font-size: 1.45rem;
-      font-weight: 800;
-      color: var(--primary-dark);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      margin-bottom: 4px;
-    }
-    .welcome-designation {
-      font-size: 0.88rem;
-      color: var(--accent);
-      font-weight: 700;
-      margin-bottom: 16px;
-    }
-    .slogan-card {
-      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
-      border: 2px dashed var(--gold);
-      border-radius: 14px;
-      padding: 14px 12px;
-      margin: 16px 0;
-    }
-    .slogan-text {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: #92400e;
-      letter-spacing: 0.5px;
-      line-height: 1.4;
-    }
-    .slogan-sub {
-      font-size: 0.78rem;
-      color: #b45309;
-      font-weight: 600;
-      margin-top: 4px;
-    }
-    .contact-box {
-      background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 12px 14px;
-      margin-bottom: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .contact-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-    .contact-actions {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      margin-top: 4px;
-    }
-    .btn-contact {
-      padding: 6px 14px;
-      border-radius: 8px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .btn-wa { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
-    .btn-call { background: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
-    .btn-enter-app {
-      width: 100%;
-      padding: 15px;
-      background: linear-gradient(135deg, var(--gold), #ea580c);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-size: 1.12rem;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 6px 18px rgba(234, 88, 12, 0.35);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
-    .btn-enter-app:active { transform: scale(0.98); }
-
-    /* =========================================
-       PAGE 2: MATRIX GRID DASHBOARD (8 BLOCKS)
+       MAIN MATRIX GRID DASHBOARD (8 BLOCKS)
        ========================================= */
     .dashboard-header-banner {
       background: linear-gradient(135deg, #1e3a8a, #2563eb);
@@ -398,23 +364,12 @@
       border-radius: 6px; font-size: 0.8rem; font-weight: 700; cursor: pointer;
     }
 
-    /* FLASHCARDS (PLAY CARDS) STYLING */
-    .flashcard-container {
-      perspective: 1000px;
-      width: 100%;
-      height: 220px;
-      margin: 16px 0;
-      cursor: pointer;
-    }
+    /* FLASHCARDS */
+    .flashcard-container { perspective: 1000px; width: 100%; height: 220px; margin: 16px 0; cursor: pointer; }
     .flashcard-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-      transform-style: preserve-3d;
-      border-radius: 18px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      position: relative; width: 100%; height: 100%; text-align: center;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d;
+      border-radius: 18px; box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     }
     .flashcard-inner.flipped { transform: rotateY(180deg); }
     .flashcard-front, .flashcard-back {
@@ -431,7 +386,7 @@
     .flashcard-controls { display: flex; gap: 10px; justify-content: center; margin-top: 14px; }
     .btn-card-nav { padding: 10px 18px; border-radius: 10px; font-size: 0.9rem; font-weight: 700; border: 1px solid var(--border); background: white; cursor: pointer; }
 
-    /* SMART TRICKS STYLING */
+    /* SMART TRICKS */
     .trick-card {
       background: #fffbeb; border: 1px solid #fde68a; border-left: 5px solid #f59e0b;
       border-radius: 12px; padding: 14px; margin-bottom: 14px;
@@ -440,7 +395,7 @@
     .trick-formula { background: white; border: 1px dashed #f59e0b; padding: 8px 12px; border-radius: 8px; font-weight: 800; color: #b45309; font-size: 0.92rem; margin-bottom: 6px; }
     .trick-desc { font-size: 0.82rem; color: #78350f; line-height: 1.4; }
 
-    /* SHORT NOTES STYLING */
+    /* SHORT NOTES */
     .note-card {
       background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 5px solid #16a34a;
       border-radius: 12px; padding: 14px; margin-bottom: 12px;
@@ -479,11 +434,38 @@
 </head>
 <body>
 
+  <!-- ===================================================
+       3-SECOND AUTO SPLASH INTRO SCREEN
+       =================================================== -->
+  <div id="splashScreen">
+    <div class="splash-card">
+      <img id="splashPhoto" class="splash-photo" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" alt="LIS GURUJI">
+      <h2 class="splash-title" id="splashName">LIS GURUJI</h2>
+      <div class="splash-subtitle">संस्थापक एवं मार्गदर्शक • Library & Info Science</div>
+
+      <div class="splash-slogan">
+        <h3>"स्मार्ट पढ़ाई, उज्ज्वल भविष्य।"</h3>
+        <p>⚡ AI संचालित आधुनिक CBT पोर्टल</p>
+      </div>
+
+      <div class="splash-contact">
+        <span>📞 संपर्क:</span>
+        <span id="splashPhone" style="color:var(--primary); font-weight:800;">+91 9876543210</span>
+      </div>
+
+      <!-- 3 Second Loading Progress -->
+      <div class="splash-loader-bar">
+        <div class="splash-loader-progress"></div>
+      </div>
+      <div style="font-size:0.72rem; color:var(--text-muted); margin-top:6px;">पोर्टल शुरू हो रहा है...</div>
+    </div>
+  </div>
+
   <!-- Top Sticky Header -->
   <div class="top-navbar">
     <div class="nav-left">
       <button class="menu-btn" onclick="openSidebar()" title="मेनू">☰</button>
-      <div class="brand" onclick="showView('welcome')">
+      <div class="brand" onclick="showView('home')">
         <div class="brand-logo-small">📚</div>
         <div class="brand-text">
           <h1>LIS GURUJI</h1>
@@ -492,7 +474,7 @@
       </div>
     </div>
     <div style="font-size: 0.78rem; background: rgba(255,255,255,0.2); padding: 4px 8px; border-radius: 6px;">
-      v2.6
+      v2.7
     </div>
   </div>
 
@@ -502,7 +484,7 @@
     <div class="sidebar-header">
       <button class="sidebar-close-btn" onclick="closeSidebar()">✕</button>
       <div style="display:flex; align-items:center; gap:12px;">
-        <img id="sideMentorImg" src="https://api.dicebear.com/7.x/bottts/svg?seed=lis" style="width:50px; height:50px; border-radius:50%; border:2px solid #f59e0b; background:white; object-fit:cover;">
+        <img id="sideMentorImg" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" style="width:50px; height:50px; border-radius:50%; border:2px solid #f59e0b; background:white; object-fit:cover;">
         <div>
           <h3 id="sideMentorName" style="font-size:1rem; font-weight:700;">LIS GURUJI</h3>
           <p id="sideMentorPhone" style="font-size:0.75rem; opacity:0.85;">+91 9876543210</p>
@@ -511,11 +493,8 @@
     </div>
 
     <div class="sidebar-menu">
-      <div class="sidebar-item" onclick="navFromSidebar('welcome')">
-        <span>🌟</span> मुख्य परिचय (Welcome Page)
-      </div>
       <div class="sidebar-item" onclick="navFromSidebar('home')">
-        <span>🏠</span> मैट्रिक्स डैशबोर्ड (Dashboard)
+        <span>🏠</span> मुख्य डैशबोर्ड (Dashboard)
       </div>
       <div class="sidebar-item" onclick="navFromSidebar('generate')">
         <span>➕</span> नया AI टेस्ट बनाएं
@@ -538,12 +517,6 @@
       <div class="sidebar-item" onclick="navFromSidebar('syllabus')">
         <span>📖</span> पूरा सिलेबस (8 Units)
       </div>
-
-      <div class="sidebar-divider"></div>
-
-      <div class="sidebar-item" onclick="editMentorDetails()">
-        <span>✏️</span> नाम व मोबाइल नंबर बदलें
-      </div>
     </div>
 
     <div class="sidebar-footer">
@@ -555,8 +528,7 @@
 
   <!-- Top Navigation Pills -->
   <div class="nav-options-bar">
-    <div class="nav-pill active" id="pill-welcome" onclick="showView('welcome')">🌟 वेलकम</div>
-    <div class="nav-pill" id="pill-home" onclick="showView('home')">🏠 डैशबोर्ड</div>
+    <div class="nav-pill active" id="pill-home" onclick="showView('home')">🏠 डैशबोर्ड</div>
     <div class="nav-pill" id="pill-generate" onclick="showView('generate')">➕ AI टेस्ट</div>
     <div class="nav-pill" id="pill-pyq" onclick="showView('pyq')">📜 पिछले पेपर</div>
     <div class="nav-pill" id="pill-cards" onclick="showView('cards')">🃏 प्ले कार्ड्स</div>
@@ -567,60 +539,14 @@
 
   <div class="container">
 
-    <!-- VIEW 1: WELCOME SCREEN -->
-    <div id="view-welcome" class="view-panel active">
-      <div class="welcome-card">
-        
-        <div class="profile-photo-wrapper">
-          <img id="mentorPhoto" class="profile-photo" src="https://api.dicebear.com/7.x/bottts/svg?seed=lis" alt="LIS Guruji">
-          <label for="photoFileInput" class="photo-upload-badge" title="अपनी फ़ोटो चुनें">📷</label>
-          <input type="file" id="photoFileInput" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">
-        </div>
-
-        <div class="welcome-name">
-          <span id="mentorNameText">LIS GURUJI</span>
-          <span style="font-size:0.9rem; cursor:pointer;" onclick="editMentorDetails()" title="नाम व मोबाइल बदलें">✏️</span>
-        </div>
-        <div class="welcome-designation">संस्थापक एवं मार्गदर्शक • Library & Info Science</div>
-
-        <div class="slogan-card">
-          <div class="slogan-text">"स्मार्ट पढ़ाई, उज्ज्वल भविष्य।"</div>
-          <div class="slogan-sub">⚡ AI संचालित आधुनिक टेस्ट व क्वेश्चन पोर्टल</div>
-        </div>
-
-        <div class="contact-box">
-          <div class="contact-row">
-            <span>📞 संपर्क सूत्र:</span>
-            <span id="mentorPhoneText" style="color:var(--primary); font-weight:800;">+91 9876543210</span>
-          </div>
-          <div class="contact-actions">
-            <a id="btnWaLink" href="https://wa.me/919876543210" target="_blank" class="btn-contact btn-wa">
-              💬 WhatsApp
-            </a>
-            <a id="btnCallLink" href="tel:+919876543210" class="btn-contact btn-call">
-              📞 डायरेक्ट कॉल
-            </a>
-          </div>
-        </div>
-
-        <button class="btn-enter-app" onclick="showView('home')">
-          🚀 ऐप में प्रवेश करें (Start Now) →
-        </button>
-
-      </div>
-    </div>
-
-    <!-- VIEW 2: MATRIX GRID DASHBOARD (8 BLOCKS) -->
-    <div id="view-home" class="view-panel">
+    <!-- VIEW 1: MATRIX GRID DASHBOARD (MAIN SCREEN) -->
+    <div id="view-home" class="view-panel active">
       
       <div class="dashboard-header-banner">
         <div class="dash-greeting">
           <h3>नमस्ते, विद्यार्थी! 👋</h3>
           <p>आज आप क्या अभ्यास करना चाहते हैं?</p>
         </div>
-        <button onclick="showView('welcome')" style="background:rgba(255,255,255,0.25); color:white; border:none; padding:6px 12px; border-radius:8px; font-size:0.75rem; font-weight:700; cursor:pointer;">
-          ← प्रोफ़ाइल
-        </button>
       </div>
 
       <div class="dashboard-matrix">
@@ -683,7 +609,7 @@
 
     </div>
 
-    <!-- VIEW 3: AI GENERATOR -->
+    <!-- VIEW 2: AI GENERATOR -->
     <div id="view-generate" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
       <div class="card">
@@ -731,7 +657,7 @@
       </div>
     </div>
 
-    <!-- VIEW 4: PYQ PAPERS -->
+    <!-- VIEW 3: PYQ PAPERS -->
     <div id="view-pyq" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
       <div class="card">
@@ -748,7 +674,7 @@
       </div>
     </div>
 
-    <!-- VIEW 5: PLAY CARDS -->
+    <!-- VIEW 4: PLAY CARDS -->
     <div id="view-cards" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
       <div class="card">
@@ -781,7 +707,7 @@
       </div>
     </div>
 
-    <!-- VIEW 6: SMART TRICKS -->
+    <!-- VIEW 5: SMART TRICKS -->
     <div id="view-tricks" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
       <div class="card">
@@ -795,7 +721,7 @@
       </div>
     </div>
 
-    <!-- VIEW 7: SHORT NOTES -->
+    <!-- VIEW 6: SHORT NOTES -->
     <div id="view-notes" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
       <div class="card">
@@ -809,7 +735,7 @@
       </div>
     </div>
 
-    <!-- VIEW 8: QUESTION BANK -->
+    <!-- VIEW 7: QUESTION BANK -->
     <div id="view-bank" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
       <div class="card">
@@ -819,7 +745,7 @@
       </div>
     </div>
 
-    <!-- VIEW 9: SYLLABUS -->
+    <!-- VIEW 8: SYLLABUS -->
     <div id="view-syllabus" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
       <div class="card">
@@ -837,7 +763,7 @@
       </div>
     </div>
 
-    <!-- VIEW 10: CBT TEST -->
+    <!-- VIEW 9: CBT TEST -->
     <div id="view-cbt" class="view-panel">
       <div class="cbt-header">
         <div style="font-weight:700;">LIS Live CBT Test</div>
@@ -976,8 +902,7 @@
     let tricksList = getStoredData('lis_tricks', defaultTricks);
     let notesList = getStoredData('lis_notes', defaultNotes);
 
-    // Active View Tracker
-    let currentActiveView = 'welcome';
+    let currentActiveView = 'home';
 
     // Renders
     function renderPapers() {
@@ -1103,51 +1028,7 @@
     function openModal(id) { document.getElementById(id).classList.add('open'); }
     function closeModal(id) { document.getElementById(id).classList.remove('open'); }
 
-    // Mentor Info
-    function initMentor() {
-      const name = localStorage.getItem('lis_mentor_name') || 'LIS GURUJI';
-      const phone = localStorage.getItem('lis_mentor_phone') || '+91 9876543210';
-      const photo = localStorage.getItem('lis_mentor_photo');
-
-      document.getElementById('mentorNameText').innerText = name;
-      document.getElementById('sideMentorName').innerText = name;
-      document.getElementById('mentorPhoneText').innerText = phone;
-      document.getElementById('sideMentorPhone').innerText = phone;
-
-      const cleanPhone = phone.replace(/[^0-9]/g, '');
-      document.getElementById('btnWaLink').href = `https://wa.me/${cleanPhone}`;
-      document.getElementById('btnCallLink').href = `tel:${phone}`;
-
-      if (photo) {
-        document.getElementById('mentorPhoto').src = photo;
-        document.getElementById('sideMentorImg').src = photo;
-      }
-    }
-
-    function editMentorDetails() {
-      const curName = localStorage.getItem('lis_mentor_name') || 'LIS GURUJI';
-      const curPhone = localStorage.getItem('lis_mentor_phone') || '+91 9876543210';
-      const nName = prompt('अपना पूरा नाम दर्ज करें:', curName);
-      if (nName && nName.trim()) localStorage.setItem('lis_mentor_name', nName.trim());
-      const nPhone = prompt('अपना मोबाइल नंबर (WhatsApp):', curPhone);
-      if (nPhone && nPhone.trim()) localStorage.setItem('lis_mentor_phone', nPhone.trim());
-      initMentor();
-    }
-
-    function handlePhotoUpload(event) {
-      const f = event.target.files[0];
-      if (f) {
-        const r = new FileReader();
-        r.onload = (e) => {
-          localStorage.setItem('lis_mentor_photo', e.target.result);
-          document.getElementById('mentorPhoto').src = e.target.result;
-          document.getElementById('sideMentorImg').src = e.target.result;
-          alert('✅ फ़ोटो सेव हो गई!');
-        };
-        r.readAsDataURL(f);
-      }
-    }
-
+    // Sidebar
     function openSidebar() {
       document.getElementById('sidebar').classList.add('open');
       document.getElementById('sidebarOverlay').classList.add('open');
@@ -1158,20 +1039,16 @@
     }
     function navFromSidebar(viewId) { closeSidebar(); showView(viewId); }
     
-    // Core Logout Logic
     function handleLogout() {
-      const confirmLogout = confirm('क्या आप लॉगआउट करके ऐप से बाहर निकलना चाहते हैं?');
+      const confirmLogout = confirm('क्या आप लॉगआउट करके बाहर निकलना चाहते हैं?');
       if (confirmLogout) {
-        localStorage.removeItem('lis_username');
-        alert('🚪 आप सफलतापूर्वक लॉगआउट हो चुके हैं!');
-        try {
-          window.close();
-        } catch(e) {}
+        alert('🚪 आप लॉगआउट हो चुके हैं!');
+        try { window.close(); } catch(e) {}
         location.href = "about:blank";
       }
     }
 
-    // View Switching with History Push
+    // View Switching with History
     function showView(viewId, pushHistory = true) {
       if (pushHistory && viewId !== currentActiveView) {
         history.pushState({ view: viewId }, '', '#' + viewId);
@@ -1196,11 +1073,8 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // ====================================================
-    // HARDWARE / GESTURE BACK BUTTON LOGOUT & POPSTATE HANDLER
-    // ====================================================
-    window.addEventListener('popstate', (e) => {
-      // 1. If any modal is open, close it first
+    // Hardware Back Button Handler
+    window.addEventListener('popstate', () => {
       const openModalElem = document.querySelector('.modal-overlay.open');
       if (openModalElem) {
         openModalElem.classList.remove('open');
@@ -1208,7 +1082,6 @@
         return;
       }
 
-      // 2. If sidebar is open, close it first
       const sidebarElem = document.getElementById('sidebar');
       if (sidebarElem.classList.contains('open')) {
         closeSidebar();
@@ -1216,7 +1089,6 @@
         return;
       }
 
-      // 3. If in active CBT exam, confirm before exit
       if (currentActiveView === 'cbt') {
         if (confirm('क्या आप टेस्ट छोड़कर वापस जाना चाहते हैं?')) {
           clearInterval(timerInterval);
@@ -1227,29 +1099,19 @@
         return;
       }
 
-      // 4. If in inner section (not on Welcome), navigate back towards Welcome
-      if (currentActiveView !== 'welcome') {
-        if (currentActiveView === 'home') {
-          showView('welcome', false);
-        } else {
-          showView('home', false);
-        }
+      if (currentActiveView !== 'home') {
+        showView('home', false);
         return;
       }
 
-      // 5. If already on Welcome Screen, prompt to LOGOUT & EXIT
-      if (currentActiveView === 'welcome') {
+      if (currentActiveView === 'home') {
         const exitApp = confirm('क्या आप लॉगआउट करके ऐप से बाहर निकलना चाहते हैं?');
         if (exitApp) {
-          localStorage.removeItem('lis_username');
           alert('🚪 आप लॉगआउट हो चुके हैं!');
-          try {
-            window.close();
-          } catch(err) {}
+          try { window.close(); } catch(err) {}
           location.href = "about:blank";
         } else {
-          // Keep user on the welcome screen
-          history.pushState({ view: 'welcome' }, '', '#welcome');
+          history.pushState({ view: 'home' }, '', '#home');
         }
       }
     });
@@ -1346,19 +1208,27 @@
         if (userAnswers[idx] !== undefined && (userAnswers[idx] === q.correctAnswer || userAnswers[idx] === q.correct_option)) score++;
       });
       alert(`🎉 टेस्ट समाप्त!\nस्कोर: ${score} / ${currentQuestions.length}`);
-      showView('welcome');
+      showView('home');
     }
 
+    // AUTO 3-SECOND SPLASH DISMISSAL
     window.onload = () => {
-      initMentor();
       renderPapers();
       renderCurrentCard();
       renderTricks();
       renderNotes();
 
-      // Seed initial history state for hardware back button handling
-      history.replaceState({ view: 'welcome' }, '', '#welcome');
-      history.pushState({ view: 'welcome' }, '', '#welcome');
+      // Seed initial history state
+      history.replaceState({ view: 'home' }, '', '#home');
+      history.pushState({ view: 'home' }, '', '#home');
+
+      // Auto dismiss splash after 3 seconds
+      setTimeout(() => {
+        const splash = document.getElementById('splashScreen');
+        if (splash) {
+          splash.classList.add('hide');
+        }
+      }, 3000);
     };
   </script>
 </body>

@@ -26,7 +26,6 @@ function fileToGenerativePart(file) {
   };
 }
 
-// Comprehensive Multi-Language & Limit AI Generator
 app.post('/api/generate-all', upload.array('files'), async (req, res) => {
   try {
     const { subject, limit, lang } = req.body;
@@ -37,9 +36,11 @@ app.post('/api/generate-all', upload.array('files'), async (req, res) => {
     else if (lang === 'pa') langName = 'Punjabi (Gurmukhi)';
     else if (lang === 'bn') langName = 'Bengali';
 
+    let count = 20;
+    if (limit !== 'max') count = parseInt(limit) || 20;
+
     const prompt = `You are an expert Library Science exam mentor for LIS GURUJI Portal (RAMESH GUJJAR).
-Analyze the attached documents/images thoroughly. Generate a comprehensive study package on "${subject}" in ${langName}.
-Target number of questions: ${limit === 'max' ? '20' : limit}.
+Analyze the attached documents/images thoroughly. Generate exactly or up to ${count} high-quality MCQs on "${subject}" in ${langName}, along with short notes, trick, and play card.
 
 Return ONLY a valid raw JSON object without markdown formatting or backticks:
 {
@@ -52,20 +53,20 @@ Return ONLY a valid raw JSON object without markdown formatting or backticks:
     }
   ],
   "note": {
-    "title": "Comprehensive Topic Heading",
+    "title": "Topic Heading",
     "summary": "Quick summary",
-    "mermaidDiagram": "graph TD\\n  A[Core Concept] --> B[Sub 1]\\n  A --> C[Sub 2]",
-    "points": ["Key point 1", "Key point 2", "Key point 3", "Key point 4"]
+    "mermaidDiagram": "graph TD\\n  A[Core] --> B[Sub]",
+    "points": ["Key point 1", "Key point 2", "Key point 3"]
   },
   "trick": {
-    "title": "Memory Trick Title",
-    "formula": "Mnemonic / Code word",
-    "desc": "Explanation of the trick"
+    "title": "Trick Title",
+    "formula": "Mnemonic / Code",
+    "desc": "Description"
   },
   "playCard": {
     "topic": "Topic Name",
-    "front": "Challenging concept question",
-    "back": "Accurate answer and core facts"
+    "front": "Concept question",
+    "back": "Accurate answer"
   }
 }`;
 

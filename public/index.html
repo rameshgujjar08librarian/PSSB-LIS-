@@ -156,7 +156,7 @@
         <h1>LIS GURUJI</h1>
       </div>
       <div class="splash-photo-wrap">
-        <img id="splashPhoto" class="splash-photo" src="/profile.jpg" alt="RAMESH GUJJAR">
+        <img id="splashPhoto" class="splash-photo" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300" alt="RAMESH GUJJAR">
         <label for="splashPhotoInput" class="photo-camera-btn">📷</label>
         <input type="file" id="splashPhotoInput" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">
       </div>
@@ -181,7 +181,7 @@
   <div id="authOverlay" class="hidden">
     <div class="login-card">
       <div class="login-mentor-badge">
-        <img class="login-mentor-img" id="loginMentorImg" src="/profile.jpg" alt="RAMESH GUJJAR">
+        <img class="login-mentor-img" id="loginMentorImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300" alt="RAMESH GUJJAR">
         <div class="login-mentor-info">
           <h3>LIS GURUJI</h3>
           <p id="loginMentorSubName">RAMESH GUJJAR</p>
@@ -214,7 +214,7 @@
       </div>
     </div>
     <div class="nav-mentor-profile" onclick="openSidebar()">
-      <img id="navMentorImg" class="mentor-header-photo" src="/profile.jpg" alt="RAMESH GUJJAR">
+      <img id="navMentorImg" class="mentor-header-photo" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300" alt="RAMESH GUJJAR">
       <div class="mentor-header-text">
         <div class="top-title">LIS GURUJI</div>
         <div class="bot-name" id="navMentorName">RAMESH GUJJAR</div>
@@ -228,7 +228,7 @@
     <div class="sidebar-header">
       <button onclick="closeSidebar()" style="position:absolute; top:12px; right:12px; background:none; border:none; color:white; font-size:20px; cursor:pointer;">✕</button>
       <div style="display:flex; align-items:center; gap:12px;">
-        <img id="sideMentorImg" src="/profile.jpg" style="width:52px; height:52px; border-radius:50%; border:2px solid #f59e0b; background:white; object-fit:cover;">
+        <img id="sideMentorImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300" style="width:52px; height:52px; border-radius:50%; border:2px solid #f59e0b; background:white; object-fit:cover;">
         <div>
           <h3 id="sideMentorName" style="font-size:1.05rem; font-weight:800;">RAMESH GUJJAR</h3>
           <p id="sideMentorPhone" style="font-size:0.75rem; color:#fde68a;">9549700557</p>
@@ -312,7 +312,7 @@
       </div>
     </div>
 
-    <!-- VIEW 2: GENERATE (ALL-IN-ONE WITH FULL OPTIONS) -->
+    <!-- VIEW 2: GENERATE WITH FULL OPTIONS (10-200) -->
     <div id="view-generate" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
@@ -335,6 +335,11 @@
               <option value="max">🔥 अधिकतम संभव (पूरा निचोड़)</option>
               <option value="10">10 प्रश्न</option>
               <option value="20">20 प्रश्न</option>
+              <option value="30">30 प्रश्न</option>
+              <option value="50">50 प्रश्न</option>
+              <option value="100">100 प्रश्न</option>
+              <option value="150">150 प्रश्न</option>
+              <option value="200">200 प्रश्न</option>
             </select>
           </div>
           <div style="margin-bottom:14px;">
@@ -352,42 +357,44 @@
       </div>
     </div>
 
-    <!-- VIEW 3: PYQ HUB WITH CBT TIMING -->
+    <!-- VIEW 3: PYQ HUB WITH SMART TIMING -->
     <div id="view-pyq" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
         <div class="card-title"><span>📜 पिछले वर्षों के प्रश्न पत्र (PYQ Hub)</span></div>
         <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:12px;">
-          नीचे दिए गए पेपर्स से ऑनलाइन CBT टेस्ट शुरू करें और अपनी समय सीमा चुनें:
+          ऑनलाइन CBT टेस्ट शुरू करें (समय: औसत 1 मिनट प्रति प्रश्न या अपनी पसंद चुनें):
         </p>
 
-        <!-- PYQ Paper 1 -->
+        <!-- PYQ 1 -->
         <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:14px; margin-bottom:12px;">
           <h4 style="font-size:1rem; color:#1e293b;">UGC NET Library & Information Science</h4>
           <p style="font-size:0.8rem; color:#64748b; margin:4px 0 8px;">Dec 2023 Solved Paper (100 Questions)</p>
           <div style="display:flex; gap:8px; align-items:center;">
             <select id="pyqTime1" class="input-box" style="margin-bottom:0; flex:1; font-size:0.85rem; padding:8px;">
-              <option value="60">⏱️ 60 मिनट (1 घंटा)</option>
+              <option value="auto">⏱️ स्मार्ट टाइमर (100 मिनट - 1 मि/प्र)</option>
+              <option value="60">⏱️ 60 मिनट</option>
               <option value="120" selected>⏱️ 120 मिनट (2 घंटे)</option>
               <option value="180">⏱️ 180 मिनट (3 घंटे)</option>
             </select>
-            <button onclick="startPYQCBT('UGC NET Dec 2023 PYQ', 100)" style="background:var(--purple); color:white; border:none; padding:10px 14px; border-radius:8px; font-size:0.82rem; font-weight:800; cursor:pointer; white-space:nowrap;">
+            <button onclick="startPYQCBT('UGC NET Dec 2023 PYQ', 100, 'pyqTime1')" style="background:var(--purple); color:white; border:none; padding:10px 14px; border-radius:8px; font-size:0.82rem; font-weight:800; cursor:pointer; white-space:nowrap;">
               🎯 CBT शुरू करें
             </button>
           </div>
         </div>
 
-        <!-- PYQ Paper 2 -->
+        <!-- PYQ 2 -->
         <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:14px; margin-bottom:12px;">
           <h4 style="font-size:1rem; color:#1e293b;">RSMSSB Librarian Grade-III</h4>
           <p style="font-size:0.8rem; color:#64748b; margin:4px 0 8px;">2022 Solved Paper (150 Questions)</p>
           <div style="display:flex; gap:8px; align-items:center;">
             <select id="pyqTime2" class="input-box" style="margin-bottom:0; flex:1; font-size:0.85rem; padding:8px;">
-              <option value="60">⏱️ 60 मिनट</option>
-              <option value="120" selected>⏱️ 120 मिनट (2 घंटे)</option>
+              <option value="auto">⏱️ स्मार्ट टाइमर (150 मिनट - 1 मि/प्र)</option>
+              <option value="90">⏱️ 90 मिनट</option>
+              <option value="150" selected>⏱️ 150 मिनट (2.5 घंटे)</option>
               <option value="180">⏱️ 180 मिनट (3 घंटे)</option>
             </select>
-            <button onclick="startPYQCBT('RSMSSB Librarian 2022 PYQ', 150)" style="background:var(--purple); color:white; border:none; padding:10px 14px; border-radius:8px; font-size:0.82rem; font-weight:800; cursor:pointer; white-space:nowrap;">
+            <button onclick="startPYQCBT('RSMSSB Librarian 2022 PYQ', 150, 'pyqTime2')" style="background:var(--purple); color:white; border:none; padding:10px 14px; border-radius:8px; font-size:0.82rem; font-weight:800; cursor:pointer; white-space:nowrap;">
               🎯 CBT शुरू करें
             </button>
           </div>
@@ -399,7 +406,7 @@
     <div id="view-cards" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
-        <div class="card-title"><span>🃏 स्मार्ट प्ले कार्ड्स (Swipeable)</span></div>
+        <div class="card-title"><span>🃏 प्ले कार्ड्स (Swipeable)</span></div>
         <div class="flashcard-stage">
           <div class="flashcard-container" id="swipeCardContainer">
             <div class="flashcard-inner" id="flashcardInner">
@@ -427,7 +434,7 @@
     <div id="view-tricks" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
-        <div class="card-title"><span>💡 स्मार्ट ट्रिक्स व शॉर्टकट्स</span></div>
+        <div class="card-title"><span>💡 स्मार्ट ट्रिक्स</span></div>
         <div id="tricksContainer">
           <div class="trick-box">
             <div style="font-weight:800; color:#92400e;">PMEST सूत्र</div>
@@ -442,7 +449,7 @@
     <div id="view-notes" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
-        <div class="card-title"><span>📝 शॉर्ट नोट्स व फ्लोचार्ट</span></div>
+        <div class="card-title"><span>📝 शॉर्ट नोट्स</span></div>
         <div id="notesContainer">
           <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-left:5px solid #16a34a; border-radius:12px; padding:14px;">
             <h4 style="color:#166534; font-weight:800;">📌 पुस्तकालय विज्ञान के 5 नियम</h4>
@@ -472,7 +479,7 @@
     <div id="view-syllabus" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
-        <div class="card-title"><span>📚 LIS सिलेबस (8 Units)</span></div>
+        <div class="card-title"><span>📚 LIS सिलेबस</span></div>
         <ul style="line-height: 1.8; padding-left: 20px; font-size: 0.92rem;">
           <li><b>Unit 1:</b> Data, Information, Knowledge & Wisdom.</li>
           <li><b>Unit 2:</b> Laws of Library Science & Legislation.</li>
@@ -480,8 +487,6 @@
           <li><b>Unit 4:</b> Classification & Cataloguing.</li>
           <li><b>Unit 5:</b> Library Management.</li>
           <li><b>Unit 6:</b> IT, Automation & Networks.</li>
-          <li><b>Unit 7:</b> Research Methodology.</li>
-          <li><b>Unit 8:</b> Digital Libraries.</li>
         </ul>
       </div>
     </div>
@@ -513,8 +518,8 @@
         name = 'RAMESH GUJJAR';
         localStorage.setItem('lis_mentor_name', 'RAMESH GUJJAR');
       }
-      const phone = localStorage.getItem('lis_mentor_phone') || '9549700557';
-      const photo = localStorage.getItem('lis_mentor_photo') || '/profile.jpg';
+      const phone = localStorage.getItem('lis_mentor_phone'] || '9549700557';
+      const photo = localStorage.getItem('lis_mentor_photo') || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300';
 
       const nameEls = ['splashName', 'navMentorName', 'sideMentorName', 'loginMentorSubName'];
       nameEls.forEach(id => { const el = document.getElementById(id); if (el) el.innerText = name; });
@@ -705,7 +710,7 @@
 
           loadBank();
           status.style.color = '#059669';
-          status.innerHTML = `✅ सफलता! ${resData.questionsCount || 10} प्रश्न और सारा अध्ययन सामग्री जुड़ गई है।`;
+          status.innerHTML = `✅ सफलता! ${resData.questionsCount || 20} प्रश्न और सारा अध्ययन सामग्री जुड़ गई है।`;
           alert('🎉 1 ही PDF से सारा डेटा तैयार होकर सभी पेजों में जुड़ गया है!');
         } else {
           status.style.color = '#dc2626';
@@ -738,27 +743,26 @@
     
     function startCBT() {
       if (!currentQuestions || currentQuestions.length === 0) { alert('पहले प्रश्न बनाएं!'); showView('generate'); return; }
-      startCustomCBT("RAMESH GUJJAR CBT TEST", currentQuestions, 600);
+      // Smart average timer: 1 minute per question by default
+      startCustomCBT("RAMESH GUJJAR CBT TEST", currentQuestions, currentQuestions.length * 60);
     }
 
-    function startPYQCBT(title, count) {
-      // Generate sample PYQ questions or load from bank
+    function startPYQCBT(title, count, selectId) {
       currentQuestions = [];
-      for(let i=1; i<=Math.min(count, 15); i++) {
+      for(let i=1; i<=Math.min(count, 50); i++) {
         currentQuestions.push({
-          question: `${title} - Sample Question ${i}: What is the primary focus of Library Science?`,
-          options: ["Information Organization", "Book binding", "General reading", "None of these"],
+          question: `${title} - Question ${i}: What is the primary objective of Library and Information Science?`,
+          options: ["Information Organization & Access", "Book Preservation", "General Administration", "None of these"],
           correctAnswer: 0,
-          explanation: "Information organization and dissemination is core."
+          explanation: "Information organization is the primary objective."
         });
       }
-      let timeMins = 120;
-      if (title.includes('UGC NET')) {
-        timeMins = parseInt(document.getElementById('pyqTime1').value) || 120;
-      } else {
-        timeMins = parseInt(document.getElementById('pyqTime2').value) || 120;
+      const selVal = document.getElementById(selectId).value;
+      let timeSecs = count * 60; // Default smart average: 1 min per question
+      if (selVal !== 'auto') {
+        timeSecs = parseInt(selVal) * 60;
       }
-      startCustomCBT(title, currentQuestions, timeMins * 60);
+      startCustomCBT(title, currentQuestions, timeSecs);
     }
 
     function startCustomCBT(title, questionsList, totalSecs) {

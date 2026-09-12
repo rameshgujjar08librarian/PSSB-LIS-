@@ -16,12 +16,13 @@
       --text-muted: #64748b;
       --border: #cbd5e1;
       --success: #10b981;
+      --danger: #ef4444;
       --purple: #7c3aed;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
     body { background: var(--bg); color: var(--text); padding-bottom: 50px; }
 
-    /* Top Bar */
+    /* Top Bar with Hamburger */
     .top-navbar {
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
       color: white;
@@ -34,27 +35,180 @@
       justify-content: space-between;
       align-items: center;
     }
-    .top-navbar .brand {
+    .nav-left {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+    }
+    .menu-btn {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 26px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+    .menu-btn:active { background: rgba(255,255,255,0.15); }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       cursor: pointer;
     }
     .brand-logo-small {
-      width: 38px;
-      height: 38px;
+      width: 34px;
+      height: 34px;
       border-radius: 8px;
       background: #f59e0b;
       color: #1e3a8a;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 800;
       border: 2px solid white;
     }
-    .brand-text h1 { font-size: 1.1rem; font-weight: 800; letter-spacing: 0.5px; }
-    .brand-text p { font-size: 0.72rem; opacity: 0.85; }
+    .brand-text h1 { font-size: 1.05rem; font-weight: 800; }
+    .brand-text p { font-size: 0.7rem; opacity: 0.85; }
+
+    /* Side Drawer Menu */
+    .sidebar-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .sidebar-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 280px;
+      height: 100%;
+      background: white;
+      z-index: 999;
+      transform: translateX(-100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 4px 0 20px rgba(0,0,0,0.25);
+    }
+    .sidebar.open {
+      transform: translateX(0);
+    }
+    .sidebar-header {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: white;
+      padding: 28px 18px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+    }
+    .sidebar-close-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .user-avatar {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: #f59e0b;
+      color: #1e3a8a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      font-weight: bold;
+      border: 2px solid white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .user-info { margin-top: 4px; }
+    .user-info h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .user-info h3 .edit-icon {
+      font-size: 0.8rem;
+      cursor: pointer;
+      opacity: 0.8;
+    }
+    .user-info p {
+      font-size: 0.78rem;
+      opacity: 0.85;
+    }
+
+    .sidebar-menu {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 0;
+    }
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 20px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .sidebar-item:hover, .sidebar-item:active {
+      background: #f1f5f9;
+      color: var(--primary);
+    }
+    .sidebar-item .item-icon {
+      font-size: 20px;
+      width: 24px;
+      text-align: center;
+    }
+    .sidebar-divider {
+      height: 1px;
+      background: #e2e8f0;
+      margin: 8px 18px;
+    }
+    .sidebar-footer {
+      padding: 14px 18px;
+      border-top: 1px solid #e2e8f0;
+      background: #fafafa;
+    }
+    .btn-logout {
+      width: 100%;
+      padding: 10px;
+      background: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .btn-logout:active { background: #fca5a5; }
 
     /* Top Quick Options Bar */
     .nav-options-bar {
@@ -65,7 +219,7 @@
       gap: 8px;
       border-bottom: 1px solid var(--border);
       position: sticky;
-      top: 62px;
+      top: 58px;
       z-index: 90;
     }
     .nav-pill {
@@ -238,11 +392,9 @@
       border-radius: 12px;
       padding: 14px;
       margin-bottom: 12px;
-      transition: all 0.2s;
     }
     .pyq-box h4 { font-size: 1rem; color: #1e293b; margin-bottom: 4px; }
     .pyq-box p { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 10px; }
-    .pyq-actions { display: flex; gap: 8px; flex-wrap: wrap; }
     .btn-pyq-test {
       background: var(--purple);
       color: white;
@@ -251,16 +403,6 @@
       border-radius: 6px;
       font-size: 0.8rem;
       font-weight: 700;
-      cursor: pointer;
-    }
-    .btn-pyq-dl {
-      background: white;
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: 600;
       cursor: pointer;
     }
 
@@ -339,21 +481,72 @@
 </head>
 <body>
 
-  <!-- Top Sticky Header with Logo -->
+  <!-- Top Sticky Header with Hamburger ☰ -->
   <div class="top-navbar">
-    <div class="brand" onclick="showView('home')">
-      <div class="brand-logo-small">📚</div>
-      <div class="brand-text">
-        <h1>LIS GURUJI</h1>
-        <p>AI Study + CBT Portal</p>
+    <div class="nav-left">
+      <button class="menu-btn" onclick="openSidebar()" title="मेनू खोलें">☰</button>
+      <div class="brand" onclick="showView('home')">
+        <div class="brand-logo-small">📚</div>
+        <div class="brand-text">
+          <h1>LIS GURUJI</h1>
+          <p>AI Study + CBT Portal</p>
+        </div>
       </div>
     </div>
     <div style="font-size: 0.8rem; background: rgba(255,255,255,0.2); padding: 4px 8px; border-radius: 6px;">
-      v2.1
+      v2.2
     </div>
   </div>
 
-  <!-- Top Navigation Options Bar -->
+  <!-- Sidebar Drawer Backdrop -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+  <!-- Side Navigation Drawer -->
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <button class="sidebar-close-btn" onclick="closeSidebar()">✕</button>
+      <div class="user-avatar" id="avatarLetter">U</div>
+      <div class="user-info">
+        <h3>
+          <span id="userNameDisplay">विद्यार्थी (Student)</span>
+          <span class="edit-icon" onclick="changeUserName()" title="नाम बदलें">✏️</span>
+        </h3>
+        <p id="userRoleDisplay">LIS Aspirant • UGC-NET / Librarian</p>
+      </div>
+    </div>
+
+    <div class="sidebar-menu">
+      <div class="sidebar-item" onclick="navFromSidebar('home')">
+        <span class="item-icon">🏠</span> मुख्य पेज (Home)
+      </div>
+      <div class="sidebar-item" onclick="navFromSidebar('generate')">
+        <span class="item-icon">➕</span> नया AI टेस्ट बनाएं
+      </div>
+      <div class="sidebar-item" onclick="navFromSidebar('pyq')">
+        <span class="item-icon">📜</span> पिछले वर्ष के पेपर (PYQ)
+      </div>
+      <div class="sidebar-item" onclick="navFromSidebar('bank')">
+        <span class="item-icon">📂</span> क्वेश्चन बैंक व CBT टेस्ट
+      </div>
+      <div class="sidebar-item" onclick="navFromSidebar('syllabus')">
+        <span class="item-icon">📖</span> सिलेबस व नोट्स
+      </div>
+
+      <div class="sidebar-divider"></div>
+
+      <div class="sidebar-item" onclick="changeUserName()">
+        <span class="item-icon">⚙️</span> प्रोफ़ाइल नाम बदलें
+      </div>
+    </div>
+
+    <div class="sidebar-footer">
+      <button class="btn-logout" onclick="handleLogout()">
+        <span>🚪</span> लॉगआउट (Logout)
+      </button>
+    </div>
+  </div>
+
+  <!-- Top Navigation Quick Options Bar -->
   <div class="nav-options-bar">
     <div class="nav-pill active" id="pill-home" onclick="showView('home')">🏠 मुख्य पेज</div>
     <div class="nav-pill" id="pill-generate" onclick="showView('generate')">➕ नया AI टेस्ट बनाएं</div>
@@ -374,7 +567,6 @@
       </div>
 
       <div class="dashboard-grid">
-        <!-- Tile 1 -->
         <div class="action-card" onclick="showView('generate')">
           <div class="card-icon" style="background: #e0f2fe; color: #0284c7;">📄</div>
           <div class="card-info">
@@ -384,7 +576,6 @@
           <div class="card-arrow">›</div>
         </div>
 
-        <!-- Tile 2: NEW PYQ OPTION -->
         <div class="action-card" onclick="showView('pyq')">
           <div class="card-icon" style="background: #f3e8ff; color: #7c3aed;">📜</div>
           <div class="card-info">
@@ -394,7 +585,6 @@
           <div class="card-arrow">›</div>
         </div>
 
-        <!-- Tile 3 -->
         <div class="action-card" onclick="showView('bank')">
           <div class="card-icon" style="background: #fef3c7; color: #d97706;">🎯</div>
           <div class="card-info">
@@ -404,7 +594,6 @@
           <div class="card-arrow">›</div>
         </div>
 
-        <!-- Tile 4 -->
         <div class="action-card" onclick="showView('syllabus')">
           <div class="card-icon" style="background: #dcfce7; color: #16a34a;">📚</div>
           <div class="card-info">
@@ -478,43 +667,31 @@
       <div class="card">
         <div class="card-title">📜 पिछले वर्षों के प्रश्न पत्र (Previous Year Papers)</div>
         <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom: 16px;">
-          💡 <b>टिप:</b> आप किसी भी पुराने पेपर की PDF को <b>'नया AI टेस्ट बनाएं'</b> में अपलोड करके उसका लाइव CBT टेस्ट भी दे सकते हैं!
+          💡 <b>टिप:</b> किसी भी पुराने पेपर की PDF को <b>'नया AI टेस्ट बनाएं'</b> में अपलोड करके उसका लाइव CBT टेस्ट भी दे सकते हैं!
         </p>
 
-        <!-- Paper 1 -->
         <div class="pyq-box">
           <h4>UGC NET Library & Information Science (2023 - Dec)</h4>
           <p>कुल प्रश्न: 100 | स्तर: UGC NET Paper-II Official</p>
-          <div class="pyq-actions">
-            <button class="btn-pyq-test" onclick="showView('generate')">⚡ इस पेपर का CBT बनाएं</button>
-          </div>
+          <button class="btn-pyq-test" onclick="showView('generate')">⚡ इस पेपर का CBT बनाएं</button>
         </div>
 
-        <!-- Paper 2 -->
         <div class="pyq-box">
           <h4>UGC NET Library Science (2023 - June Shift)</h4>
           <p>कुल प्रश्न: 100 | व्याख्या सहित प्रश्न बैंक</p>
-          <div class="pyq-actions">
-            <button class="btn-pyq-test" onclick="showView('generate')">⚡ इस पेपर का CBT बनाएं</button>
-          </div>
+          <button class="btn-pyq-test" onclick="showView('generate')">⚡ इस पेपर का CBT बनाएं</button>
         </div>
 
-        <!-- Paper 3 -->
         <div class="pyq-box">
           <h4>RSMSSB Librarian Grade-III (Solved Paper)</h4>
           <p>राजस्थान कर्मचारी चयन बोर्ड लाइब्रेरियन भर्ती परीक्षा</p>
-          <div class="pyq-actions">
-            <button class="btn-pyq-test" onclick="showView('generate')">⚡ इस पेपर का CBT बनाएं</button>
-          </div>
+          <button class="btn-pyq-test" onclick="showView('generate')">⚡ इस पेपर का CBT बनाएं</button>
         </div>
 
-        <!-- Paper 4 -->
         <div class="pyq-box">
           <h4>KVS / NVS Librarian Recruitment Exam Paper</h4>
           <p>केंद्रीय विद्यालय एवं नवोदय विद्यालय संगठन लाइब्रेरियन परीक्षा</p>
-          <div class="pyq-actions">
-            <button class="btn-pyq-test" onclick="showView('generate')">⚡ इस पेपर का CBT बनाएं</button>
-          </div>
+          <button class="btn-pyq-test" onclick="showView('generate')">⚡ इस पेपर का CBT बनाएं</button>
         </div>
       </div>
     </div>
@@ -572,6 +749,44 @@
   </div>
 
   <script>
+    // User Profile Logic (Stored in browser)
+    function initUser() {
+      let name = localStorage.getItem('lis_username') || 'विद्यार्थी (Student)';
+      document.getElementById('userNameDisplay').innerText = name;
+      document.getElementById('avatarLetter').innerText = name.trim().charAt(0).toUpperCase() || 'U';
+    }
+
+    function changeUserName() {
+      let current = localStorage.getItem('lis_username') || '';
+      let newName = prompt('अपना नाम या उपनाम दर्ज करें:', current);
+      if (newName && newName.trim()) {
+        localStorage.setItem('lis_username', newName.trim());
+        initUser();
+      }
+    }
+
+    function handleLogout() {
+      if (confirm('क्या आप लॉगआउट करना चाहते हैं?')) {
+        localStorage.removeItem('lis_username');
+        alert('आप सफलतापूर्वक लॉगआउट हो चुके हैं।');
+        location.reload();
+      }
+    }
+
+    // Sidebar drawer toggles
+    function openSidebar() {
+      document.getElementById('sidebar').classList.add('open');
+      document.getElementById('sidebarOverlay').classList.add('open');
+    }
+    function closeSidebar() {
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('sidebarOverlay').classList.remove('open');
+    }
+    function navFromSidebar(viewId) {
+      closeSidebar();
+      showView(viewId);
+    }
+
     // Navigation logic
     function showView(viewId) {
       document.querySelectorAll('.view-panel').forEach(el => el.classList.remove('active'));
@@ -716,6 +931,11 @@
       alert(`🎉 टेस्ट समाप्त!\n\nआपका स्कोर: ${score} / ${currentQuestions.length}\nप्रतिशत: ${((score / currentQuestions.length) * 100).toFixed(1)}%`);
       showView('home');
     }
+
+    // Initialize user on startup
+    window.onload = () => {
+      initUser();
+    };
   </script>
 </body>
 </html>

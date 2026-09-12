@@ -25,6 +25,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
     body { background: var(--bg); color: var(--text); padding-bottom: 60px; }
 
+    /* WELCOME SPLASH */
     #welcomeSplash {
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       background: radial-gradient(circle at top, #1e3a8a, #0b1329);
@@ -63,12 +64,13 @@
     .splash-timer-progress { width: 0%; height: 100%; background: linear-gradient(90deg, var(--gold), var(--accent)); animation: splashProgress 3s linear forwards; }
     @keyframes splashProgress { 0% { width: 0%; } 100% { width: 100%; } }
 
+    /* LOGIN OVERLAY */
     #authOverlay {
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       background: radial-gradient(circle at top, #1e3a8a, #0b1329);
       z-index: 99990; display: flex; justify-content: center; align-items: center; padding: 18px;
     }
-    #authOverlay.hidden { display: none; }
+    #authOverlay.hidden { display: none !important; }
     .login-card {
       background: white; border-radius: 24px; padding: 24px 18px; width: 100%;
       max-width: 400px; box-shadow: 0 16px 36px rgba(0,0,0,0.3); text-align: center;
@@ -140,10 +142,6 @@
     .flashcard-front { background: linear-gradient(145deg, #ffffff, #eff6ff); color: #1e3a8a; }
     .flashcard-back { background: linear-gradient(145deg, #1e3a8a, #0f172a); color: #fef08a; transform: rotateY(180deg); }
     .swipe-hint-bar { display: flex; justify-content: space-between; align-items: center; padding: 6px 12px; background: #f1f5f9; border-radius: 12px; font-size: 0.78rem; color: var(--text-muted); font-weight: 700; margin-top: 8px; }
-
-    .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center; z-index: 1000; padding: 16px; }
-    .modal-overlay.open { display: flex; }
-    .modal-content { background: white; border-radius: 16px; padding: 20px; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto; }
   </style>
 </head>
 <body>
@@ -156,7 +154,7 @@
         <h1>LIS GURUJI</h1>
       </div>
       <div class="splash-photo-wrap">
-        <img id="splashPhoto" class="splash-photo" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300" alt="RAMESH GUJJAR">
+        <img id="splashPhoto" class="splash-photo" src="/profile.jpg" alt="RAMESH GUJJAR">
         <label for="splashPhotoInput" class="photo-camera-btn">📷</label>
         <input type="file" id="splashPhotoInput" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">
       </div>
@@ -181,7 +179,7 @@
   <div id="authOverlay" class="hidden">
     <div class="login-card">
       <div class="login-mentor-badge">
-        <img class="login-mentor-img" id="loginMentorImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300" alt="RAMESH GUJJAR">
+        <img class="login-mentor-img" id="loginMentorImg" src="/profile.jpg" alt="RAMESH GUJJAR">
         <div class="login-mentor-info">
           <h3>LIS GURUJI</h3>
           <p id="loginMentorSubName">RAMESH GUJJAR</p>
@@ -214,7 +212,7 @@
       </div>
     </div>
     <div class="nav-mentor-profile" onclick="openSidebar()">
-      <img id="navMentorImg" class="mentor-header-photo" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300" alt="RAMESH GUJJAR">
+      <img id="navMentorImg" class="mentor-header-photo" src="/profile.jpg" alt="RAMESH GUJJAR">
       <div class="mentor-header-text">
         <div class="top-title">LIS GURUJI</div>
         <div class="bot-name" id="navMentorName">RAMESH GUJJAR</div>
@@ -228,7 +226,7 @@
     <div class="sidebar-header">
       <button onclick="closeSidebar()" style="position:absolute; top:12px; right:12px; background:none; border:none; color:white; font-size:20px; cursor:pointer;">✕</button>
       <div style="display:flex; align-items:center; gap:12px;">
-        <img id="sideMentorImg" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300" style="width:52px; height:52px; border-radius:50%; border:2px solid #f59e0b; background:white; object-fit:cover;">
+        <img id="sideMentorImg" src="/profile.jpg" style="width:52px; height:52px; border-radius:50%; border:2px solid #f59e0b; background:white; object-fit:cover;">
         <div>
           <h3 id="sideMentorName" style="font-size:1.05rem; font-weight:800;">RAMESH GUJJAR</h3>
           <p id="sideMentorPhone" style="font-size:0.75rem; color:#fde68a;">9549700557</p>
@@ -312,7 +310,7 @@
       </div>
     </div>
 
-    <!-- VIEW 2: GENERATE WITH FULL OPTIONS (10-200) -->
+    <!-- VIEW 2: GENERATE -->
     <div id="view-generate" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
@@ -357,7 +355,7 @@
       </div>
     </div>
 
-    <!-- VIEW 3: PYQ HUB WITH SMART TIMING -->
+    <!-- VIEW 3: PYQ HUB -->
     <div id="view-pyq" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
@@ -366,7 +364,6 @@
           ऑनलाइन CBT टेस्ट शुरू करें (समय: औसत 1 मिनट प्रति प्रश्न या अपनी पसंद चुनें):
         </p>
 
-        <!-- PYQ 1 -->
         <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:14px; margin-bottom:12px;">
           <h4 style="font-size:1rem; color:#1e293b;">UGC NET Library & Information Science</h4>
           <p style="font-size:0.8rem; color:#64748b; margin:4px 0 8px;">Dec 2023 Solved Paper (100 Questions)</p>
@@ -383,7 +380,6 @@
           </div>
         </div>
 
-        <!-- PYQ 2 -->
         <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:14px; margin-bottom:12px;">
           <h4 style="font-size:1rem; color:#1e293b;">RSMSSB Librarian Grade-III</h4>
           <p style="font-size:0.8rem; color:#64748b; margin:4px 0 8px;">2022 Solved Paper (150 Questions)</p>
@@ -518,8 +514,8 @@
         name = 'RAMESH GUJJAR';
         localStorage.setItem('lis_mentor_name', 'RAMESH GUJJAR');
       }
-      const phone = localStorage.getItem('lis_mentor_phone'] || '9549700557';
-      const photo = localStorage.getItem('lis_mentor_photo') || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300';
+      const phone = localStorage.getItem('lis_mentor_phone') || '9549700557';
+      const photo = localStorage.getItem('lis_mentor_photo') || '/profile.jpg';
 
       const nameEls = ['splashName', 'navMentorName', 'sideMentorName', 'loginMentorSubName'];
       nameEls.forEach(id => { const el = document.getElementById(id); if (el) el.innerText = name; });
@@ -533,7 +529,7 @@
 
     function editMentorDetails() {
       const curName = localStorage.getItem('lis_mentor_name') || 'RAMESH GUJJAR';
-      const curPhone = localStorage.getItem('lis_mentor_phone') || '9549700557';
+      const curPhone = localStorage.getItem('lis_mentor_phone'] || '9549700557';
       const nName = prompt('अपना पूरा नाम दर्ज करें:', curName);
       if (nName && nName.trim()) localStorage.setItem('lis_mentor_name', nName.trim());
       const nPhone = prompt('अपना मोबाइल नंबर दर्ज करें:', curPhone);
@@ -743,7 +739,6 @@
     
     function startCBT() {
       if (!currentQuestions || currentQuestions.length === 0) { alert('पहले प्रश्न बनाएं!'); showView('generate'); return; }
-      // Smart average timer: 1 minute per question by default
       startCustomCBT("RAMESH GUJJAR CBT TEST", currentQuestions, currentQuestions.length * 60);
     }
 
@@ -758,7 +753,7 @@
         });
       }
       const selVal = document.getElementById(selectId).value;
-      let timeSecs = count * 60; // Default smart average: 1 min per question
+      let timeSecs = count * 60; // Smart average: 1 min per question
       if (selVal !== 'auto') {
         timeSecs = parseInt(selVal) * 60;
       }

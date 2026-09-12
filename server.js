@@ -45,11 +45,11 @@ app.post('/api/generate-all', upload.array('files'), async (req, res) => {
     if (limit !== 'max') count = parseInt(limit) || 20;
 
     const prompt = `You are an expert Library Science exam mentor for LIS GURUJI Portal (RAMESH GUJJAR).
-Analyze the attached documents/images thoroughly. Generate exhaustive, high-yield study material.
+Analyze the attached documents/images thoroughly and generate ultra-creative, colorful hand-written style classroom notes and visual mind-maps.
 1. Generate exactly or up to ${count} high-quality MCQs on "${subject}" in ${langName} with detailed explanations.
-2. Generate comprehensive, masterclass One-Page Revision Notes ("note") with a rich summary and 6 to 10 detailed bullet points covering all facts, definitions, and concepts.
-3. Generate a powerful mnemonic exam trick ("trick").
-4. Generate a high-impact conceptual playCard ("playCard").
+2. Generate creative, colorful Hand-Written style Revision Notes ("note") styled like colored-pen classroom notes with visual emojis (🔴 Red marker, 🔵 Blue pen, 🟢 Green highlighter, 🟡 Yellow sticky-note) and 8-10 detailed revision points.
+3. Generate a dedicated "microNotes" section that is 100% visual flowchart / mind-map format using structured layout, color-coded nodes, and hand-written style quick-revision capsules.
+4. Generate a powerful mnemonic exam trick ("trick") and a high-impact conceptual playCard ("playCard").
 
 Return ONLY a valid raw JSON object without markdown or backticks:
 {
@@ -62,27 +62,34 @@ Return ONLY a valid raw JSON object without markdown or backticks:
     }
   ],
   "note": {
-    "title": "Comprehensive One-Page Revision Notes",
-    "summary": "Deep executive summary covering core concepts and exam orientation...",
-    "mermaidDiagram": "graph TD\\n  A[Core Concept] --> B[Sub-topic]",
+    "title": "🎨 Hand-Written Master Revision Notes",
+    "summary": "✍️ [CLASSROOM SUMMARY] Vivid summary styled like colored-pen notes...",
+    "mermaidDiagram": "graph TD\\n  A[🎨 Core Topic] --> B[💡 Key Rule]\\n  B --> C[⚡ Exam Fact]",
     "points": [
-      "Key point 1 with full definitions and historical background",
-      "Key point 2 with important dates or committees",
-      "Key point 3 with classification/cataloguing rules",
-      "Key point 4 with procedural details",
-      "Key point 5 with exam traps and exceptions",
-      "Key point 6 with final summary takeaway"
+      "🔴 [CRITICAL FACT]: Detailed point with red marker highlight...",
+      "🔵 [CORE CONCEPT]: Detailed point with blue pen structure...",
+      "🟢 [EXAM TRAP]: Detailed point with green highlighter...",
+      "🟡 [QUICK TRICK]: Detailed point with yellow sticky note vibe..."
+    ]
+  },
+  "microNotes": {
+    "title": "🧠 100% Visual Flowchart & Micro Notes",
+    "diagramStyleText": "🚀 [MIND MAP FLOW]\n🔴 [CORE TOPIC] ──> 🔵 [SUB-TOPIC 1] ──> 🟢 [KEY FACT]\n       │\n       └──> 🟡 [EXAM TRAP WARNING]",
+    "capsules": [
+      "📌 Capsule 1 (Quick Formula / Date / Author)",
+      "📌 Capsule 2 (Core Law / Principle Breakdown)",
+      "📌 Capsule 3 (Fast-track keyword comparison)"
     ]
   },
   "trick": {
     "title": "Exam Mnemonic",
     "formula": "Short code or formula",
-    "desc": "Easy description to remember"
+    "desc": "Description"
   },
   "playCard": {
     "topic": "Core Topic",
-    "front": "High-yield concept question",
-    "back": "Precise answer and core rule"
+    "front": "Concept question",
+    "back": "Precise answer"
   }
 }`;
 

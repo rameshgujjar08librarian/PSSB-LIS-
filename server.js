@@ -34,6 +34,7 @@ app.post('/api/generate-all', upload.array('files'), async (req, res) => {
     }
 
     const { subject, limit, lang } = req.body;
+    // Updated model name fix for v1 API
     const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
     let langName = 'Hindi Devanagari';
@@ -109,4 +110,6 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+O
 

@@ -34,7 +34,7 @@ app.post('/api/generate-all', upload.array('files'), async (req, res) => {
     }
 
     const { subject, limit, lang } = req.body;
-    const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+    const model = genAI.getGenerativeModel({ model: 'gemini-3.6-flash' });
 
     let langName = 'Hindi Devanagari';
     if (lang === 'en') langName = 'English';

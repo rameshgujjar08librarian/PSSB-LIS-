@@ -1,3 +1,4 @@
+cat << 'EOF' > public/index.html
 <!DOCTYPE html>
 <html lang="hi">
 <head>
@@ -304,15 +305,15 @@
         <form id="genForm">
           <div style="margin-bottom:12px;">
             <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">विषय (Subject):</label>
-            <input type="text" id="subject" class="input-box" value="Library & Information Science" required>
+            <input type="text" id="subject" name="subject" class="input-box" value="Library & Information Science" required>
           </div>
           <div style="margin-bottom:12px;">
             <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">Study Material (PDF, Word, Image):</label>
-            <input type="file" id="files" class="input-box" multiple accept=".pdf,.doc,.docx,image/*" required>
+            <input type="file" id="files" name="files" class="input-box" multiple accept=".pdf,.doc,.docx,image/*" required>
           </div>
           <div style="margin-bottom:12px;">
             <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">प्रश्नों की संख्या:</label>
-            <select id="limit" class="input-box">
+            <select id="limit" name="limit" class="input-box">
               <option value="max">🔥 अधिकतम संभव (पूरा निचोड़)</option>
               <option value="10">10 प्रश्न</option>
               <option value="20">20 प्रश्न</option>
@@ -325,7 +326,7 @@
           </div>
           <div style="margin-bottom:14px;">
             <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">भाषा चयन (Language):</label>
-            <select id="lang" class="input-box">
+            <select id="lang" name="lang" class="input-box">
               <option value="hi">हिंदी (Hindi Devanagari)</option>
               <option value="en">English</option>
               <option value="pa">ਪੰਜਾਬੀ (Punjabi Gurmukhi)</option>
@@ -512,16 +513,6 @@
           img.onerror = function() { this.src = 'https://api.dicebear.com/7.x/bottts/svg?seed=RameshGujjarOfficial'; };
         }
       });
-    }
-
-    function editMentorDetails() {
-      const curName = localStorage.getItem('lis_mentor_name') || 'RAMESH GUJJAR';
-      const curPhone = localStorage.getItem('lis_mentor_phone') || '9549700557';
-      const nName = prompt('अपना पूरा नाम दर्ज करें:', curName);
-      if (nName && nName.trim()) localStorage.setItem('lis_mentor_name', nName.trim());
-      const nPhone = prompt('अपना मोबाइल नंबर दर्ज करें:', curPhone);
-      if (nPhone && nPhone.trim()) localStorage.setItem('lis_mentor_phone', nPhone.trim());
-      initMentor();
     }
 
     let splashDismissed = false;
@@ -749,6 +740,58 @@
       showView('home');
     }
 
+    // AI Generation Form Submit Handler (Prevents page reload)
+    document.getElementById('genForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btnGen');
+      const status = document.getElementById('genStatus');
+      btn.disabled = true;
+      status.innerText = '⏳ AI डेटा जनरेट कर रहा है, कृपया प्रतीक्षा करें...';
+      status.style.color = '#2563eb';
+
+      const formData = new FormData(this);
+      try {
+        const res = await fetch('/api/generate-all', {
+          method: 'POST',
+          body: formData
+        });
+        const result = await res.json();
+        if (result.success) {
+          status.innerText = `✅ सफलता! ${result.questionsCount} प्रश्न, नोट्स और कार्ड बन गए हैं।`;
+          status.style.color = '#10b981';
+          
+          // Update local stores & UI if data exists
+          if (result.data) {
+            if (result.data.playCard) {
+              cardsList.unshift(result.data.playCard);
+              setStore('lis_cards', cardsList);
+            }
+            if (result.data.trick) {
+              tricksList.unshift(result.data.trick);
+              setStore('lis_tricks', tricksList);
+            }
+            if (result.data.note) {
+              notesList.unshift(result.data.note);
+              setStore('lis_notes', notesList);
+            }
+          }
+
+          setTimeout(() => {
+            showView('bank');
+            loadBank();
+          }, 1500);
+        } else {
+          status.innerText = `❌ एरर: ${result.message}`;
+          status.style.color = '#e11d48';
+        }
+      } catch (err) {
+        status.innerText = `❌ एरर: ${err.message}`;
+        status.style.color = '#e11d48';
+      } finally {
+        btn.disabled = false;
+      }
+    });
+
     function openSidebar() { document.getElementById('sidebar').classList.add('open'); document.getElementById('sidebarOverlay').classList.add('open'); }
     function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebarOverlay').classList.remove('open'); }
     function navFromSidebar(id) { closeSidebar(); showView(id); }
@@ -793,4 +836,5 @@
     };
   </script>
 </body>
-</html>
+O
+

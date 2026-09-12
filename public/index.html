@@ -181,90 +181,39 @@
       border-radius: 8px; font-size: 0.88rem; font-weight: 700; color: #92400e; margin-top: 12px;
     }
 
-    /* =========================================
-       SWIPEABLE FLASHCARDS (PLAY CARDS)
-       ========================================= */
+    /* SWIPEABLE FLASHCARDS */
     .flashcard-stage {
-      width: 100%;
-      height: 240px;
-      position: relative;
-      margin: 16px 0;
-      perspective: 1200px;
-      touch-action: pan-y;
-      user-select: none;
+      width: 100%; height: 240px; position: relative; margin: 16px 0;
+      perspective: 1200px; touch-action: pan-y; user-select: none;
     }
     .flashcard-container {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      cursor: grab;
-      border-radius: 20px;
+      width: 100%; height: 100%; position: relative; cursor: grab; border-radius: 20px;
     }
     .flashcard-container:active { cursor: grabbing; }
 
     .flashcard-inner {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      text-align: center;
+      position: absolute; width: 100%; height: 100%; text-align: center;
       transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
-      transform-style: preserve-3d;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      will-change: transform, opacity;
+      transform-style: preserve-3d; border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08); will-change: transform, opacity;
     }
-    .flashcard-inner.flipped {
-      transform: rotateY(180deg);
-    }
+    .flashcard-inner.flipped { transform: rotateY(180deg); }
     .flashcard-front, .flashcard-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-      border-radius: 20px;
-      padding: 24px 18px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      border: 2px solid var(--border);
+      position: absolute; width: 100%; height: 100%;
+      -webkit-backface-visibility: hidden; backface-visibility: hidden;
+      border-radius: 20px; padding: 24px 18px; display: flex; flex-direction: column;
+      justify-content: center; align-items: center; border: 2px solid var(--border);
     }
-    .flashcard-front {
-      background: linear-gradient(145deg, #ffffff, #eff6ff);
-      color: #1e3a8a;
-    }
-    .flashcard-back {
-      background: linear-gradient(145deg, #1e3a8a, #0f172a);
-      color: #fef08a;
-      transform: rotateY(180deg);
-    }
+    .flashcard-front { background: linear-gradient(145deg, #ffffff, #eff6ff); color: #1e3a8a; }
+    .flashcard-back { background: linear-gradient(145deg, #1e3a8a, #0f172a); color: #fef08a; transform: rotateY(180deg); }
     .flashcard-title {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      font-weight: 800;
-      letter-spacing: 0.8px;
-      opacity: 0.8;
-      margin-bottom: 8px;
+      font-size: 0.78rem; text-transform: uppercase; font-weight: 800; letter-spacing: 0.8px; opacity: 0.8; margin-bottom: 8px;
     }
-    .flashcard-text {
-      font-size: 1.15rem;
-      font-weight: 800;
-      line-height: 1.4;
-    }
+    .flashcard-text { font-size: 1.15rem; font-weight: 800; line-height: 1.4; }
     
-    /* Swipe Hint Badges */
     .swipe-hint-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 6px 12px;
-      background: #f1f5f9;
-      border-radius: 12px;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      font-weight: 700;
-      margin-top: 8px;
+      display: flex; justify-content: space-between; align-items: center; padding: 6px 12px;
+      background: #f1f5f9; border-radius: 12px; font-size: 0.78rem; color: var(--text-muted); font-weight: 700; margin-top: 8px;
     }
 
     /* Modals */
@@ -506,7 +455,6 @@
           </div>
         </div>
 
-        <!-- 3D Swipe Stage -->
         <div class="flashcard-stage">
           <div class="flashcard-container" id="swipeCardContainer">
             <div class="flashcard-inner" id="flashcardInner">
@@ -524,7 +472,6 @@
           </div>
         </div>
 
-        <!-- Smart Swipe Hint & Counter -->
         <div class="swipe-hint-bar">
           <span>👈 बाएँ स्वाइप करें (Next)</span>
           <span id="cardCountDisplay" style="font-weight:900; color:var(--primary); font-size:0.9rem;">1 / 4</span>
@@ -622,7 +569,7 @@
 
   </div>
 
-  <!-- MODAL: AI CARD GENERATOR -->
+  <!-- MODALS -->
   <div class="modal-overlay" id="aiCardModal">
     <div class="modal-content">
       <h3 style="color:var(--rose); margin-bottom:10px;">🤖 PDF से AI प्ले कार्ड्स बनाएं</h3>
@@ -644,7 +591,6 @@
     </div>
   </div>
 
-  <!-- MODAL: MANUAL CARD ADD -->
   <div class="modal-overlay" id="manualCardModal">
     <div class="modal-content">
       <h3 style="color:var(--primary); margin-bottom:10px;">➕ नया प्ले कार्ड जोड़ें</h3>
@@ -704,6 +650,8 @@
         alert('❌ अमान्य कोड!');
       }
     }
+
+    // LOGOUT ONLY HAPPENS HERE (EXPLICIT USER ACTION)
     function handleLogout() {
       if (confirm('क्या आप लॉगआउट करना चाहते हैं?')) {
         localStorage.removeItem('lis_student_session');
@@ -764,9 +712,7 @@
       }
     };
 
-    // =========================================================
-    // 3. SWIPEABLE FLASHCARDS ENGINE (TOUCH & GESTURES)
-    // =========================================================
+    // 3. FLASHCARDS SWIPE ENGINE
     let cardsList = [
       { topic: 'LAWS OF LIBRARY', front: 'पुस्तकालय विज्ञान के 5 नियम कब प्रतिपादित और कब प्रकाशित हुए?', back: 'प्रतिपादित: 1928 (अन्नामलाई नगर)\nपुस्तक प्रकाशित: 1931 (मद्रास लाइब्रेरी एसोसिएशन)' },
       { topic: 'CLASSIFICATION', front: 'DDC का पहला संस्करण कब और किसने तैयार किया?', back: '1876 में मेलविल डेवी (कुल 44 पृष्ठ)' },
@@ -812,11 +758,9 @@
       });
     }
 
-    // Smooth Tinder-Style Slide Animation
     function animateCardSwipe(direction, callback) {
       isSwipingInProgress = true;
       const inner = document.getElementById('flashcardInner');
-      
       inner.style.transition = 'transform 0.24s ease, opacity 0.24s ease';
       inner.style.transform = direction === 'left' ? 'translateX(-120%) rotate(-12deg)' : 'translateX(120%) rotate(12deg)';
       inner.style.opacity = '0';
@@ -836,12 +780,10 @@
       }, 240);
     }
 
-    // Touch & Swipe Event Listeners on Card Container
     function initCardSwipeEvents() {
       const cardContainer = document.getElementById('swipeCardContainer');
       let startX = 0, startY = 0, endX = 0, endY = 0;
 
-      // Touch Events (Mobile)
       cardContainer.addEventListener('touchstart', (e) => {
         startX = e.changedTouches[0].clientX;
         startY = e.changedTouches[0].clientY;
@@ -853,7 +795,6 @@
         handleGesture(startX, startY, endX, endY);
       }, { passive: true });
 
-      // Mouse Drag Events (Desktop/PC Testing)
       let isMouseDown = false;
       cardContainer.addEventListener('mousedown', (e) => {
         isMouseDown = true;
@@ -873,26 +814,17 @@
     function handleGesture(sX, sY, eX, eY) {
       const diffX = eX - sX;
       const diffY = eY - sY;
-
-      // Tap (Less than 20px movement) -> Flip Card
       if (Math.abs(diffX) < 20 && Math.abs(diffY) < 20) {
         flipFlashcard();
         return;
       }
-
-      // Horizontal Swipe Check (Threshold: 45px)
       if (Math.abs(diffX) > 45 && Math.abs(diffX) > Math.abs(diffY)) {
-        if (diffX < 0) {
-          // Swipe Left -> Next Card
-          nextCard();
-        } else {
-          // Swipe Right -> Previous Card
-          prevCard();
-        }
+        if (diffX < 0) nextCard();
+        else prevCard();
       }
     }
 
-    // AI Card Form
+    // AI Card Generation
     document.getElementById('aiCardForm').onsubmit = async (e) => {
       e.preventDefault();
       const btn = document.getElementById('btnGenCards');
@@ -915,7 +847,7 @@
           currentCardIndex = 0;
           renderCurrentCard();
           closeModal('aiCardModal');
-          alert(`✅ ${data.cards.length} नए AI प्ले कार्ड्स जुड़ गए हैं! अब आप स्वाइप करके पढ़ सकते हैं।`);
+          alert(`✅ ${data.cards.length} नए AI प्ले कार्ड्स जुड़ गए हैं!`);
         } else {
           status.innerHTML = '❌ कार्ड्स नहीं बन पाए';
         }
@@ -940,8 +872,13 @@
       alert('✅ नया कार्ड जुड़ गया!');
     }
 
-    function openModal(id) { document.getElementById(id).classList.add('open'); }
-    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+    function openModal(id) { 
+      document.getElementById(id).classList.add('open');
+      history.pushState({ modal: id }, '');
+    }
+    function closeModal(id) { 
+      document.getElementById(id).classList.remove('open');
+    }
 
     // 4. CBT GENERATOR & ENGINE
     document.getElementById('genForm').onsubmit = async (e) => {
@@ -1028,20 +965,29 @@
       clearInterval(timerInterval);
       let score = 0;
       currentQuestions.forEach((q, idx) => {
-        if (userAnswers[idx] !== undefined && (userAnswers[idx] === q.correctAnswer || userAnswers[idx] === q.correct_option)) score++;
+        if (userAnswers[idx] !== undefined && userAnswers[idx] === q.correctAnswer) score++;
       });
       alert(`🎉 टेस्ट समाप्त!\nस्कोर: ${score} / ${currentQuestions.length}`);
       showView('home');
     }
 
     // Navigation & Views
-    function openSidebar() { document.getElementById('sidebar').classList.add('open'); document.getElementById('sidebarOverlay').classList.add('open'); }
-    function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebarOverlay').classList.remove('open'); }
+    function openSidebar() {
+      document.getElementById('sidebar').classList.add('open');
+      document.getElementById('sidebarOverlay').classList.add('open');
+      history.pushState({ sidebar: true }, '');
+    }
+    function closeSidebar() {
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('sidebarOverlay').classList.remove('open');
+    }
     function navFromSidebar(id) { closeSidebar(); showView(id); }
 
     let currentActiveView = 'home';
     function showView(viewId, pushHistory = true) {
-      if (pushHistory && viewId !== currentActiveView) history.pushState({ view: viewId }, '', '#' + viewId);
+      if (pushHistory && viewId !== currentActiveView) {
+        history.pushState({ view: viewId }, '', '#' + viewId);
+      }
       currentActiveView = viewId;
 
       document.querySelectorAll('.view-panel').forEach(el => el.classList.remove('active'));
@@ -1057,26 +1003,52 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Hardware Back Button
-    window.addEventListener('popstate', () => {
-      const modal = document.querySelector('.modal-overlay.open');
-      if (modal) { modal.classList.remove('open'); history.pushState({ view: currentActiveView }, '', '#' + currentActiveView); return; }
-      const sidebar = document.getElementById('sidebar');
-      if (sidebar.classList.contains('open')) { closeSidebar(); history.pushState({ view: currentActiveView }, '', '#' + currentActiveView); return; }
-      if (currentActiveView !== 'home') { showView('home', false); return; }
-      if (currentActiveView === 'home') {
-        if (confirm('क्या आप ऐप से बाहर निकलना चाहते हैं?')) location.href = "about:blank";
-        else history.pushState({ view: 'home' }, '', '#home');
+    // =========================================================
+    // 5. CLEAN HARDWARE BACK BUTTON (NO POPUPS, NO LOGOUT, DIRECT CLOSE)
+    // =========================================================
+    window.addEventListener('popstate', (e) => {
+      // 1. If any modal is open, close modal only
+      const openModalElem = document.querySelector('.modal-overlay.open');
+      if (openModalElem) {
+        openModalElem.classList.remove('open');
+        return;
       }
+
+      // 2. If sidebar drawer is open, close drawer only
+      const sidebar = document.getElementById('sidebar');
+      if (sidebar && sidebar.classList.contains('open')) {
+        closeSidebar();
+        return;
+      }
+
+      // 3. If in active CBT test, stop timer and return to home
+      if (currentActiveView === 'cbt') {
+        if (timerInterval) clearInterval(timerInterval);
+        showView('home', false);
+        return;
+      }
+
+      // 4. If in any sub-view (Notes, Cards, PYQ, Bank, etc.), return to home
+      if (currentActiveView !== 'home') {
+        showView('home', false);
+        return;
+      }
+
+      // 5. If already on Home with no previous option, DIRECTLY CLOSE APP
+      // (NEVER touch localStorage, NEVER logout, NO confirm popups)
+      try {
+        window.close();
+        if (window.navigator && window.navigator.app && window.navigator.app.exitApp) {
+          window.navigator.app.exitApp();
+        }
+      } catch (err) {}
     });
 
     window.onload = () => {
       checkAuth();
       renderCurrentCard();
       initCardSwipeEvents();
-
-      history.replaceState({ view: 'home' }, '', '#home');
-      history.pushState({ view: 'home' }, '', '#home');
+      history.replaceState({ view: 'home' }, '', '');
     };
   </script>
 </body>

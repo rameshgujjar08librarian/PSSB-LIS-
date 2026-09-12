@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RAMESH GUJJAR - LIS AI Study & CBT Portal</title>
+  <title>LIS GURUJI - RAMESH GUJJAR</title>
 
   <!-- WhatsApp Link Preview Meta -->
-  <meta property="og:title" content="RAMESH GUJJAR - LIS AI Study & CBT Portal">
-  <meta property="og:description" content="स्मार्ट पढ़ाई, उज्ज्वल भविष्य। UGC-NET & Librarian Exam Smart Notes & CBT">
+  <meta property="og:title" content="LIS GURUJI - RAMESH GUJJAR AI Study & CBT Portal">
+  <meta property="og:description" content="स्मार्ट पढ़ाई, उज्ज्वल भविष्य। UGC-NET & Librarian Exam Portal">
   <meta property="og:image" content="/profile.jpg">
   <meta name="theme-color" content="#1e3a8a">
 
-  <!-- Mermaid.js for Diagrams -->
+  <!-- Mermaid.js for Visual Flowcharts -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
   <script>
     mermaid.initialize({ startOnLoad: false, theme: 'default', securityLevel: 'loose' });
@@ -36,77 +36,295 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
     body { background: var(--bg); color: var(--text); padding-bottom: 60px; }
 
-    /* Login Screen */
+    /* ===================================================
+       1. FIRST WELCOME SPLASH SCREEN (WITH PHOTO & SLOGAN)
+       =================================================== */
+    #welcomeSplash {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at top, #1e3a8a, #0b1329);
+      z-index: 100000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    #welcomeSplash.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .splash-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 26px 18px;
+      width: 100%;
+      max-width: 410px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      border-top: 6px solid var(--gold);
+      position: relative;
+    }
+    .splash-big-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #eff6ff;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      border: 1px solid #bfdbfe;
+    }
+    .splash-big-brand h1 {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: var(--primary);
+      letter-spacing: 0.5px;
+    }
+
+    /* Photo with Camera Upload Badge */
+    .splash-photo-wrap {
+      position: relative;
+      width: 110px;
+      height: 110px;
+      margin: 6px auto 12px;
+    }
+    .splash-photo {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--gold);
+      box-shadow: 0 8px 22px rgba(245, 158, 11, 0.4);
+      background: #e2e8f0;
+      display: block;
+    }
+    .photo-camera-btn {
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      background: var(--primary);
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      cursor: pointer;
+      border: 2px solid white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .splash-name {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 2px;
+    }
+    .splash-subtitle {
+      font-size: 0.82rem;
+      color: #b45309;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    /* SLOGAN BANNER */
+    .splash-slogan-box {
+      background: linear-gradient(135deg, #fffbeb, #fef3c7);
+      border: 2px dashed var(--gold);
+      border-radius: 14px;
+      padding: 12px 10px;
+      margin: 10px 0 14px;
+    }
+    .splash-slogan-box h2 {
+      font-size: 1.25rem;
+      font-weight: 900;
+      color: #92400e;
+      line-height: 1.3;
+    }
+    .splash-slogan-box p {
+      font-size: 0.76rem;
+      color: #b45309;
+      font-weight: 700;
+      margin-top: 3px;
+    }
+
+    .splash-phone-box {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--primary);
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 8px 12px;
+      border-radius: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .btn-splash-enter {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--gold), #ea580c);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35);
+    }
+    .splash-timer-bar {
+      width: 100%;
+      height: 4px;
+      background: #e2e8f0;
+      border-radius: 10px;
+      margin-top: 14px;
+      overflow: hidden;
+    }
+    .splash-timer-progress {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--accent));
+      animation: splashProgress 3s linear forwards;
+    }
+    @keyframes splashProgress {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+
+    /* ===================================================
+       2. STUDENT LOGIN OVERLAY (COMES AFTER WELCOME PAGE)
+       =================================================== */
     #authOverlay {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(circle at top, #1e3a8a, #0f172a);
-      z-index: 100000; display: flex; justify-content: center; align-items: center; padding: 18px;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at top, #1e3a8a, #0b1329);
+      z-index: 99990;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 18px;
     }
     #authOverlay.hidden { display: none; }
     .login-card {
-      background: white; border-radius: 24px; padding: 26px 20px; width: 100%;
-      max-width: 400px; box-shadow: 0 16px 36px rgba(0,0,0,0.3); text-align: center;
+      background: white;
+      border-radius: 24px;
+      padding: 24px 18px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.3);
+      text-align: center;
       border-top: 5px solid var(--gold);
     }
     .login-mentor-badge {
-      display: flex; align-items: center; justify-content: center; gap: 12px;
-      margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #e2e8f0;
     }
     .login-mentor-img {
-      width: 60px; height: 60px; border-radius: 50%; border: 3px solid var(--gold);
-      object-fit: cover; background: #e2e8f0;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      object-fit: cover;
+      background: #e2e8f0;
     }
-    .login-mentor-info h3 { font-size: 1.2rem; color: var(--primary); font-weight: 800; text-align: left; }
-    .login-mentor-info p { font-size: 0.76rem; color: #b45309; font-weight: 700; text-align: left; }
+    .login-mentor-info h3 { font-size: 1.15rem; color: var(--primary); font-weight: 800; text-align: left; }
+    .login-mentor-info p { font-size: 0.75rem; color: #b45309; font-weight: 700; text-align: left; }
 
     .input-box {
-      width: 100%; padding: 12px 14px; border: 1.5px solid var(--border);
-      border-radius: 10px; font-size: 0.96rem; margin-bottom: 12px; outline: none;
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+      outline: none;
     }
     .btn-login {
-      width: 100%; padding: 13px; background: linear-gradient(135deg, var(--gold), #ea580c);
-      color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 800; cursor: pointer;
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, var(--gold), #ea580c);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
     }
 
-    /* Top Bar */
+    /* ===================================================
+       3. TOP NAVBAR: LOGO + RAMESH GUJJAR PHOTO & NAME
+       =================================================== */
     .top-navbar {
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-      color: white; padding: 10px 14px; position: sticky; top: 0; z-index: 100;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15); display: flex; justify-content: space-between; align-items: center;
+      color: white;
+      padding: 10px 14px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     .nav-left { display: flex; align-items: center; gap: 10px; }
     .menu-btn { background: transparent; border: none; color: white; font-size: 24px; cursor: pointer; }
     .brand { display: flex; align-items: center; gap: 8px; cursor: pointer; }
     .brand-logo-small {
-      width: 32px; height: 32px; border-radius: 8px; background: #f59e0b; color: #1e3a8a;
-      display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 800;
+      width: 32px; height: 32px; border-radius: 8px;
+      background: #f59e0b; color: #1e3a8a; display: flex;
+      align-items: center; justify-content: center; font-size: 17px; font-weight: 800;
     }
-    
-    /* Top Right: RAMESH GUJJAR */
     .nav-mentor-profile {
-      display: flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.15);
-      padding: 4px 12px 4px 4px; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 4px 12px 4px 4px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      cursor: pointer;
     }
     .mentor-header-photo {
-      width: 34px; height: 34px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      object-fit: cover;
+      background: #e2e8f0;
     }
     .mentor-header-text h4 { font-size: 0.84rem; font-weight: 900; letter-spacing: 0.5px; }
 
     /* Side Drawer */
     .sidebar-overlay {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.55);
-      z-index: 998; opacity: 0; visibility: hidden; transition: all 0.3s;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.55); z-index: 998; opacity: 0;
+      visibility: hidden; transition: all 0.3s;
     }
     .sidebar-overlay.open { opacity: 1; visibility: visible; }
     .sidebar {
-      position: fixed; top: 0; left: 0; width: 290px; height: 100%; background: white;
-      z-index: 999; transform: translateX(-100%); transition: transform 0.3s;
-      display: flex; flex-direction: column; box-shadow: 4px 0 20px rgba(0,0,0,0.25);
+      position: fixed; top: 0; left: 0; width: 290px; height: 100%;
+      background: white; z-index: 999; transform: translateX(-100%);
+      transition: transform 0.3s; display: flex; flex-direction: column;
+      box-shadow: 4px 0 20px rgba(0,0,0,0.25);
     }
     .sidebar.open { transform: translateX(0); }
     .sidebar-header {
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-      color: white; padding: 24px 18px 18px; display: flex; flex-direction: column; gap: 6px; position: relative;
+      color: white; padding: 24px 18px 18px; display: flex; flex-direction: column;
+      gap: 6px; position: relative;
     }
     .sidebar-menu { flex: 1; overflow-y: auto; padding: 10px 0; }
     .sidebar-item { display: flex; align-items: center; gap: 14px; padding: 12px 20px; font-size: 0.92rem; font-weight: 600; cursor: pointer; }
@@ -168,7 +386,6 @@
     .note-header {
       text-align: center; border-bottom: 2px dashed var(--gold); padding-bottom: 10px; margin-bottom: 14px;
     }
-    .note-header h2 { font-size: 1.25rem; color: var(--primary); font-weight: 900; }
     .diagram-box {
       background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px;
       padding: 14px; margin: 14px 0; overflow-x: auto; text-align: center;
@@ -181,7 +398,7 @@
       border-radius: 8px; font-size: 0.88rem; font-weight: 700; color: #92400e; margin-top: 12px;
     }
 
-    /* SWIPEABLE FLASHCARDS */
+    /* SWIPEABLE PLAY CARDS */
     .flashcard-stage {
       width: 100%; height: 240px; position: relative; margin: 16px 0;
       perspective: 1200px; touch-action: pan-y; user-select: none;
@@ -210,7 +427,6 @@
       font-size: 0.78rem; text-transform: uppercase; font-weight: 800; letter-spacing: 0.8px; opacity: 0.8; margin-bottom: 8px;
     }
     .flashcard-text { font-size: 1.15rem; font-weight: 800; line-height: 1.4; }
-    
     .swipe-hint-bar {
       display: flex; justify-content: space-between; align-items: center; padding: 6px 12px;
       background: #f1f5f9; border-radius: 12px; font-size: 0.78rem; color: var(--text-muted); font-weight: 700; margin-top: 8px;
@@ -229,11 +445,60 @@
 </head>
 <body>
 
-  <!-- 1. MANDATORY LOGIN OVERLAY -->
-  <div id="authOverlay">
+  <!-- ===================================================
+       PAGE 1: FIRST WELCOME SPLASH SCREEN (3 SECONDS)
+       =================================================== -->
+  <div id="welcomeSplash">
+    <div class="splash-card">
+      <div class="splash-big-brand">
+        <span style="font-size:22px;">📚</span>
+        <h1>LIS GURUJI</h1>
+      </div>
+
+      <!-- Photo with Camera Upload Button -->
+      <div class="splash-photo-wrap">
+        <img id="splashPhoto" class="splash-photo" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" alt="RAMESH GUJJAR">
+        <label for="splashPhotoInput" class="photo-camera-btn" title="अपनी फ़ोटो बदलें">📷</label>
+        <input type="file" id="splashPhotoInput" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">
+      </div>
+
+      <div class="splash-name">
+        <span id="splashName">RAMESH GUJJAR</span>
+        <span onclick="editMentorDetails()" style="font-size:0.85rem; cursor:pointer;" title="नाम व फ़ोन बदलें">✏️</span>
+      </div>
+      <div class="splash-subtitle">संस्थापक एवं मार्गदर्शक • Library & Info Science</div>
+
+      <!-- Slogan -->
+      <div class="splash-slogan-box">
+        <h2>"स्मार्ट पढ़ाई, उज्ज्वल भविष्य।"</h2>
+        <p>⚡ AI संचालित आधुनिक CBT एवं रिवीज़न पोर्टल</p>
+      </div>
+
+      <!-- Phone Number -->
+      <div>
+        <div class="splash-phone-box">
+          <span>📞 संपर्क सूत्र:</span>
+          <span id="splashPhone">+91 9876543210</span>
+        </div>
+      </div>
+
+      <button class="btn-splash-enter" onclick="dismissSplash()">
+        🚀 ऐप में प्रवेश करें (Start Now) →
+      </button>
+
+      <div class="splash-timer-bar">
+        <div class="splash-timer-progress"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================
+       PAGE 2: STUDENT LOGIN OVERLAY (AFTER WELCOME PAGE)
+       =================================================== -->
+  <div id="authOverlay" class="hidden">
     <div class="login-card">
       <div class="login-mentor-badge">
-        <img class="login-mentor-img" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" alt="RAMESH GUJJAR">
+        <img class="login-mentor-img" id="loginMentorImg" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" alt="RAMESH GUJJAR">
         <div class="login-mentor-info">
           <h3>RAMESH GUJJAR</h3>
           <p>संस्थापक • LIS AI CBT Portal</p>
@@ -261,7 +526,9 @@
     </div>
   </div>
 
-  <!-- 2. TOP NAVBAR: LOGO + RAMESH GUJJAR PHOTO -->
+  <!-- ===================================================
+       3. TOP NAVBAR: LOGO + RAMESH GUJJAR PHOTO & NAME
+       =================================================== -->
   <div class="top-navbar">
     <div class="nav-left">
       <button class="menu-btn" onclick="openSidebar()" title="मेनू">☰</button>
@@ -276,9 +543,9 @@
 
     <!-- RAMESH GUJJAR Profile on Top Right -->
     <div class="nav-mentor-profile" onclick="openSidebar()">
-      <img class="mentor-header-photo" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" alt="RAMESH GUJJAR">
+      <img id="navMentorImg" class="mentor-header-photo" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" alt="RAMESH GUJJAR">
       <div class="mentor-header-text">
-        <h4>RAMESH GUJJAR</h4>
+        <h4 id="navMentorName">RAMESH GUJJAR</h4>
       </div>
     </div>
   </div>
@@ -289,10 +556,10 @@
     <div class="sidebar-header">
       <button onclick="closeSidebar()" style="position:absolute; top:12px; right:12px; background:none; border:none; color:white; font-size:20px; cursor:pointer;">✕</button>
       <div style="display:flex; align-items:center; gap:12px;">
-        <img src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" style="width:52px; height:52px; border-radius:50%; border:2px solid #f59e0b; background:white; object-fit:cover;">
+        <img id="sideMentorImg" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" style="width:52px; height:52px; border-radius:50%; border:2px solid #f59e0b; background:white; object-fit:cover;">
         <div>
-          <h3 style="font-size:1.05rem; font-weight:800;">RAMESH GUJJAR</h3>
-          <p style="font-size:0.75rem; color:#fde68a;">संस्थापक • LIS Portal</p>
+          <h3 id="sideMentorName" style="font-size:1.05rem; font-weight:800;">RAMESH GUJJAR</h3>
+          <p id="sideMentorPhone" style="font-size:0.75rem; color:#fde68a;">+91 9876543210</p>
         </div>
       </div>
     </div>
@@ -308,6 +575,10 @@
       <div class="sidebar-item" onclick="navFromSidebar('pyq')"><span>📜</span> पिछले पेपर (PYQs)</div>
       <div class="sidebar-item" onclick="navFromSidebar('bank')"><span>📂</span> क्वेश्चन बैंक</div>
       <div class="sidebar-item" onclick="navFromSidebar('syllabus')"><span>📖</span> पूरा सिलेबस (8 Units)</div>
+
+      <div style="height:1px; background:#e2e8f0; margin:8px 18px;"></div>
+      <div class="sidebar-item" onclick="document.getElementById('splashPhotoInput').click()"><span>📷</span> फ़ोटो बदलें</div>
+      <div class="sidebar-item" onclick="editMentorDetails()"><span>✏️</span> नाम व फ़ोन बदलें</div>
     </div>
 
     <div style="padding:14px 18px; border-top:1px solid #e2e8f0;">
@@ -614,8 +885,76 @@
   </div>
 
   <script>
-    // 1. SMART LOGIN GATEWAY
-    let generatedOtp = null;
+    // ==========================================
+    // 1. MENTOR PROFILE DATA & PHOTO SYNC
+    // ==========================================
+    function initMentor() {
+      const name = localStorage.getItem('lis_mentor_name') || 'RAMESH GUJJAR';
+      const phone = localStorage.getItem('lis_mentor_phone') || '+91 9876543210';
+      const photo = localStorage.getItem('lis_mentor_photo');
+
+      const nameEls = ['splashName', 'navMentorName', 'sideMentorName'];
+      nameEls.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerText = name;
+      });
+
+      const phoneEls = ['splashPhone', 'sideMentorPhone'];
+      phoneEls.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.innerText = phone;
+      });
+
+      if (photo) {
+        const imgEls = ['splashPhoto', 'navMentorImg', 'sideMentorImg', 'loginMentorImg'];
+        imgEls.forEach(id => {
+          const img = document.getElementById(id);
+          if (img) img.src = photo;
+        });
+      }
+    }
+
+    function editMentorDetails() {
+      const curName = localStorage.getItem('lis_mentor_name') || 'RAMESH GUJJAR';
+      const curPhone = localStorage.getItem('lis_mentor_phone') || '+91 9876543210';
+
+      const nName = prompt('अपना पूरा नाम दर्ज करें:', curName);
+      if (nName && nName.trim()) localStorage.setItem('lis_mentor_name', nName.trim());
+
+      const nPhone = prompt('अपना मोबाइल नंबर (WhatsApp) दर्ज करें:', curPhone);
+      if (nPhone && nPhone.trim()) localStorage.setItem('lis_mentor_phone', nPhone.trim());
+
+      initMentor();
+    }
+
+    function handlePhotoUpload(event) {
+      const f = event.target.files[0];
+      if (f) {
+        const r = new FileReader();
+        r.onload = (e) => {
+          localStorage.setItem('lis_mentor_photo', e.target.result);
+          initMentor();
+          alert('✅ आपकी फ़ोटो सफलतापूर्वक सेव हो गई है!');
+        };
+        r.readAsDataURL(f);
+      }
+    }
+
+    // ==========================================
+    // 2. WELCOME SPLASH & LOGIN TRANSITION
+    // ==========================================
+    let splashDismissed = false;
+
+    function dismissSplash() {
+      if (splashDismissed) return;
+      splashDismissed = true;
+      const splash = document.getElementById('welcomeSplash');
+      if (splash) splash.classList.add('hide');
+
+      // Check if student logged in AFTER splash
+      checkAuth();
+    }
+
     function checkAuth() {
       const session = localStorage.getItem('lis_student_session');
       if (session) {
@@ -624,9 +963,12 @@
         document.getElementById('loggedInStudentName').innerText = student.name;
         document.getElementById('welcomeStudentBanner').innerText = `नमस्ते, ${student.name}! 👋`;
       } else {
+        // Show login modal AFTER welcome splash
         document.getElementById('authOverlay').classList.remove('hidden');
       }
     }
+
+    let generatedOtp = null;
     function handleSendDemoOtp() {
       const name = document.getElementById('studentNameInput').value.trim();
       const phone = document.getElementById('studentPhoneInput').value.trim();
@@ -638,6 +980,7 @@
       document.getElementById('loginStep2').style.display = 'block';
       document.getElementById('otpDisplayBanner').innerHTML = `📲 +91 ${phone} के लिए सुरक्षा कोड है: <b style="font-size:1.1rem; color:#047857;">${generatedOtp}</b>`;
     }
+
     function handleVerifyDemoOtp() {
       const code = document.getElementById('otpCodeInput').value.trim();
       const name = document.getElementById('studentNameInput').value.trim();
@@ -651,7 +994,7 @@
       }
     }
 
-    // LOGOUT ONLY HAPPENS HERE (EXPLICIT USER ACTION)
+    // LOGOUT ONLY HAPPENS ON CLICK
     function handleLogout() {
       if (confirm('क्या आप लॉगआउट करना चाहते हैं?')) {
         localStorage.removeItem('lis_student_session');
@@ -659,7 +1002,9 @@
       }
     }
 
-    // 2. SMART NOTES GENERATOR
+    // ==========================================
+    // 3. 1-PAGE SMART NOTES GENERATOR
+    // ==========================================
     document.getElementById('smartNoteForm').onsubmit = async (e) => {
       e.preventDefault();
       const btn = document.getElementById('btnGenNotes');
@@ -712,7 +1057,9 @@
       }
     };
 
-    // 3. FLASHCARDS SWIPE ENGINE
+    // ==========================================
+    // 4. FLASHCARDS SWIPE ENGINE
+    // ==========================================
     let cardsList = [
       { topic: 'LAWS OF LIBRARY', front: 'पुस्तकालय विज्ञान के 5 नियम कब प्रतिपादित और कब प्रकाशित हुए?', back: 'प्रतिपादित: 1928 (अन्नामलाई नगर)\nपुस्तक प्रकाशित: 1931 (मद्रास लाइब्रेरी एसोसिएशन)' },
       { topic: 'CLASSIFICATION', front: 'DDC का पहला संस्करण कब और किसने तैयार किया?', back: '1876 में मेलविल डेवी (कुल 44 पृष्ठ)' },
@@ -880,7 +1227,9 @@
       document.getElementById(id).classList.remove('open');
     }
 
-    // 4. CBT GENERATOR & ENGINE
+    // ==========================================
+    // 5. CBT GENERATOR & ENGINE
+    // ==========================================
     document.getElementById('genForm').onsubmit = async (e) => {
       e.preventDefault();
       const btn = document.getElementById('btnGen');
@@ -965,7 +1314,7 @@
       clearInterval(timerInterval);
       let score = 0;
       currentQuestions.forEach((q, idx) => {
-        if (userAnswers[idx] !== undefined && userAnswers[idx] === q.correctAnswer) score++;
+        if (userAnswers[idx] !== undefined && (userAnswers[idx] === q.correctAnswer || userAnswers[idx] === q.correct_option)) score++;
       });
       alert(`🎉 टेस्ट समाप्त!\nस्कोर: ${score} / ${currentQuestions.length}`);
       showView('home');
@@ -1004,38 +1353,34 @@
     }
 
     // =========================================================
-    // 5. CLEAN HARDWARE BACK BUTTON (NO POPUPS, NO LOGOUT, DIRECT CLOSE)
+    // 6. CLEAN HARDWARE BACK BUTTON (NO LOGOUT, DIRECT EXIT ON HOME)
     // =========================================================
     window.addEventListener('popstate', (e) => {
-      // 1. If any modal is open, close modal only
       const openModalElem = document.querySelector('.modal-overlay.open');
       if (openModalElem) {
         openModalElem.classList.remove('open');
         return;
       }
 
-      // 2. If sidebar drawer is open, close drawer only
       const sidebar = document.getElementById('sidebar');
       if (sidebar && sidebar.classList.contains('open')) {
         closeSidebar();
         return;
       }
 
-      // 3. If in active CBT test, stop timer and return to home
       if (currentActiveView === 'cbt') {
         if (timerInterval) clearInterval(timerInterval);
         showView('home', false);
         return;
       }
 
-      // 4. If in any sub-view (Notes, Cards, PYQ, Bank, etc.), return to home
+      // If in subpage, go back to dashboard
       if (currentActiveView !== 'home') {
         showView('home', false);
         return;
       }
 
-      // 5. If already on Home with no previous option, DIRECTLY CLOSE APP
-      // (NEVER touch localStorage, NEVER logout, NO confirm popups)
+      // If already on Home, directly exit without logout or prompt
       try {
         window.close();
         if (window.navigator && window.navigator.app && window.navigator.app.exitApp) {
@@ -1044,11 +1389,17 @@
       } catch (err) {}
     });
 
+    // Startup
     window.onload = () => {
-      checkAuth();
+      initMentor();
       renderCurrentCard();
       initCardSwipeEvents();
       history.replaceState({ view: 'home' }, '', '');
+
+      // Auto dismiss welcome splash after 3 seconds
+      setTimeout(() => {
+        dismissSplash();
+      }, 3000);
     };
   </script>
 </body>

@@ -260,38 +260,38 @@
         </div>
         <div class="matrix-card" onclick="showView('pyq')" style="border-top:3px solid var(--purple);">
           <div class="matrix-icon-box" style="background:linear-gradient(135deg, #7c3aed, #a855f7);">🏛️</div>
-          <h3>पिछले पेपर (PYQ)</h3>
-          <p>CBT परीक्षा और टाइमर</p>
+          <h3>Previous Papers (PYQ)</h3>
+          <p>CBT Exam & Timer</p>
         </div>
         <div class="matrix-card" onclick="showView('cards')" style="border-top:3px solid var(--rose);">
           <div class="matrix-icon-box" style="background:linear-gradient(135deg, #e11d48, #f43f5e);">🎴</div>
           <h3>Flash Cards</h3>
-          <p>स्वाइप Flash Cards</p>
+          <p>Swipe Flash Cards</p>
         </div>
         <div class="matrix-card" onclick="showView('tricks')" style="border-top:3px solid var(--gold);">
           <div class="matrix-icon-box" style="background:linear-gradient(135deg, #f59e0b, #d97706);">🧠</div>
-          <h3>स्मार्ट ट्रिक्स</h3>
-          <p>याद रखने के सूत्र</p>
+          <h3>Smart Tricks</h3>
+          <p>Memory Formulas & Mnemonics</p>
         </div>
         <div class="matrix-card" onclick="showView('notes')" style="border-top:3px solid var(--teal);">
           <div class="matrix-icon-box" style="background:linear-gradient(135deg, #0d9488, #14b8a6);">📑</div>
-          <h3>शॉर्ट नोट्स</h3>
-          <p>माइक्रो समरी व फ्लोचार्ट</p>
+          <h3>Short Notes</h3>
+          <p>Summary & Flowcharts</p>
         </div>
         <div class="matrix-card" onclick="startCBT()" style="border-top:3px solid var(--success);">
           <div class="matrix-icon-box" style="background:linear-gradient(135deg, #10b981, #059669);">🎯</div>
-          <h3>लाइव CBT टेस्ट</h3>
-          <p>टाइमर परीक्षा</p>
+          <h3>CBT Questions</h3>
+          <p>Timed Mock Exam</p>
         </div>
         <div class="matrix-card" onclick="showView('bank')" style="border-top:3px solid #6366f1;">
           <div class="matrix-icon-box" style="background:linear-gradient(135deg, #6366f1, #4f46e5);">📁</div>
           <h3>Question Bank</h3>
-          <p>सहेजे गए प्रश्न</p>
+          <p>Saved Questions Bank</p>
         </div>
         <div class="matrix-card" onclick="showView('syllabus')" style="border-top:3px solid #06b6d4;">
           <div class="matrix-icon-box" style="background:linear-gradient(135deg, #06b6d4, #0891b2);">📖</div>
-          <h3>LIS सिलेबस</h3>
-          <p>8 यूनिट्स</p>
+          <h3>LIS Syllabus</h3>
+          <p>8 Complete Units</p>
         </div>
       </div>
     </div>
@@ -711,7 +711,7 @@
           remainingSeconds--;
           const m = Math.floor(remainingSeconds / 60), s = remainingSeconds % 60;
           document.getElementById('cbtClock').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
-          if (remainingSeconds <= 0) { clearInterval(timerInterval); alert('समय समाप्त!'); finishCBT(); }
+          if (remainingSeconds <= 0) { clearInterval(timerInterval); alert('Time Up!'); finishCBT(); }
         }, 1000);
       }
       renderQuestion();
@@ -737,7 +737,7 @@
       clearInterval(timerInterval);
       let score = 0;
       currentQuestions.forEach((q, idx) => { if (userAnswers[idx] !== undefined && userAnswers[idx] === q.correctAnswer) score++; });
-      alert(`🎉 टेस्ट समाप्त!\nआपका स्कोर: ${score} / ${currentQuestions.length}`);
+      alert(`🎉 Test Completed!\nYour Score: ${score} / ${currentQuestions.length}`);
       showView('home');
     }
 
@@ -747,7 +747,7 @@
       const btn = document.getElementById('btnGen');
       const status = document.getElementById('genStatus');
       btn.disabled = true;
-      status.innerText = '⏳ AI डेटा जनरेट कर रहा है, Please wait...';
+      status.innerText = '⏳ AI is generating data, please wait...';
       status.style.color = '#2563eb';
 
       const formData = new FormData(this);
@@ -758,7 +758,7 @@
         });
         const result = await res.json();
         if (result.success) {
-          status.innerText = `✅ सफलता! ${result.questionsCount} प्रश्न, नोट्स और कार्ड बन गए हैं।`;
+          status.innerText = `✅ सफलता! ${result.questionsCount} Questions, notes, and cards created गए हैं।`;
           status.style.color = '#10b981';
           
           // Update local stores & UI if data exists

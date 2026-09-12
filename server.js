@@ -42,7 +42,7 @@ app.post('/api/generate-all', upload.array('files'), async (req, res) => {
     const prompt = `You are an expert Library Science exam mentor for LIS GURUJI Portal (RAMESH GUJJAR).
 Analyze the attached documents/images thoroughly. Generate exactly or up to ${count} high-quality MCQs on "${subject}" in ${langName}, along with short notes, trick, and play card.
 
-Return ONLY a valid raw JSON object without markdown formatting or backticks:
+Return ONLY a valid raw JSON object. Do not wrap in markdown or backticks:
 {
   "questions": [
     {
@@ -73,7 +73,14 @@ Return ONLY a valid raw JSON object without markdown formatting or backticks:
     const fileParts = (req.files || []).map(fileToGenerativePart);
     const result = await model.generateContent([prompt, ...fileParts]);
     let text = result.response.text().trim();
-    text = text.replace(/```json/gi, '').replace(/```/g, '').trim();
+
+    // Robust JSON extraction in case AI adds extra text
+    const jsonMatch = text.match(/\{[\s\S]*\}/);
+    if (jsonMatch) {
+      text = jsonMatch[0];
+    } else {
+      text = text.replace(/```json/gi, '').replace(/```/g, '').trim();
+    }
 
     const data = JSON.parse(text);
     if (data.questions && Array.isArray(data.questions)) {

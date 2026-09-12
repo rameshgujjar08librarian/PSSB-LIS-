@@ -2,599 +2,720 @@
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>AI Study + CBT System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIS GURUJI - AI Study & CBT Portal</title>
   <style>
     :root {
-      --primary: #1a4f9c;
-      --primary-dark: #0f346c;
-      --bg: #f4f7fa;
+      --primary: #1e3a8a;
+      --primary-dark: #0f172a;
+      --accent: #2563eb;
+      --gold: #f59e0b;
+      --bg: #f1f5f9;
       --card-bg: #ffffff;
-      --text: #212529;
-      --text-muted: #6c757d;
-      --border: #dee2e6;
-      --success: #28a745;
-      --danger: #dc3545;
-      --warning: #ffc107;
-      --purple: #6f42c1;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #cbd5e1;
+      --success: #10b981;
+      --purple: #7c3aed;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif; }
-    body { background: var(--bg); color: var(--text); padding-bottom: 30px; }
-    
-    header { background: var(--primary); color: white; padding: 12px 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.15); display: flex; justify-content: space-between; align-items: center; }
-    header h1 { font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
-    header span { font-size: 0.75rem; opacity: 0.85; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+    body { background: var(--bg); color: var(--text); padding-bottom: 50px; }
 
-    .tabs { display: flex; background: white; border-bottom: 2px solid var(--border); position: sticky; top: 0; z-index: 10; }
-    .tab-btn { flex: 1; padding: 14px 8px; border: none; background: none; font-size: 0.95rem; font-weight: 600; color: var(--text-muted); cursor: pointer; text-align: center; border-bottom: 3px solid transparent; }
-    .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+    /* Top Bar */
+    .top-navbar {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: white;
+      padding: 12px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .top-navbar .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .brand-logo-small {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: #f59e0b;
+      color: #1e3a8a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 800;
+      border: 2px solid white;
+    }
+    .brand-text h1 { font-size: 1.1rem; font-weight: 800; letter-spacing: 0.5px; }
+    .brand-text p { font-size: 0.72rem; opacity: 0.85; }
 
-    .container { max-width: 720px; margin: 16px auto; padding: 0 12px; }
-    .card { background: var(--card-bg); border-radius: 12px; padding: 20px; box-shadow: 0 3px 10px rgba(0,0,0,0.06); margin-bottom: 16px; border: 1px solid var(--border); }
-    .card h2 { font-size: 1.15rem; margin-bottom: 14px; color: var(--primary); display: flex; align-items: center; gap: 6px; }
+    /* Top Quick Options Bar */
+    .nav-options-bar {
+      background: white;
+      display: flex;
+      overflow-x: auto;
+      padding: 8px 12px;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 62px;
+      z-index: 90;
+    }
+    .nav-pill {
+      white-space: nowrap;
+      padding: 7px 14px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .nav-pill.active, .nav-pill:active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
 
-    .form-group { margin-bottom: 14px; }
-    label { display: block; font-size: 0.88rem; font-weight: 600; margin-bottom: 6px; color: #333; }
-    input[type="text"], input[type="number"], select, input[type="file"] { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.95rem; background: white; }
-    .btn { width: 100%; padding: 13px; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: 0.2s; }
-    .btn:active { background: var(--primary-dark); }
-    .btn-outline { background: transparent; border: 1.5px solid var(--primary); color: var(--primary); }
-    .btn-danger { background: var(--danger); }
+    .container { max-width: 680px; margin: 16px auto; padding: 0 12px; }
 
-    .subject-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 10px; background: #fafbfc; }
-    .sub-info { display: flex; align-items: center; gap: 10px; }
-    .sub-checkbox { width: 20px; height: 20px; accent-color: var(--primary); }
-    .badge { background: #e8f0fe; color: var(--primary); font-size: 0.8rem; font-weight: 700; padding: 4px 10px; border-radius: 12px; }
+    /* Home Splash & Dashboard View */
+    .home-hero {
+      background: linear-gradient(145deg, #ffffff, #f8fafc);
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 24px 16px;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    }
+    .home-big-logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 12px;
+      background: linear-gradient(135deg, var(--gold), #ea580c);
+      color: white;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      box-shadow: 0 6px 16px rgba(245, 158, 11, 0.35);
+      border: 3px solid white;
+    }
+    .home-hero h2 { font-size: 1.5rem; color: var(--primary); font-weight: 800; margin-bottom: 4px; }
+    .home-hero p { font-size: 0.9rem; color: var(--text-muted); }
+    .badge-tag {
+      display: inline-block;
+      margin-top: 10px;
+      background: #dbeafe;
+      color: #1e40af;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
 
-    .alert { padding: 12px; border-radius: 8px; font-size: 0.88rem; margin-top: 14px; display: none; }
-    .alert-error { background: #fde8e8; color: var(--danger); border: 1px solid #f8b4b4; }
-    .alert-success { background: #def7ec; color: var(--success); border: 1px solid #bcf0da; }
-    .spinner { display: inline-block; width: 18px; height: 18px; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: white; animation: spin 0.8s linear infinite; }
-    @keyframes spin { to { transform: rotate(360deg); } }
+    /* Action Tiles */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+    .action-card {
+      background: white;
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      cursor: pointer;
+      transition: transform 0.15s, border-color 0.15s;
+    }
+    .action-card:hover, .action-card:active {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      box-shadow: 0 6px 14px rgba(37, 99, 235, 0.12);
+    }
+    .card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      flex-shrink: 0;
+    }
+    .card-info { flex-grow: 1; }
+    .card-info h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 4px; color: var(--text); }
+    .card-info p { font-size: 0.8rem; color: var(--text-muted); }
+    .card-arrow { font-size: 20px; color: #94a3b8; font-weight: bold; }
 
-    #cbtView { display: none; }
-    .cbt-header { display: flex; justify-content: space-between; align-items: center; background: #0f172a; color: white; padding: 12px 16px; border-radius: 8px; margin-bottom: 14px; }
-    .cbt-timer { font-size: 1.15rem; font-weight: 700; color: #38bdf8; font-variant-numeric: tabular-nums; }
-    .question-box { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 16px; }
-    .q-subject { font-size: 0.75rem; background: #e2e8f0; padding: 2px 8px; border-radius: 4px; font-weight: 600; color: #475569; display: inline-block; margin-bottom: 8px; }
-    .q-text { font-size: 1.05rem; font-weight: 600; line-height: 1.5; margin-bottom: 16px; }
-    .option-item { display: flex; align-items: flex-start; gap: 10px; padding: 12px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; cursor: pointer; transition: 0.15s; }
-    .option-item:hover, .option-item.selected { background: #e8f2ff; border-color: var(--primary); }
-    .option-item input { margin-top: 3px; accent-color: var(--primary); }
-    
-    .cbt-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
-    .palette-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-top: 12px; max-height: 180px; overflow-y: auto; padding: 4px; }
-    .p-btn { padding: 8px 0; text-align: center; border-radius: 6px; font-size: 0.85rem; font-weight: 700; border: 1px solid var(--border); background: white; cursor: pointer; }
-    .p-btn.active { border: 2px solid #000; }
-    .p-btn.answered { background: var(--success); color: white; border-color: var(--success); }
-    .p-btn.review { background: var(--purple); color: white; border-color: var(--purple); }
+    /* Section Cards inside subpages */
+    .view-panel { display: none; }
+    .view-panel.active { display: block; animation: fadeIn 0.25s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-    #resultView { display: none; }
-    .score-banner { background: #e0f2fe; border: 1px solid #bae6fd; border-radius: 10px; padding: 18px; text-align: center; margin-bottom: 18px; }
-    .score-num { font-size: 2.2rem; font-weight: 800; color: var(--primary); }
-    .review-item { padding: 14px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 12px; background: white; }
-    .review-item.correct { border-left: 5px solid var(--success); }
-    .review-item.wrong { border-left: 5px solid var(--danger); }
+    .back-home-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 14px;
+      background: #e2e8f0;
+      color: var(--text);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 14px;
+      padding: 20px 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 8px;
+    }
+
+    /* Forms */
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-weight: 600; font-size: 0.88rem; margin-bottom: 6px; }
+    .form-control {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+      background: white;
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, var(--accent), var(--primary));
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(37,99,235,0.3);
+    }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    /* PYQ Section Styling */
+    .pyq-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 12px;
+      transition: all 0.2s;
+    }
+    .pyq-box h4 { font-size: 1rem; color: #1e293b; margin-bottom: 4px; }
+    .pyq-box p { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 10px; }
+    .pyq-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn-pyq-test {
+      background: var(--purple);
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-pyq-dl {
+      background: white;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Bank & CBT View */
+    .bank-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+    .bank-item h4 { font-size: 0.95rem; margin-bottom: 6px; }
+    .bank-item .sub { font-size: 0.78rem; color: var(--text-muted); }
+
+    .cbt-header {
+      background: var(--primary-dark);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .timer-badge {
+      background: var(--gold);
+      color: #1e3a8a;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+    .cbt-qbox {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+    .cbt-option {
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .cbt-option.selected {
+      border-color: var(--accent);
+      background: #eff6ff;
+    }
+    .cbt-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .btn-nav {
+      flex: 1;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-submit-test {
+      background: var(--success);
+      color: white;
+      border: none;
+    }
   </style>
 </head>
 <body>
 
-  <header>
-    <div>
-      <h1>📚 AI Study + CBT Master</h1>
-      <span>UGC-NET/JRF • Multi-Subject Question Bank</span>
+  <!-- Top Sticky Header with Logo -->
+  <div class="top-navbar">
+    <div class="brand" onclick="showView('home')">
+      <div class="brand-logo-small">📚</div>
+      <div class="brand-text">
+        <h1>LIS GURUJI</h1>
+        <p>AI Study + CBT Portal</p>
+      </div>
     </div>
-  </header>
+    <div style="font-size: 0.8rem; background: rgba(255,255,255,0.2); padding: 4px 8px; border-radius: 6px;">
+      v2.1
+    </div>
+  </div>
 
-  <div class="tabs" id="mainTabs">
-    <button class="tab-btn active" onclick="switchTab('genTab')">➕ नया PDF / फोटो अपलोड</button>
-    <button class="tab-btn" onclick="switchTab('bankTab')">🗂️ क्वेश्चन बैंक & CBT</button>
+  <!-- Top Navigation Options Bar -->
+  <div class="nav-options-bar">
+    <div class="nav-pill active" id="pill-home" onclick="showView('home')">🏠 मुख्य पेज</div>
+    <div class="nav-pill" id="pill-generate" onclick="showView('generate')">➕ नया AI टेस्ट बनाएं</div>
+    <div class="nav-pill" id="pill-pyq" onclick="showView('pyq')">📜 पिछले पेपर (PYQ)</div>
+    <div class="nav-pill" id="pill-bank" onclick="showView('bank')">📂 क्वेश्चन बैंक व टेस्ट</div>
+    <div class="nav-pill" id="pill-syllabus" onclick="showView('syllabus')">📖 सिलेबस व नोट्स</div>
   </div>
 
   <div class="container">
-    <!-- TAB 1: GENERATION & INSTANT CBT -->
-    <div id="genTab">
-      <div class="card">
-        <h2>📄 सामग्री से प्रश्न बनाएं और बैंक में जोड़ें</h2>
-        
-        <div class="form-group">
-          <label>विषय (Subject चुनें या नया नाम लिखें):</label>
-          <input type="text" id="subjectInput" list="subjectList" placeholder="उदा. Library Science, Punjabi, General Paper" value="Library Science">
-          <datalist id="subjectList"></datalist>
+
+    <!-- VIEW 1: HOME LOGO DASHBOARD -->
+    <div id="view-home" class="view-panel active">
+      <div class="home-hero">
+        <div class="home-big-logo">📖</div>
+        <h2>LIS GURUJI</h2>
+        <p>UGC-NET/JRF, SET, RSMSSB & All Librarian Exams</p>
+        <span class="badge-tag">⚡ AI-Powered Question Generator & CBT Portal</span>
+      </div>
+
+      <div class="dashboard-grid">
+        <!-- Tile 1 -->
+        <div class="action-card" onclick="showView('generate')">
+          <div class="card-icon" style="background: #e0f2fe; color: #0284c7;">📄</div>
+          <div class="card-info">
+            <h3>नया AI टेस्ट बनाएं</h3>
+            <p>PDF, Word फ़ाइल या नोट्स की फ़ोटो से तुरंत प्रश्न बैंक तैयार करें</p>
+          </div>
+          <div class="card-arrow">›</div>
         </div>
 
-        <div class="form-group">
-          <label>Study Material (PDF, Word या 📷 नोट्स/किताब की फ़ोटो):</label>
-          <input type="file" id="studyFiles" multiple accept="image/*,.pdf,.docx,.txt">
+        <!-- Tile 2: NEW PYQ OPTION -->
+        <div class="action-card" onclick="showView('pyq')">
+          <div class="card-icon" style="background: #f3e8ff; color: #7c3aed;">📜</div>
+          <div class="card-info">
+            <h3>पिछले वर्षों के प्रश्न पत्र (PYQs)</h3>
+            <p>UGC-NET, KVS, NVS, RSMSSB लाइब्रेरियन के पिछले हल प्रश्न पत्र</p>
+          </div>
+          <div class="card-arrow">›</div>
         </div>
 
-        <div class="form-group">
-          <label>प्रश्नों की संख्या (Question Limit):</label>
-          <select id="targetCountSelect" onchange="toggleCustomCount()">
-            <option value="max" selected>🔥 अधिकतम संभव (Maximum / पूरा निचोड़ - No Limit)</option>
-            <option value="20">20 प्रश्न (Quick Practice)</option>
-            <option value="35">35 प्रश्न</option>
-            <option value="50">50 प्रश्न (Standard)</option>
-            <option value="75">75 प्रश्न</option>
-            <option value="100">100 प्रश्न (Full Paper)</option>
-            <option value="custom">✏️ कस्टम संख्या (अपनी मर्ज़ी से दर्ज करें)</option>
-          </select>
-          <input type="number" id="customCountInput" placeholder="जैसे: 45, 60 या 120 दर्ज करें" style="display: none; margin-top: 8px;" min="5" max="300">
+        <!-- Tile 3 -->
+        <div class="action-card" onclick="showView('bank')">
+          <div class="card-icon" style="background: #fef3c7; color: #d97706;">🎯</div>
+          <div class="card-info">
+            <h3>क्वेश्चन बैंक व ऑनलाइन CBT टेस्ट</h3>
+            <p>सहेजे गए प्रश्नों की प्रैक्टिस करें और टाइमर के साथ रियल टेस्ट दें</p>
+          </div>
+          <div class="card-arrow">›</div>
         </div>
 
-        <!-- Timer Option for Tab 1 -->
-        <div class="form-group">
-          <label>⏱️ CBT समय सीमा (Exam Timer):</label>
-          <select id="genTimerSelect" onchange="toggleCustomTimer('genTimerSelect', 'genCustomTimerInput')">
-            <option value="auto" selected>⚡ ऑटो (1 मिनट प्रति प्रश्न)</option>
-            <option value="15">15 मिनट</option>
-            <option value="30">30 मिनट</option>
-            <option value="45">45 मिनट</option>
-            <option value="60">60 मिनट (1 घंटा)</option>
-            <option value="90">90 मिनट (1.5 घंटा)</option>
-            <option value="120">120 मिनट (2 घंटे)</option>
-            <option value="custom">✏️ कस्टम मिनट (अपनी पसंद का समय लिखें)</option>
-            <option value="none">♾️ बिना समय सीमा (No Time Limit / अभ्यास मोड)</option>
-          </select>
-          <input type="number" id="genCustomTimerInput" placeholder="मिनट दर्ज करें (जैसे 25 या 40)" style="display: none; margin-top: 8px;" min="1" max="600">
+        <!-- Tile 4 -->
+        <div class="action-card" onclick="showView('syllabus')">
+          <div class="card-icon" style="background: #dcfce7; color: #16a34a;">📚</div>
+          <div class="card-info">
+            <h3>लाइब्रेरी साइंस सिलेबस व गाइड</h3>
+            <p>UGC-NET और विभिन्न प्रतियोगी परीक्षाओं की महत्वपूर्ण यूनिट्स</p>
+          </div>
+          <div class="card-arrow">›</div>
         </div>
-
-        <div class="form-group">
-          <label>भाषा (Language):</label>
-          <select id="langSelect">
-            <option value="Hindi Devanagari" selected>Hindi Devanagari</option>
-            <option value="English">English</option>
-            <option value="Punjabi">Punjabi</option>
-          </select>
-        </div>
-
-        <button class="btn" id="genBtn" onclick="startGeneration()">
-          <span>🚀 Generate & Save to Bank</span>
-        </button>
-
-        <div class="alert alert-error" id="genError"></div>
-        <div class="alert alert-success" id="genSuccess"></div>
       </div>
     </div>
 
-    <!-- TAB 2: BULK QUESTION BANK & CBT -->
-    <div id="bankTab" style="display: none;">
+    <!-- VIEW 2: AI QUESTION GENERATOR -->
+    <div id="view-generate" class="view-panel">
+      <button class="back-home-btn" onclick="showView('home')">← होम पेज पर लौटें</button>
+      
       <div class="card">
-        <h2>🗂️ सहेजे गए विषय (Select Subjects for CBT)</h2>
-        <div id="subjectsContainer">
-          <p style="color: var(--text-muted); font-size: 0.9rem;">लोड हो रहा है...</p>
-        </div>
+        <div class="card-title">📄 सामग्री से प्रश्न बनाएं और बैंक में जोड़ें</div>
+        <form id="genForm">
+          <div class="form-group">
+            <label>विषय (Subject):</label>
+            <input type="text" id="subject" class="form-control" value="Library Science" required>
+          </div>
 
-        <div style="display: flex; gap: 10px; margin: 14px 0;">
-          <button class="btn btn-outline" style="padding: 8px; font-size: 0.85rem;" onclick="selectAll(true)">सब सेलेक्ट करें</button>
-          <button class="btn btn-outline" style="padding: 8px; font-size: 0.85rem;" onclick="selectAll(false)">अन-सेलेक्ट करें</button>
-        </div>
+          <div class="form-group">
+            <label>Study Material (PDF, Word या 📷 नोट्स/किताब की फ़ोटो):</label>
+            <input type="file" id="files" class="form-control" multiple accept=".pdf,.doc,.docx,image/*" required>
+          </div>
 
-        <div class="form-group">
-          <label>कितने प्रश्नों का टेस्ट देना है?</label>
-          <select id="cbtCount">
-            <option value="25">25 प्रश्न</option>
-            <option value="50" selected>50 प्रश्न (Standard Mock)</option>
-            <option value="100">100 प्रश्न (Full Paper)</option>
-            <option value="all">सभी उपलब्ध प्रश्न (All in Bank)</option>
-          </select>
-        </div>
+          <div class="form-group">
+            <label>प्रश्नों की संख्या (Question Limit):</label>
+            <select id="limit" class="form-control">
+              <option value="max">🔥 अधिकतम संभव (Maximum / पूरा निचोड़)</option>
+              <option value="10">10 प्रश्न</option>
+              <option value="20">20 प्रश्न</option>
+              <option value="30">30 प्रश्न</option>
+              <option value="50">50 प्रश्न</option>
+            </select>
+          </div>
 
-        <!-- Timer Option for Tab 2 -->
-        <div class="form-group">
-          <label>⏱️ CBT समय सीमा (Exam Timer):</label>
-          <select id="bankTimerSelect" onchange="toggleCustomTimer('bankTimerSelect', 'bankCustomTimerInput')">
-            <option value="auto" selected>⚡ ऑटो (1 मिनट प्रति प्रश्न)</option>
-            <option value="15">15 मिनट</option>
-            <option value="30">30 मिनट</option>
-            <option value="45">45 मिनट</option>
-            <option value="60">60 मिनट (1 घंटा)</option>
-            <option value="90">90 मिनट (1.5 घंटा)</option>
-            <option value="120">120 मिनट (2 घंटे)</option>
-            <option value="180">180 मिनट (3 घंटे - Full Exam)</option>
-            <option value="custom">✏️ कस्टम मिनट (अपनी पसंद का समय लिखें)</option>
-            <option value="none">♾️ बिना समय सीमा (No Time Limit / अभ्यास मोड)</option>
-          </select>
-          <input type="number" id="bankCustomTimerInput" placeholder="मिनट दर्ज करें (जैसे 35 या 75)" style="display: none; margin-top: 8px;" min="1" max="600">
-        </div>
+          <div class="form-group">
+            <label>⏱️ CBT समय सीमा (Exam Timer):</label>
+            <select id="timer" class="form-control">
+              <option value="auto">⚡ ऑटो (1 मिनट प्रति प्रश्न)</option>
+              <option value="10">10 मिनट</option>
+              <option value="20">20 मिनट</option>
+              <option value="30">30 मिनट</option>
+              <option value="60">60 मिनट</option>
+              <option value="none">बिना टाइमर (अभ्यास मोड)</option>
+            </select>
+          </div>
 
-        <button class="btn" onclick="launchCBT()" style="background: var(--success);">
-          🎯 Start CBT Exam Now
-        </button>
+          <div class="form-group">
+            <label>भाषा (Language):</label>
+            <select id="lang" class="form-control">
+              <option value="hi">Hindi Devanagari</option>
+              <option value="en">English</option>
+              <option value="bilingual">द्विभाषी (Bilingual)</option>
+            </select>
+          </div>
+
+          <button type="submit" id="btnGen" class="btn-submit">🚀 Generate & Save to Bank</button>
+        </form>
+        <div id="genStatus" style="margin-top: 12px; font-weight: 600; text-align: center;"></div>
       </div>
     </div>
 
-    <!-- CBT EXAM SCREEN -->
-    <div id="cbtView">
+    <!-- VIEW 3: PREVIOUS YEAR PAPERS (PYQ) -->
+    <div id="view-pyq" class="view-panel">
+      <button class="back-home-btn" onclick="showView('home')">← होम पेज पर लौटें</button>
+
+      <div class="card">
+        <div class="card-title">📜 पिछले वर्षों के प्रश्न पत्र (Previous Year Papers)</div>
+        <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom: 16px;">
+          💡 <b>टिप:</b> आप किसी भी पुराने पेपर की PDF को <b>'नया AI टेस्ट बनाएं'</b> में अपलोड करके उसका लाइव CBT टेस्ट भी दे सकते हैं!
+        </p>
+
+        <!-- Paper 1 -->
+        <div class="pyq-box">
+          <h4>UGC NET Library & Information Science (2023 - Dec)</h4>
+          <p>कुल प्रश्न: 100 | स्तर: UGC NET Paper-II Official</p>
+          <div class="pyq-actions">
+            <button class="btn-pyq-test" onclick="showView('generate')">⚡ इस पेपर का CBT बनाएं</button>
+          </div>
+        </div>
+
+        <!-- Paper 2 -->
+        <div class="pyq-box">
+          <h4>UGC NET Library Science (2023 - June Shift)</h4>
+          <p>कुल प्रश्न: 100 | व्याख्या सहित प्रश्न बैंक</p>
+          <div class="pyq-actions">
+            <button class="btn-pyq-test" onclick="showView('generate')">⚡ इस पेपर का CBT बनाएं</button>
+          </div>
+        </div>
+
+        <!-- Paper 3 -->
+        <div class="pyq-box">
+          <h4>RSMSSB Librarian Grade-III (Solved Paper)</h4>
+          <p>राजस्थान कर्मचारी चयन बोर्ड लाइब्रेरियन भर्ती परीक्षा</p>
+          <div class="pyq-actions">
+            <button class="btn-pyq-test" onclick="showView('generate')">⚡ इस पेपर का CBT बनाएं</button>
+          </div>
+        </div>
+
+        <!-- Paper 4 -->
+        <div class="pyq-box">
+          <h4>KVS / NVS Librarian Recruitment Exam Paper</h4>
+          <p>केंद्रीय विद्यालय एवं नवोदय विद्यालय संगठन लाइब्रेरियन परीक्षा</p>
+          <div class="pyq-actions">
+            <button class="btn-pyq-test" onclick="showView('generate')">⚡ इस पेपर का CBT बनाएं</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 4: QUESTION BANK & CBT LAUNCHER -->
+    <div id="view-bank" class="view-panel">
+      <button class="back-home-btn" onclick="showView('home')">← होम पेज पर लौटें</button>
+
+      <div class="card">
+        <div class="card-title">📂 सहेजा गया क्वेश्चन बैंक</div>
+        <div id="bankList">लोड हो रहा है...</div>
+        <button onclick="startCBT()" class="btn-submit" style="margin-top: 14px;">🎯 पूरा मॉक टेस्ट शुरू करें (Start CBT)</button>
+      </div>
+    </div>
+
+    <!-- VIEW 5: SYLLABUS & NOTES -->
+    <div id="view-syllabus" class="view-panel">
+      <button class="back-home-btn" onclick="showView('home')">← होम पेज पर लौटें</button>
+
+      <div class="card">
+        <div class="card-title">📚 Library & Information Science - Core Units</div>
+        <ul style="line-height: 1.8; padding-left: 20px; font-size: 0.95rem;">
+          <li><b>Unit 1:</b> Data, Information, Knowledge and Wisdom; Information Life Cycle.</li>
+          <li><b>Unit 2:</b> Laws of Library Science; Library Legislation and Intellectual Property Rights.</li>
+          <li><b>Unit 3:</b> Information Sources: Primary, Secondary, and Tertiary.</li>
+          <li><b>Unit 4:</b> Community Information Services; Reference and Information Systems.</li>
+          <li><b>Unit 5:</b> Classification & Cataloguing (DDC, UDC, CC, AACR-2, RDA).</li>
+          <li><b>Unit 6:</b> Management of Libraries & Information Centres.</li>
+          <li><b>Unit 7:</b> Computer Technology, Library Automation & Networks (INFLIBNET, DELNET).</li>
+          <li><b>Unit 8:</b> Digital Libraries, Institutional Repositories & Search Engines.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- VIEW 6: ACTIVE CBT EXAM -->
+    <div id="view-cbt" class="view-panel">
       <div class="cbt-header">
-        <div>
-          <span id="qIndexLabel">Q 1/50</span> | <span id="cbtSubjectBadge" style="color: #38bdf8; font-weight: 600;">Subject</span>
-        </div>
-        <div class="cbt-timer" id="timerLabel">⏳ 60:00</div>
+        <div style="font-weight: 700;">LIS CBT Test</div>
+        <div class="timer-badge" id="cbtClock">--:--</div>
       </div>
 
-      <div class="question-box">
-        <div class="q-subject" id="currentSubject">General</div>
-        <div class="q-text" id="questionText">प्रश्न लोड हो रहा है...</div>
-        <div id="optionsContainer"></div>
-      </div>
-
-      <div class="cbt-actions">
-        <button class="btn btn-outline" onclick="prevQuestion()">⬅ पिछला</button>
-        <button class="btn" onclick="saveAndNext()">सहेजे और आगे ➡</button>
-        <button class="btn btn-outline" style="color: var(--purple); border-color: var(--purple);" onclick="markForReview()">⭐ Review</button>
-        <button class="btn btn-danger" onclick="confirmSubmit()">🏁 सबमिट टेस्ट</button>
-      </div>
-
-      <div class="card" style="margin-top: 18px;">
-        <h2 style="font-size: 1rem;">Question Palette</h2>
-        <div class="palette-grid" id="paletteGrid"></div>
-      </div>
-    </div>
-
-    <!-- RESULT & EXPLANATIONS SCREEN -->
-    <div id="resultView">
       <div class="card">
-        <h2>📊 टेस्ट रिजल्ट & स्कोरकार्ड</h2>
-        <div class="score-banner">
-          <div class="score-num" id="finalScore">0 / 0</div>
-          <p id="scoreDetails" style="margin-top: 6px; font-weight: 600; color: var(--text-muted);"></p>
+        <div style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 8px;" id="cbtProgress">Question 1 of 10</div>
+        <div class="cbt-qbox" id="cbtQuestion">प्रश्न लोड हो रहा है...</div>
+        <div id="cbtOptions"></div>
+
+        <div class="cbt-footer">
+          <button class="btn-nav" onclick="prevQuestion()">← पिछला</button>
+          <button class="btn-nav" onclick="nextQuestion()">अगला →</button>
+          <button class="btn-nav btn-submit-test" onclick="finishCBT()">सबमिट टेस्ट</button>
         </div>
-        <button class="btn btn-outline" onclick="exitToBank()" style="margin-bottom: 16px;">
-          🔙 वापस क्वेश्चन बैंक में जाएं
-        </button>
-        <h3 style="margin-bottom: 12px; font-size: 1.05rem;">उत्तर और विस्तृत व्याख्या (Explanations):</h3>
-        <div id="reviewContainer"></div>
       </div>
     </div>
 
   </div>
 
   <script>
-    let activeQuestions = [];
-    let latestGeneratedQuestions = [];
-    let userAnswers = {};
-    let reviewStatus = {};
-    let currentIndex = 0;
-    let timerInterval = null;
-    let timeLeft = 3600;
+    // Navigation logic
+    function showView(viewId) {
+      document.querySelectorAll('.view-panel').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.nav-pill').forEach(el => el.classList.remove('active'));
 
-    function toggleCustomCount() {
-      const sel = document.getElementById('targetCountSelect').value;
-      const inp = document.getElementById('customCountInput');
-      inp.style.display = sel === 'custom' ? 'block' : 'none';
-      if (sel === 'custom') inp.focus();
+      const targetView = document.getElementById('view-' + viewId);
+      if (targetView) targetView.classList.add('active');
+
+      const targetPill = document.getElementById('pill-' + viewId);
+      if (targetPill) targetPill.classList.add('active');
+
+      if (viewId === 'bank') loadBank();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function toggleCustomTimer(selectId, inputId) {
-      const sel = document.getElementById(selectId).value;
-      const inp = document.getElementById(inputId);
-      inp.style.display = sel === 'custom' ? 'block' : 'none';
-      if (sel === 'custom') inp.focus();
-    }
-
-    function getTimerSeconds(selectId, inputId, qCount) {
-      const sel = document.getElementById(selectId).value;
-      if (sel === 'auto') return qCount * 60;
-      if (sel === 'none') return null; // No limit
-      if (sel === 'custom') {
-        const val = parseInt(document.getElementById(inputId).value, 10);
-        return (val && val > 0 ? val : qCount) * 60;
-      }
-      return parseInt(sel, 10) * 60;
-    }
-
-    function switchTab(tabId) {
-      document.getElementById('genTab').style.display = tabId === 'genTab' ? 'block' : 'none';
-      document.getElementById('bankTab').style.display = tabId === 'bankTab' ? 'block' : 'none';
-      document.querySelectorAll('.tab-btn').forEach((b, i) => {
-        b.classList.toggle('active', (tabId === 'genTab' && i === 0) || (tabId === 'bankTab' && i === 1));
-      });
-      if (tabId === 'bankTab') loadBankSummary();
-    }
-
-    async function loadBankSummary() {
-      try {
-        const res = await fetch('/api/bank/summary');
-        const data = await res.json();
-        const container = document.getElementById('subjectsContainer');
-        const datalist = document.getElementById('subjectList');
-        
-        datalist.innerHTML = data.subjects.map(s => `<option value="${s.name}">`).join('');
-        
-        if (!data.subjects.length) {
-          container.innerHTML = `<p style="color: var(--text-muted); padding: 10px 0;">अभी कोई प्रश्न सेव नहीं हैं। पहले टैब से PDF या फोटो अपलोड करें।</p>`;
-          return;
-        }
-
-        container.innerHTML = data.subjects.map(s => `
-          <div class="subject-item">
-            <div class="sub-info">
-              <input type="checkbox" class="sub-checkbox" value="${s.name}" checked>
-              <span style="font-weight: 600; font-size: 0.95rem;">${s.name}</span>
-            </div>
-            <div>
-              <span class="badge">${s.count} प्रश्न</span>
-              <button onclick="deleteSubject('${s.name}')" style="background: none; border: none; color: var(--danger); margin-left: 8px; cursor: pointer;">🗑</button>
-            </div>
-          </div>
-        `).join('');
-      } catch (e) {
-        console.error(e);
-      }
-    }
-
-    async function deleteSubject(name) {
-      if (!confirm(`क्या आप "${name}" के सभी प्रश्न डिलीट करना चाहते हैं?`)) return;
-      await fetch('/api/bank/delete-subject', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ subject: name })
-      });
-      loadBankSummary();
-    }
-
-    function selectAll(val) {
-      document.querySelectorAll('.sub-checkbox').forEach(cb => cb.checked = val);
-    }
-
-    async function startGeneration() {
-      const btn = document.getElementById('genBtn');
-      const errBox = document.getElementById('genError');
-      const succBox = document.getElementById('genSuccess');
-      const files = document.getElementById('studyFiles').files;
-      const subject = document.getElementById('subjectInput').value.trim() || 'General';
-      const lang = document.getElementById('langSelect').value;
-
-      let targetCount = document.getElementById('targetCountSelect').value;
-      if (targetCount === 'custom') {
-        const val = parseInt(document.getElementById('customCountInput').value, 10);
-        if (!val || val < 1) {
-          errBox.textContent = 'कृपया एक मान्य संख्या दर्ज करें!';
-          errBox.style.display = 'block';
-          return;
-        }
-        targetCount = String(val);
-      }
-
-      errBox.style.display = 'none';
-      succBox.style.display = 'none';
-
-      if (!files.length) {
-        errBox.textContent = 'कृपया कम से कम एक PDF या फ़ोटो चुनें!';
-        errBox.style.display = 'block';
-        return;
-      }
-
-      const fd = new FormData();
-      for (const f of files) fd.append('study', f);
-      const sample = document.getElementById('sampleFiles').files;
-      for (const f of sample) fd.append('sample', f);
-      fd.append('subject', subject);
-      fd.append('language', lang);
-      fd.append('targetCount', targetCount);
-
+    // Generator Form
+    document.getElementById('genForm').onsubmit = async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('btnGen');
+      const status = document.getElementById('genStatus');
       btn.disabled = true;
-      btn.innerHTML = `<span class="spinner"></span> AI प्रश्न तैयार कर रहा है (Target: ${targetCount === 'max' ? 'अधिकतम' : targetCount})...`;
+      status.innerHTML = '⏳ AI सामग्री का अध्ययन करके प्रश्न तैयार कर रहा है... कृपया 1-2 मिनट प्रतीक्षा करें।';
+
+      const formData = new FormData();
+      formData.append('subject', document.getElementById('subject').value);
+      formData.append('limit', document.getElementById('limit').value);
+      formData.append('timer', document.getElementById('timer').value);
+      formData.append('lang', document.getElementById('lang').value);
+
+      const files = document.getElementById('files').files;
+      for (let i = 0; i < files.length; i++) {
+        formData.append('files', files[i]);
+      }
 
       try {
-        const res = await fetch('/api/generate', { method: 'POST', body: fd });
+        const res = await fetch('/api/generate', { method: 'POST', body: formData });
         const data = await res.json();
-        if (!res.ok) throw new Error(data.error || 'Generation failed');
-
-        latestGeneratedQuestions = data.questions || [];
-
-        succBox.innerHTML = `
-          🎉 <b>${data.added} नए प्रश्न</b> सफलतापूर्वक विषय <b>"${data.subject}"</b> में सहेजे गए!<br>
-          इस विषय में अब कुल: <b>${data.totalInSubject}</b> प्रश्न उपलब्ध हैं।
-          <div style="margin-top: 14px;">
-            <button class="btn" style="background: var(--success); font-size: 0.95rem; padding: 11px;" onclick="launchInstantCBT()">
-              🎯 इन ${data.added} प्रश्नों का तुरंत CBT टेस्ट शुरू करें
-            </button>
-          </div>
-        `;
-        succBox.style.display = 'block';
-        document.getElementById('studyFiles').value = '';
-      } catch (e) {
-        errBox.textContent = e.message;
-        errBox.style.display = 'block';
+        if (data.success) {
+          status.innerHTML = `✅ सफलता! ${data.questionsCount || ''} प्रश्न बैंक में सहेज दिए गए हैं।`;
+          setTimeout(() => showView('bank'), 1200);
+        } else {
+          status.innerHTML = '❌ एरर: ' + (data.message || 'प्रश्न नहीं बन पाए');
+        }
+      } catch (err) {
+        status.innerHTML = '❌ नेटवर्क एरर: ' + err.message;
       } finally {
         btn.disabled = false;
-        btn.innerHTML = `<span>🚀 Generate & Save to Bank</span>`;
+      }
+    };
+
+    // Load Bank
+    let currentQuestions = [];
+    async function loadBank() {
+      const container = document.getElementById('bankList');
+      try {
+        const res = await fetch('/api/questions');
+        currentQuestions = await res.json();
+        if (!currentQuestions || currentQuestions.length === 0) {
+          container.innerHTML = '<p style="color: var(--text-muted);">अभी कोई प्रश्न सहेजा नहीं गया है। "नया AI टेस्ट बनाएं" में जाकर PDF अपलोड करें।</p>';
+          return;
+        }
+        container.innerHTML = `<b>कुल प्रश्न: ${currentQuestions.length}</b><br><br>` + 
+          currentQuestions.slice(0, 5).map((q, idx) => `
+            <div class="bank-item">
+              <h4>Q${idx + 1}. ${q.question}</h4>
+              <div class="sub">विषय: ${q.subject || 'Library Science'}</div>
+            </div>
+          `).join('') + (currentQuestions.length > 5 ? `<p style="font-size:0.85rem; color:#64748b; margin-top:8px;">+ ${currentQuestions.length - 5} और प्रश्न सहेजे गए हैं</p>` : '');
+      } catch (e) {
+        container.innerHTML = 'प्रश्न लोड करने में असमर्थ।';
       }
     }
 
-    function startTimer(durationInSeconds) {
-      if (timerInterval) clearInterval(timerInterval);
-      
-      if (durationInSeconds === null) {
-        // No time limit: Stopwatch mode
-        let elapsed = 0;
-        document.getElementById('timerLabel').textContent = '⏱️ 00:00 (No Limit)';
-        timerInterval = setInterval(() => {
-          elapsed++;
-          const m = Math.floor(elapsed / 60);
-          const s = elapsed % 60;
-          document.getElementById('timerLabel').textContent = `⏱️ ${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
-        }, 1000);
-      } else {
-        // Countdown timer
-        timeLeft = durationInSeconds;
-        const updateDisplay = () => {
-          const m = Math.floor(timeLeft / 60);
-          const s = timeLeft % 60;
-          document.getElementById('timerLabel').textContent = `⏳ ${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
-        };
-        updateDisplay();
-        timerInterval = setInterval(() => {
-          timeLeft--;
-          if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            alert('समय समाप्त! आपका टेस्ट सबमिट किया जा रहा है।');
-            submitExam();
-            return;
-          }
-          updateDisplay();
-        }, 1000);
-      }
-    }
+    // Simple CBT Engine
+    let qIndex = 0;
+    let userAnswers = {};
+    let timerInterval = null;
+    let remainingSeconds = 600;
 
-    function startCBTWithQuestions(questions, durationInSeconds) {
-      activeQuestions = questions;
+    function startCBT() {
+      if (!currentQuestions || currentQuestions.length === 0) {
+        alert('टेस्ट के लिए प्रश्न उपलब्ध नहीं हैं। पहले PDF से प्रश्न बनाएं।');
+        return;
+      }
+      showView('cbt');
+      qIndex = 0;
       userAnswers = {};
-      reviewStatus = {};
-      currentIndex = 0;
-
-      document.getElementById('mainTabs').style.display = 'none';
-      document.getElementById('genTab').style.display = 'none';
-      document.getElementById('bankTab').style.display = 'none';
-      document.getElementById('resultView').style.display = 'none';
-      document.getElementById('cbtView').style.display = 'block';
-
-      startTimer(durationInSeconds);
+      remainingSeconds = currentQuestions.length * 60;
+      startTimer();
       renderQuestion();
-      renderPalette();
     }
 
-    function launchInstantCBT() {
-      if (!latestGeneratedQuestions || !latestGeneratedQuestions.length) {
-        alert('कोई नए प्रश्न नहीं मिले!');
-        return;
-      }
-      const dur = getTimerSeconds('genTimerSelect', 'genCustomTimerInput', latestGeneratedQuestions.length);
-      startCBTWithQuestions(latestGeneratedQuestions, dur);
-    }
-
-    async function launchCBT() {
-      const checked = Array.from(document.querySelectorAll('.sub-checkbox:checked')).map(c => c.value);
-      if (!checked.length) {
-        alert('कृपया कम से कम एक विषय चुनें!');
-        return;
-      }
-      const count = document.getElementById('cbtCount').value;
-
-      const res = await fetch('/api/bank/cbt-questions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ selectedSubjects: checked, count })
-      });
-      const data = await res.json();
-
-      if (!data.questions || !data.questions.length) {
-        alert('चुने गए विषयों में कोई प्रश्न नहीं मिला!');
-        return;
-      }
-
-      const dur = getTimerSeconds('bankTimerSelect', 'bankCustomTimerInput', data.questions.length);
-      startCBTWithQuestions(data.questions, dur);
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
+        remainingSeconds--;
+        const mins = Math.floor(remainingSeconds / 60);
+        const secs = remainingSeconds % 60;
+        document.getElementById('cbtClock').innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        if (remainingSeconds <= 0) {
+          clearInterval(timerInterval);
+          alert('समय समाप्त हो गया!');
+          finishCBT();
+        }
+      }, 1000);
     }
 
     function renderQuestion() {
-      const q = activeQuestions[currentIndex];
-      document.getElementById('qIndexLabel').textContent = `Q ${currentIndex + 1}/${activeQuestions.length}`;
-      document.getElementById('cbtSubjectBadge').textContent = q.subject || 'Test';
-      document.getElementById('currentSubject').textContent = q.subject || 'General';
-      document.getElementById('questionText').textContent = q.question;
+      const q = currentQuestions[qIndex];
+      document.getElementById('cbtProgress').innerText = `Question ${qIndex + 1} of ${currentQuestions.length}`;
+      document.getElementById('cbtQuestion').innerText = q.question;
 
-      const optCont = document.getElementById('optionsContainer');
-      optCont.innerHTML = q.options.map((opt, idx) => `
-        <div class="option-item ${userAnswers[currentIndex] === idx ? 'selected' : ''}" onclick="selectOption(${idx})">
-          <input type="radio" name="opt" ${userAnswers[currentIndex] === idx ? 'checked' : ''}>
-          <span><b>(${['A','B','C','D'][idx]})</b> ${opt}</span>
-        </div>
-      `).join('');
-      renderPalette();
-    }
+      const optsContainer = document.getElementById('cbtOptions');
+      optsContainer.innerHTML = '';
 
-    function selectOption(idx) {
-      userAnswers[currentIndex] = idx;
-      renderQuestion();
-    }
-
-    function saveAndNext() {
-      if (currentIndex < activeQuestions.length - 1) {
-        currentIndex++;
-        renderQuestion();
-      }
+      q.options.forEach((opt, idx) => {
+        const div = document.createElement('div');
+        div.className = 'cbt-option' + (userAnswers[qIndex] === idx ? ' selected' : '');
+        div.innerText = `${String.fromCharCode(65 + idx)}. ${opt}`;
+        div.onclick = () => {
+          userAnswers[qIndex] = idx;
+          renderQuestion();
+        };
+        optsContainer.appendChild(div);
+      });
     }
 
     function prevQuestion() {
-      if (currentIndex > 0) {
-        currentIndex--;
-        renderQuestion();
-      }
+      if (qIndex > 0) { qIndex--; renderQuestion(); }
     }
-
-    function markForReview() {
-      reviewStatus[currentIndex] = !reviewStatus[currentIndex];
-      renderQuestion();
+    function nextQuestion() {
+      if (qIndex < currentQuestions.length - 1) { qIndex++; renderQuestion(); }
     }
-
-    function renderPalette() {
-      const grid = document.getElementById('paletteGrid');
-      grid.innerHTML = activeQuestions.map((_, i) => {
-        let cls = 'p-btn';
-        if (i === currentIndex) cls += ' active';
-        if (userAnswers[i] !== undefined) cls += ' answered';
-        if (reviewStatus[i]) cls += ' review';
-        return `<div class="${cls}" onclick="jumpTo(${i})">${i + 1}</div>`;
-      }).join('');
-    }
-
-    function jumpTo(i) {
-      currentIndex = i;
-      renderQuestion();
-    }
-
-    function confirmSubmit() {
-      const answered = Object.keys(userAnswers).length;
-      if (confirm(`आपने ${activeQuestions.length} में से ${answered} प्रश्नों के उत्तर दिए हैं। क्या आप टेस्ट सबमिट करना चाहते हैं?`)) {
-        submitExam();
-      }
-    }
-
-    function submitExam() {
-      if (timerInterval) clearInterval(timerInterval);
-      document.getElementById('cbtView').style.display = 'none';
-      document.getElementById('resultView').style.display = 'block';
-
-      let correct = 0;
-      activeQuestions.forEach((q, i) => {
-        if (userAnswers[i] === q.answer) correct++;
+    function finishCBT() {
+      clearInterval(timerInterval);
+      let score = 0;
+      currentQuestions.forEach((q, idx) => {
+        if (userAnswers[idx] !== undefined && (userAnswers[idx] === q.correctAnswer || userAnswers[idx] === q.correct_option)) {
+          score++;
+        }
       });
-
-      document.getElementById('finalScore').textContent = `${correct * 2} / ${activeQuestions.length * 2}`;
-      document.getElementById('scoreDetails').textContent = `कुल प्रश्न: ${activeQuestions.length} | सही उत्तर: ${correct} | गलत/छोड़े गए: ${activeQuestions.length - correct}`;
-
-      const revCont = document.getElementById('reviewContainer');
-      revCont.innerHTML = activeQuestions.map((q, i) => {
-        const userChoice = userAnswers[i];
-        const isRight = userChoice === q.answer;
-        return `
-          <div class="review-item ${isRight ? 'correct' : 'wrong'}">
-            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 4px;">
-              Q.${i + 1} (${q.subject}) ${isRight ? '✅ सही' : (userChoice !== undefined ? '❌ गलत' : '⚠️ हल नहीं किया')}
-            </div>
-            <div style="font-weight: 600; margin-bottom: 8px;">${q.question}</div>
-            <div style="font-size: 0.9rem; margin-bottom: 4px;"><b>आपका उत्तर:</b> ${userChoice !== undefined ? `(${['A','B','C','D'][userChoice]}) ${q.options[userChoice]}` : 'छोड़ा गया'}</div>
-            <div style="font-size: 0.9rem; color: var(--success); margin-bottom: 8px;"><b>सही उत्तर:</b> (${['A','B','C','D'][q.answer]}) ${q.options[q.answer]}</div>
-            <div style="font-size: 0.85rem; background: #f8fafc; padding: 8px; border-radius: 6px; border: 1px dashed #cbd5e1;">
-              💡 <b>व्याख्या:</b> ${q.detailed_explanation || 'उपलब्ध नहीं'}
-            </div>
-          </div>
-        `;
-      }).join('');
+      alert(`🎉 टेस्ट समाप्त!\n\nआपका स्कोर: ${score} / ${currentQuestions.length}\nप्रतिशत: ${((score / currentQuestions.length) * 100).toFixed(1)}%`);
+      showView('home');
     }
-
-    function exitToBank() {
-      if (timerInterval) clearInterval(timerInterval);
-      document.getElementById('resultView').style.display = 'none';
-      document.getElementById('cbtView').style.display = 'none';
-      document.getElementById('mainTabs').style.display = 'flex';
-      switchTab('bankTab');
-    }
-
-    loadBankSummary();
   </script>
 </body>
 </html>

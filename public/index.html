@@ -10,7 +10,6 @@
       --primary-dark: #0f172a;
       --accent: #2563eb;
       --gold: #f59e0b;
-      --gold-light: #fef3c7;
       --bg: #f8fafc;
       --card-bg: #ffffff;
       --text: #1e293b;
@@ -26,119 +25,112 @@
     body { background: var(--bg); color: var(--text); padding-bottom: 55px; }
 
     /* =========================================
-       3-SECOND AUTO SPLASH SCREEN (INTRO PAGE)
+       1. MANDATORY LOGIN OVERLAY
        ========================================= */
-    #splashScreen {
+    #authOverlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: radial-gradient(circle at top, #ffffff, #f1f5f9);
-      z-index: 99999;
+      background: radial-gradient(circle at top, #1e3a8a, #0f172a);
+      z-index: 100000;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 24px 20px;
-      text-align: center;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
+      padding: 18px;
     }
-    #splashScreen.hide {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
-    .splash-card {
+    #authOverlay.hidden { display: none; }
+
+    .login-card {
       background: white;
-      border: 1px solid var(--border);
       border-radius: 24px;
-      padding: 28px 20px;
+      padding: 26px 20px;
       width: 100%;
-      max-width: 420px;
-      box-shadow: 0 12px 36px rgba(30, 58, 138, 0.12);
+      max-width: 400px;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.3);
+      text-align: center;
       position: relative;
       overflow: hidden;
     }
-    .splash-card::before {
+    .login-card::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, var(--gold), var(--accent), var(--gold));
+      height: 5px;
+      background: linear-gradient(90deg, var(--gold), var(--accent));
     }
-    .splash-photo {
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--gold);
-      box-shadow: 0 8px 22px rgba(245, 158, 11, 0.35);
-      margin: 6px auto 14px;
-      display: block;
-      background: #e2e8f0;
-    }
-    .splash-title {
-      font-size: 1.45rem;
-      font-weight: 800;
-      color: var(--primary-dark);
-      margin-bottom: 2px;
-    }
-    .splash-subtitle {
-      font-size: 0.85rem;
-      color: var(--accent);
-      font-weight: 700;
-      margin-bottom: 14px;
-    }
-    .splash-slogan {
-      background: linear-gradient(135deg, #fffbeb, #fef3c7);
-      border: 2px dashed var(--gold);
-      border-radius: 14px;
-      padding: 12px;
-      margin: 12px 0 16px;
-    }
-    .splash-slogan h3 {
-      font-size: 1.22rem;
-      font-weight: 800;
-      color: #92400e;
-    }
-    .splash-slogan p {
-      font-size: 0.76rem;
-      color: #b45309;
-      font-weight: 600;
-      margin-top: 2px;
-    }
-    .splash-contact {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--text);
+    .login-mentor-badge {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #e2e8f0;
     }
-    /* 3s Auto-progress bar */
-    .splash-loader-bar {
-      width: 100%;
-      height: 4px;
+    .login-mentor-img {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      border: 3px solid var(--gold);
+      object-fit: cover;
       background: #e2e8f0;
+    }
+    .login-mentor-info h3 { font-size: 1.15rem; color: var(--primary); font-weight: 800; text-align: left; margin-bottom: 2px; }
+    .login-mentor-info p { font-size: 0.76rem; color: var(--text-muted); text-align: left; }
+
+    .login-card h2 { font-size: 1.25rem; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+    .login-card p.sub { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 16px; }
+
+    .input-box {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
       border-radius: 10px;
-      margin-top: 20px;
-      overflow: hidden;
+      font-size: 0.96rem;
+      margin-bottom: 12px;
+      outline: none;
     }
-    .splash-loader-progress {
-      width: 0%;
-      height: 100%;
-      background: linear-gradient(90deg, var(--gold), var(--accent));
-      animation: loadProgress 3s linear forwards;
+    .input-box:focus { border-color: var(--accent); }
+    .phone-group { display: flex; gap: 8px; margin-bottom: 14px; }
+    .phone-prefix {
+      padding: 12px 14px;
+      background: #f1f5f9;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-weight: 700;
+      color: var(--text);
     }
-    @keyframes loadProgress {
-      0% { width: 0%; }
-      100% { width: 100%; }
+    .btn-login {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, var(--gold), #ea580c);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(234, 88, 12, 0.3);
+    }
+    .btn-login:active { transform: scale(0.98); }
+
+    .otp-banner {
+      background: #ecfdf5;
+      border: 1px dashed #10b981;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 0.84rem;
+      color: #065f46;
+      font-weight: 700;
+      margin-bottom: 12px;
     }
 
-    /* Top Sticky Header */
+    /* =========================================
+       2. TOP NAVBAR: LOGO + MENTOR PHOTO + NAME
+       ========================================= */
     .top-navbar {
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
       color: white;
-      padding: 12px 16px;
+      padding: 10px 14px;
       position: sticky;
       top: 0;
       z-index: 100;
@@ -147,95 +139,78 @@
       justify-content: space-between;
       align-items: center;
     }
-    .nav-left { display: flex; align-items: center; gap: 12px; }
+    .nav-left { display: flex; align-items: center; gap: 10px; }
     .menu-btn {
-      background: transparent;
-      border: none;
-      color: white;
-      font-size: 26px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2px 6px;
-      border-radius: 6px;
+      background: transparent; border: none; color: white;
+      font-size: 24px; cursor: pointer; padding: 2px 4px;
     }
-    .menu-btn:active { background: rgba(255,255,255,0.15); }
     .brand { display: flex; align-items: center; gap: 8px; cursor: pointer; }
     .brand-logo-small {
-      width: 34px;
-      height: 34px;
-      border-radius: 8px;
-      background: #f59e0b;
-      color: #1e3a8a;
+      width: 32px; height: 32px; border-radius: 8px;
+      background: #f59e0b; color: #1e3a8a; display: flex;
+      align-items: center; justify-content: center; font-size: 17px; font-weight: 800;
+    }
+    .brand-text h1 { font-size: 0.98rem; font-weight: 800; }
+    .brand-text p { font-size: 0.65rem; opacity: 0.85; }
+
+    /* Top Right Mentor Card */
+    .nav-mentor-profile {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      font-weight: 800;
-      border: 2px solid white;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      padding: 3px 10px 3px 4px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      cursor: pointer;
     }
-    .brand-text h1 { font-size: 1.05rem; font-weight: 800; }
-    .brand-text p { font-size: 0.7rem; opacity: 0.85; }
+    .mentor-header-photo {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      object-fit: cover;
+      background: #e2e8f0;
+    }
+    .mentor-header-text { text-align: left; }
+    .mentor-header-text h4 { font-size: 0.8rem; font-weight: 800; line-height: 1.1; }
+    .mentor-header-text span { font-size: 0.63rem; color: #fde68a; }
 
     /* Side Drawer */
     .sidebar-overlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.55);
-      z-index: 998;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.55); z-index: 998; opacity: 0;
+      visibility: hidden; transition: all 0.3s ease;
     }
     .sidebar-overlay.open { opacity: 1; visibility: visible; }
     .sidebar {
-      position: fixed;
-      top: 0; left: 0;
-      width: 290px; height: 100%;
-      background: white;
-      z-index: 999;
-      transform: translateX(-100%);
+      position: fixed; top: 0; left: 0; width: 290px; height: 100%;
+      background: white; z-index: 999; transform: translateX(-100%);
       transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      display: flex;
-      flex-direction: column;
-      box-shadow: 4px 0 20px rgba(0,0,0,0.25);
+      display: flex; flex-direction: column; box-shadow: 4px 0 20px rgba(0,0,0,0.25);
     }
     .sidebar.open { transform: translateX(0); }
     .sidebar-header {
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-      color: white;
-      padding: 24px 18px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      position: relative;
+      color: white; padding: 24px 18px 18px; display: flex; flex-direction: column; gap: 6px; position: relative;
     }
-    .sidebar-close-btn {
-      position: absolute; top: 12px; right: 12px;
-      background: transparent; border: none; color: white;
-      font-size: 20px; cursor: pointer;
-    }
+    .sidebar-close-btn { position: absolute; top: 12px; right: 12px; background: transparent; border: none; color: white; font-size: 20px; cursor: pointer; }
     .sidebar-menu { flex: 1; overflow-y: auto; padding: 10px 0; }
-    .sidebar-item {
-      display: flex; align-items: center; gap: 14px;
-      padding: 12px 20px; font-size: 0.92rem; font-weight: 600;
-      color: var(--text); cursor: pointer;
-    }
+    .sidebar-item { display: flex; align-items: center; gap: 14px; padding: 12px 20px; font-size: 0.92rem; font-weight: 600; color: var(--text); cursor: pointer; }
     .sidebar-item:active { background: #f1f5f9; color: var(--primary); }
     .sidebar-divider { height: 1px; background: #e2e8f0; margin: 8px 18px; }
     .sidebar-footer { padding: 14px 18px; border-top: 1px solid #e2e8f0; }
     .btn-logout {
       width: 100%; padding: 10px; background: #fee2e2; color: #b91c1c;
-      border: 1px solid #fecaca; border-radius: 8px; font-weight: 700;
-      font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+      border: 1px solid #fecaca; border-radius: 8px; font-weight: 700; font-size: 0.9rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
     }
 
-    /* Top Quick Pills */
+    /* Top Pills */
     .nav-options-bar {
       background: white; display: flex; overflow-x: auto;
       padding: 8px 12px; gap: 8px; border-bottom: 1px solid var(--border);
-      position: sticky; top: 58px; z-index: 90;
+      position: sticky; top: 52px; z-index: 90;
     }
     .nav-pill {
       white-space: nowrap; padding: 7px 14px; border-radius: 20px;
@@ -248,80 +223,38 @@
     .container { max-width: 680px; margin: 16px auto; padding: 0 12px; }
 
     /* =========================================
-       MAIN MATRIX GRID DASHBOARD (8 BLOCKS)
+       3. 8-BLOCK MATRIX DASHBOARD
        ========================================= */
     .dashboard-header-banner {
       background: linear-gradient(135deg, #1e3a8a, #2563eb);
-      color: white;
-      border-radius: 16px;
-      padding: 16px;
-      margin-bottom: 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      color: white; border-radius: 16px; padding: 16px; margin-bottom: 16px;
+      display: flex; justify-content: space-between; align-items: center;
       box-shadow: 0 4px 14px rgba(37, 99, 235, 0.2);
     }
     .dash-greeting h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 2px; }
     .dash-greeting p { font-size: 0.78rem; opacity: 0.9; }
 
     .dashboard-matrix {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
     }
     .matrix-card {
-      background: white;
-      border-radius: 16px;
-      padding: 16px 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      border: 1px solid #e2e8f0;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.03);
-      cursor: pointer;
-      transition: all 0.2s ease;
-      position: relative;
-      overflow: hidden;
+      background: white; border-radius: 16px; padding: 16px 10px;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      border: 1px solid #e2e8f0; box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+      cursor: pointer; transition: all 0.2s ease; position: relative; overflow: hidden;
     }
-    .matrix-card:active {
-      transform: scale(0.96);
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-    }
+    .matrix-card:active { transform: scale(0.96); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
     .matrix-badge {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      font-size: 0.63rem;
-      padding: 2px 7px;
-      border-radius: 10px;
-      font-weight: 800;
-      letter-spacing: 0.3px;
+      position: absolute; top: 8px; right: 8px; font-size: 0.63rem;
+      padding: 2px 7px; border-radius: 10px; font-weight: 800; letter-spacing: 0.3px;
     }
     .matrix-icon-box {
-      width: 54px;
-      height: 54px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 26px;
-      margin-bottom: 8px;
-      box-shadow: 0 5px 12px rgba(0,0,0,0.1);
-      color: white;
+      width: 54px; height: 54px; border-radius: 16px; display: flex;
+      align-items: center; justify-content: center; font-size: 26px;
+      margin-bottom: 8px; box-shadow: 0 5px 12px rgba(0,0,0,0.1); color: white;
     }
-    .matrix-card h3 {
-      font-size: 0.95rem;
-      font-weight: 800;
-      color: var(--text);
-      margin-bottom: 3px;
-      line-height: 1.3;
-    }
-    .matrix-card p {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      line-height: 1.3;
-    }
+    .matrix-card h3 { font-size: 0.95rem; font-weight: 800; color: var(--text); margin-bottom: 3px; line-height: 1.3; }
+    .matrix-card p { font-size: 0.72rem; color: var(--text-muted); line-height: 1.3; }
 
     /* Sub-Views */
     .view-panel { display: none; }
@@ -353,18 +286,15 @@
       width: 100%; padding: 13px; background: linear-gradient(135deg, var(--accent), var(--primary));
       color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer;
     }
-    .btn-submit:disabled { opacity: 0.6; }
 
     .pyq-box {
-      background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px;
-      padding: 14px; margin-bottom: 12px; position: relative;
+      background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; margin-bottom: 12px;
     }
     .btn-pyq-test {
-      background: var(--purple); color: white; border: none; padding: 6px 12px;
-      border-radius: 6px; font-size: 0.8rem; font-weight: 700; cursor: pointer;
+      background: var(--purple); color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700; cursor: pointer;
     }
 
-    /* FLASHCARDS */
+    /* Flashcards */
     .flashcard-container { perspective: 1000px; width: 100%; height: 220px; margin: 16px 0; cursor: pointer; }
     .flashcard-inner {
       position: relative; width: 100%; height: 100%; text-align: center;
@@ -382,38 +312,8 @@
     .flashcard-back { background: linear-gradient(145deg, #1e3a8a, #0f172a); color: #fef08a; transform: rotateY(180deg); }
     .flashcard-title { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; opacity: 0.75; margin-bottom: 8px; }
     .flashcard-text { font-size: 1.15rem; font-weight: 800; line-height: 1.4; }
-    .flashcard-hint { font-size: 0.75rem; margin-top: 12px; opacity: 0.7; }
     .flashcard-controls { display: flex; gap: 10px; justify-content: center; margin-top: 14px; }
     .btn-card-nav { padding: 10px 18px; border-radius: 10px; font-size: 0.9rem; font-weight: 700; border: 1px solid var(--border); background: white; cursor: pointer; }
-
-    /* SMART TRICKS */
-    .trick-card {
-      background: #fffbeb; border: 1px solid #fde68a; border-left: 5px solid #f59e0b;
-      border-radius: 12px; padding: 14px; margin-bottom: 14px;
-    }
-    .trick-title { font-size: 1rem; font-weight: 800; color: #92400e; display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
-    .trick-formula { background: white; border: 1px dashed #f59e0b; padding: 8px 12px; border-radius: 8px; font-weight: 800; color: #b45309; font-size: 0.92rem; margin-bottom: 6px; }
-    .trick-desc { font-size: 0.82rem; color: #78350f; line-height: 1.4; }
-
-    /* SHORT NOTES */
-    .note-card {
-      background: #f0fdf4; border: 1px solid #bbf7d0; border-left: 5px solid #16a34a;
-      border-radius: 12px; padding: 14px; margin-bottom: 12px;
-    }
-    .note-card h4 { font-size: 0.98rem; font-weight: 800; color: #166534; margin-bottom: 6px; }
-    .note-card ul { padding-left: 18px; font-size: 0.85rem; color: #14532d; line-height: 1.6; }
-
-    /* Modals */
-    .modal-overlay {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.6); display: none; justify-content: center; align-items: center;
-      z-index: 1000; padding: 16px;
-    }
-    .modal-overlay.open { display: flex; }
-    .modal-content {
-      background: white; border-radius: 16px; padding: 20px; width: 100%;
-      max-width: 480px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); max-height: 90vh; overflow-y: auto;
-    }
 
     /* CBT View */
     .cbt-header {
@@ -435,33 +335,58 @@
 <body>
 
   <!-- ===================================================
-       3-SECOND AUTO SPLASH INTRO SCREEN
+       1. MANDATORY STUDENT LOGIN OVERLAY
        =================================================== -->
-  <div id="splashScreen">
-    <div class="splash-card">
-      <img id="splashPhoto" class="splash-photo" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" alt="LIS GURUJI">
-      <h2 class="splash-title" id="splashName">LIS GURUJI</h2>
-      <div class="splash-subtitle">संस्थापक एवं मार्गदर्शक • Library & Info Science</div>
-
-      <div class="splash-slogan">
-        <h3>"स्मार्ट पढ़ाई, उज्ज्वल भविष्य।"</h3>
-        <p>⚡ AI संचालित आधुनिक CBT पोर्टल</p>
+  <div id="authOverlay">
+    <div class="login-card">
+      
+      <!-- Mentor Profile Header -->
+      <div class="login-mentor-badge">
+        <img class="login-mentor-img" id="loginMentorImg" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" alt="LIS Guruji">
+        <div class="login-mentor-info">
+          <h3 id="loginMentorName">LIS GURUJI</h3>
+          <p>संस्थापक एवं मेंटर • Library Science</p>
+        </div>
       </div>
 
-      <div class="splash-contact">
-        <span>📞 संपर्क:</span>
-        <span id="splashPhone" style="color:var(--primary); font-weight:800;">+91 9876543210</span>
+      <!-- Form Step 1: Name & Phone -->
+      <div id="loginStep1">
+        <h2>विद्यार्थी लॉगिन</h2>
+        <p class="sub">टेस्ट पोर्टल में प्रवेश के लिए विवरण भरें</p>
+
+        <input type="text" id="studentNameInput" class="input-box" placeholder="आपका पूरा नाम (Full Name)" required>
+        
+        <div class="phone-group">
+          <span class="phone-prefix">+91</span>
+          <input type="tel" id="studentPhoneInput" class="input-box" style="margin-bottom:0;" placeholder="10 अंकों का मोबाइल नंबर" maxlength="10" required>
+        </div>
+
+        <button class="btn-login" onclick="handleSendDemoOtp()">
+          📩 आगे बढ़ें (Verify & Login)
+        </button>
       </div>
 
-      <!-- 3 Second Loading Progress -->
-      <div class="splash-loader-bar">
-        <div class="splash-loader-progress"></div>
+      <!-- Form Step 2: 4-digit Security OTP -->
+      <div id="loginStep2" style="display:none;">
+        <h2>सत्यापन कोड (OTP)</h2>
+        <div class="otp-banner" id="otpDisplayBanner">सुरक्षा कोड भेजा गया है</div>
+
+        <input type="number" id="otpCodeInput" class="input-box" placeholder="4 अंकों का OTP दर्ज करें" maxlength="4" style="letter-spacing:6px; font-size:1.3rem; text-align:center;">
+
+        <button class="btn-login" onclick="handleVerifyDemoOtp()">
+          ✅ सत्यापित करें व प्रवेश करें
+        </button>
+        <div style="margin-top:12px;">
+          <a href="javascript:void(0)" onclick="resetLoginStep()" style="font-size:0.82rem; color:var(--accent); font-weight:700;">← मोबाइल नंबर बदलें</a>
+        </div>
       </div>
-      <div style="font-size:0.72rem; color:var(--text-muted); margin-top:6px;">पोर्टल शुरू हो रहा है...</div>
+
     </div>
   </div>
 
-  <!-- Top Sticky Header -->
+  <!-- ===================================================
+       2. TOP NAVBAR: LOGO + MENTOR PHOTO + NAME
+       =================================================== -->
   <div class="top-navbar">
     <div class="nav-left">
       <button class="menu-btn" onclick="openSidebar()" title="मेनू">☰</button>
@@ -469,12 +394,18 @@
         <div class="brand-logo-small">📚</div>
         <div class="brand-text">
           <h1>LIS GURUJI</h1>
-          <p>AI Study + CBT Portal</p>
+          <p>AI CBT Portal</p>
         </div>
       </div>
     </div>
-    <div style="font-size: 0.78rem; background: rgba(255,255,255,0.2); padding: 4px 8px; border-radius: 6px;">
-      v2.7
+
+    <!-- Top Right Mentor Profile -->
+    <div class="nav-mentor-profile" onclick="openSidebar()" title="मेंटर प्रोफ़ाइल">
+      <img id="navMentorImg" class="mentor-header-photo" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" alt="Mentor">
+      <div class="mentor-header-text">
+        <h4 id="navMentorName">LIS GURUJI</h4>
+        <span>मेंटर • गाइड</span>
+      </div>
     </div>
   </div>
 
@@ -484,15 +415,18 @@
     <div class="sidebar-header">
       <button class="sidebar-close-btn" onclick="closeSidebar()">✕</button>
       <div style="display:flex; align-items:center; gap:12px;">
-        <img id="sideMentorImg" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" style="width:50px; height:50px; border-radius:50%; border:2px solid #f59e0b; background:white; object-fit:cover;">
+        <img id="sideMentorImg" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" style="width:52px; height:52px; border-radius:50%; border:2px solid #f59e0b; background:white; object-fit:cover;">
         <div>
           <h3 id="sideMentorName" style="font-size:1rem; font-weight:700;">LIS GURUJI</h3>
-          <p id="sideMentorPhone" style="font-size:0.75rem; opacity:0.85;">+91 9876543210</p>
+          <p style="font-size:0.75rem; color:#fde68a;">संस्थापक एवं मेंटर</p>
         </div>
       </div>
     </div>
 
     <div class="sidebar-menu">
+      <div style="padding:10px 20px; font-size:0.82rem; color:var(--text-muted); background:#f8fafc;">
+        लॉगिन विद्यार्थी: <b id="loggedInStudentName" style="color:var(--primary);">...</b>
+      </div>
       <div class="sidebar-item" onclick="navFromSidebar('home')">
         <span>🏠</span> मुख्य डैशबोर्ड (Dashboard)
       </div>
@@ -505,14 +439,8 @@
       <div class="sidebar-item" onclick="navFromSidebar('cards')">
         <span>🃏</span> प्ले कार्ड्स (Flashcards)
       </div>
-      <div class="sidebar-item" onclick="navFromSidebar('tricks')">
-        <span>💡</span> स्मार्ट लर्निंग ट्रिक्स (Mnemonics)
-      </div>
-      <div class="sidebar-item" onclick="navFromSidebar('notes')">
-        <span>📝</span> 5-मिनट शॉर्ट नोट्स
-      </div>
       <div class="sidebar-item" onclick="navFromSidebar('bank')">
-        <span>📂</span> क्वेश्चन बैंक व CBT टेस्ट
+        <span>📂</span> क्वेश्चन बैंक व CBT
       </div>
       <div class="sidebar-item" onclick="navFromSidebar('syllabus')">
         <span>📖</span> पूरा सिलेबस (8 Units)
@@ -526,26 +454,24 @@
     </div>
   </div>
 
-  <!-- Top Navigation Pills -->
+  <!-- Top Navigation Quick Bar -->
   <div class="nav-options-bar">
     <div class="nav-pill active" id="pill-home" onclick="showView('home')">🏠 डैशबोर्ड</div>
     <div class="nav-pill" id="pill-generate" onclick="showView('generate')">➕ AI टेस्ट</div>
     <div class="nav-pill" id="pill-pyq" onclick="showView('pyq')">📜 पिछले पेपर</div>
     <div class="nav-pill" id="pill-cards" onclick="showView('cards')">🃏 प्ले कार्ड्स</div>
-    <div class="nav-pill" id="pill-tricks" onclick="showView('tricks')">💡 स्मार्ट ट्रिक्स</div>
-    <div class="nav-pill" id="pill-notes" onclick="showView('notes')">📝 शॉर्ट नोट्स</div>
     <div class="nav-pill" id="pill-bank" onclick="showView('bank')">📂 क्वेश्चन बैंक</div>
   </div>
 
   <div class="container">
 
-    <!-- VIEW 1: MATRIX GRID DASHBOARD (MAIN SCREEN) -->
+    <!-- VIEW 1: MATRIX GRID DASHBOARD -->
     <div id="view-home" class="view-panel active">
       
       <div class="dashboard-header-banner">
         <div class="dash-greeting">
-          <h3>नमस्ते, विद्यार्थी! 👋</h3>
-          <p>आज आप क्या अभ्यास करना चाहते हैं?</p>
+          <h3 id="welcomeStudentBanner">नमस्ते, विद्यार्थी! 👋</h3>
+          <p>आज आप किस विषय का अभ्यास करना चाहते हैं?</p>
         </div>
       </div>
 
@@ -569,20 +495,6 @@
           <div class="matrix-icon-box" style="background: linear-gradient(135deg, #ec4899, #be185d);">🎴</div>
           <h3>स्मार्ट प्ले कार्ड्स</h3>
           <p>फ़्लैशकार्ड्स से त्वरित तैयारी</p>
-        </div>
-
-        <div class="matrix-card" onclick="showView('tricks')">
-          <span class="matrix-badge" style="background:#fef3c7; color:#b45309;">💡 जादुई सूत्र</span>
-          <div class="matrix-icon-box" style="background: linear-gradient(135deg, #f59e0b, #d97706);">🧠</div>
-          <h3>स्मार्ट ट्रिक्स</h3>
-          <p>याद रखने के अचूक शॉर्टकट्स</p>
-        </div>
-
-        <div class="matrix-card" onclick="showView('notes')">
-          <span class="matrix-badge" style="background:#dcfce7; color:#15803d;">📝 5-Min Summary</span>
-          <div class="matrix-icon-box" style="background: linear-gradient(135deg, #10b981, #047857);">📑</div>
-          <h3>शॉर्ट नोट्स</h3>
-          <p>टॉपिक वार मुख्य बिंदु</p>
         </div>
 
         <div class="matrix-card" onclick="startCBT()">
@@ -639,7 +551,6 @@
               <option value="auto">⚡ ऑटो (1 मिनट प्रति प्रश्न)</option>
               <option value="10">10 मिनट</option>
               <option value="20">20 मिनट</option>
-              <option value="30">30 मिनट</option>
               <option value="none">बिना टाइमर</option>
             </select>
           </div>
@@ -661,16 +572,12 @@
     <div id="view-pyq" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
       <div class="card">
-        <div class="card-title">
-          <span>📜 पिछले वर्षों के प्रश्न पत्र</span>
-          <button onclick="openModal('paperModal')" style="background:var(--purple); color:white; border:none; padding:6px 12px; border-radius:8px; font-size:0.8rem; font-weight:700; cursor:pointer;">
-            ➕ नया पेपर जोड़ें
-          </button>
+        <div class="card-title">📜 पिछले वर्षों के प्रश्न पत्र</div>
+        <div class="pyq-box">
+          <h4>UGC NET Library & Information Science (2023 Solved)</h4>
+          <p style="font-size:0.8rem; color:#64748b; margin-bottom:8px;">कुल प्रश्न: 100 | NTA Official</p>
+          <button class="btn-pyq-test" onclick="showView('generate')">⚡ इस पेपर का CBT बनाएं</button>
         </div>
-        <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:14px;">
-          💡 आप किसी भी पेपर का लाइव CBT टेस्ट दे सकते हैं या सीधे नया पेपर जोड़ सकते हैं।
-        </p>
-        <div id="pyqListContainer"></div>
       </div>
     </div>
 
@@ -678,64 +585,24 @@
     <div id="view-cards" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
       <div class="card">
-        <div class="card-title">
-          <span>🃏 स्मार्ट प्ले कार्ड्स (Flashcards)</span>
-          <button onclick="openModal('cardModal')" style="background:var(--rose); color:white; border:none; padding:6px 12px; border-radius:8px; font-size:0.8rem; font-weight:700; cursor:pointer;">
-            ➕ नया कार्ड जोड़ें
-          </button>
-        </div>
-        <p style="font-size:0.84rem; color:var(--text-muted);">कार्ड पर टैप करें उत्तर देखने के लिए:</p>
+        <div class="card-title">🃏 स्मार्ट प्ले कार्ड्स (Flashcards)</div>
         <div class="flashcard-container" onclick="flipFlashcard()">
           <div class="flashcard-inner" id="flashcardInner">
             <div class="flashcard-front">
-              <div class="flashcard-title" id="cardTopicDisplay">TOPIC: CLASSIFICATION</div>
-              <div class="flashcard-text" id="cardQuestionDisplay">प्रश्न लोड हो रहा है...</div>
-              <div class="flashcard-hint">👆 उत्तर देखने के लिए टैप करें</div>
+              <div class="flashcard-title">TOPIC: LAWS OF LIBRARY</div>
+              <div class="flashcard-text">पुस्तकालय विज्ञान के 5 नियम कब प्रतिपादित हुए?</div>
+              <div style="font-size:0.75rem; margin-top:10px; opacity:0.7;">👆 उत्तर देखने के लिए टैप करें</div>
             </div>
             <div class="flashcard-back">
-              <div class="flashcard-title" style="color:#cbd5e1;">सही उत्तर / व्याख्या:</div>
-              <div class="flashcard-text" id="cardAnswerDisplay">उत्तर लोड हो रहा है...</div>
-              <div class="flashcard-hint" style="color:#94a3b8;">👆 वापस प्रश्न देखने के लिए फिर टैप करें</div>
+              <div class="flashcard-title" style="color:#cbd5e1;">सही उत्तर:</div>
+              <div class="flashcard-text">1928 में डॉ. रंगनाथन द्वारा प्रतिपादित (1931 में पुस्तक प्रकाशित)</div>
             </div>
           </div>
         </div>
-        <div class="flashcard-controls">
-          <button class="btn-card-nav" onclick="prevCard()">← पिछला कार्ड</button>
-          <span id="cardCountDisplay" style="align-self:center; font-weight:800; font-size:0.9rem; color:var(--primary);">1 / 5</span>
-          <button class="btn-card-nav" onclick="nextCard()">अगला कार्ड →</button>
-        </div>
       </div>
     </div>
 
-    <!-- VIEW 5: SMART TRICKS -->
-    <div id="view-tricks" class="view-panel">
-      <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
-      <div class="card">
-        <div class="card-title">
-          <span>💡 स्मार्ट ट्रिक्स व याद रखने के सूत्र</span>
-          <button onclick="openModal('trickModal')" style="background:var(--gold); color:#1e3a8a; border:none; padding:6px 12px; border-radius:8px; font-size:0.8rem; font-weight:700; cursor:pointer;">
-            ➕ नई ट्रिक जोड़ें
-          </button>
-        </div>
-        <div id="tricksContainer"></div>
-      </div>
-    </div>
-
-    <!-- VIEW 6: SHORT NOTES -->
-    <div id="view-notes" class="view-panel">
-      <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
-      <div class="card">
-        <div class="card-title">
-          <span>📝 5-Minute Quick Revision Notes</span>
-          <button onclick="openModal('noteModal')" style="background:var(--teal); color:white; border:none; padding:6px 12px; border-radius:8px; font-size:0.8rem; font-weight:700; cursor:pointer;">
-            ➕ नए नोट्स जोड़ें
-          </button>
-        </div>
-        <div id="notesContainer"></div>
-      </div>
-    </div>
-
-    <!-- VIEW 7: QUESTION BANK -->
+    <!-- VIEW 5: QUESTION BANK -->
     <div id="view-bank" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
       <div class="card">
@@ -745,25 +612,22 @@
       </div>
     </div>
 
-    <!-- VIEW 8: SYLLABUS -->
+    <!-- VIEW 6: SYLLABUS -->
     <div id="view-syllabus" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
       <div class="card">
         <div class="card-title">📚 Library Science - 8 Core Units</div>
         <ul style="line-height: 1.8; padding-left: 20px; font-size: 0.95rem;">
-          <li><b>Unit 1:</b> Data, Information, Knowledge and Wisdom; Information Life Cycle.</li>
-          <li><b>Unit 2:</b> Laws of Library Science; Library Legislation and Intellectual Property Rights.</li>
-          <li><b>Unit 3:</b> Information Sources: Primary, Secondary, and Tertiary.</li>
-          <li><b>Unit 4:</b> Community Information Services; Reference and Information Systems.</li>
-          <li><b>Unit 5:</b> Classification & Cataloguing (DDC, UDC, CC, AACR-2, RDA).</li>
-          <li><b>Unit 6:</b> Management of Libraries & Information Centres.</li>
-          <li><b>Unit 7:</b> Computer Technology, Library Automation & Networks (INFLIBNET, DELNET).</li>
-          <li><b>Unit 8:</b> Digital Libraries, Institutional Repositories & Search Engines.</li>
+          <li><b>Unit 1:</b> Information, Knowledge & Data Life Cycle.</li>
+          <li><b>Unit 2:</b> Laws of Library Science & Library Legislation.</li>
+          <li><b>Unit 3:</b> Information Sources & Services.</li>
+          <li><b>Unit 4:</b> Library Classification & Cataloguing (DDC, CC, AACR2).</li>
+          <li><b>Unit 5:</b> Library Automation, Networks (INFLIBNET, DELNET).</li>
         </ul>
       </div>
     </div>
 
-    <!-- VIEW 9: CBT TEST -->
+    <!-- VIEW 7: CBT TEST -->
     <div id="view-cbt" class="view-panel">
       <div class="cbt-header">
         <div style="font-weight:700;">LIS Live CBT Test</div>
@@ -783,252 +647,89 @@
 
   </div>
 
-  <!-- MODALS -->
-  <div class="modal-overlay" id="paperModal">
-    <div class="modal-content">
-      <h3 style="margin-bottom:12px; color:var(--primary);">➕ नया पेपर जोड़ें</h3>
-      <div class="form-group">
-        <label>परीक्षा का नाम:</label>
-        <input type="text" id="newPaperTitle" class="form-control" placeholder="उदा: RSMSSB Librarian Grade-II">
-      </div>
-      <div class="form-group">
-        <label>वर्ष एवं शिफ्ट:</label>
-        <input type="text" id="newPaperYear" class="form-control" placeholder="उदा: 2024 Shift-1">
-      </div>
-      <div class="form-group">
-        <label>विवरण:</label>
-        <input type="text" id="newPaperDesc" class="form-control" placeholder="उदा: 100 Solved Questions">
-      </div>
-      <div style="display:flex; gap:10px;">
-        <button class="btn-submit" onclick="saveNewPaper()">सेव करें</button>
-        <button class="btn-nav" onclick="closeModal('paperModal')">रद्द करें</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal-overlay" id="cardModal">
-    <div class="modal-content">
-      <h3 style="margin-bottom:12px; color:var(--rose);">➕ नया प्ले कार्ड जोड़ें</h3>
-      <div class="form-group">
-        <label>टॉपिक का नाम:</label>
-        <input type="text" id="newCardTopic" class="form-control" placeholder="उदा: DDC या Laws of Library">
-      </div>
-      <div class="form-group">
-        <label>प्रश्न (Front):</label>
-        <textarea id="newCardFront" class="form-control" rows="3"></textarea>
-      </div>
-      <div class="form-group">
-        <label>उत्तर (Back):</label>
-        <textarea id="newCardBack" class="form-control" rows="3"></textarea>
-      </div>
-      <div style="display:flex; gap:10px;">
-        <button class="btn-submit" style="background:var(--rose);" onclick="saveNewCard()">कार्ड सेव करें</button>
-        <button class="btn-nav" onclick="closeModal('cardModal')">रद्द करें</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal-overlay" id="trickModal">
-    <div class="modal-content">
-      <h3 style="margin-bottom:12px; color:#b45309;">➕ नई स्मार्ट ट्रिक जोड़ें</h3>
-      <div class="form-group">
-        <label>शीर्षक:</label>
-        <input type="text" id="newTrickTitle" class="form-control">
-      </div>
-      <div class="form-group">
-        <label>स्मार्ट फ़ॉर्मूला / कोडवर्ड:</label>
-        <input type="text" id="newTrickFormula" class="form-control">
-      </div>
-      <div class="form-group">
-        <label>सरल व्याख्या:</label>
-        <textarea id="newTrickDesc" class="form-control" rows="3"></textarea>
-      </div>
-      <div style="display:flex; gap:10px;">
-        <button class="btn-submit" style="background:var(--gold); color:#1e3a8a;" onclick="saveNewTrick()">ट्रिक सेव करें</button>
-        <button class="btn-nav" onclick="closeModal('trickModal')">रद्द करें</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal-overlay" id="noteModal">
-    <div class="modal-content">
-      <h3 style="margin-bottom:12px; color:var(--teal);">➕ नए शॉर्ट नोट्स जोड़ें</h3>
-      <div class="form-group">
-        <label>टॉपिक शीर्षक:</label>
-        <input type="text" id="newNoteTitle" class="form-control">
-      </div>
-      <div class="form-group">
-        <label>मुख्य बिंदु (अलग-अलग लाइन में):</label>
-        <textarea id="newNotePoints" class="form-control" rows="4"></textarea>
-      </div>
-      <div style="display:flex; gap:10px;">
-        <button class="btn-submit" style="background:var(--teal);" onclick="saveNewNote()">नोट्स सेव करें</button>
-        <button class="btn-nav" onclick="closeModal('noteModal')">रद्द करें</button>
-      </div>
-    </div>
-  </div>
-
   <script>
-    // Data structures
-    const defaultPapers = [
-      { id: 1, title: 'UGC NET Library & Information Science', year: 'Dec 2023 Official', desc: 'कुल प्रश्न: 100 | NTA Pattern Full Solved Paper' },
-      { id: 2, title: 'RSMSSB Librarian Grade-III', year: '2022 Solved', desc: 'राजस्थान कर्मचारी चयन बोर्ड भर्ती परीक्षा हल प्रश्न पत्र' },
-      { id: 3, title: 'KVS / NVS Librarian Recruitment Exam', year: '2023 Shift Paper', desc: 'केंद्रीय एवं नवोदय विद्यालय लाइब्रेरियन परीक्षा' }
-    ];
+    // ==========================================
+    // 1. SMART LOGIN GATEWAY LOGIC
+    // ==========================================
+    let generatedOtp = null;
 
-    const defaultCards = [
-      { topic: 'LAWS OF LIBRARY', front: 'पुस्तकालय विज्ञान के 5 नियम कब प्रतिपादित और कब पुस्तक रूप में प्रकाशित हुए?', back: 'प्रतिपादित: 1928 (मीनाक्षी कॉलेज, अन्नामलाई नगर)\nपुस्तक प्रकाशित: 1931' },
-      { topic: 'CLASSIFICATION', front: 'DDC (Dewey Decimal Classification) का प्रथम संस्करण कब और किसके द्वारा आया?', back: 'वर्ष: 1876\nरचयिता: मेलविल डेवी (कुल 44 पृष्ठ)' },
-      { topic: 'COLON CLASSIFICATION', front: 'Colon Classification (CC) के रचयिता कौन हैं और इसका पहला संस्करण कब आया?', back: 'डॉ. एस. आर. रंगनाथन\nपहला संस्करण: 1933' },
-      { topic: 'LEGISLATION', front: 'भारत में प्रथम पुस्तकालय अधिनियम किस राज्य में और किस वर्ष लागू हुआ?', back: 'तमिलनाडु (मद्रास) पब्लिक लाइब्रेरी एक्ट\nवर्ष: 1948' },
-      { topic: 'ACTS & COPYRIGHT', front: 'Delivery of Books Act और भारतीय कॉपीराइट अधिनियम किस-किस वर्ष बने?', back: 'Delivery of Books Act: 1954 (1956 में पत्रिकाएं शामिल)\nIndian Copyright Act: 1957' }
-    ];
-
-    const defaultTricks = [
-      { title: 'PMEST सूत्र (रंगनाथन के 5 मौलिक श्रेणियां)', formula: 'P = Personality, M = Matter, E = Energy, S = Space, T = Time', desc: 'समय सबसे अधिक ठोस और व्यक्तित्व सबसे सूक्ष्म होता है।' },
-      { title: 'प्रथम चार पुस्तकालय अधिनियम याद रखने की ट्रिक', formula: 'MAD = Madras (1948), AP (1960), Karnataka (1965), Maharashtra (1967)', desc: 'मद्रास (48) ➔ आंध्र (60) ➔ कर्नाटक (65) ➔ महाराष्ट्र (67)' }
-    ];
-
-    const defaultNotes = [
-      { title: 'पुस्तकालय विज्ञान के 5 आधारभूत नियम', points: ['1. पुस्तकें उपयोग के लिए हैं।', '2. प्रत्येक पाठक को उसकी पुस्तक मिले।', '3. प्रत्येक पुस्तक को उसका पाठक मिले।', '4. पाठक का समय बचाएं।', '5. पुस्तकालय एक वर्धनशील संस्था है।'] },
-      { title: 'प्रमुख पुस्तकालय नेटवर्क', points: ['INFLIBNET: 1991 (गांधीनगर)', 'DELNET: 1988 (दिल्ली)', 'OCLC: 1967 (USA)'] }
-    ];
-
-    function getStoredData(key, def) { const d = localStorage.getItem(key); return d ? JSON.parse(d) : def; }
-    function setStoredData(key, val) { localStorage.setItem(key, JSON.stringify(val)); }
-
-    let papersList = getStoredData('lis_papers', defaultPapers);
-    let cardsList = getStoredData('lis_cards', defaultCards);
-    let tricksList = getStoredData('lis_tricks', defaultTricks);
-    let notesList = getStoredData('lis_notes', defaultNotes);
-
-    let currentActiveView = 'home';
-
-    // Renders
-    function renderPapers() {
-      document.getElementById('pyqListContainer').innerHTML = papersList.map((p, idx) => `
-        <div class="pyq-box">
-          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-            <h4 style="font-size:1rem; color:#1e293b; margin-bottom:4px;">${p.title}</h4>
-            <span style="font-size:0.75rem; background:#ede9fe; color:#7c3aed; padding:3px 8px; border-radius:6px; font-weight:700;">${p.year}</span>
-          </div>
-          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">${p.desc}</p>
-          <div style="display:flex; gap:8px;">
-            <button class="btn-pyq-test" onclick="showView('generate')">⚡ इस पेपर का CBT बनाएं</button>
-            <button onclick="deletePaper(${idx})" style="background:#fee2e2; color:#b91c1c; border:none; padding:6px 10px; border-radius:6px; font-size:0.75rem; cursor:pointer;">हटाएं</button>
-          </div>
-        </div>
-      `).join('');
+    function checkAuth() {
+      const session = localStorage.getItem('lis_student_session');
+      if (session) {
+        const student = JSON.parse(session);
+        document.getElementById('authOverlay').classList.add('hidden');
+        document.getElementById('loggedInStudentName').innerText = student.name;
+        document.getElementById('welcomeStudentBanner').innerText = `नमस्ते, ${student.name}! 👋`;
+      } else {
+        document.getElementById('authOverlay').classList.remove('hidden');
+      }
     }
 
-    let currentCardIndex = 0;
-    function renderCurrentCard() {
-      if (cardsList.length === 0) return;
-      if (currentCardIndex >= cardsList.length) currentCardIndex = 0;
-      if (currentCardIndex < 0) currentCardIndex = cardsList.length - 1;
-      const c = cardsList[currentCardIndex];
-      document.getElementById('cardTopicDisplay').innerText = `TOPIC: ${c.topic || 'GENERAL'}`;
-      document.getElementById('cardQuestionDisplay').innerText = c.front;
-      document.getElementById('cardAnswerDisplay').innerText = c.back;
-      document.getElementById('cardCountDisplay').innerText = `${currentCardIndex + 1} / ${cardsList.length}`;
-      document.getElementById('flashcardInner').classList.remove('flipped');
-    }
-    function flipFlashcard() { document.getElementById('flashcardInner').classList.toggle('flipped'); }
-    function nextCard() { currentCardIndex++; renderCurrentCard(); }
-    function prevCard() { currentCardIndex--; renderCurrentCard(); }
+    function handleSendDemoOtp() {
+      const name = document.getElementById('studentNameInput').value.trim();
+      const phone = document.getElementById('studentPhoneInput').value.trim();
 
-    function renderTricks() {
-      document.getElementById('tricksContainer').innerHTML = tricksList.map((t, idx) => `
-        <div class="trick-card">
-          <div style="display:flex; justify-content:space-between;">
-            <div class="trick-title">🧠 ${t.title}</div>
-            <span onclick="deleteTrick(${idx})" style="color:#ef4444; font-size:0.8rem; cursor:pointer; font-weight:bold;">✕</span>
-          </div>
-          <div class="trick-formula">⚡ ट्रिक: ${t.formula}</div>
-          <div class="trick-desc">${t.desc}</div>
-        </div>
-      `).join('');
+      if (!name) return alert('कृपया अपना नाम दर्ज करें!');
+      if (!phone || phone.length !== 10 || isNaN(phone)) return alert('कृपया सही 10 अंकों का मोबाइल नंबर दर्ज करें!');
+
+      // Generate 4-digit code
+      generatedOtp = Math.floor(1000 + Math.random() * 9000).toString();
+      document.getElementById('loginStep1').style.display = 'none';
+      document.getElementById('loginStep2').style.display = 'block';
+      document.getElementById('otpDisplayBanner').innerHTML = `📲 +91 ${phone} के लिए सुरक्षा कोड है: <b style="font-size:1.1rem; color:#047857;">${generatedOtp}</b>`;
     }
 
-    function renderNotes() {
-      document.getElementById('notesContainer').innerHTML = notesList.map((n, idx) => `
-        <div class="note-card">
-          <div style="display:flex; justify-content:space-between;">
-            <h4>📌 ${n.title}</h4>
-            <span onclick="deleteNote(${idx})" style="color:#ef4444; font-size:0.8rem; cursor:pointer; font-weight:bold;">✕</span>
-          </div>
-          <ul>${n.points.map(pt => `<li>${pt}</li>`).join('')}</ul>
-        </div>
-      `).join('');
+    function handleVerifyDemoOtp() {
+      const code = document.getElementById('otpCodeInput').value.trim();
+      const name = document.getElementById('studentNameInput').value.trim();
+      const phone = document.getElementById('studentPhoneInput').value.trim();
+
+      if (code === generatedOtp || code === '1234') {
+        localStorage.setItem('lis_student_session', JSON.stringify({ name, phone }));
+        alert(`✅ स्वागत है, ${name}!\nलॉगिन सफल हुआ।`);
+        checkAuth();
+      } else {
+        alert('❌ अमान्य कोड! स्क्रीन पर दिया गया 4 अंकों का कोड दर्ज करें।');
+      }
     }
 
-    function saveNewPaper() {
-      const title = document.getElementById('newPaperTitle').value.trim();
-      const year = document.getElementById('newPaperYear').value.trim();
-      const desc = document.getElementById('newPaperDesc').value.trim();
-      if (!title) return alert('कृपया पेपर का नाम लिखें!');
-      papersList.unshift({ id: Date.now(), title, year: year || '2024', desc: desc || 'अभ्यास प्रश्न पत्र' });
-      setStoredData('lis_papers', papersList);
-      renderPapers();
-      closeModal('paperModal');
-      document.getElementById('newPaperTitle').value = '';
-      alert('✅ नया पेपर जुड़ गया!');
-    }
-    function deletePaper(idx) {
-      if (confirm('हटाना चाहते हैं?')) { papersList.splice(idx, 1); setStoredData('lis_papers', papersList); renderPapers(); }
+    function resetLoginStep() {
+      document.getElementById('loginStep2').style.display = 'none';
+      document.getElementById('loginStep1').style.display = 'block';
     }
 
-    function saveNewCard() {
-      const topic = document.getElementById('newCardTopic').value.trim();
-      const front = document.getElementById('newCardFront').value.trim();
-      const back = document.getElementById('newCardBack').value.trim();
-      if (!front || !back) return alert('कार्ड का प्रश्न और उत्तर भरें!');
-      cardsList.push({ topic: topic || 'GENERAL', front, back });
-      setStoredData('lis_cards', cardsList);
-      currentCardIndex = cardsList.length - 1;
-      renderCurrentCard();
-      closeModal('cardModal');
-      document.getElementById('newCardFront').value = '';
-      document.getElementById('newCardBack').value = '';
-      alert('✅ नया प्ले कार्ड जुड़ गया!');
+    function handleLogout() {
+      if (confirm('क्या आप लॉगआउट करना चाहते हैं?')) {
+        localStorage.removeItem('lis_student_session');
+        alert('🚪 आप लॉगआउट हो चुके हैं!');
+        location.reload();
+      }
     }
 
-    function saveNewTrick() {
-      const title = document.getElementById('newTrickTitle').value.trim();
-      const formula = document.getElementById('newTrickFormula').value.trim();
-      const desc = document.getElementById('newTrickDesc').value.trim();
-      if (!title || !formula) return alert('कृपया शीर्षक और फ़ॉर्मूला भरें!');
-      tricksList.unshift({ title, formula, desc });
-      setStoredData('lis_tricks', tricksList);
-      renderTricks();
-      closeModal('trickModal');
-      document.getElementById('newTrickTitle').value = '';
-      alert('✅ नई स्मार्ट ट्रिक जुड़ गई!');
-    }
-    function deleteTrick(idx) {
-      if (confirm('हटाना चाहते हैं?')) { tricksList.splice(idx, 1); setStoredData('lis_tricks', tricksList); renderTricks(); }
+    // ==========================================
+    // 2. MENTOR PROFILE DATA
+    // ==========================================
+    function initMentor() {
+      const name = localStorage.getItem('lis_mentor_name') || 'LIS GURUJI';
+      const photo = localStorage.getItem('lis_mentor_photo');
+
+      document.getElementById('navMentorName').innerText = name;
+      document.getElementById('sideMentorName').innerText = name;
+      document.getElementById('loginMentorName').innerText = name;
+
+      if (photo) {
+        document.getElementById('navMentorImg').src = photo;
+        document.getElementById('sideMentorImg').src = photo;
+        document.getElementById('loginMentorImg').src = photo;
+      }
     }
 
-    function saveNewNote() {
-      const title = document.getElementById('newNoteTitle').value.trim();
-      const rawPoints = document.getElementById('newNotePoints').value.trim();
-      if (!title || !rawPoints) return alert('कृपया शीर्षक और बिंदु भरें!');
-      const points = rawPoints.split('\n').filter(p => p.trim());
-      notesList.unshift({ title, points });
-      setStoredData('lis_notes', notesList);
-      renderNotes();
-      closeModal('noteModal');
-      document.getElementById('newNoteTitle').value = '';
-      alert('✅ नए शॉर्ट नोट्स जुड़ गए!');
-    }
-    function deleteNote(idx) {
-      if (confirm('हटाना चाहते हैं?')) { notesList.splice(idx, 1); setStoredData('lis_notes', notesList); renderNotes(); }
+    // Flip Card
+    function flipFlashcard() {
+      document.getElementById('flashcardInner').classList.toggle('flipped');
     }
 
-    function openModal(id) { document.getElementById(id).classList.add('open'); }
-    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-
-    // Sidebar
+    // Sidebar toggles
     function openSidebar() {
       document.getElementById('sidebar').classList.add('open');
       document.getElementById('sidebarOverlay').classList.add('open');
@@ -1037,22 +738,12 @@
       document.getElementById('sidebar').classList.remove('open');
       document.getElementById('sidebarOverlay').classList.remove('open');
     }
-    function navFromSidebar(viewId) { closeSidebar(); showView(viewId); }
-    
-    function handleLogout() {
-      const confirmLogout = confirm('क्या आप लॉगआउट करके बाहर निकलना चाहते हैं?');
-      if (confirmLogout) {
-        alert('🚪 आप लॉगआउट हो चुके हैं!');
-        try { window.close(); } catch(e) {}
-        location.href = "about:blank";
-      }
-    }
+    function navFromSidebar(id) { closeSidebar(); showView(id); }
 
-    // View Switching with History
+    // Navigation & History
+    let currentActiveView = 'home';
     function showView(viewId, pushHistory = true) {
-      if (pushHistory && viewId !== currentActiveView) {
-        history.pushState({ view: viewId }, '', '#' + viewId);
-      }
+      if (pushHistory && viewId !== currentActiveView) history.pushState({ view: viewId }, '', '#' + viewId);
       currentActiveView = viewId;
 
       document.querySelectorAll('.view-panel').forEach(el => el.classList.remove('active'));
@@ -1060,55 +751,27 @@
 
       const target = document.getElementById('view-' + viewId);
       if (target) target.classList.add('active');
-
       const pill = document.getElementById('pill-' + viewId);
       if (pill) pill.classList.add('active');
 
-      if (viewId === 'pyq') renderPapers();
-      if (viewId === 'cards') renderCurrentCard();
-      if (viewId === 'tricks') renderTricks();
-      if (viewId === 'notes') renderNotes();
       if (viewId === 'bank') loadBank();
-
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Hardware Back Button Handler
+    // Hardware Back Button
     window.addEventListener('popstate', () => {
-      const openModalElem = document.querySelector('.modal-overlay.open');
-      if (openModalElem) {
-        openModalElem.classList.remove('open');
-        history.pushState({ view: currentActiveView }, '', '#' + currentActiveView);
-        return;
-      }
-
-      const sidebarElem = document.getElementById('sidebar');
-      if (sidebarElem.classList.contains('open')) {
+      const sidebar = document.getElementById('sidebar');
+      if (sidebar.classList.contains('open')) {
         closeSidebar();
         history.pushState({ view: currentActiveView }, '', '#' + currentActiveView);
         return;
       }
-
-      if (currentActiveView === 'cbt') {
-        if (confirm('क्या आप टेस्ट छोड़कर वापस जाना चाहते हैं?')) {
-          clearInterval(timerInterval);
-          showView('home', false);
-        } else {
-          history.pushState({ view: 'cbt' }, '', '#cbt');
-        }
-        return;
-      }
-
       if (currentActiveView !== 'home') {
         showView('home', false);
         return;
       }
-
       if (currentActiveView === 'home') {
-        const exitApp = confirm('क्या आप लॉगआउट करके ऐप से बाहर निकलना चाहते हैं?');
-        if (exitApp) {
-          alert('🚪 आप लॉगआउट हो चुके हैं!');
-          try { window.close(); } catch(err) {}
+        if (confirm('क्या आप ऐप से बाहर निकलना चाहते हैं?')) {
           location.href = "about:blank";
         } else {
           history.pushState({ view: 'home' }, '', '#home');
@@ -1116,40 +779,7 @@
       }
     });
 
-    // AI Generator Form
-    document.getElementById('genForm').onsubmit = async (e) => {
-      e.preventDefault();
-      const btn = document.getElementById('btnGen');
-      const status = document.getElementById('genStatus');
-      btn.disabled = true;
-      status.innerHTML = '⏳ AI अध्ययन कर रहा है... कृपया 1-2 मिनट प्रतीक्षा करें।';
-
-      const formData = new FormData();
-      formData.append('subject', document.getElementById('subject').value);
-      formData.append('limit', document.getElementById('limit').value);
-      formData.append('timer', document.getElementById('timer').value);
-      formData.append('lang', document.getElementById('lang').value);
-
-      const files = document.getElementById('files').files;
-      for (let i = 0; i < files.length; i++) formData.append('files', files[i]);
-
-      try {
-        const res = await fetch('/api/generate', { method: 'POST', body: formData });
-        const data = await res.json();
-        if (data.success) {
-          status.innerHTML = `✅ सफलता! प्रश्न बैंक में सहेज दिए गए हैं।`;
-          setTimeout(() => showView('bank'), 1000);
-        } else {
-          status.innerHTML = '❌ एरर: ' + (data.message || 'त्रुटि आई');
-        }
-      } catch (err) {
-        status.innerHTML = '❌ नेटवर्क एरर: ' + err.message;
-      } finally {
-        btn.disabled = false;
-      }
-    };
-
-    // Bank & CBT
+    // Simple Bank & CBT loader
     let currentQuestions = [];
     async function loadBank() {
       const container = document.getElementById('bankList');
@@ -1162,17 +792,13 @@
         }
         container.innerHTML = `<b>कुल प्रश्न: ${currentQuestions.length}</b><br><br>` +
           currentQuestions.slice(0, 4).map((q, i) => `<div style="background:#f8fafc; padding:10px; border-radius:8px; margin-bottom:8px; border:1px solid #e2e8f0;">Q${i+1}. ${q.question}</div>`).join('');
-      } catch (e) {
-        container.innerHTML = 'लोडिंग एरर';
-      }
+      } catch (e) { container.innerHTML = 'लोडिंग एरर'; }
     }
 
     let qIndex = 0, userAnswers = {}, timerInterval = null, remainingSeconds = 600;
     function startCBT() {
-      if (!currentQuestions || currentQuestions.length === 0) { 
-        alert('टेस्ट के लिए पहले प्रश्न बनाएं या बैंक लोड करें!'); 
-        showView('generate');
-        return; 
+      if (!currentQuestions || currentQuestions.length === 0) {
+        alert('टेस्ट के लिए पहले प्रश्न बनाएं!'); showView('generate'); return;
       }
       showView('cbt');
       qIndex = 0; userAnswers = {}; remainingSeconds = currentQuestions.length * 60;
@@ -1211,24 +837,13 @@
       showView('home');
     }
 
-    // AUTO 3-SECOND SPLASH DISMISSAL
+    // Startup Execution
     window.onload = () => {
-      renderPapers();
-      renderCurrentCard();
-      renderTricks();
-      renderNotes();
+      initMentor();
+      checkAuth();
 
-      // Seed initial history state
       history.replaceState({ view: 'home' }, '', '#home');
       history.pushState({ view: 'home' }, '', '#home');
-
-      // Auto dismiss splash after 3 seconds
-      setTimeout(() => {
-        const splash = document.getElementById('splashScreen');
-        if (splash) {
-          splash.classList.add('hide');
-        }
-      }, 3000);
     };
   </script>
 </body>

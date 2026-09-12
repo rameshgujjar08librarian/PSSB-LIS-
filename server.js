@@ -30,7 +30,7 @@ app.post('/api/generate-all', upload.array('files'), async (req, res) => {
   try {
     const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
-      return res.status(500).json({ success: false, message: 'API Key missing on server! Render पर GEMINI_API_KEY चेक करें।' });
+      return res.status(500).json({ success: false, message: 'API Key missing on server!' });
     }
 
     const { subject, limit, lang } = req.body;
@@ -109,3 +109,4 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+

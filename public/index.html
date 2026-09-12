@@ -222,12 +222,12 @@
     </div>
     <div class="sidebar-menu">
       <div style="padding:10px 20px; font-size:0.8rem; color:var(--text-muted); background:#f8fafc;">Student: <b id="loggedInStudentName" style="color:var(--primary);">...</b></div>
-      <div class="sidebar-item" onclick="navFromSidebar('home')"><span>🏠</span> मुख्य डैशबोर्ड</div>
+      <div class="sidebar-item" onclick="navFromSidebar('home')"><span>🏠</span> मुख्य Dashboard</div>
       <div class="sidebar-item" onclick="navFromSidebar('generate')"><span>➕</span> नया CBT Questions बनाएं</div>
       <div class="sidebar-item" onclick="navFromSidebar('pyq')"><span>📜</span> पिछले पेपर (PYQ Hub)</div>
       <div class="sidebar-item" onclick="navFromSidebar('cards')"><span>🗂️</span> Flash Cards</div>
-      <div class="sidebar-item" onclick="navFromSidebar('tricks')"><span>💡</span> स्मार्ट ट्रिक्स</div>
-      <div class="sidebar-item" onclick="navFromSidebar('notes')"><span>📝</span> शॉर्ट नोट्स</div>
+      <div class="sidebar-item" onclick="navFromSidebar('tricks')"><span>💡</span> Smart Tricks</div>
+      <div class="sidebar-item" onclick="navFromSidebar('notes')"><span>📝</span> Short Notes</div>
       <div class="sidebar-item" onclick="navFromSidebar('bank')"><span>📂</span> Question Bank</div>
       <div class="sidebar-item" onclick="navFromSidebar('syllabus')"><span>📖</span> सिलेबस</div>
     </div>
@@ -237,12 +237,12 @@
   </div>
 
   <div class="nav-options-bar">
-    <div class="nav-pill active" id="pill-home" onclick="showView('home')">🏠 डैशबोर्ड</div>
+    <div class="nav-pill active" id="pill-home" onclick="showView('home')">🏠 Dashboard</div>
     <div class="nav-pill" id="pill-generate" onclick="showView('generate')">➕ CBT Questions</div>
     <div class="nav-pill" id="pill-pyq" onclick="showView('pyq')">📜 PYQ Hub</div>
     <div class="nav-pill" id="pill-cards" onclick="showView('cards')">🗂️ Flash Cards</div>
-    <div class="nav-pill" id="pill-tricks" onclick="showView('tricks')">💡 ट्रिक्स</div>
-    <div class="nav-pill" id="pill-notes" onclick="showView('notes')">📝 नोट्स</div>
+    <div class="nav-pill" id="pill-tricks" onclick="showView('tricks')">💡 Tricks</div>
+    <div class="nav-pill" id="pill-notes" onclick="showView('notes')">📝 Notes</div>
     <div class="nav-pill" id="pill-bank" onclick="showView('bank')">📂 बैंक</div>
   </div>
 
@@ -256,7 +256,7 @@
         <div class="matrix-card" onclick="showView('generate')" style="border-top:3px solid var(--accent);">
           <div class="matrix-icon-box" style="background:linear-gradient(135deg, #2563eb, #3b82f6);">🤖</div>
           <h3>नया CBT Questions बनाएं</h3>
-          <p>1 PDF से सवाल, नोट्स व कार्ड्स</p>
+          <p>1 PDF से सवाल, Notes व कार्ड्स</p>
         </div>
         <div class="matrix-card" onclick="showView('pyq')" style="border-top:3px solid var(--purple);">
           <div class="matrix-icon-box" style="background:linear-gradient(135deg, #7c3aed, #a855f7);">🏛️</div>
@@ -297,11 +297,11 @@
     </div>
 
     <div id="view-generate" class="view-panel">
-      <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
+      <button class="back-home-btn" onclick="showView('home')">← Dashboard</button>
       <div class="card">
         <div class="card-title"><span>📄 नया CBT Questions बनाएं (All-in-One)</span></div>
         <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:12px;">
-          PDF, Word या 📷 नोट्स की फ़ोटो डालें—यह स्वचालित रूप से <b>सवाल, नोट्स, ट्रिक्स और Flash Cards</b> में डेटा भर देगा।
+          PDF, Word या 📷 Notes की फ़ोटो डालें—यह स्वचालित रूप से <b>सवाल, Notes, Tricks और Flash Cards</b> में डेटा भर देगा।
         </p>
         <form id="genForm">
           <div style="margin-bottom:12px;">
@@ -342,7 +342,7 @@
 
     <!-- PYQ HUB WITH UNLIMITED / SELF / CUSTOM TIMING -->
     <div id="view-pyq" class="view-panel">
-      <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
+      <button class="back-home-btn" onclick="showView('home')">← Dashboard</button>
       <div class="card">
         <div class="card-title"><span>📜 पिछले वर्षों के प्रश्न पत्र (PYQ Hub)</span></div>
         <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:12px;">
@@ -390,7 +390,7 @@
     </div>
 
     <div id="view-cards" class="view-panel">
-      <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
+      <button class="back-home-btn" onclick="showView('home')">← Dashboard</button>
       <div class="card">
         <div class="card-title"><span>🗂️ Flash Cards (Swipeable)</span></div>
         <div class="flashcard-stage">
@@ -417,9 +417,9 @@
     </div>
 
     <div id="view-tricks" class="view-panel">
-      <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
+      <button class="back-home-btn" onclick="showView('home')">← Dashboard</button>
       <div class="card">
-        <div class="card-title"><span>💡 स्मार्ट ट्रिक्स</span></div>
+        <div class="card-title"><span>💡 Smart Tricks</span></div>
         <div id="tricksContainer">
           <div class="trick-box">
             <div style="font-weight:800; color:#92400e;">PMEST सूत्र</div>
@@ -431,9 +431,9 @@
     </div>
 
     <div id="view-notes" class="view-panel">
-      <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
+      <button class="back-home-btn" onclick="showView('home')">← Dashboard</button>
       <div class="card">
-        <div class="card-title"><span>📝 शॉर्ट नोट्स</span></div>
+        <div class="card-title"><span>📝 Short Notes</span></div>
         <div id="notesContainer">
           <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-left:5px solid #16a34a; border-radius:12px; padding:14px;">
             <h4 style="color:#166534; font-weight:800;">📌 पुस्तकालय विज्ञान के 5 नियम</h4>
@@ -450,7 +450,7 @@
     </div>
 
     <div id="view-bank" class="view-panel">
-      <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
+      <button class="back-home-btn" onclick="showView('home')">← Dashboard</button>
       <div class="card">
         <div class="card-title"><span>📂 Question Bank</span></div>
         <div id="bankList">Loading...</div>
@@ -459,7 +459,7 @@
     </div>
 
     <div id="view-syllabus" class="view-panel">
-      <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
+      <button class="back-home-btn" onclick="showView('home')">← Dashboard</button>
       <div class="card">
         <div class="card-title"><span>📚 LIS सिलेबस</span></div>
         <ul style="line-height: 1.8; padding-left: 20px; font-size: 0.92rem;">

@@ -147,7 +147,7 @@
       <div class="splash-name">
         <span id="splashName">RAMESH GUJJAR</span>
       </div>
-      <div class="splash-subtitle">संस्थापक एवं मार्गदर्शक • Library & Info Science</div>
+      <div class="splash-subtitle">Founder एवं मार्गदर्शक • Library & Info Science</div>
       <div class="splash-slogan-box">
         <h2>"स्मार्ट पढ़ाई, उज्ज्वल भविष्य।"</h2>
         <p>⚡ AI संचालित आधुनिक CBT पोर्टल</p>
@@ -168,11 +168,11 @@
         <div class="login-mentor-info">
           <h3>LIS GURUJI</h3>
           <p id="loginMentorSubName">RAMESH GUJJAR</p>
-          <span>संस्थापक एवं मेंटर</span>
+          <span>Founder एवं मेंटर</span>
         </div>
       </div>
       <div id="loginStep1">
-        <h2 style="font-size:1.2rem; font-weight:800;">विद्यार्थी लॉगिन</h2>
+        <h2 style="font-size:1.2rem; font-weight:800;">Student Login</h2>
         <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:14px;">विवरण दर्ज करें</p>
         <input type="text" id="studentNameInput" class="input-box" placeholder="पूरा नाम" required>
         <input type="tel" id="studentPhoneInput" class="input-box" placeholder="10 अंकों का मोबाइल नंबर" maxlength="10" required>
@@ -219,7 +219,7 @@
       </div>
     </div>
     <div class="sidebar-menu">
-      <div style="padding:10px 20px; font-size:0.8rem; color:var(--text-muted); background:#f8fafc;">विद्यार्थी: <b id="loggedInStudentName" style="color:var(--primary);">...</b></div>
+      <div style="padding:10px 20px; font-size:0.8rem; color:var(--text-muted); background:#f8fafc;">Student: <b id="loggedInStudentName" style="color:var(--primary);">...</b></div>
       <div class="sidebar-item" onclick="navFromSidebar('home')"><span>🏠</span> मुख्य डैशबोर्ड</div>
       <div class="sidebar-item" onclick="navFromSidebar('generate')"><span>➕</span> नया AI टेस्ट बनाएं</div>
       <div class="sidebar-item" onclick="navFromSidebar('pyq')"><span>📜</span> पिछले पेपर (PYQ Hub)</div>
@@ -230,7 +230,7 @@
       <div class="sidebar-item" onclick="navFromSidebar('syllabus')"><span>📖</span> सिलेबस</div>
     </div>
     <div style="padding:14px 18px; border-top:1px solid #e2e8f0;">
-      <button onclick="handleLogout()" style="width:100%; padding:10px; background:#fee2e2; color:#b91c1c; border:1px solid #fecaca; border-radius:8px; font-weight:700; cursor:pointer;">🚪 लॉगआउट</button>
+      <button onclick="handleLogout()" style="width:100%; padding:10px; background:#fee2e2; color:#b91c1c; border:1px solid #fecaca; border-radius:8px; font-weight:700; cursor:pointer;">🚪 Logout</button>
     </div>
   </div>
 
@@ -247,7 +247,7 @@
   <div class="container">
     <div id="view-home" class="view-panel active">
       <div style="background:linear-gradient(135deg, #1e3a8a, #2563eb); color:white; border-radius:16px; padding:16px; margin-bottom:16px;">
-        <h3 id="welcomeStudentBanner" style="font-size:1.15rem; font-weight:800;">नमस्ते, विद्यार्थी! 👋</h3>
+        <h3 id="welcomeStudentBanner" style="font-size:1.15rem; font-weight:800;">नमस्ते, Student! 👋</h3>
         <p style="font-size:0.8rem; opacity:0.9;">RAMESH GUJJAR LIS Study Portal</p>
       </div>
       <div class="dashboard-matrix">
@@ -390,7 +390,7 @@
     <div id="view-cards" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
-        <div class="card-title"><span>🃏 प्ले कार्ड्स (Swipeable)</span></div>
+        <div class="card-title"><span>🗂️ Flash Cards (Swipeable)</span></div>
         <div class="flashcard-stage">
           <div class="flashcard-container" id="swipeCardContainer">
             <div class="flashcard-inner" id="flashcardInner">
@@ -451,7 +451,7 @@
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
         <div class="card-title"><span>📂 क्वेश्चन बैंक</span></div>
-        <div id="bankList">लोड हो रहा है...</div>
+        <div id="bankList">Loading...</div>
         <button onclick="startCBT()" class="btn-action" style="margin-top:14px; background:var(--success);">🎯 CBT मॉक टेस्ट शुरू करें</button>
       </div>
     </div>
@@ -483,7 +483,7 @@
         <div style="display:flex; justify-content:space-between; gap:10px; margin-top:16px;">
           <button onclick="prevQuestion()" style="flex:1; padding:10px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700;">← पिछला</button>
           <button onclick="nextQuestion()" style="flex:1; padding:10px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700;">अगला →</button>
-          <button onclick="finishCBT()" style="flex:1; padding:10px; border-radius:8px; background:var(--success); color:white; border:none; font-weight:800;">सबमिट</button>
+          <button onclick="finishCBT()" style="flex:1; padding:10px; border-radius:8px; background:var(--success); color:white; border:none; font-weight:800;">Submit</button>
         </div>
       </div>
     </div>
@@ -563,7 +563,7 @@
     }
 
     function handleLogout() {
-      if (confirm('लॉगआउट करना चाहते हैं?')) {
+      if (confirm('Logout करना चाहते हैं?')) {
         localStorage.removeItem('lis_student_session');
         location.reload();
       }
@@ -641,7 +641,7 @@
           container.innerHTML = '<p style="color:#64748b;">अभी कोई प्रश्न नहीं है।</p>';
           return;
         }
-        container.innerHTML = `<b>कुल प्रश्न: ${currentQuestions.length}</b><br><br>` +
+        container.innerHTML = `<b>Total Questions: ${currentQuestions.length}</b><br><br>` +
           currentQuestions.slice(0, 5).map((q, i) => `<div style="background:#f8fafc; padding:10px; border-radius:8px; margin-bottom:8px; border:1px solid #e2e8f0;"><b>Q${i+1}.</b> ${q.question}</div>`).join('');
       } catch (e) { container.innerHTML = 'लोडिंग एरर'; }
     }
@@ -745,7 +745,7 @@
       const btn = document.getElementById('btnGen');
       const status = document.getElementById('genStatus');
       btn.disabled = true;
-      status.innerText = '⏳ AI डेटा जनरेट कर रहा है, कृपया प्रतीक्षा करें...';
+      status.innerText = '⏳ AI डेटा जनरेट कर रहा है, Please wait...';
       status.style.color = '#2563eb';
 
       const formData = new FormData(this);

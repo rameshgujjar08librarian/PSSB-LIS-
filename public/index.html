@@ -142,7 +142,7 @@
         <h1>LIS GURUJI</h1>
       </div>
       <div class="splash-photo-wrap">
-        <img id="splashPhoto" class="splash-photo" src="https://api.dicebear.com/7.x/bottts/svg?seed=RameshGujjarOfficial" alt="RAMESH GUJJAR">
+        <img id="splashPhoto" class="splash-photo" src="profile.jpg" alt="RAMESH GUJJAR">
       </div>
       <div class="splash-name">
         <span id="splashName">RAMESH GUJJAR</span>
@@ -164,7 +164,7 @@
   <div id="authOverlay" class="hidden">
     <div class="login-card">
       <div class="login-mentor-badge">
-        <img class="login-mentor-img" id="loginMentorImg" src="https://api.dicebear.com/7.x/bottts/svg?seed=RameshGujjarOfficial" alt="RAMESH GUJJAR">
+        <img class="login-mentor-img" id="loginMentorImg" src="profile.jpg" alt="RAMESH GUJJAR">
         <div class="login-mentor-info">
           <h3>LIS GURUJI</h3>
           <p id="loginMentorSubName">RAMESH GUJJAR</p>
@@ -197,7 +197,7 @@
       </div>
     </div>
     <div class="nav-mentor-profile" onclick="openSidebar()">
-      <img id="navMentorImg" class="mentor-header-photo" src="https://api.dicebear.com/7.x/bottts/svg?seed=RameshGujjarOfficial" alt="RAMESH GUJJAR">
+      <img id="navMentorImg" class="mentor-header-photo" src="profile.jpg" alt="RAMESH GUJJAR">
       <div class="mentor-header-text">
         <div class="top-title">LIS GURUJI</div>
         <div class="bot-name" id="navMentorName">RAMESH GUJJAR</div>
@@ -211,7 +211,7 @@
     <div class="sidebar-header">
       <button onclick="closeSidebar()" style="position:absolute; top:12px; right:12px; background:none; border:none; color:white; font-size:20px; cursor:pointer;">✕</button>
       <div style="display:flex; align-items:center; gap:12px;">
-        <img id="sideMentorImg" src="https://api.dicebear.com/7.x/bottts/svg?seed=RameshGujjarOfficial" style="width:52px; height:52px; border-radius:50%; border:2px solid #f59e0b; background:white; object-fit:cover;">
+        <img id="sideMentorImg" src="profile.jpg" style="width:52px; height:52px; border-radius:50%; border:2px solid #f59e0b; background:white; object-fit:cover;">
         <div>
           <h3 id="sideMentorName" style="font-size:1.05rem; font-weight:800;">RAMESH GUJJAR</h3>
           <p id="sideMentorPhone" style="font-size:0.75rem; color:#fde68a;">9549700557</p>
@@ -498,7 +498,7 @@
         localStorage.setItem('lis_mentor_name', 'RAMESH GUJJAR');
       }
       const phone = localStorage.getItem('lis_mentor_phone') || '9549700557';
-      const photo = localStorage.getItem('lis_mentor_photo') || 'https://api.dicebear.com/7.x/bottts/svg?seed=RameshGujjarOfficial';
+      const photo = "profile.jpg"; localStorage.setItem("lis_mentor_photo", "profile.jpg");
 
       const nameEls = ['splashName', 'navMentorName', 'sideMentorName', 'loginMentorSubName'];
       nameEls.forEach(id => { const el = document.getElementById(id); if (el) el.innerText = name; });
@@ -509,7 +509,7 @@
         const img = document.getElementById(id); 
         if (img) {
           img.src = photo;
-          img.onerror = function() { this.src = 'https://api.dicebear.com/7.x/bottts/svg?seed=RameshGujjarOfficial'; };
+          img.onerror = function() { this.src = 'profile.jpg'; };
         }
       });
     }

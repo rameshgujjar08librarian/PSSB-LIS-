@@ -26,67 +26,36 @@ function fileToGenerativePart(file) {
   };
 }
 
-// 1 PDF GENERATES EVERYTHING INTO ITS RESPECTIVE PLACE
 app.post('/api/generate', upload.array('files'), async (req, res) => {
   try {
     const { subject, limit, lang } = req.body;
     const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
-    const prompt = `You are a premier Library Science competitive exam mentor for RAMESH GUJJAR LIS Portal.
-Analyze the attached documents thoroughly. From this single study material, generate a complete 5-in-1 study pack on "${subject}" in ${lang === 'en' ? 'English' : 'Hindi Devanagari'}.
+    let prompt = `You are a premier Library Science exam expert for RAMESH GUJJAR LIS Portal.
+Analyze the attached documents thoroughly and create ${limit === 'max' ? 'up to 20' : limit} high-quality MCQs on "${subject}".
+Language: ${lang === 'hi' ? 'Hindi Devanagari' : 'English'}.
 
-Return ONLY a raw valid JSON object without markdown formatting or backticks:
-{
-  "questions": [
-    {
-      "question": "Question text",
-      "options": ["Opt A", "Opt B", "Opt C", "Opt D"],
-      "correctAnswer": 0,
-      "explanation": "Brief explanation"
-    }
-  ],
-  "note": {
-    "title": "Topic Heading",
-    "summary": "Quick summary",
-    "mermaidDiagram": "graph TD\\n  A[Main Topic] --> B[Branch 1]\\n  A --> C[Branch 2]",
-    "points": ["Key point 1", "Key point 2", "Key point 3", "Key point 4"]
-  },
-  "shortNote": {
-    "title": "Topic Key Summary",
-    "points": ["Micro bullet 1", "Micro bullet 2", "Micro bullet 3"],
-    "keyTable": [
-      {"concept": "Act / Term", "detail": "Year / Detail"}
-    ]
-  },
-  "tricks": [
-    {
-      "title": "Mnemonic Rule",
-      "formula": "Code / Shortcut",
-      "desc": "How to remember"
-    }
-  ],
-  "playCards": [
-    {
-      "topic": "Topic Name",
-      "front": "Question or challenge",
-      "back": "Exact answer and year"
-    }
-  ]
-}`;
+Return ONLY a valid raw JSON array of objects without markdown formatting or backticks:
+[
+  {
+    "question": "Question text",
+    "options": ["Option A", "Option B", "Option C", "Option D"],
+    "correctAnswer": 0,
+    "explanation": "Brief explanation"
+  }
+]`;
 
     const fileParts = (req.files || []).map(fileToGenerativePart);
     const result = await model.generateContent([prompt, ...fileParts]);
     let text = result.response.text().trim();
     text = text.replace(/```json/gi, '').replace(/```/g, '').trim();
 
-    const data = JSON.parse(text);
-    if (data.questions && Array.isArray(data.questions)) {
-      data.questions.forEach(q => { q.subject = subject; questionBank.unshift(q); });
-    }
+    const questions = JSON.parse(text);
+    questions.forEach(q => { q.subject = subject; questionBank.unshift(q); });
 
-    res.json({ success: true, data });
+    res.json({ success: true, questionsCount: questions.length, questions });
   } catch (err) {
-    console.error('All-in-One generation error:', err);
+    console.error('Error generating MCQs:', err);
     res.status(500).json({ success: false, message: err.message });
   }
 });

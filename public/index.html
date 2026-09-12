@@ -349,7 +349,7 @@
         विद्यार्थी: <b id="loggedInStudentName" style="color:var(--primary);">...</b>
       </div>
       <div class="sidebar-item" onclick="navFromSidebar('home')"><span>🏠</span> मुख्य डैशबोर्ड</div>
-      <div class="sidebar-item" onclick="navFromSidebar('generate')"><span>➕</span> नया AI टेस्ट बनाएं (All-in-One)</div>
+      <div class="sidebar-item" onclick="navFromSidebar('generate')"><span>➕</span> नया AI टेस्ट बनाएं</div>
       <div class="sidebar-item" onclick="navFromSidebar('pyq')"><span>📜</span> पिछले पेपर (PYQ Hub)</div>
       <div class="sidebar-item" onclick="navFromSidebar('cards')"><span>🃏</span> स्मार्ट प्ले कार्ड्स (Flashcards)</div>
       <div class="sidebar-item" onclick="navFromSidebar('tricks')"><span>💡</span> स्मार्ट लर्निंग ट्रिक्स</div>
@@ -393,7 +393,7 @@
         <div class="matrix-card" onclick="showView('generate')" style="border-top:3px solid var(--accent);">
           <div class="matrix-icon-box" style="background:linear-gradient(135deg, #2563eb, #3b82f6);">🤖</div>
           <h3>नया AI टेस्ट बनाएं</h3>
-          <p>1 PDF से सवाल, नोट्स, ट्रिक्स व कार्ड्स बनाएं</p>
+          <p>1 PDF से सवाल, नोट्स व कार्ड्स बनाएं</p>
         </div>
 
         <div class="matrix-card" onclick="showView('pyq')" style="border-top:3px solid var(--purple);">
@@ -440,25 +440,29 @@
       </div>
     </div>
 
-    <!-- VIEW 2: ORIGINAL "नया AI टेस्ट बनाएं" (ENHANCED TO FILL EVERYTHING FROM 1 PDF) -->
+    <!-- VIEW 2: ORIGINAL "नया AI टेस्ट बनाएं" -->
     <div id="view-generate" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
       <div class="card">
         <div class="card-title">
-          <span>📄 1 PDF से सब कुछ बनाएं (All-in-One Generator)</span>
+          <span>📄 सामग्री से प्रश्न बनाएं और बैंक में जोड़ें</span>
         </div>
-        <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:14px;">
-          बस 1 फ़ाइल अपलोड करें—AI स्वचालित रूप से <b>सवाल बैंक, विस्तृत नोट्स (with Flowchart), शॉर्ट नोट्स, ट्रिक्स और प्ले कार्ड्स</b> सभी पेजों में अपने-आप जोड़ देगा।
-        </p>
-
         <form id="genForm">
           <div style="margin-bottom:12px;">
             <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">विषय (Subject):</label>
-            <input type="text" id="subject" class="input-box" value="Library & Information Science" required>
+            <input type="text" id="subject" class="input-box" value="Library Science" required>
           </div>
           <div style="margin-bottom:12px;">
             <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">Study Material (PDF, Word या 📷 नोट्स की फ़ोटो):</label>
             <input type="file" id="files" class="input-box" multiple accept=".pdf,.doc,.docx,image/*" required>
+          </div>
+          <div style="margin-bottom:12px;">
+            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">प्रश्नों की संख्या:</label>
+            <select id="limit" class="input-box">
+              <option value="max">🔥 अधिकतम संभव (पूरा निचोड़)</option>
+              <option value="10">10 प्रश्न</option>
+              <option value="20">20 प्रश्न</option>
+            </select>
           </div>
           <div style="margin-bottom:14px;">
             <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">भाषा:</label>
@@ -468,14 +472,14 @@
             </select>
           </div>
           <button type="submit" id="btnGen" class="btn-action">
-            🚀 1-क्लिक में सब कुछ बनाएं (Generate All)
+            🚀 Generate & Save to Bank
           </button>
         </form>
         <div id="genStatus" style="margin-top:12px; font-weight:800; font-size:0.88rem; text-align:center;"></div>
       </div>
     </div>
 
-    <!-- VIEW 3: PYQ PAPERS (WITH ADD PAPER MODAL) -->
+    <!-- VIEW 3: PYQ PAPERS -->
     <div id="view-pyq" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
       <div class="card">
@@ -489,7 +493,7 @@
       </div>
     </div>
 
-    <!-- VIEW 4: SWIPEABLE FLASHCARDS (PLAY CARDS) -->
+    <!-- VIEW 4: SWIPEABLE FLASHCARDS -->
     <div id="view-cards" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
       <div class="card">
@@ -542,7 +546,7 @@
       </div>
     </div>
 
-    <!-- VIEW 6: SHORT NOTES & DIAGRAMS -->
+    <!-- VIEW 6: SHORT NOTES -->
     <div id="view-notes" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
       <div class="card">
@@ -604,7 +608,7 @@
 
   </div>
 
-  <!-- MODALS: FOR MANUAL ADDITIONS -->
+  <!-- MODALS -->
   <div class="modal-overlay" id="paperModal">
     <div class="modal-content">
       <h3 style="margin-bottom:12px; color:var(--primary);">➕ नया पेपर जोड़ें</h3>
@@ -657,34 +661,22 @@
   </div>
 
   <script>
-    // 1. BRANDING & PROFILE SYNC
     function initMentor() {
       let name = localStorage.getItem('lis_mentor_name');
       if (!name || name === 'LIS GURUJI') {
         name = 'RAMESH GUJJAR';
         localStorage.setItem('lis_mentor_name', 'RAMESH GUJJAR');
       }
-
       const phone = localStorage.getItem('lis_mentor_phone') || '+91 9876543210';
       const photo = localStorage.getItem('lis_mentor_photo');
 
       const nameEls = ['splashName', 'navMentorName', 'sideMentorName'];
-      nameEls.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.innerText = name;
-      });
-
+      nameEls.forEach(id => { const el = document.getElementById(id); if (el) el.innerText = name; });
       const phoneEls = ['splashPhone', 'sideMentorPhone'];
-      phoneEls.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.innerText = phone;
-      });
-
+      phoneEls.forEach(id => { const el = document.getElementById(id); if (el) el.innerText = phone; });
       if (photo) {
-        const imgEls = ['splashPhoto', 'navMentorImg', 'sideMentorImg', 'loginMentorImg'];
-        imgEls.forEach(id => {
-          const img = document.getElementById(id);
-          if (img) img.src = photo;
+        ['splashPhoto', 'navMentorImg', 'sideMentorImg', 'loginMentorImg'].forEach(id => {
+          const img = document.getElementById(id); if (img) img.src = photo;
         });
       }
     }
@@ -694,7 +686,7 @@
       const curPhone = localStorage.getItem('lis_mentor_phone') || '+91 9876543210';
       const nName = prompt('अपना पूरा नाम दर्ज करें:', curName);
       if (nName && nName.trim()) localStorage.setItem('lis_mentor_name', nName.trim());
-      const nPhone = prompt('अपना मोबाइल नंबर (WhatsApp) दर्ज करें:', curPhone);
+      const nPhone = prompt('अपना मोबाइल नंबर दर्ज करें:', curPhone);
       if (nPhone && nPhone.trim()) localStorage.setItem('lis_mentor_phone', nPhone.trim());
       initMentor();
     }
@@ -706,13 +698,12 @@
         r.onload = (e) => {
           localStorage.setItem('lis_mentor_photo', e.target.result);
           initMentor();
-          alert('✅ आपकी फ़ोटो सफलतापूर्वक सेव हो गई है!');
+          alert('✅ फ़ोटो सेव हो गई!');
         };
         r.readAsDataURL(f);
       }
     }
 
-    // 2. WELCOME SPLASH & LOGIN TRANSITION
     let splashDismissed = false;
     function dismissSplash() {
       if (splashDismissed) return;
@@ -738,13 +729,12 @@
     function handleSendDemoOtp() {
       const name = document.getElementById('studentNameInput').value.trim();
       const phone = document.getElementById('studentPhoneInput').value.trim();
-      if (!name) return alert('कृपया अपना नाम दर्ज करें!');
-      if (!phone || phone.length !== 10) return alert('कृपया 10 अंकों का मोबाइल नंबर दर्ज करें!');
-
+      if (!name) return alert('नाम दर्ज करें!');
+      if (!phone || phone.length !== 10) return alert('10 अंकों का नंबर दर्ज करें!');
       generatedOtp = Math.floor(1000 + Math.random() * 9000).toString();
       document.getElementById('loginStep1').style.display = 'none';
       document.getElementById('loginStep2').style.display = 'block';
-      document.getElementById('otpDisplayBanner').innerHTML = `📲 +91 ${phone} के लिए सुरक्षा कोड है: <b style="font-size:1.1rem; color:#047857;">${generatedOtp}</b>`;
+      document.getElementById('otpDisplayBanner').innerHTML = `📲 कोड: <b>${generatedOtp}</b>`;
     }
 
     function handleVerifyDemoOtp() {
@@ -753,38 +743,31 @@
       const phone = document.getElementById('studentPhoneInput').value.trim();
       if (code === generatedOtp || code === '1234') {
         localStorage.setItem('lis_student_session', JSON.stringify({ name, phone }));
-        alert(`✅ स्वागत है, ${name}!\nलॉगिन सफल हुआ।`);
         checkAuth();
       } else {
-        alert('❌ अमान्य कोड!');
+        alert('अमान्य कोड!');
       }
     }
 
     function handleLogout() {
-      if (confirm('क्या आप लॉगआउट करना चाहते हैं?')) {
+      if (confirm('लॉगआउट करना चाहते हैं?')) {
         localStorage.removeItem('lis_student_session');
         location.reload();
       }
     }
 
-    // 3. PERSISTENT STORAGE FOR ALL SUB-SECTIONS
     const defaultPapers = [
       { id: 1, title: 'UGC NET Library & Information Science', year: 'Dec 2023 Official', desc: 'कुल प्रश्न: 100 | NTA Solved Paper' },
       { id: 2, title: 'RSMSSB Librarian Grade-III', year: '2022 Solved', desc: 'राजस्थान कर्मचारी चयन बोर्ड हल प्रश्न पत्र' }
     ];
     const defaultCards = [
-      { topic: 'LAWS OF LIBRARY', front: 'पुस्तकालय विज्ञान के 5 नियम कब प्रतिपादित और कब प्रकाशित हुए?', back: 'प्रतिपादित: 1928 (अन्नामलाई नगर)\nपुस्तक प्रकाशित: 1931' },
-      { topic: 'CLASSIFICATION', front: 'DDC का प्रथम संस्करण कब और किसके द्वारा आया?', back: '1876 में मेलविल डेवी (कुल 44 पृष्ठ)' }
+      { topic: 'LAWS OF LIBRARY', front: 'पुस्तकालय विज्ञान के 5 नियम कब प्रतिपादित हुए?', back: '1928 में अन्नामलाई नगर में' }
     ];
     const defaultTricks = [
-      { title: 'PMEST सूत्र (रंगनाथन के 5 मौलिक श्रेणियां)', formula: 'P = Personality, M = Matter, E = Energy, S = Space, T = Time', desc: 'समय सबसे अधिक ठोस और व्यक्तित्व सबसे सूक्ष्म होता है।' },
-      { title: 'प्रथम चार पुस्तकालय अधिनियम', formula: 'MAD = Madras (1948), AP (1960), Karnataka (1965), Maharashtra (1967)', desc: 'क्रम याद रखें: मद्रास ➔ आंध्र ➔ कर्नाटक ➔ महाराष्ट्र' }
+      { title: 'PMEST सूत्र', formula: 'Personality, Matter, Energy, Space, Time', desc: 'रंगनाथन की मौलिक श्रेणियां' }
     ];
     const defaultNotes = [
-      {
-        title: 'पुस्तकालय विज्ञान के 5 आधारभूत नियम',
-        points: ['1. पुस्तकें उपयोग के लिए हैं।', '2. प्रत्येक पाठक को उसकी पुस्तक मिले।', '3. प्रत्येक पुस्तक को उसका पाठक मिले।', '4. पाठक का समय बचाएं।', '5. पुस्तकालय एक वर्धनशील संस्था है।']
-      }
+      { title: 'पुस्तकालय विज्ञान के 5 नियम', points: ['1. Books are for use.', '2. Every reader his/her book.', '3. Every book its reader.', '4. Save the time of the reader.', '5. Library is a growing organism.'] }
     ];
 
     function getStore(k, d) { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }
@@ -795,22 +778,17 @@
     let tricksList = getStore('lis_tricks', defaultTricks);
     let notesList = getStore('lis_notes', defaultNotes);
 
-    // Render Sub-Views
     function renderPapers() {
       document.getElementById('pyqListContainer').innerHTML = papersList.map((p, idx) => `
         <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:14px; margin-bottom:12px;">
-          <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-            <h4 style="font-size:1rem; color:#1e293b; margin-bottom:4px;">${p.title}</h4>
-            <span style="font-size:0.75rem; background:#ede9fe; color:#7c3aed; padding:3px 8px; border-radius:6px; font-weight:700;">${p.year}</span>
-          </div>
-          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">${p.desc}</p>
+          <h4 style="font-size:1rem; color:#1e293b;">${p.title} (${p.year})</h4>
+          <p style="font-size:0.8rem; color:#64748b; margin:4px 0 8px;">${p.desc}</p>
           <button onclick="showView('generate')" style="background:var(--purple); color:white; border:none; padding:6px 12px; border-radius:6px; font-size:0.8rem; font-weight:700; cursor:pointer;">⚡ इस पेपर का CBT बनाएं</button>
         </div>
       `).join('');
     }
 
     let currentCardIndex = 0;
-    let isSwiping = false;
     function renderCurrentCard() {
       if (cardsList.length === 0) return;
       if (currentCardIndex >= cardsList.length) currentCardIndex = 0;
@@ -823,33 +801,9 @@
       document.getElementById('flashcardInner').classList.remove('flipped');
     }
     function flipCard() { document.getElementById('flashcardInner').classList.toggle('flipped'); }
-    function nextCard() {
-      if (isSwiping) return;
-      swipeAnim('left', () => { currentCardIndex = (currentCardIndex + 1) % cardsList.length; renderCurrentCard(); });
-    }
-    function prevCard() {
-      if (isSwiping) return;
-      swipeAnim('right', () => { currentCardIndex = (currentCardIndex - 1 + cardsList.length) % cardsList.length; renderCurrentCard(); });
-    }
-    function swipeAnim(dir, cb) {
-      isSwiping = true;
-      const el = document.getElementById('flashcardInner');
-      el.style.transition = 'transform 0.22s ease, opacity 0.22s ease';
-      el.style.transform = dir === 'left' ? 'translateX(-120%) rotate(-10deg)' : 'translateX(120%) rotate(10deg)';
-      el.style.opacity = '0';
-      setTimeout(() => {
-        cb();
-        el.style.transition = 'none';
-        el.style.transform = dir === 'left' ? 'translateX(70%) scale(0.92)' : 'translateX(-70%) scale(0.92)';
-        el.style.opacity = '0';
-        setTimeout(() => {
-          el.style.transition = 'transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.25s ease';
-          el.style.transform = 'translateX(0) scale(1)';
-          el.style.opacity = '1';
-          setTimeout(() => { isSwiping = false; }, 250);
-        }, 30);
-      }, 220);
-    }
+    function nextCard() { currentCardIndex = (currentCardIndex + 1) % cardsList.length; renderCurrentCard(); }
+    function prevCard() { currentCardIndex = (currentCardIndex - 1 + cardsList.length) % cardsList.length; renderCurrentCard(); }
+
     function initSwipe() {
       const box = document.getElementById('swipeCardContainer');
       let sx = 0, sy = 0, ex = 0, ey = 0;
@@ -858,109 +812,41 @@
         ex = e.changedTouches[0].clientX; ey = e.changedTouches[0].clientY;
         const dx = ex - sx, dy = ey - sy;
         if (Math.abs(dx) < 20 && Math.abs(dy) < 20) flipCard();
-        else if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
-          if (dx < 0) nextCard(); else prevCard();
-        }
+        else if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) { if (dx < 0) nextCard(); else prevCard(); }
       }, { passive: true });
     }
 
     function renderTricks() {
       document.getElementById('tricksContainer').innerHTML = tricksList.map(t => `
         <div class="trick-box">
-          <div style="font-weight:800; color:#92400e; font-size:0.95rem;">💡 ${t.title}</div>
-          <div class="trick-formula">⚡ ट्रिक सूत्र: ${t.formula}</div>
-          <div style="font-size:0.84rem; color:#78350f; line-height:1.4;">${t.desc}</div>
+          <div style="font-weight:800; color:#92400e;">💡 ${t.title}</div>
+          <div class="trick-formula">⚡ सूत्र: ${t.formula}</div>
+          <div style="font-size:0.84rem; color:#78350f;">${t.desc}</div>
         </div>
       `).join('');
     }
 
     async function renderNotes() {
-      const container = document.getElementById('notesContainer');
-      container.innerHTML = notesList.map((n, idx) => `
+      document.getElementById('notesContainer').innerHTML = notesList.map((n, idx) => `
         <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-left:5px solid #16a34a; border-radius:12px; padding:14px; margin-bottom:12px;">
-          <h4 style="color:#166534; font-size:0.98rem; margin-bottom:6px;">📌 ${n.title}</h4>
-          ${n.summary ? `<p style="font-size:0.82rem; color:#14532d; margin-bottom:8px;">${n.summary}</p>` : ''}
-          ${n.mermaidDiagram ? `
-            <div class="diagram-box">
-              <div class="mermaid" id="diagram_${idx}">${n.mermaidDiagram}</div>
-            </div>
-          ` : ''}
-          <ul style="padding-left:18px; font-size:0.85rem; color:#14532d; line-height:1.6;">
+          <h4 style="color:#166534; font-weight:800;">📌 ${n.title}</h4>
+          <ul style="padding-left:18px; font-size:0.85rem; color:#14532d; line-height:1.6; margin-top:6px;">
             ${(n.points || []).map(pt => `<li>${pt}</li>`).join('')}
           </ul>
         </div>
       `).join('');
-
-      try {
-        await mermaid.run();
-      } catch(e) {}
     }
 
-    // Modal Helpers
-    function openModal(id) { document.getElementById(id).classList.add('open'); }
-    function closeModal(id) { document.getElementById(id).classList.remove('open'); }
-
-    function saveNewPaper() {
-      const title = document.getElementById('newPaperTitle').value.trim();
-      const year = document.getElementById('newPaperYear').value.trim();
-      const desc = document.getElementById('newPaperDesc').value.trim();
-      if (!title) return alert('पेपर का नाम लिखें!');
-      papersList.unshift({ id: Date.now(), title, year: year || '2024', desc: desc || 'अभ्यास प्रश्न पत्र' });
-      setStore('lis_papers', papersList);
-      renderPapers();
-      closeModal('paperModal');
-      document.getElementById('newPaperTitle').value = '';
-    }
-
-    function saveNewCard() {
-      const topic = document.getElementById('newCardTopic').value.trim();
-      const front = document.getElementById('newCardFront').value.trim();
-      const back = document.getElementById('newCardBack').value.trim();
-      if (!front || !back) return alert('प्रश्न और उत्तर भरें!');
-      cardsList.unshift({ topic: topic || 'GENERAL', front, back });
-      setStore('lis_cards', cardsList);
-      renderCurrentCard();
-      closeModal('cardModal');
-      document.getElementById('newCardFront').value = '';
-      document.getElementById('newCardBack').value = '';
-    }
-
-    function saveNewTrick() {
-      const title = document.getElementById('newTrickTitle').value.trim();
-      const formula = document.getElementById('newTrickFormula').value.trim();
-      const desc = document.getElementById('newTrickDesc').value.trim();
-      if (!title || !formula) return alert('शीर्षक और फॉर्मूला भरें!');
-      tricksList.unshift({ title, formula, desc });
-      setStore('lis_tricks', tricksList);
-      renderTricks();
-      closeModal('trickModal');
-      document.getElementById('newTrickTitle').value = '';
-    }
-
-    function saveNewNote() {
-      const title = document.getElementById('newNoteTitle').value.trim();
-      const raw = document.getElementById('newNotePoints').value.trim();
-      if (!title || !raw) return alert('शीर्षक और बिंदु भरें!');
-      notesList.unshift({ title, points: raw.split('\n').filter(p => p.trim()) });
-      setStore('lis_notes', notesList);
-      renderNotes();
-      closeModal('noteModal');
-      document.getElementById('newNoteTitle').value = '';
-    }
-
-    // =========================================================
-    // 4. THE 1-CLICK ALL-IN-ONE GENERATOR (FROM "नया AI टेस्ट बनाएं")
-    // =========================================================
     document.getElementById('genForm').onsubmit = async (e) => {
       e.preventDefault();
       const btn = document.getElementById('btnGen');
       const status = document.getElementById('genStatus');
       btn.disabled = true;
-      status.style.color = '#2563eb';
-      status.innerHTML = '⏳ AI अध्ययन कर रहा है... एक ही PDF से सवाल, विस्तृत नोट्स, ट्रिक्स और प्ले कार्ड्स बनाए जा रहे हैं (1-2 मिनट प्रतीक्षा करें)';
+      status.innerHTML = '⏳ AI सवाल बना रहा है...';
 
       const formData = new FormData();
       formData.append('subject', document.getElementById('subject').value);
+      formData.append('limit', document.getElementById('limit').value);
       formData.append('lang', document.getElementById('lang').value);
 
       const files = document.getElementById('files').files;
@@ -969,49 +855,19 @@
       try {
         const res = await fetch('/api/generate', { method: 'POST', body: formData });
         const resData = await res.json();
-        if (resData.success && resData.data) {
-          const d = resData.data;
-
-          // 1. Add to Play Cards
-          if (d.playCards && Array.isArray(d.playCards)) {
-            cardsList = d.playCards.concat(cardsList);
-            setStore('lis_cards', cardsList);
-            renderCurrentCard();
-          }
-
-          // 2. Add to Tricks
-          if (d.tricks && Array.isArray(d.tricks)) {
-            tricksList = d.tricks.concat(tricksList);
-            setStore('lis_tricks', tricksList);
-            renderTricks();
-          }
-
-          // 3. Add to Notes (Detailed + Flowchart)
-          if (d.note) {
-            notesList.unshift(d.note);
-            setStore('lis_notes', notesList);
-            renderNotes();
-          }
-
-          // 4. Refresh Question Bank
-          loadBank();
-
-          status.style.color = '#059669';
-          status.innerHTML = '✅ सफलता! इस 1 PDF से सवाल बैंक, नोट्स, ट्रिक्स और प्ले कार्ड्स सभी पेजों में जुड़ चुके हैं।';
-          alert('🎉 1 ही PDF से सब कुछ तैयार हो गया है!\n\n✓ प्रश्न बैंक में सवाल जुड़ गए\n✓ नोट्स व फ्लोचार्ट जुड़ गए\n✓ ट्रिक्स जुड़ गईं\n✓ स्वाइप प्ले कार्ड्स जुड़ गए');
+        if (resData.success) {
+          status.innerHTML = `✅ सफलता! ${resData.questionsCount} प्रश्न सहेज दिए गए हैं।`;
+          setTimeout(() => showView('bank'), 1000);
         } else {
-          status.style.color = '#dc2626';
-          status.innerHTML = '❌ एरर: ' + (resData.message || 'त्रुटि आई');
+          status.innerHTML = '❌ एरर: ' + resData.message;
         }
       } catch (err) {
-        status.style.color = '#dc2626';
         status.innerHTML = '❌ नेटवर्क एरर: ' + err.message;
       } finally {
         btn.disabled = false;
       }
     };
 
-    // CBT Engine
     let currentQuestions = [];
     async function loadBank() {
       const container = document.getElementById('bankList');
@@ -1019,7 +875,7 @@
         const res = await fetch('/api/questions');
         currentQuestions = await res.json();
         if (!currentQuestions || currentQuestions.length === 0) {
-          container.innerHTML = '<p style="color:#64748b;">अभी कोई प्रश्न नहीं है। "नया AI टेस्ट बनाएं" में जाकर PDF डालें।</p>';
+          container.innerHTML = '<p style="color:#64748b;">कोई प्रश्न नहीं है।</p>';
           return;
         }
         container.innerHTML = `<b>कुल प्रश्न: ${currentQuestions.length}</b><br><br>` +
@@ -1029,11 +885,7 @@
 
     let qIndex = 0, userAnswers = {}, timerInterval = null, remainingSeconds = 600;
     function startCBT() {
-      if (!currentQuestions || currentQuestions.length === 0) {
-        alert('टेस्ट के लिए प्रश्न नहीं हैं! पहले PDF से प्रश्न बनाएं।');
-        showView('generate');
-        return;
-      }
+      if (!currentQuestions || currentQuestions.length === 0) { alert('पहले प्रश्न बनाएं!'); showView('generate'); return; }
       showView('cbt');
       qIndex = 0; userAnswers = {}; remainingSeconds = currentQuestions.length * 60;
       if (timerInterval) clearInterval(timerInterval);
@@ -1053,7 +905,7 @@
       opts.innerHTML = '';
       q.options.forEach((opt, idx) => {
         const div = document.createElement('div');
-        div.style.cssText = 'background:white; border:2px solid ' + (userAnswers[qIndex] === idx ? '#2563eb' : '#e2e8f0') + '; border-radius:10px; padding:12px; margin-bottom:10px; cursor:pointer; font-size:0.92rem;';
+        div.style.cssText = 'background:white; border:2px solid ' + (userAnswers[qIndex] === idx ? '#2563eb' : '#e2e8f0') + '; border-radius:10px; padding:12px; margin-bottom:10px; cursor:pointer;';
         div.innerText = `${String.fromCharCode(65 + idx)}. ${opt}`;
         div.onclick = () => { userAnswers[qIndex] = idx; renderQuestion(); };
         opts.appendChild(div);
@@ -1064,14 +916,11 @@
     function finishCBT() {
       clearInterval(timerInterval);
       let score = 0;
-      currentQuestions.forEach((q, idx) => {
-        if (userAnswers[idx] !== undefined && (userAnswers[idx] === q.correctAnswer || userAnswers[idx] === q.correct_option)) score++;
-      });
-      alert(`🎉 टेस्ट समाप्त!\nस्कोर: ${score} / ${currentQuestions.length}`);
+      currentQuestions.forEach((q, idx) => { if (userAnswers[idx] !== undefined && userAnswers[idx] === q.correctAnswer) score++; });
+      alert(`स्कोर: ${score} / ${currentQuestions.length}`);
       showView('home');
     }
 
-    // Navigation & Drawer
     function openSidebar() { document.getElementById('sidebar').classList.add('open'); document.getElementById('sidebarOverlay').classList.add('open'); }
     function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebarOverlay').classList.remove('open'); }
     function navFromSidebar(id) { closeSidebar(); showView(id); }
@@ -1097,7 +946,6 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Hardware Back Button (Direct Exit on Home)
     window.addEventListener('popstate', () => {
       const modal = document.querySelector('.modal-overlay.open');
       if (modal) { modal.classList.remove('open'); return; }
@@ -1105,13 +953,7 @@
       if (sidebar && sidebar.classList.contains('open')) { closeSidebar(); return; }
       if (currentActiveView === 'cbt') { if (timerInterval) clearInterval(timerInterval); showView('home', false); return; }
       if (currentActiveView !== 'home') { showView('home', false); return; }
-
-      try {
-        window.close();
-        if (window.navigator && window.navigator.app && window.navigator.app.exitApp) {
-          window.navigator.app.exitApp();
-        }
-      } catch (err) {}
+      try { window.close(); if (window.navigator?.app?.exitApp) window.navigator.app.exitApp(); } catch (err) {}
     });
 
     window.onload = () => {
@@ -1122,10 +964,7 @@
       renderNotes();
       initSwipe();
       history.replaceState({ view: 'home' }, '', '');
-
-      setTimeout(() => {
-        dismissSplash();
-      }, 3000);
+      setTimeout(() => { dismissSplash(); }, 3000);
     };
   </script>
 </body>

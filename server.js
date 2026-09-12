@@ -26,7 +26,6 @@ function fileToGenerativePart(file) {
   };
 }
 
-// 1-PDF ALL-IN-ONE GENERATOR ENDPOINT
 app.post('/api/generate-all', upload.array('files'), async (req, res) => {
   try {
     const { subject, lang } = req.body;

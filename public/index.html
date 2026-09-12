@@ -125,7 +125,6 @@
     .card-title { font-size: 1.12rem; font-weight: 800; color: var(--primary); margin-bottom: 14px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
     .back-home-btn { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px; background: #e2e8f0; color: var(--text); padding: 6px 14px; border-radius: 8px; font-size: 0.82rem; font-weight: 700; cursor: pointer; border: none; }
 
-    .diagram-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; margin: 14px 0; overflow-x: auto; text-align: center; }
     .trick-box { background: #fffbeb; border: 1px solid #fde68a; border-left: 5px solid var(--gold); border-radius: 12px; padding: 14px; margin-bottom: 12px; }
     .trick-formula { background: white; border: 1px dashed var(--gold); padding: 6px 10px; border-radius: 6px; font-weight: 800; color: #b45309; margin: 6px 0; display: inline-block; font-size: 0.9rem; }
 
@@ -169,7 +168,7 @@
       </div>
       <div class="splash-phone-box">
         <span>📞 संपर्क:</span>
-        <span id="splashPhone">+91 9876543210</span>
+        <span id="splashPhone">9549700557</span>
       </div>
       <div class="splash-timer-bar"><div class="splash-timer-progress"></div></div>
     </div>
@@ -226,7 +225,7 @@
         <img id="sideMentorImg" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" style="width:52px; height:52px; border-radius:50%; border:2px solid #f59e0b; background:white; object-fit:cover;">
         <div>
           <h3 id="sideMentorName" style="font-size:1.05rem; font-weight:800;">RAMESH GUJJAR</h3>
-          <p id="sideMentorPhone" style="font-size:0.75rem; color:#fde68a;">+91 9876543210</p>
+          <p id="sideMentorPhone" style="font-size:0.75rem; color:#fde68a;">9549700557</p>
         </div>
       </div>
     </div>
@@ -373,9 +372,9 @@
           </div>
         </div>
         <div class="swipe-hint-bar">
-          <span>👈 बाएँ (Next)</span>
+          <span>👈 बाएँ स्वाइप करें (Next)</span>
           <span id="cardCountDisplay" style="font-weight:900; color:var(--primary);">1 / 1</span>
-          <span>दाएँ (Prev) 👉</span>
+          <span>दाएँ स्वाइप करें (Prev) 👉</span>
         </div>
       </div>
     </div>
@@ -468,7 +467,7 @@
         name = 'RAMESH GUJJAR';
         localStorage.setItem('lis_mentor_name', 'RAMESH GUJJAR');
       }
-      const phone = localStorage.getItem('lis_mentor_phone') || '+91 9876543210';
+      const phone = localStorage.getItem('lis_mentor_phone') || '9549700557';
       const photo = localStorage.getItem('lis_mentor_photo');
 
       const nameEls = ['splashName', 'navMentorName', 'sideMentorName'];
@@ -484,7 +483,7 @@
 
     function editMentorDetails() {
       const curName = localStorage.getItem('lis_mentor_name') || 'RAMESH GUJJAR';
-      const curPhone = localStorage.getItem('lis_mentor_phone') || '+91 9876543210';
+      const curPhone = localStorage.getItem('lis_mentor_phone') || '9549700557';
       const nName = prompt('अपना पूरा नाम दर्ज करें:', curName);
       if (nName && nName.trim()) localStorage.setItem('lis_mentor_name', nName.trim());
       const nPhone = prompt('अपना मोबाइल नंबर दर्ज करें:', curPhone);
@@ -557,7 +556,6 @@
       }
     }
 
-    // Storage for cards, tricks, notes
     function getStore(k, d) { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }
     function setStore(k, v) { localStorage.setItem(k, JSON.stringify(v)); }
 
@@ -565,7 +563,7 @@
       { topic: 'LAWS OF LIBRARY', front: 'पुस्तकालय विज्ञान के 5 नियम कब प्रतिपादित हुए?', back: '1928 में (1931 में प्रकाशित)' }
     ]);
     let tricksList = getStore('lis_tricks', [
-      { title: 'PMEST सूत्र', formula: 'Personality, Matter, Energy, Space, Time', desc: 'रंगनाथन की श्रेणियां' }
+      { title: 'PMEST सूत्र', formula: 'Personality, Matter, Energy, Space, Time', desc: 'रंगनाथन की 5 मौलिक श्रेणियां' }
     ]);
     let notesList = getStore('lis_notes', [
       { title: 'पुस्तकालय विज्ञान के 5 नियम', points: ['1. Books are for use.', '2. Every reader his/her book.', '3. Every book its reader.', '4. Save the time of the reader.', '5. Library is a growing organism.'] }
@@ -642,19 +640,16 @@
         if (resData.success && resData.data) {
           const d = resData.data;
 
-          // 1. Play Card
           if (d.playCard) {
             cardsList.unshift(d.playCard);
             setStore('lis_cards', cardsList);
             renderCurrentCard();
           }
-          // 2. Trick
           if (d.trick) {
             tricksList.unshift(d.trick);
             setStore('lis_tricks', tricksList);
             renderTricks();
           }
-          // 3. Notes
           if (d.note) {
             notesList.unshift(d.note);
             setStore('lis_notes', notesList);

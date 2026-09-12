@@ -223,7 +223,7 @@
     <div class="sidebar-menu">
       <div style="padding:10px 20px; font-size:0.8rem; color:var(--text-muted); background:#f8fafc;">Student: <b id="loggedInStudentName" style="color:var(--primary);">...</b></div>
       <div class="sidebar-item" onclick="navFromSidebar('home')"><span>🏠</span> मुख्य Dashboard</div>
-      <div class="sidebar-item" onclick="navFromSidebar('generate')"><span>➕</span> नया CBT Questions बनाएं</div>
+      <div class="sidebar-item" onclick="navFromSidebar('generate')"><span>➕</span> Create CBT Questions</div>
       <div class="sidebar-item" onclick="navFromSidebar('pyq')"><span>📜</span> पिछले पेपर (PYQ Hub)</div>
       <div class="sidebar-item" onclick="navFromSidebar('cards')"><span>🗂️</span> Flash Cards</div>
       <div class="sidebar-item" onclick="navFromSidebar('tricks')"><span>💡</span> Smart Tricks</div>
@@ -243,7 +243,7 @@
     <div class="nav-pill" id="pill-cards" onclick="showView('cards')">🗂️ Flash Cards</div>
     <div class="nav-pill" id="pill-tricks" onclick="showView('tricks')">💡 Tricks</div>
     <div class="nav-pill" id="pill-notes" onclick="showView('notes')">📝 Notes</div>
-    <div class="nav-pill" id="pill-bank" onclick="showView('bank')">📂 बैंक</div>
+    <div class="nav-pill" id="pill-bank" onclick="showView('bank')">📁 Question Bank</div>
   </div>
 
   <div class="container">
@@ -255,8 +255,8 @@
       <div class="dashboard-matrix">
         <div class="matrix-card" onclick="showView('generate')" style="border-top:3px solid var(--accent);">
           <div class="matrix-icon-box" style="background:linear-gradient(135deg, #2563eb, #3b82f6);">🤖</div>
-          <h3>नया CBT Questions बनाएं</h3>
-          <p>1 PDF से सवाल, Notes व कार्ड्स</p>
+          <h3>Create CBT Questions</h3>
+          <p>Questions, Notes & Cards from 1 PDF</p>
         </div>
         <div class="matrix-card" onclick="showView('pyq')" style="border-top:3px solid var(--purple);">
           <div class="matrix-icon-box" style="background:linear-gradient(135deg, #7c3aed, #a855f7);">🏛️</div>
@@ -279,7 +279,7 @@
           <p>Summary & Flowcharts</p>
         </div>
         <div class="matrix-card" onclick="startCBT()" style="border-top:3px solid var(--success);">
-          <div class="matrix-icon-box" style="background:linear-gradient(135deg, #10b981, #059669);">🎯</div>
+          <div class="matrix-icon-box" style="background:linear-gradient(135deg, #10b981, #059669);">🤖</div>
           <h3>CBT Questions</h3>
           <p>Timed Mock Exam</p>
         </div>
@@ -299,7 +299,7 @@
     <div id="view-generate" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← Dashboard</button>
       <div class="card">
-        <div class="card-title"><span>📄 नया CBT Questions बनाएं (All-in-One)</span></div>
+        <div class="card-title"><span>📄 Create CBT Questions (All-in-One)</span></div>
         <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:12px;">
           PDF, Word या 📷 Notes की फ़ोटो डालें—यह स्वचालित रूप से <b>सवाल, Notes, Tricks और Flash Cards</b> में डेटा भर देगा।
         </p>

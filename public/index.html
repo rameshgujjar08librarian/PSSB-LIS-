@@ -223,7 +223,7 @@
       <div class="sidebar-item" onclick="navFromSidebar('home')"><span>🏠</span> मुख्य डैशबोर्ड</div>
       <div class="sidebar-item" onclick="navFromSidebar('generate')"><span>➕</span> नया AI टेस्ट बनाएं</div>
       <div class="sidebar-item" onclick="navFromSidebar('pyq')"><span>📜</span> पिछले पेपर (PYQ Hub)</div>
-      <div class="sidebar-item" onclick="navFromSidebar('cards')"><span>🃏</span> प्ले कार्ड्स</div>
+      <div class="sidebar-item" onclick="navFromSidebar('cards')"><span>🗂️</span> फ़्लैश कार्ड्स</div>
       <div class="sidebar-item" onclick="navFromSidebar('tricks')"><span>💡</span> स्मार्ट ट्रिक्स</div>
       <div class="sidebar-item" onclick="navFromSidebar('notes')"><span>📝</span> शॉर्ट नोट्स</div>
       <div class="sidebar-item" onclick="navFromSidebar('bank')"><span>📂</span> क्वेश्चन बैंक</div>
@@ -238,7 +238,7 @@
     <div class="nav-pill active" id="pill-home" onclick="showView('home')">🏠 डैशबोर्ड</div>
     <div class="nav-pill" id="pill-generate" onclick="showView('generate')">➕ AI टेस्ट</div>
     <div class="nav-pill" id="pill-pyq" onclick="showView('pyq')">📜 PYQ Hub</div>
-    <div class="nav-pill" id="pill-cards" onclick="showView('cards')">🃏 कार्ड्स</div>
+    <div class="nav-pill" id="pill-cards" onclick="showView('cards')">🗂️ फ़्लैश कार्ड्स</div>
     <div class="nav-pill" id="pill-tricks" onclick="showView('tricks')">💡 ट्रिक्स</div>
     <div class="nav-pill" id="pill-notes" onclick="showView('notes')">📝 नोट्स</div>
     <div class="nav-pill" id="pill-bank" onclick="showView('bank')">📂 बैंक</div>
@@ -808,7 +808,7 @@
       const pill = document.getElementById('pill-' + viewId);
       if (pill) pill.classList.add('active');
 
-      if (viewId === 'Flash Cards') renderCurrentCard();
+      if (viewId === 'cards') renderCurrentCard();
       if (viewId === 'tricks') renderTricks();
       if (viewId === 'notes') renderNotes();
       if (viewId === 'bank') loadBank();

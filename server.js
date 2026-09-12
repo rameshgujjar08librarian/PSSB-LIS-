@@ -31,17 +31,16 @@ app.post('/api/generate', upload.array('files'), async (req, res) => {
     const { subject, limit, lang } = req.body;
     const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
-    let prompt = `You are a premier Library Science exam expert for RAMESH GUJJAR LIS Portal.
-Analyze the attached documents thoroughly and create ${limit === 'max' ? 'up to 20' : limit} high-quality MCQs on "${subject}".
+    let prompt = `You are an expert Library Science exam mentor for RAMESH GUJJAR LIS Portal.
+Create ${limit === 'max' ? '15' : limit} high-quality MCQs on "${subject}".
 Language: ${lang === 'hi' ? 'Hindi Devanagari' : 'English'}.
-
-Return ONLY a valid raw JSON array of objects without markdown formatting or backticks:
+Return ONLY a valid raw JSON array of objects without markdown fences:
 [
   {
     "question": "Question text",
-    "options": ["Option A", "Option B", "Option C", "Option D"],
+    "options": ["A", "B", "C", "D"],
     "correctAnswer": 0,
-    "explanation": "Brief explanation"
+    "explanation": "Explanation"
   }
 ]`;
 
@@ -55,7 +54,7 @@ Return ONLY a valid raw JSON array of objects without markdown formatting or bac
 
     res.json({ success: true, questionsCount: questions.length, questions });
   } catch (err) {
-    console.error('Error generating MCQs:', err);
+    console.error('Error:', err);
     res.status(500).json({ success: false, message: err.message });
   }
 });

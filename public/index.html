@@ -339,10 +339,27 @@
     <div id="view-pyq" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← Dashboard</button>
       <div class="card">
-        <div class="card-title"><span>📜 पिछले वर्षों के प्रश्न पत्र (PYQ Hub)</span></div>
+        <div class="card-title"><span>📜 Previous Years Papers (PYQ Hub)</span></div>
         <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:12px;">
           CBT परीक्षा का समय अपनी मर्जी से चुनें (स्मार्ट टाइमर, निश्चित मिनट, असीमित या कस्टम):
         </p>
+
+  <div style="display:flex; justify-content:space-between; align-items:center; margin: 12px 0 10px 0;">
+    <span style="font-weight:700; font-size:0.95rem; color:var(--text-main);">Available Papers</span>
+    <button onclick="togglePYQForm()" class="btn-action" style="padding:6px 14px; font-size:0.8rem; background:linear-gradient(135deg, #7c3aed, #6366f1); width:auto; margin:0; border-radius:8px; cursor:pointer;">+ Add Paper</button>
+  </div>
+  <div id="addPYQBox" style="display:none; background:#f8fafc; border:1.5px dashed #7c3aed; border-radius:12px; padding:12px; margin-bottom:14px;">
+    <div style="font-weight:700; font-size:0.88rem; color:#7c3aed; margin-bottom:8px;">+ Add Previous Year Paper</div>
+    <input type="text" id="newPyqTitle" placeholder="Exam Name & Year (e.g. RSMSSB Lib 2022)" style="width:100%; padding:8px 10px; margin-bottom:8px; border-radius:8px; border:1px solid #cbd5e1; font-size:0.85rem; box-sizing:border-box;">
+    <input type="text" id="newPyqShift" placeholder="Paper / Subject (e.g. Paper-1 GK / Paper-2 LIS)" style="width:100%; padding:8px 10px; margin-bottom:8px; border-radius:8px; border:1px solid #cbd5e1; font-size:0.85rem; box-sizing:border-box;">
+    <textarea id="newPyqLink" placeholder="Paper Details / Link / Key Questions" rows="2" style="width:100%; padding:8px 10px; margin-bottom:8px; border-radius:8px; border:1px solid #cbd5e1; font-size:0.85rem; box-sizing:border-box;"></textarea>
+    <div style="display:flex; gap:8px;">
+      <button onclick="saveCustomPYQ()" style="flex:1; padding:8px; background:#10b981; color:#fff; border:none; border-radius:8px; font-weight:700; font-size:0.82rem; cursor:pointer;">Save Paper</button>
+      <button onclick="togglePYQForm()" style="flex:1; padding:8px; background:#ef4444; color:#fff; border:none; border-radius:8px; font-weight:700; font-size:0.82rem; cursor:pointer;">Cancel</button>
+    </div>
+  </div>
+  <div id="customPYQList"></div>
+
 
         <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:14px; margin-bottom:12px;">
           <h4 style="font-size:1rem; color:#1e293b;">UGC NET LIS GURUJI</h4>
@@ -449,14 +466,30 @@
       <div class="card">
         <div class="card-title"><span>📂 Question Bank</span></div>
         <div id="bankList">Loading...</div>
-        <button onclick="startCBT()" class="btn-action" style="margin-top:14px; background:var(--success);">🎯 CBT मॉक टेस्ट शुरू करें</button>
+        <button onclick="startCBT()" class="btn-action" style="margin-top:14px; background:var(--success);">🎯 Start CBT Mock Test</button>
       </div>
     </div>
 
     <div id="view-syllabus" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← Dashboard</button>
       <div class="card">
-        <div class="card-title"><span>📚 LIS सिलेबस</span></div>
+        <div class="card-title"><span>📚 LIS Syllabus</span></div>
+
+  <div style="display:flex; justify-content:space-between; align-items:center; margin: 12px 0 10px 0;">
+    <span style="font-weight:700; font-size:0.95rem; color:var(--text-main);">Exam Syllabus</span>
+    <button onclick="toggleSyllabusForm()" class="btn-action" style="padding:6px 14px; font-size:0.8rem; background:linear-gradient(135deg, #0284c7, #2563eb); width:auto; margin:0; border-radius:8px; cursor:pointer;">+ Add Syllabus</button>
+  </div>
+  <div id="addSyllabusBox" style="display:none; background:#f8fafc; border:1.5px dashed #0284c7; border-radius:12px; padding:12px; margin-bottom:14px;">
+    <div style="font-weight:700; font-size:0.88rem; color:#0284c7; margin-bottom:8px;">+ Add Exam Syllabus</div>
+    <input type="text" id="newSyllabusTitle" placeholder="Exam Name (e.g. Rajasthan Librarian Grade-II)" style="width:100%; padding:8px 10px; margin-bottom:8px; border-radius:8px; border:1px solid #cbd5e1; font-size:0.85rem; box-sizing:border-box;">
+    <textarea id="newSyllabusContent" placeholder="Enter Units & Topics (e.g. Unit 1: Foundations of LIS...)" rows="4" style="width:100%; padding:8px 10px; margin-bottom:8px; border-radius:8px; border:1px solid #cbd5e1; font-size:0.85rem; box-sizing:border-box;"></textarea>
+    <div style="display:flex; gap:8px;">
+      <button onclick="saveCustomSyllabus()" style="flex:1; padding:8px; background:#10b981; color:#fff; border:none; border-radius:8px; font-weight:700; font-size:0.82rem; cursor:pointer;">Save Syllabus</button>
+      <button onclick="toggleSyllabusForm()" style="flex:1; padding:8px; background:#ef4444; color:#fff; border:none; border-radius:8px; font-weight:700; font-size:0.82rem; cursor:pointer;">Cancel</button>
+    </div>
+  </div>
+  <div id="customSyllabusList"></div>
+
         <ul style="line-height: 1.8; padding-left: 20px; font-size: 0.92rem;">
           <li><b>Unit 1:</b> Data, Information, Knowledge & Wisdom.</li>
           <li><b>Unit 2:</b> Laws of Library Science & Legislation.</li>
@@ -831,5 +864,103 @@
       setTimeout(() => { dismissSplash(); }, 3000);
     };
   </script>
+
+<script>
+function togglePYQForm() {
+  const b = document.getElementById("addPYQBox");
+  if (b) b.style.display = b.style.display === "none" ? "block" : "none";
+}
+function saveCustomPYQ() {
+  const t = document.getElementById("newPyqTitle").value.trim();
+  const s = document.getElementById("newPyqShift").value.trim();
+  const l = document.getElementById("newPyqLink").value.trim();
+  if (!t) { alert("Please enter Exam / Paper Name"); return; }
+  const list = JSON.parse(localStorage.getItem("custom_pyqs") || "[]");
+  list.unshift({ title: t, shift: s, link: l });
+  localStorage.setItem("custom_pyqs", JSON.stringify(list));
+  document.getElementById("newPyqTitle").value = "";
+  document.getElementById("newPyqShift").value = "";
+  document.getElementById("newPyqLink").value = "";
+  togglePYQForm();
+  renderCustomPYQ();
+}
+function deleteCustomPYQ(idx) {
+  if (!confirm("Delete this paper?")) return;
+  const list = JSON.parse(localStorage.getItem("custom_pyqs") || "[]");
+  list.splice(idx, 1);
+  localStorage.setItem("custom_pyqs", JSON.stringify(list));
+  renderCustomPYQ();
+}
+function renderCustomPYQ() {
+  const c = document.getElementById("customPYQList");
+  if (!c) return;
+  const list = JSON.parse(localStorage.getItem("custom_pyqs") || "[]");
+  if (!list.length) { c.innerHTML = ""; return; }
+  c.innerHTML = list.map((item, i) => `
+    <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:10px 12px; margin-bottom:8px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+      <div>
+        <div style="font-weight:700; font-size:0.9rem; color:#0f172a;">📄 ${item.title}</div>
+        ${item.shift ? `<div style="font-size:0.8rem; color:#6366f1; font-weight:600;">${item.shift}</div>` : ""}
+        ${item.link ? `<div style="font-size:0.75rem; color:#64748b; margin-top:2px;">${item.link}</div>` : ""}
+      </div>
+      <button onclick="deleteCustomPYQ(${i})" style="background:none; border:none; color:#ef4444; font-size:1.1rem; cursor:pointer; padding:4px 8px;">🗑️</button>
+    </div>
+  `).join("");
+}
+
+function toggleSyllabusForm() {
+  const b = document.getElementById("addSyllabusBox");
+  if (b) b.style.display = b.style.display === "none" ? "block" : "none";
+}
+function saveCustomSyllabus() {
+  const t = document.getElementById("newSyllabusTitle").value.trim();
+  const c = document.getElementById("newSyllabusContent").value.trim();
+  if (!t) { alert("Please enter Exam Title"); return; }
+  const list = JSON.parse(localStorage.getItem("custom_syllabus") || "[]");
+  list.unshift({ title: t, content: c });
+  localStorage.setItem("custom_syllabus", JSON.stringify(list));
+  document.getElementById("newSyllabusTitle").value = "";
+  document.getElementById("newSyllabusContent").value = "";
+  toggleSyllabusForm();
+  renderCustomSyllabus();
+}
+function deleteCustomSyllabus(idx) {
+  if (!confirm("Delete this syllabus?")) return;
+  const list = JSON.parse(localStorage.getItem("custom_syllabus") || "[]");
+  list.splice(idx, 1);
+  localStorage.setItem("custom_syllabus", JSON.stringify(list));
+  renderCustomSyllabus();
+}
+function renderCustomSyllabus() {
+  const c = document.getElementById("customSyllabusList");
+  if (!c) return;
+  const list = JSON.parse(localStorage.getItem("custom_syllabus") || "[]");
+  if (!list.length) { c.innerHTML = ""; return; }
+  c.innerHTML = list.map((item, i) => `
+    <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; padding:12px; margin-bottom:10px; box-shadow:0 1px 3px rgba(0,0,0,0.05);">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+        <span style="font-weight:700; font-size:0.92rem; color:#0284c7;">📖 ${item.title}</span>
+        <button onclick="deleteCustomSyllabus(${i})" style="background:none; border:none; color:#ef4444; font-size:1.1rem; cursor:pointer;">🗑️</button>
+      </div>
+      <div style="font-size:0.83rem; color:#475569; white-space:pre-line; line-height:1.5;">${item.content}</div>
+    </div>
+  `).join("");
+}
+
+// ऑटो-रेंडर जब व्यू लोड हो
+if (typeof showView === "function") {
+  const oldShowView = showView;
+  showView = function(viewId) {
+    oldShowView(viewId);
+    if (viewId === "pyq") renderCustomPYQ();
+    if (viewId === "syllabus") renderCustomSyllabus();
+  };
+}
+window.addEventListener("DOMContentLoaded", () => {
+  renderCustomPYQ();
+  renderCustomSyllabus();
+});
+</script>
+
 </body>
 O

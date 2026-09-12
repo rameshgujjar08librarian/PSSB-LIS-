@@ -11,7 +11,7 @@
   <meta property="og:image" content="/profile.jpg">
   <meta name="theme-color" content="#1e3a8a">
 
-  <!-- Mermaid.js for Visual Flowcharts -->
+  <!-- Mermaid.js for Diagrams -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
   <script>
     mermaid.initialize({ startOnLoad: false, theme: 'default', securityLevel: 'loose' });
@@ -37,7 +37,7 @@
     body { background: var(--bg); color: var(--text); padding-bottom: 60px; }
 
     /* ===================================================
-       1. FIRST WELCOME SPLASH SCREEN (WITH PHOTO & SLOGAN)
+       1. FIRST WELCOME SPLASH SCREEN (NO BUTTON, 3S AUTO)
        =================================================== */
     #welcomeSplash {
       position: fixed;
@@ -58,7 +58,7 @@
     .splash-card {
       background: #ffffff;
       border-radius: 24px;
-      padding: 26px 18px;
+      padding: 28px 20px;
       width: 100%;
       max-width: 410px;
       text-align: center;
@@ -71,13 +71,13 @@
       align-items: center;
       gap: 8px;
       background: #eff6ff;
-      padding: 5px 14px;
+      padding: 6px 16px;
       border-radius: 20px;
       margin-bottom: 12px;
       border: 1px solid #bfdbfe;
     }
     .splash-big-brand h1 {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       font-weight: 900;
       color: var(--primary);
       letter-spacing: 0.5px;
@@ -86,13 +86,13 @@
     /* Photo with Camera Upload Badge */
     .splash-photo-wrap {
       position: relative;
-      width: 110px;
-      height: 110px;
+      width: 115px;
+      height: 115px;
       margin: 6px auto 12px;
     }
     .splash-photo {
-      width: 110px;
-      height: 110px;
+      width: 115px;
+      height: 115px;
       border-radius: 50%;
       object-fit: cover;
       border: 4px solid var(--gold);
@@ -134,7 +134,7 @@
       margin-bottom: 12px;
     }
 
-    /* SLOGAN BANNER */
+    /* Slogan Banner */
     .splash-slogan-box {
       background: linear-gradient(135deg, #fffbeb, #fef3c7);
       border: 2px dashed var(--gold);
@@ -161,24 +161,12 @@
       color: var(--primary);
       background: #f8fafc;
       border: 1px solid #e2e8f0;
-      padding: 8px 12px;
+      padding: 8px 14px;
       border-radius: 10px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 16px;
-    }
-    .btn-splash-enter {
-      width: 100%;
-      padding: 14px;
-      background: linear-gradient(135deg, var(--gold), #ea580c);
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-size: 1.05rem;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35);
+      margin-bottom: 12px;
     }
     .splash-timer-bar {
       width: 100%;
@@ -200,7 +188,7 @@
     }
 
     /* ===================================================
-       2. STUDENT LOGIN OVERLAY (COMES AFTER WELCOME PAGE)
+       2. STUDENT LOGIN OVERLAY (WITH LIS GURUJI & RAMESH GUJJAR)
        =================================================== */
     #authOverlay {
       position: fixed;
@@ -223,6 +211,8 @@
       text-align: center;
       border-top: 5px solid var(--gold);
     }
+    
+    /* Login Header: LIS GURUJI on top, RAMESH GUJJAR below */
     .login-mentor-badge {
       display: flex;
       align-items: center;
@@ -233,15 +223,34 @@
       border-bottom: 1px solid #e2e8f0;
     }
     .login-mentor-img {
-      width: 55px;
-      height: 55px;
+      width: 58px;
+      height: 58px;
       border-radius: 50%;
       border: 3px solid var(--gold);
       object-fit: cover;
       background: #e2e8f0;
     }
-    .login-mentor-info h3 { font-size: 1.15rem; color: var(--primary); font-weight: 800; text-align: left; }
-    .login-mentor-info p { font-size: 0.75rem; color: #b45309; font-weight: 700; text-align: left; }
+    .login-mentor-info h3 {
+      font-size: 1.25rem;
+      color: var(--primary);
+      font-weight: 900;
+      text-align: left;
+      margin-bottom: 2px;
+      letter-spacing: 0.5px;
+    }
+    .login-mentor-info p {
+      font-size: 0.88rem;
+      color: #b45309;
+      font-weight: 800;
+      text-align: left;
+      margin-bottom: 1px;
+    }
+    .login-mentor-info span {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-align: left;
+      display: block;
+    }
 
     .input-box {
       width: 100%;
@@ -446,7 +455,7 @@
 <body>
 
   <!-- ===================================================
-       PAGE 1: FIRST WELCOME SPLASH SCREEN (3 SECONDS)
+       PAGE 1: WELCOME SPLASH SCREEN (NO BUTTON, 3S AUTO)
        =================================================== -->
   <div id="welcomeSplash">
     <div class="splash-card">
@@ -482,31 +491,32 @@
         </div>
       </div>
 
-      <button class="btn-splash-enter" onclick="dismissSplash()">
-        🚀 ऐप में प्रवेश करें (Start Now) →
-      </button>
-
+      <!-- Auto Progress Bar -->
       <div class="splash-timer-bar">
         <div class="splash-timer-progress"></div>
       </div>
+      <div style="font-size:0.75rem; color:var(--text-muted); margin-top:8px;">पोर्टल शुरू हो रहा है...</div>
     </div>
   </div>
 
   <!-- ===================================================
-       PAGE 2: STUDENT LOGIN OVERLAY (AFTER WELCOME PAGE)
+       PAGE 2: STUDENT LOGIN OVERLAY (LIS GURUJI + RAMESH GUJJAR)
        =================================================== -->
   <div id="authOverlay" class="hidden">
     <div class="login-card">
+      
+      <!-- Login Badge: LIS GURUJI on top, RAMESH GUJJAR below -->
       <div class="login-mentor-badge">
         <img class="login-mentor-img" id="loginMentorImg" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" alt="RAMESH GUJJAR">
         <div class="login-mentor-info">
-          <h3>RAMESH GUJJAR</h3>
-          <p>संस्थापक • LIS AI CBT Portal</p>
+          <h3>LIS GURUJI</h3>
+          <p id="loginMentorSubName">RAMESH GUJJAR</p>
+          <span>संस्थापक एवं मेंटर</span>
         </div>
       </div>
 
       <div id="loginStep1">
-        <h2 style="font-size:1.2rem; font-weight:800;">विद्यार्थी लॉगिन</h2>
+        <h2 style="font-size:1.2rem; font-weight:800; color:var(--text);">विद्यार्थी लॉगिन</h2>
         <p style="font-size:0.8rem; color:var(--text-muted); margin-bottom:14px;">पोर्टल में प्रवेश के लिए विवरण भरें</p>
 
         <input type="text" id="studentNameInput" class="input-box" placeholder="आपका पूरा नाम (Full Name)" required>
@@ -885,15 +895,13 @@
   </div>
 
   <script>
-    // ==========================================
     // 1. MENTOR PROFILE DATA & PHOTO SYNC
-    // ==========================================
     function initMentor() {
       const name = localStorage.getItem('lis_mentor_name') || 'RAMESH GUJJAR';
       const phone = localStorage.getItem('lis_mentor_phone') || '+91 9876543210';
       const photo = localStorage.getItem('lis_mentor_photo');
 
-      const nameEls = ['splashName', 'navMentorName', 'sideMentorName'];
+      const nameEls = ['splashName', 'navMentorName', 'sideMentorName', 'loginMentorSubName'];
       nameEls.forEach(id => {
         const el = document.getElementById(id);
         if (el) el.innerText = name;
@@ -940,9 +948,7 @@
       }
     }
 
-    // ==========================================
     // 2. WELCOME SPLASH & LOGIN TRANSITION
-    // ==========================================
     let splashDismissed = false;
 
     function dismissSplash() {
@@ -951,7 +957,7 @@
       const splash = document.getElementById('welcomeSplash');
       if (splash) splash.classList.add('hide');
 
-      // Check if student logged in AFTER splash
+      // Check login status strictly after welcome splash
       checkAuth();
     }
 
@@ -963,7 +969,6 @@
         document.getElementById('loggedInStudentName').innerText = student.name;
         document.getElementById('welcomeStudentBanner').innerText = `नमस्ते, ${student.name}! 👋`;
       } else {
-        // Show login modal AFTER welcome splash
         document.getElementById('authOverlay').classList.remove('hidden');
       }
     }
@@ -994,7 +999,7 @@
       }
     }
 
-    // LOGOUT ONLY HAPPENS ON CLICK
+    // LOGOUT ONLY HAPPENS ON EXPLICIT BUTTON CLICK
     function handleLogout() {
       if (confirm('क्या आप लॉगआउट करना चाहते हैं?')) {
         localStorage.removeItem('lis_student_session');
@@ -1002,9 +1007,7 @@
       }
     }
 
-    // ==========================================
     // 3. 1-PAGE SMART NOTES GENERATOR
-    // ==========================================
     document.getElementById('smartNoteForm').onsubmit = async (e) => {
       e.preventDefault();
       const btn = document.getElementById('btnGenNotes');
@@ -1057,9 +1060,7 @@
       }
     };
 
-    // ==========================================
     // 4. FLASHCARDS SWIPE ENGINE
-    // ==========================================
     let cardsList = [
       { topic: 'LAWS OF LIBRARY', front: 'पुस्तकालय विज्ञान के 5 नियम कब प्रतिपादित और कब प्रकाशित हुए?', back: 'प्रतिपादित: 1928 (अन्नामलाई नगर)\nपुस्तक प्रकाशित: 1931 (मद्रास लाइब्रेरी एसोसिएशन)' },
       { topic: 'CLASSIFICATION', front: 'DDC का पहला संस्करण कब और किसने तैयार किया?', back: '1876 में मेलविल डेवी (कुल 44 पृष्ठ)' },
@@ -1227,9 +1228,7 @@
       document.getElementById(id).classList.remove('open');
     }
 
-    // ==========================================
     // 5. CBT GENERATOR & ENGINE
-    // ==========================================
     document.getElementById('genForm').onsubmit = async (e) => {
       e.preventDefault();
       const btn = document.getElementById('btnGen');
@@ -1353,7 +1352,7 @@
     }
 
     // =========================================================
-    // 6. CLEAN HARDWARE BACK BUTTON (NO LOGOUT, DIRECT EXIT ON HOME)
+    // 6. HARDWARE BACK BUTTON (NO POPUP, DIRECT EXIT ON HOME)
     // =========================================================
     window.addEventListener('popstate', (e) => {
       const openModalElem = document.querySelector('.modal-overlay.open');
@@ -1374,13 +1373,12 @@
         return;
       }
 
-      // If in subpage, go back to dashboard
       if (currentActiveView !== 'home') {
         showView('home', false);
         return;
       }
 
-      // If already on Home, directly exit without logout or prompt
+      // If already on Home with no previous pages, directly exit app
       try {
         window.close();
         if (window.navigator && window.navigator.app && window.navigator.app.exitApp) {
@@ -1389,14 +1387,14 @@
       } catch (err) {}
     });
 
-    // Startup
+    // Startup Execution
     window.onload = () => {
       initMentor();
       renderCurrentCard();
       initCardSwipeEvents();
       history.replaceState({ view: 'home' }, '', '');
 
-      // Auto dismiss welcome splash after 3 seconds
+      // 3-Second Automatic Splash Transition
       setTimeout(() => {
         dismissSplash();
       }, 3000);

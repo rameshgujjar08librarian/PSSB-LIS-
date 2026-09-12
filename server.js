@@ -45,7 +45,11 @@ app.post('/api/generate-all', upload.array('files'), async (req, res) => {
     if (limit !== 'max') count = parseInt(limit) || 20;
 
     const prompt = `You are an expert Library Science exam mentor for LIS GURUJI Portal (RAMESH GUJJAR).
-Analyze the attached documents/images thoroughly. Generate exactly or up to ${count} high-quality MCQs on "${subject}" in ${langName}, along with short notes, trick, and play card.
+Analyze the attached documents/images thoroughly. Generate exhaustive, high-yield study material.
+1. Generate exactly or up to ${count} high-quality MCQs on "${subject}" in ${langName} with detailed explanations.
+2. Generate comprehensive, masterclass One-Page Revision Notes ("note") with a rich summary and 6 to 10 detailed bullet points covering all facts, definitions, and concepts.
+3. Generate a powerful mnemonic exam trick ("trick").
+4. Generate a high-impact conceptual playCard ("playCard").
 
 Return ONLY a valid raw JSON object without markdown or backticks:
 {
@@ -58,20 +62,27 @@ Return ONLY a valid raw JSON object without markdown or backticks:
     }
   ],
   "note": {
-    "title": "Topic Heading",
-    "summary": "Quick summary",
-    "mermaidDiagram": "graph TD\\n  A[Core] --> B[Sub]",
-    "points": ["Key point 1", "Key point 2", "Key point 3"]
+    "title": "Comprehensive One-Page Revision Notes",
+    "summary": "Deep executive summary covering core concepts and exam orientation...",
+    "mermaidDiagram": "graph TD\\n  A[Core Concept] --> B[Sub-topic]",
+    "points": [
+      "Key point 1 with full definitions and historical background",
+      "Key point 2 with important dates or committees",
+      "Key point 3 with classification/cataloguing rules",
+      "Key point 4 with procedural details",
+      "Key point 5 with exam traps and exceptions",
+      "Key point 6 with final summary takeaway"
+    ]
   },
   "trick": {
-    "title": "Trick Title",
-    "formula": "Mnemonic / Code",
-    "desc": "Description"
+    "title": "Exam Mnemonic",
+    "formula": "Short code or formula",
+    "desc": "Easy description to remember"
   },
   "playCard": {
-    "topic": "Topic Name",
-    "front": "Concept question",
-    "back": "Accurate answer"
+    "topic": "Core Topic",
+    "front": "High-yield concept question",
+    "back": "Precise answer and core rule"
   }
 }`;
 

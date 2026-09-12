@@ -134,7 +134,7 @@
 </head>
 <body>
 
-  <!-- WELCOME SPLASH (Camera button removed) -->
+  <!-- WELCOME SPLASH -->
   <div id="welcomeSplash">
     <div class="splash-card">
       <div class="splash-big-brand">
@@ -338,12 +338,13 @@
       </div>
     </div>
 
+    <!-- PYQ HUB WITH UNLIMITED / SELF / CUSTOM TIMING -->
     <div id="view-pyq" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
         <div class="card-title"><span>📜 पिछले वर्षों के प्रश्न पत्र (PYQ Hub)</span></div>
         <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:12px;">
-          ऑनलाइन CBT टेस्ट शुरू करें (समय: औसत 1 मिनट प्रति प्रश्न या अपनी पसंद चुनें):
+          CBT परीक्षा का समय अपनी मर्जी से चुनें (स्मार्ट टाइमर, निश्चित मिनट, असीमित या कस्टम):
         </p>
 
         <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:12px; padding:14px; margin-bottom:12px;">
@@ -351,10 +352,13 @@
           <p style="font-size:0.8rem; color:#64748b; margin:4px 0 8px;">Dec 2023 Solved Paper (100 Questions)</p>
           <div style="display:flex; gap:8px; align-items:center;">
             <select id="pyqTime1" class="input-box" style="margin-bottom:0; flex:1; font-size:0.85rem; padding:8px;">
-              <option value="auto">⏱️ स्मार्ट टाइमर (100 मिनट - 1 मि/प्र)</option>
-              <option value="60">⏱️ 60 मिनट</option>
+              <option value="auto">⏱️ स्मार्ट टाइमर (1 प्रश्न = 1 मिनट)</option>
+              <option value="30">⏱️ 30 मिनट</option>
+              <option value="60">⏱️ 60 मिनट (1 घंटा)</option>
               <option value="120" selected>⏱️ 120 मिनट (2 घंटे)</option>
               <option value="180">⏱️ 180 मिनट (3 घंटे)</option>
+              <option value="unlimited">♾️ असीमित (Self / Unlimited Time)</option>
+              <option value="custom">⚙️ कस्टम समय (अपनी मर्जी से)</option>
             </select>
             <button onclick="startPYQCBT('UGC NET Dec 2023 PYQ', 100, 'pyqTime1')" style="background:var(--purple); color:white; border:none; padding:10px 14px; border-radius:8px; font-size:0.82rem; font-weight:800; cursor:pointer; white-space:nowrap;">
               🎯 CBT शुरू करें
@@ -367,10 +371,13 @@
           <p style="font-size:0.8rem; color:#64748b; margin:4px 0 8px;">2022 Solved Paper (150 Questions)</p>
           <div style="display:flex; gap:8px; align-items:center;">
             <select id="pyqTime2" class="input-box" style="margin-bottom:0; flex:1; font-size:0.85rem; padding:8px;">
-              <option value="auto">⏱️ स्मार्ट टाइमर (150 मिनट - 1 मि/प्र)</option>
+              <option value="auto">⏱️ स्मार्ट टाइमर (1 प्रश्न = 1 मिनट)</option>
+              <option value="60">⏱️ 60 मिनट</option>
               <option value="90">⏱️ 90 मिनट</option>
               <option value="150" selected>⏱️ 150 मिनट (2.5 घंटे)</option>
               <option value="180">⏱️ 180 मिनट (3 घंटे)</option>
+              <option value="unlimited">♾️ असीमित (Self / Unlimited Time)</option>
+              <option value="custom">⚙️ कस्टम समय (अपनी मर्जी से)</option>
             </select>
             <button onclick="startPYQCBT('RSMSSB Librarian 2022 PYQ', 150, 'pyqTime2')" style="background:var(--purple); color:white; border:none; padding:10px 14px; border-radius:8px; font-size:0.82rem; font-weight:800; cursor:pointer; white-space:nowrap;">
               🎯 CBT शुरू करें
@@ -649,11 +656,19 @@
       } catch (e) { container.innerHTML = 'लोडिंग एरर'; }
     }
 
-    let qIndex = 0, userAnswers = {}, timerInterval = null, remainingSeconds = 600;
+    let qIndex = 0, userAnswers = {}, timerInterval = null, remainingSeconds = 600, isUnlimitedTime = false;
     
     function startCBT() {
       if (!currentQuestions || currentQuestions.length === 0) { alert('पहले प्रश्न बनाएं!'); showView('generate'); return; }
-      startCustomCBT("RAMESH GUJJAR CBT TEST", currentQuestions, currentQuestions.length * 60);
+      let choice = prompt('CBT परीक्षा का समय चुनें:\n1. स्मार्ट टाइमर (1 प्रश्न = 1 मिनट)\n2. असीमित समय (Self / Unlimited)\n3. मनचाहे मिनट दर्ज करें (उदा: 45, 90)', '1');
+      if (choice === '2' || choice.toLowerCase().includes('unlimited')) {
+        startCustomCBT("RAMESH GUJJAR CBT TEST", currentQuestions, 'unlimited');
+      } else if (choice === '3' || (parseInt(choice) > 0)) {
+        let mins = parseInt(choice) > 3 ? parseInt(choice) : parseInt(prompt('कितने मिनट चाहिए?', '60'));
+        startCustomCBT("RAMESH GUJJAR CBT TEST", currentQuestions, (mins || 60) * 60);
+      } else {
+        startCustomCBT("RAMESH GUJJAR CBT TEST", currentQuestions, currentQuestions.length * 60);
+      }
     }
 
     function startPYQCBT(title, count, selectId) {
@@ -667,8 +682,15 @@
         });
       }
       const selVal = document.getElementById(selectId).value;
-      let timeSecs = count * 60;
-      if (selVal !== 'auto') {
+      let timeSecs;
+      if (selVal === 'unlimited') {
+        timeSecs = 'unlimited';
+      } else if (selVal === 'custom') {
+        let mins = prompt('परीक्षा के लिए कुल कितने मिनट चाहिए? (उदा: 45, 90, 150):', '60');
+        timeSecs = (parseInt(mins) || 60) * 60;
+      } else if (selVal === 'auto') {
+        timeSecs = count * 60;
+      } else {
         timeSecs = parseInt(selVal) * 60;
       }
       startCustomCBT(title, currentQuestions, timeSecs);
@@ -678,14 +700,28 @@
       currentQuestions = questionsList;
       showView('cbt');
       document.getElementById('cbtTestTitle').innerText = title;
-      qIndex = 0; userAnswers = {}; remainingSeconds = totalSecs;
+      qIndex = 0; userAnswers = {}; 
       if (timerInterval) clearInterval(timerInterval);
-      timerInterval = setInterval(() => {
-        remainingSeconds--;
-        const m = Math.floor(remainingSeconds / 60), s = remainingSeconds % 60;
-        document.getElementById('cbtClock').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
-        if (remainingSeconds <= 0) { clearInterval(timerInterval); alert('समय समाप्त!'); finishCBT(); }
-      }, 1000);
+
+      if (totalSecs === 'unlimited') {
+        isUnlimitedTime = true;
+        let elapsed = 0;
+        document.getElementById('cbtClock').innerText = `♾️ 00:00 (असीमित)`;
+        timerInterval = setInterval(() => {
+          elapsed++;
+          const m = Math.floor(elapsed / 60), s = elapsed % 60;
+          document.getElementById('cbtClock').innerText = `♾️ ${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s} (असीमित)`;
+        }, 1000);
+      } else {
+        isUnlimitedTime = false;
+        remainingSeconds = totalSecs;
+        timerInterval = setInterval(() => {
+          remainingSeconds--;
+          const m = Math.floor(remainingSeconds / 60), s = remainingSeconds % 60;
+          document.getElementById('cbtClock').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+          if (remainingSeconds <= 0) { clearInterval(timerInterval); alert('समय समाप्त!'); finishCBT(); }
+        }, 1000);
+      }
       renderQuestion();
     }
 

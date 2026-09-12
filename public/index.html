@@ -81,7 +81,7 @@
     .login-mentor-info p { font-size: 0.92rem; color: #b45309; font-weight: 800; margin-bottom: 1px; }
     .login-mentor-info span { font-size: 0.72rem; color: var(--text-muted); display: block; }
     .input-box { width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 0.95rem; margin-bottom: 12px; outline: none; }
-    .btn-action { width: 100%; padding: 13px; background: linear-gradient(135deg, var(--gold), var(--ea580c, #ea580c)); color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 800; cursor: pointer; }
+    .btn-action { width: 100%; padding: 13px; background: linear-gradient(135deg, var(--gold), #ea580c); color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 800; cursor: pointer; }
 
     .top-navbar {
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
@@ -92,8 +92,8 @@
     .menu-btn { background: transparent; border: none; color: white; font-size: 24px; cursor: pointer; }
     .brand { display: flex; align-items: center; gap: 8px; cursor: pointer; }
     .brand-logo-small { width: 32px; height: 32px; border-radius: 8px; background: #f59e0b; color: #1e3a8a; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 800; }
-    .nav-mentor-profile { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.15); padding: 4px 12px 4px 4px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.25); }
-    .mentor-header-photo { width: 34px; height: 34px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover; }
+    .nav-mentor-profile { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.15); padding: 4px 12px 4px 4px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.25); cursor: pointer; }
+    .mentor-header-photo { width: 34px; height: 34px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover; background: #e2e8f0; }
     .mentor-header-text h4 { font-size: 0.84rem; font-weight: 900; }
 
     .sidebar-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.55); z-index: 998; opacity: 0; visibility: hidden; transition: all 0.3s; }
@@ -125,9 +125,11 @@
     .card-title { font-size: 1.12rem; font-weight: 800; color: var(--primary); margin-bottom: 14px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
     .back-home-btn { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px; background: #e2e8f0; color: var(--text); padding: 6px 14px; border-radius: 8px; font-size: 0.82rem; font-weight: 700; cursor: pointer; border: none; }
 
+    .diagram-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; margin: 14px 0; overflow-x: auto; text-align: center; }
     .trick-box { background: #fffbeb; border: 1px solid #fde68a; border-left: 5px solid var(--gold); border-radius: 12px; padding: 14px; margin-bottom: 12px; }
     .trick-formula { background: white; border: 1px dashed var(--gold); padding: 6px 10px; border-radius: 6px; font-weight: 800; color: #b45309; margin: 6px 0; display: inline-block; font-size: 0.9rem; }
 
+    /* SWIPEABLE FLASHCARDS */
     .flashcard-stage { width: 100%; height: 230px; position: relative; margin: 14px 0; perspective: 1200px; touch-action: pan-y; user-select: none; }
     .flashcard-container { width: 100%; height: 100%; position: relative; cursor: grab; border-radius: 20px; }
     .flashcard-inner { position: absolute; width: 100%; height: 100%; text-align: center; transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease; transform-style: preserve-3d; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); }
@@ -144,7 +146,7 @@
 </head>
 <body>
 
-  <!-- PAGE 1: 3S WELCOME SPLASH -->
+  <!-- WELCOME SPLASH -->
   <div id="welcomeSplash">
     <div class="splash-card">
       <div class="splash-big-brand">
@@ -158,7 +160,7 @@
       </div>
       <div class="splash-name">
         <span id="splashName">RAMESH GUJJAR</span>
-        <span onclick="editMentorDetails()" style="font-size:0.85rem; cursor:pointer;">✏️</span>
+        <span onclick="editMentorDetails()" style="font-size:0.85rem; cursor:pointer;" title="बदलें">✏️</span>
       </div>
       <div class="splash-subtitle">संस्थापक एवं मार्गदर्शक • Library & Info Science</div>
       <div class="splash-slogan-box">
@@ -173,7 +175,7 @@
     </div>
   </div>
 
-  <!-- PAGE 2: LOGIN -->
+  <!-- LOGIN OVERLAY -->
   <div id="authOverlay" class="hidden">
     <div class="login-card">
       <div class="login-mentor-badge">
@@ -200,7 +202,7 @@
     </div>
   </div>
 
-  <!-- NAVBAR -->
+  <!-- TOP NAVBAR -->
   <div class="top-navbar">
     <div class="nav-left">
       <button class="menu-btn" onclick="openSidebar()">☰</button>
@@ -265,7 +267,7 @@
         <div class="matrix-card" onclick="showView('generate')" style="border-top:3px solid var(--accent);">
           <div class="matrix-icon-box" style="background:linear-gradient(135deg, #2563eb, #3b82f6);">🤖</div>
           <h3>नया AI टेस्ट</h3>
-          <p>PDF से सवाल बनाएं</p>
+          <p>1 PDF से सब कुछ बनाएं</p>
         </div>
         <div class="matrix-card" onclick="showView('pyq')" style="border-top:3px solid var(--purple);">
           <div class="matrix-icon-box" style="background:linear-gradient(135deg, #7c3aed, #a855f7);">🏛️</div>
@@ -305,11 +307,14 @@
       </div>
     </div>
 
-    <!-- VIEW 2: GENERATE -->
+    <!-- VIEW 2: GENERATE (ALL-IN-ONE 1 PDF UPLOAD) -->
     <div id="view-generate" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
-        <div class="card-title"><span>📄 AI टेस्ट बनाएं</span></div>
+        <div class="card-title"><span>📄 1 PDF से सब कुछ बनाएं (All-in-One)</span></div>
+        <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:12px;">
+          एक PDF या फ़ोटो अपलोड करें—यह स्वचालित रूप से <b>सवाल, नोट्स, ट्रिक्स और प्ले कार्ड्स</b> में डेटा भर देगा।
+        </p>
         <form id="genForm">
           <div style="margin-bottom:12px;">
             <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">विषय:</label>
@@ -319,14 +324,6 @@
             <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">Study Material (PDF/फ़ोटो):</label>
             <input type="file" id="files" class="input-box" multiple accept=".pdf,.doc,.docx,image/*" required>
           </div>
-          <div style="margin-bottom:12px;">
-            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">प्रश्नों की संख्या:</label>
-            <select id="limit" class="input-box">
-              <option value="max">🔥 अधिकतम</option>
-              <option value="10">10 प्रश्न</option>
-              <option value="20">20 प्रश्न</option>
-            </select>
-          </div>
           <div style="margin-bottom:14px;">
             <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">भाषा:</label>
             <select id="lang" class="input-box">
@@ -334,7 +331,7 @@
               <option value="en">English</option>
             </select>
           </div>
-          <button type="submit" id="btnGen" class="btn-action">🚀 Generate & Save</button>
+          <button type="submit" id="btnGen" class="btn-action">🚀 1-क्लिक में सब तैयार करें</button>
         </form>
         <div id="genStatus" style="margin-top:12px; font-weight:800; font-size:0.88rem; text-align:center;"></div>
       </div>
@@ -355,11 +352,11 @@
       </div>
     </div>
 
-    <!-- VIEW 4: CARDS -->
+    <!-- VIEW 4: CARDS (SWIPEABLE) -->
     <div id="view-cards" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
-        <div class="card-title"><span>🃏 प्ले कार्ड्स</span></div>
+        <div class="card-title"><span>🃏 प्ले कार्ड्स (Swipeable)</span></div>
         <div class="flashcard-stage">
           <div class="flashcard-container" id="swipeCardContainer">
             <div class="flashcard-inner" id="flashcardInner">
@@ -388,10 +385,12 @@
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
         <div class="card-title"><span>💡 स्मार्ट ट्रिक्स</span></div>
-        <div class="trick-box">
-          <div style="font-weight:800; color:#92400e;">PMEST सूत्र</div>
-          <div class="trick-formula">P = Personality, M = Matter, E = Energy, S = Space, T = Time</div>
-          <div style="font-size:0.84rem; color:#78350f;">रंगनाथन की 5 मौलिक श्रेणियां।</div>
+        <div id="tricksContainer">
+          <div class="trick-box">
+            <div style="font-weight:800; color:#92400e;">PMEST सूत्र</div>
+            <div class="trick-formula">P = Personality, M = Matter, E = Energy, S = Space, T = Time</div>
+            <div style="font-size:0.84rem; color:#78350f;">रंगनाथन की 5 मौलिक श्रेणियां।</div>
+          </div>
         </div>
       </div>
     </div>
@@ -401,15 +400,17 @@
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड</button>
       <div class="card">
         <div class="card-title"><span>📝 शॉर्ट नोट्स</span></div>
-        <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-left:5px solid #16a34a; border-radius:12px; padding:14px;">
-          <h4 style="color:#166534; font-weight:800;">📌 पुस्तकालय विज्ञान के 5 नियम</h4>
-          <ul style="padding-left:18px; font-size:0.85rem; color:#14532d; line-height:1.6; margin-top:6px;">
-            <li>1. Books are for use.</li>
-            <li>2. Every reader his/her book.</li>
-            <li>3. Every book its reader.</li>
-            <li>4. Save the time of the reader.</li>
-            <li>5. Library is a growing organism.</li>
-          </ul>
+        <div id="notesContainer">
+          <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-left:5px solid #16a34a; border-radius:12px; padding:14px;">
+            <h4 style="color:#166534; font-weight:800;">📌 पुस्तकालय विज्ञान के 5 नियम</h4>
+            <ul style="padding-left:18px; font-size:0.85rem; color:#14532d; line-height:1.6; margin-top:6px;">
+              <li>1. Books are for use.</li>
+              <li>2. Every reader his/her book.</li>
+              <li>3. Every book its reader.</li>
+              <li>4. Save the time of the reader.</li>
+              <li>5. Library is a growing organism.</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -556,31 +557,120 @@
       }
     }
 
+    // Storage for cards, tricks, notes
+    function getStore(k, d) { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }
+    function setStore(k, v) { localStorage.setItem(k, JSON.stringify(v)); }
+
+    let cardsList = getStore('lis_cards', [
+      { topic: 'LAWS OF LIBRARY', front: 'पुस्तकालय विज्ञान के 5 नियम कब प्रतिपादित हुए?', back: '1928 में (1931 में प्रकाशित)' }
+    ]);
+    let tricksList = getStore('lis_tricks', [
+      { title: 'PMEST सूत्र', formula: 'Personality, Matter, Energy, Space, Time', desc: 'रंगनाथन की श्रेणियां' }
+    ]);
+    let notesList = getStore('lis_notes', [
+      { title: 'पुस्तकालय विज्ञान के 5 नियम', points: ['1. Books are for use.', '2. Every reader his/her book.', '3. Every book its reader.', '4. Save the time of the reader.', '5. Library is a growing organism.'] }
+    ]);
+
+    let currentCardIndex = 0;
+    function renderCurrentCard() {
+      if (cardsList.length === 0) return;
+      if (currentCardIndex >= cardsList.length) currentCardIndex = 0;
+      if (currentCardIndex < 0) currentCardIndex = cardsList.length - 1;
+      const c = cardsList[currentCardIndex];
+      document.getElementById('cardTopicDisplay').innerText = `TOPIC: ${c.topic || 'GENERAL'}`;
+      document.getElementById('cardQuestionDisplay').innerText = c.front;
+      document.getElementById('cardAnswerDisplay').innerText = c.back;
+      document.getElementById('cardCountDisplay').innerText = `${currentCardIndex + 1} / ${cardsList.length}`;
+      document.getElementById('flashcardInner').classList.remove('flipped');
+    }
+    function flipCard() { document.getElementById('flashcardInner').classList.toggle('flipped'); }
+    function nextCard() { currentCardIndex = (currentCardIndex + 1) % cardsList.length; renderCurrentCard(); }
+    function prevCard() { currentCardIndex = (currentCardIndex - 1 + cardsList.length) % cardsList.length; renderCurrentCard(); }
+
+    function initSwipe() {
+      const box = document.getElementById('swipeCardContainer');
+      let sx = 0, sy = 0, ex = 0, ey = 0;
+      box.addEventListener('touchstart', e => { sx = e.changedTouches[0].clientX; sy = e.changedTouches[0].clientY; }, { passive: true });
+      box.addEventListener('touchend', e => {
+        ex = e.changedTouches[0].clientX; ey = e.changedTouches[0].clientY;
+        const dx = ex - sx, dy = ey - sy;
+        if (Math.abs(dx) < 20 && Math.abs(dy) < 20) flipCard();
+        else if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) { if (dx < 0) nextCard(); else prevCard(); }
+      }, { passive: true });
+    }
+
+    function renderTricks() {
+      document.getElementById('tricksContainer').innerHTML = tricksList.map(t => `
+        <div class="trick-box">
+          <div style="font-weight:800; color:#92400e;">💡 ${t.title}</div>
+          <div class="trick-formula">⚡ सूत्र: ${t.formula}</div>
+          <div style="font-size:0.84rem; color:#78350f;">${t.desc}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderNotes() {
+      document.getElementById('notesContainer').innerHTML = notesList.map(n => `
+        <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-left:5px solid #16a34a; border-radius:12px; padding:14px; margin-bottom:10px;">
+          <h4 style="color:#166534; font-weight:800;">📌 ${n.title}</h4>
+          <ul style="padding-left:18px; font-size:0.85rem; color:#14532d; line-height:1.6; margin-top:6px;">
+            ${(n.points || []).map(pt => `<li>${pt}</li>`).join('')}
+          </ul>
+        </div>
+      `).join('');
+    }
+
+    // ALL-IN-ONE 1-PDF GENERATOR
     document.getElementById('genForm').onsubmit = async (e) => {
       e.preventDefault();
       const btn = document.getElementById('btnGen');
       const status = document.getElementById('genStatus');
       btn.disabled = true;
-      status.innerHTML = '⏳ AI सवाल बना रहा है...';
+      status.style.color = '#2563eb';
+      status.innerHTML = '⏳ AI PDF पढ़कर सभी विकल्पों में डेटा भर रहा है...';
 
       const formData = new FormData();
       formData.append('subject', document.getElementById('subject').value);
-      formData.append('limit', document.getElementById('limit').value);
       formData.append('lang', document.getElementById('lang').value);
 
       const files = document.getElementById('files').files;
       for (let i = 0; i < files.length; i++) formData.append('files', files[i]);
 
       try {
-        const res = await fetch('/api/generate', { method: 'POST', body: formData });
+        const res = await fetch('/api/generate-all', { method: 'POST', body: formData });
         const resData = await res.json();
-        if (resData.success) {
-          status.innerHTML = `✅ सफलता! ${resData.questionsCount} प्रश्न सहेज दिए गए हैं।`;
-          setTimeout(() => showView('bank'), 1000);
+        if (resData.success && resData.data) {
+          const d = resData.data;
+
+          // 1. Play Card
+          if (d.playCard) {
+            cardsList.unshift(d.playCard);
+            setStore('lis_cards', cardsList);
+            renderCurrentCard();
+          }
+          // 2. Trick
+          if (d.trick) {
+            tricksList.unshift(d.trick);
+            setStore('lis_tricks', tricksList);
+            renderTricks();
+          }
+          // 3. Notes
+          if (d.note) {
+            notesList.unshift(d.note);
+            setStore('lis_notes', notesList);
+            renderNotes();
+          }
+
+          loadBank();
+          status.style.color = '#059669';
+          status.innerHTML = '✅ सफलता! इस 1 PDF से सवाल बैंक, शॉर्ट नोट्स, ट्रिक्स और प्ले कार्ड्स सभी में डेटा जुड़ गया है।';
+          alert('🎉 1 ही PDF से सारा डेटा तैयार होकर सभी पेजों में जुड़ गया है!');
         } else {
-          status.innerHTML = '❌ एरर: ' + resData.message;
+          status.style.color = '#dc2626';
+          status.innerHTML = '❌ एरर: डेटा नहीं बन पाया';
         }
       } catch (err) {
+        status.style.color = '#dc2626';
         status.innerHTML = '❌ नेटवर्क एरर: ' + err.message;
       } finally {
         btn.disabled = false;
@@ -594,7 +684,7 @@
         const res = await fetch('/api/questions');
         currentQuestions = await res.json();
         if (!currentQuestions || currentQuestions.length === 0) {
-          container.innerHTML = '<p style="color:#64748b;">कोई प्रश्न नहीं है।</p>';
+          container.innerHTML = '<p style="color:#64748b;">अभी कोई प्रश्न नहीं है।</p>';
           return;
         }
         container.innerHTML = `<b>कुल प्रश्न: ${currentQuestions.length}</b><br><br>` +
@@ -657,6 +747,9 @@
       const pill = document.getElementById('pill-' + viewId);
       if (pill) pill.classList.add('active');
 
+      if (viewId === 'cards') renderCurrentCard();
+      if (viewId === 'tricks') renderTricks();
+      if (viewId === 'notes') renderNotes();
       if (viewId === 'bank') loadBank();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -671,7 +764,11 @@
 
     window.onload = () => {
       initMentor();
+      renderCurrentCard();
+      renderTricks();
+      renderNotes();
       loadBank();
+      initSwipe();
       history.replaceState({ view: 'home' }, '', '');
       setTimeout(() => { dismissSplash(); }, 3000);
     };

@@ -5,13 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LIS GURUJI - RAMESH GUJJAR</title>
 
-  <!-- WhatsApp Link Preview Meta -->
-  <meta property="og:title" content="LIS GURUJI - RAMESH GUJJAR AI Study & CBT Portal">
-  <meta property="og:description" content="स्मार्ट पढ़ाई, उज्ज्वल भविष्य। UGC-NET & Librarian Exam Portal">
+  <meta property="og:title" content="LIS GURUJI - RAMESH GUJJAR AI Study Portal">
+  <meta property="og:description" content="स्मार्ट पढ़ाई, उज्ज्वल भविष्य। एक PDF से संपूर्ण तैयारी">
   <meta property="og:image" content="/profile.jpg">
   <meta name="theme-color" content="#1e3a8a">
 
-  <!-- Mermaid.js for Diagrams -->
   <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
   <script>
     mermaid.initialize({ startOnLoad: false, theme: 'default', securityLevel: 'loose' });
@@ -36,307 +34,135 @@
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
     body { background: var(--bg); color: var(--text); padding-bottom: 60px; }
 
-    /* ===================================================
-       1. FIRST WELCOME SPLASH SCREEN (3S AUTO)
-       =================================================== */
+    /* 1. WELCOME SPLASH (3S AUTO) */
     #welcomeSplash {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       background: radial-gradient(circle at top, #1e3a8a, #0b1329);
-      z-index: 100000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 16px;
+      z-index: 100000; display: flex; justify-content: center; align-items: center; padding: 16px;
       transition: opacity 0.4s ease, visibility 0.4s ease;
     }
-    #welcomeSplash.hide {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-    }
+    #welcomeSplash.hide { opacity: 0; visibility: hidden; pointer-events: none; }
     .splash-card {
-      background: #ffffff;
-      border-radius: 24px;
-      padding: 28px 20px;
-      width: 100%;
-      max-width: 410px;
-      text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-      border-top: 6px solid var(--gold);
-      position: relative;
+      background: #ffffff; border-radius: 24px; padding: 28px 20px; width: 100%;
+      max-width: 410px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      border-top: 6px solid var(--gold); position: relative;
     }
     .splash-big-brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #eff6ff;
-      padding: 6px 16px;
-      border-radius: 20px;
-      margin-bottom: 12px;
-      border: 1px solid #bfdbfe;
+      display: inline-flex; align-items: center; gap: 8px; background: #eff6ff;
+      padding: 6px 16px; border-radius: 20px; margin-bottom: 12px; border: 1px solid #bfdbfe;
     }
-    .splash-big-brand h1 {
-      font-size: 1.3rem;
-      font-weight: 900;
-      color: var(--primary);
-      letter-spacing: 0.5px;
-    }
+    .splash-big-brand h1 { font-size: 1.3rem; font-weight: 900; color: var(--primary); letter-spacing: 0.5px; }
 
-    .splash-photo-wrap {
-      position: relative;
-      width: 115px;
-      height: 115px;
-      margin: 6px auto 12px;
-    }
+    .splash-photo-wrap { position: relative; width: 115px; height: 115px; margin: 6px auto 12px; }
     .splash-photo {
-      width: 115px;
-      height: 115px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--gold);
-      box-shadow: 0 8px 22px rgba(245, 158, 11, 0.4);
-      background: #e2e8f0;
-      display: block;
+      width: 115px; height: 115px; border-radius: 50%; object-fit: cover;
+      border: 4px solid var(--gold); box-shadow: 0 8px 22px rgba(245, 158, 11, 0.4);
+      background: #e2e8f0; display: block;
     }
     .photo-camera-btn {
-      position: absolute;
-      bottom: 2px;
-      right: 2px;
-      background: var(--primary);
-      color: white;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      cursor: pointer;
-      border: 2px solid white;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      position: absolute; bottom: 2px; right: 2px; background: var(--primary); color: white;
+      width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; font-size: 16px; cursor: pointer; border: 2px solid white;
     }
     .splash-name {
-      font-size: 1.35rem;
-      font-weight: 900;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      margin-bottom: 2px;
+      font-size: 1.35rem; font-weight: 900; color: var(--text); display: flex;
+      align-items: center; justify-content: center; gap: 6px; margin-bottom: 2px;
     }
-    .splash-subtitle {
-      font-size: 0.82rem;
-      color: #b45309;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
+    .splash-subtitle { font-size: 0.82rem; color: #b45309; font-weight: 700; margin-bottom: 12px; }
     .splash-slogan-box {
-      background: linear-gradient(135deg, #fffbeb, #fef3c7);
-      border: 2px dashed var(--gold);
-      border-radius: 14px;
-      padding: 12px 10px;
-      margin: 10px 0 14px;
+      background: linear-gradient(135deg, #fffbeb, #fef3c7); border: 2px dashed var(--gold);
+      border-radius: 14px; padding: 12px 10px; margin: 10px 0 14px;
     }
-    .splash-slogan-box h2 {
-      font-size: 1.25rem;
-      font-weight: 900;
-      color: #92400e;
-      line-height: 1.3;
-    }
-    .splash-slogan-box p {
-      font-size: 0.76rem;
-      color: #b45309;
-      font-weight: 700;
-      margin-top: 3px;
-    }
-
+    .splash-slogan-box h2 { font-size: 1.25rem; font-weight: 900; color: #92400e; line-height: 1.3; }
+    .splash-slogan-box p { font-size: 0.76rem; color: #b45309; font-weight: 700; margin-top: 3px; }
     .splash-phone-box {
-      font-size: 0.92rem;
-      font-weight: 800;
-      color: var(--primary);
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      padding: 8px 14px;
-      border-radius: 10px;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
+      font-size: 0.92rem; font-weight: 800; color: var(--primary); background: #f8fafc;
+      border: 1px solid #e2e8f0; padding: 8px 14px; border-radius: 10px; display: inline-flex;
+      align-items: center; gap: 8px; margin-bottom: 12px;
     }
-    .splash-timer-bar {
-      width: 100%;
-      height: 4px;
-      background: #e2e8f0;
-      border-radius: 10px;
-      margin-top: 14px;
-      overflow: hidden;
-    }
+    .splash-timer-bar { width: 100%; height: 4px; background: #e2e8f0; border-radius: 10px; margin-top: 14px; overflow: hidden; }
     .splash-timer-progress {
-      width: 0%;
-      height: 100%;
-      background: linear-gradient(90deg, var(--gold), var(--accent));
+      width: 0%; height: 100%; background: linear-gradient(90deg, var(--gold), var(--accent));
       animation: splashProgress 3s linear forwards;
     }
-    @keyframes splashProgress {
-      0% { width: 0%; }
-      100% { width: 100%; }
-    }
+    @keyframes splashProgress { 0% { width: 0%; } 100% { width: 100%; } }
 
-    /* ===================================================
-       2. STUDENT LOGIN OVERLAY (LIS GURUJI + RAMESH GUJJAR)
-       =================================================== */
+    /* 2. LOGIN OVERLAY */
     #authOverlay {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       background: radial-gradient(circle at top, #1e3a8a, #0b1329);
-      z-index: 99990;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 18px;
+      z-index: 99990; display: flex; justify-content: center; align-items: center; padding: 18px;
     }
     #authOverlay.hidden { display: none; }
     .login-card {
-      background: white;
-      border-radius: 24px;
-      padding: 24px 18px;
-      width: 100%;
-      max-width: 400px;
-      box-shadow: 0 16px 36px rgba(0,0,0,0.3);
-      text-align: center;
+      background: white; border-radius: 24px; padding: 24px 18px; width: 100%;
+      max-width: 400px; box-shadow: 0 16px 36px rgba(0,0,0,0.3); text-align: center;
       border-top: 5px solid var(--gold);
     }
-    
     .login-mentor-badge {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      margin-bottom: 16px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid #e2e8f0;
+      display: flex; align-items: center; justify-content: center; gap: 14px;
+      margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid #e2e8f0;
     }
     .login-mentor-img {
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      border: 3px solid var(--gold);
-      object-fit: cover;
-      background: #e2e8f0;
+      width: 58px; height: 58px; border-radius: 50%; border: 3px solid var(--gold);
+      object-fit: cover; background: #e2e8f0;
     }
-    .login-mentor-info {
-      text-align: left;
-    }
-    .login-mentor-info h3 {
-      font-size: 1.25rem;
-      color: var(--primary);
-      font-weight: 900;
-      margin-bottom: 2px;
-      letter-spacing: 0.5px;
-    }
-    .login-mentor-info p {
-      font-size: 0.92rem;
-      color: #b45309;
-      font-weight: 800;
-      margin-bottom: 1px;
-    }
-    .login-mentor-info span {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      display: block;
-    }
-
+    .login-mentor-info { text-align: left; }
+    .login-mentor-info h3 { font-size: 1.25rem; color: var(--primary); font-weight: 900; margin-bottom: 2px; }
+    .login-mentor-info p { font-size: 0.92rem; color: #b45309; font-weight: 800; margin-bottom: 1px; }
+    .login-mentor-info span { font-size: 0.72rem; color: var(--text-muted); display: block; }
     .input-box {
-      width: 100%;
-      padding: 12px 14px;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      font-size: 0.95rem;
-      margin-bottom: 12px;
-      outline: none;
+      width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 10px;
+      font-size: 0.95rem; margin-bottom: 12px; outline: none;
     }
-    .btn-login {
-      width: 100%;
-      padding: 13px;
-      background: linear-gradient(135deg, var(--gold), #ea580c);
-      color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-weight: 800;
-      cursor: pointer;
+    .btn-action {
+      width: 100%; padding: 13px; background: linear-gradient(135deg, var(--gold), #ea580c);
+      color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 800; cursor: pointer;
     }
 
-    /* ===================================================
-       3. TOP NAVBAR: LOGO + RAMESH GUJJAR PHOTO & NAME
-       =================================================== */
+    /* 3. TOP NAVBAR */
     .top-navbar {
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-      color: white;
-      padding: 10px 14px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      color: white; padding: 10px 14px; position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15); display: flex; justify-content: space-between; align-items: center;
     }
     .nav-left { display: flex; align-items: center; gap: 10px; }
     .menu-btn { background: transparent; border: none; color: white; font-size: 24px; cursor: pointer; }
     .brand { display: flex; align-items: center; gap: 8px; cursor: pointer; }
     .brand-logo-small {
-      width: 32px; height: 32px; border-radius: 8px;
-      background: #f59e0b; color: #1e3a8a; display: flex;
-      align-items: center; justify-content: center; font-size: 17px; font-weight: 800;
+      width: 32px; height: 32px; border-radius: 8px; background: #f59e0b; color: #1e3a8a;
+      display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 800;
     }
     .nav-mentor-profile {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.15);
-      padding: 4px 12px 4px 4px;
-      border-radius: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      cursor: pointer;
+      display: flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.15);
+      padding: 4px 12px 4px 4px; border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.25);
     }
     .mentor-header-photo {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      border: 2px solid var(--gold);
-      object-fit: cover;
-      background: #e2e8f0;
+      width: 34px; height: 34px; border-radius: 50%; border: 2px solid var(--gold); object-fit: cover;
     }
     .mentor-header-text h4 { font-size: 0.84rem; font-weight: 900; letter-spacing: 0.5px; }
 
     /* Side Drawer */
     .sidebar-overlay {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.55); z-index: 998; opacity: 0;
-      visibility: hidden; transition: all 0.3s;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.55);
+      z-index: 998; opacity: 0; visibility: hidden; transition: all 0.3s;
     }
     .sidebar-overlay.open { opacity: 1; visibility: visible; }
     .sidebar {
-      position: fixed; top: 0; left: 0; width: 290px; height: 100%;
-      background: white; z-index: 999; transform: translateX(-100%);
-      transition: transform 0.3s; display: flex; flex-direction: column;
-      box-shadow: 4px 0 20px rgba(0,0,0,0.25);
+      position: fixed; top: 0; left: 0; width: 290px; height: 100%; background: white;
+      z-index: 999; transform: translateX(-100%); transition: transform 0.3s;
+      display: flex; flex-direction: column; box-shadow: 4px 0 20px rgba(0,0,0,0.25);
     }
     .sidebar.open { transform: translateX(0); }
     .sidebar-header {
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-      color: white; padding: 24px 18px 18px; display: flex; flex-direction: column;
-      gap: 6px; position: relative;
+      color: white; padding: 24px 18px 18px; display: flex; flex-direction: column; gap: 6px; position: relative;
     }
     .sidebar-menu { flex: 1; overflow-y: auto; padding: 10px 0; }
     .sidebar-item { display: flex; align-items: center; gap: 14px; padding: 12px 20px; font-size: 0.92rem; font-weight: 600; cursor: pointer; }
     .sidebar-item:active { background: #f1f5f9; color: var(--primary); }
 
-    /* Top Pills */
+    /* Top Pills in Requested Sequence */
     .nav-options-bar {
       background: white; display: flex; overflow-x: auto; padding: 8px 12px; gap: 8px;
       border-bottom: 1px solid var(--border); position: sticky; top: 54px; z-index: 90;
@@ -349,31 +175,19 @@
 
     .container { max-width: 680px; margin: 16px auto; padding: 0 12px; }
 
-    /* Dashboard Matrix */
-    .dashboard-matrix { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .matrix-card {
-      background: white; border-radius: 16px; padding: 16px 10px; display: flex;
-      flex-direction: column; align-items: center; text-align: center; border: 1px solid #e2e8f0;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.03); cursor: pointer; transition: all 0.2s;
+    .hero-uploader-card {
+      background: linear-gradient(145deg, #ffffff, #f0fdf4);
+      border: 2px solid #86efac; border-radius: 20px; padding: 20px 16px; margin-bottom: 16px;
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.12);
     }
-    .matrix-card:active { transform: scale(0.96); }
-    .matrix-icon-box {
-      width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center;
-      justify-content: center; font-size: 26px; margin-bottom: 8px; color: white;
+    .hero-badge {
+      display: inline-block; background: #dcfce7; color: #15803d; font-size: 0.75rem;
+      font-weight: 800; padding: 3px 10px; border-radius: 20px; margin-bottom: 8px;
     }
-    .matrix-card h3 { font-size: 0.92rem; font-weight: 800; margin-bottom: 2px; }
-    .matrix-card p { font-size: 0.7rem; color: var(--text-muted); }
 
-    /* Views */
     .view-panel { display: none; }
     .view-panel.active { display: block; animation: fadeIn 0.25s ease-in-out; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-
-    .back-home-btn {
-      display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px;
-      background: #e2e8f0; color: var(--text); padding: 6px 14px; border-radius: 8px;
-      font-size: 0.82rem; font-weight: 700; cursor: pointer; border: none;
-    }
 
     .card {
       background: var(--card-bg); border-radius: 14px; padding: 20px 16px;
@@ -383,78 +197,71 @@
       font-size: 1.12rem; font-weight: 800; color: var(--primary); margin-bottom: 14px;
       border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center;
     }
+    .back-home-btn {
+      display: inline-flex; align-items: center; gap: 6px; margin-bottom: 14px;
+      background: #e2e8f0; color: var(--text); padding: 6px 14px; border-radius: 8px;
+      font-size: 0.82rem; font-weight: 700; cursor: pointer; border: none;
+    }
 
-    /* SMART NOTES STYLING */
-    .smart-note-sheet {
-      background: #ffffff; border: 2px solid #cbd5e1; border-radius: 16px;
-      padding: 18px; box-shadow: 0 8px 24px rgba(0,0,0,0.06); margin-top: 16px;
+    /* 1. QUESTIONS */
+    .question-item {
+      background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px;
+      padding: 14px; margin-bottom: 12px;
     }
-    .note-header {
-      text-align: center; border-bottom: 2px dashed var(--gold); padding-bottom: 10px; margin-bottom: 14px;
+    .question-opt {
+      background: white; border: 1px solid #cbd5e1; padding: 8px 12px; border-radius: 8px;
+      margin-top: 6px; font-size: 0.88rem; display: flex; align-items: center; gap: 8px;
     }
-    .note-header h2 { font-size: 1.25rem; color: var(--primary); font-weight: 900; }
+    .question-opt.correct { border-color: #10b981; background: #ecfdf5; font-weight: 700; color: #047857; }
+
+    /* 2. NOTES */
     .diagram-box {
       background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px;
       padding: 14px; margin: 14px 0; overflow-x: auto; text-align: center;
     }
+
+    /* 3. SHORT NOTES */
     .table-summary { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.85rem; }
     .table-summary th, .table-summary td { border: 1px solid #e2e8f0; padding: 8px 10px; text-align: left; }
     .table-summary th { background: #f1f5f9; color: var(--primary); font-weight: 800; }
-    .mnemonic-box {
-      background: #fef3c7; border-left: 4px solid var(--gold); padding: 10px 14px;
-      border-radius: 8px; font-size: 0.88rem; font-weight: 700; color: #92400e; margin-top: 12px;
+
+    /* 4. TRICKS */
+    .trick-box {
+      background: #fffbeb; border: 1px solid #fde68a; border-left: 5px solid var(--gold);
+      border-radius: 12px; padding: 14px; margin-bottom: 12px;
+    }
+    .trick-formula {
+      background: white; border: 1px dashed var(--gold); padding: 6px 10px; border-radius: 6px;
+      font-weight: 800; color: #b45309; margin: 6px 0; display: inline-block; font-size: 0.9rem;
     }
 
-    /* SWIPEABLE PLAY CARDS */
+    /* 5. PLAY CARDS */
     .flashcard-stage {
-      width: 100%; height: 240px; position: relative; margin: 16px 0;
+      width: 100%; height: 230px; position: relative; margin: 14px 0;
       perspective: 1200px; touch-action: pan-y; user-select: none;
     }
-    .flashcard-container {
-      width: 100%; height: 100%; position: relative; cursor: grab; border-radius: 20px;
-    }
-    .flashcard-container:active { cursor: grabbing; }
-
+    .flashcard-container { width: 100%; height: 100%; position: relative; cursor: grab; border-radius: 20px; }
     .flashcard-inner {
       position: absolute; width: 100%; height: 100%; text-align: center;
       transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
-      transform-style: preserve-3d; border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08); will-change: transform, opacity;
+      transform-style: preserve-3d; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.08);
     }
     .flashcard-inner.flipped { transform: rotateY(180deg); }
     .flashcard-front, .flashcard-back {
-      position: absolute; width: 100%; height: 100%;
-      -webkit-backface-visibility: hidden; backface-visibility: hidden;
-      border-radius: 20px; padding: 24px 18px; display: flex; flex-direction: column;
-      justify-content: center; align-items: center; border: 2px solid var(--border);
+      position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden;
+      border-radius: 20px; padding: 22px 16px; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 2px solid var(--border);
     }
     .flashcard-front { background: linear-gradient(145deg, #ffffff, #eff6ff); color: #1e3a8a; }
     .flashcard-back { background: linear-gradient(145deg, #1e3a8a, #0f172a); color: #fef08a; transform: rotateY(180deg); }
-    .flashcard-title {
-      font-size: 0.78rem; text-transform: uppercase; font-weight: 800; letter-spacing: 0.8px; opacity: 0.8; margin-bottom: 8px;
-    }
-    .flashcard-text { font-size: 1.15rem; font-weight: 800; line-height: 1.4; }
     .swipe-hint-bar {
       display: flex; justify-content: space-between; align-items: center; padding: 6px 12px;
       background: #f1f5f9; border-radius: 12px; font-size: 0.78rem; color: var(--text-muted); font-weight: 700; margin-top: 8px;
-    }
-
-    /* Modals */
-    .modal-overlay {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6);
-      display: none; justify-content: center; align-items: center; z-index: 1000; padding: 16px;
-    }
-    .modal-overlay.open { display: flex; }
-    .modal-content {
-      background: white; border-radius: 16px; padding: 20px; width: 100%; max-width: 480px; max-height: 90vh; overflow-y: auto;
     }
   </style>
 </head>
 <body>
 
-  <!-- ===================================================
-       PAGE 1: WELCOME SPLASH SCREEN (3S AUTO)
-       =================================================== -->
+  <!-- PAGE 1: WELCOME SPLASH SCREEN -->
   <div id="welcomeSplash">
     <div class="splash-card">
       <div class="splash-big-brand">
@@ -476,7 +283,7 @@
 
       <div class="splash-slogan-box">
         <h2>"स्मार्ट पढ़ाई, उज्ज्वल भविष्य।"</h2>
-        <p>⚡ AI संचालित आधुनिक CBT एवं रिवीज़न पोर्टल</p>
+        <p>⚡ AI संचालित आधुनिक ऑल-इन-वन CBT व रिवीज़न पोर्टल</p>
       </div>
 
       <div>
@@ -493,18 +300,14 @@
     </div>
   </div>
 
-  <!-- ===================================================
-       PAGE 2: STUDENT LOGIN OVERLAY (LIS GURUJI + RAMESH GUJJAR)
-       =================================================== -->
+  <!-- PAGE 2: STUDENT LOGIN OVERLAY -->
   <div id="authOverlay" class="hidden">
     <div class="login-card">
-      
-      <!-- Fixed: LIS GURUJI on Top, RAMESH GUJJAR Below -->
       <div class="login-mentor-badge">
         <img class="login-mentor-img" id="loginMentorImg" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" alt="RAMESH GUJJAR">
         <div class="login-mentor-info">
           <h3>LIS GURUJI</h3>
-          <p>RAMESH GUJJAR</p>
+          <p id="loginMentorSubName">RAMESH GUJJAR</p>
           <span>संस्थापक एवं मेंटर</span>
         </div>
       </div>
@@ -516,7 +319,7 @@
         <input type="text" id="studentNameInput" class="input-box" placeholder="आपका पूरा नाम (Full Name)" required>
         <input type="tel" id="studentPhoneInput" class="input-box" placeholder="10 अंकों का मोबाइल नंबर" maxlength="10" required>
 
-        <button class="btn-login" onclick="handleSendDemoOtp()">
+        <button class="btn-action" onclick="handleSendDemoOtp()">
           📩 लॉगिन करें (Get Security Code)
         </button>
       </div>
@@ -525,14 +328,12 @@
         <h2 style="font-size:1.2rem; font-weight:800;">सत्यापन कोड</h2>
         <div id="otpDisplayBanner" style="background:#ecfdf5; border:1px dashed #10b981; padding:10px; border-radius:10px; font-size:0.85rem; color:#065f46; font-weight:700; margin:12px 0;"></div>
         <input type="number" id="otpCodeInput" class="input-box" placeholder="4 अंकों का कोड दर्ज करें" maxlength="4" style="text-align:center; font-size:1.2rem; letter-spacing:4px;">
-        <button class="btn-login" onclick="handleVerifyDemoOtp()">✅ सत्यापित करें व प्रवेश करें</button>
+        <button class="btn-action" onclick="handleVerifyDemoOtp()">✅ सत्यापित करें व प्रवेश करें</button>
       </div>
     </div>
   </div>
 
-  <!-- ===================================================
-       3. TOP NAVBAR: LOGO + RAMESH GUJJAR PHOTO & NAME
-       =================================================== -->
+  <!-- TOP NAVBAR -->
   <div class="top-navbar">
     <div class="nav-left">
       <button class="menu-btn" onclick="openSidebar()" title="मेनू">☰</button>
@@ -540,16 +341,15 @@
         <div class="brand-logo-small">📚</div>
         <div style="font-size:0.95rem; font-weight:800; line-height:1.1;">
           LIS GURUJI
-          <span style="font-size:0.65rem; display:block; opacity:0.85;">AI Study Portal</span>
+          <span style="font-size:0.65rem; display:block; opacity:0.85;">All-in-One Study Portal</span>
         </div>
       </div>
     </div>
 
-    <!-- RAMESH GUJJAR Profile on Top Right -->
     <div class="nav-mentor-profile" onclick="openSidebar()">
       <img id="navMentorImg" class="mentor-header-photo" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" alt="RAMESH GUJJAR">
       <div class="mentor-header-text">
-        <h4>RAMESH GUJJAR</h4>
+        <h4 id="navMentorName">RAMESH GUJJAR</h4>
       </div>
     </div>
   </div>
@@ -572,13 +372,12 @@
       <div style="padding:10px 20px; font-size:0.8rem; color:var(--text-muted); background:#f8fafc;">
         विद्यार्थी: <b id="loggedInStudentName" style="color:var(--primary);">...</b>
       </div>
-      <div class="sidebar-item" onclick="navFromSidebar('home')"><span>🏠</span> मुख्य डैशबोर्ड</div>
-      <div class="sidebar-item" onclick="navFromSidebar('smartnotes')"><span>📝</span> 1-पेज स्मार्ट नोट्स (with Diagram)</div>
-      <div class="sidebar-item" onclick="navFromSidebar('cards')"><span>🃏</span> प्ले कार्ड्स (Swipe Flashcards)</div>
-      <div class="sidebar-item" onclick="navFromSidebar('generate')"><span>➕</span> नया AI CBT टेस्ट बनाएं</div>
-      <div class="sidebar-item" onclick="navFromSidebar('pyq')"><span>📜</span> पिछले पेपर (PYQs)</div>
-      <div class="sidebar-item" onclick="navFromSidebar('bank')"><span>📂</span> क्वेश्चन बैंक</div>
-      <div class="sidebar-item" onclick="navFromSidebar('syllabus')"><span>📖</span> पूरा सिलेबस (8 Units)</div>
+      <div class="sidebar-item" onclick="navFromSidebar('home')"><span>🏠</span> 1-क्लिक ऑल-इन-वन अपलोड</div>
+      <div class="sidebar-item" onclick="navFromSidebar('questions')"><span>1️⃣</span> CBT Questions (प्रश्न अभ्यास)</div>
+      <div class="sidebar-item" onclick="navFromSidebar('notes')"><span>2️⃣</span> Detailed Notes (विस्तृत नोट्स)</div>
+      <div class="sidebar-item" onclick="navFromSidebar('shortnotes')"><span>3️⃣</span> Short Notes (माइक्रो पॉइंट्स)</div>
+      <div class="sidebar-item" onclick="navFromSidebar('tricks')"><span>4️⃣</span> Tricks to Learn (जादुई सूत्र)</div>
+      <div class="sidebar-item" onclick="navFromSidebar('playcards')"><span>5️⃣</span> Play Cards (स्वाइप कार्ड्स)</div>
 
       <div style="height:1px; background:#e2e8f0; margin:8px 18px;"></div>
       <div class="sidebar-item" onclick="document.getElementById('splashPhotoInput').click()"><span>📷</span> फ़ोटो बदलें</div>
@@ -592,155 +391,152 @@
     </div>
   </div>
 
-  <!-- Top Navigation Pills -->
+  <!-- EXACT 5-STEP SEQUENCE TABS -->
   <div class="nav-options-bar">
-    <div class="nav-pill active" id="pill-home" onclick="showView('home')">🏠 डैशबोर्ड</div>
-    <div class="nav-pill" id="pill-smartnotes" onclick="showView('smartnotes')">📝 1-पेज नोट्स</div>
-    <div class="nav-pill" id="pill-cards" onclick="showView('cards')">🃏 प्ले कार्ड्स</div>
-    <div class="nav-pill" id="pill-generate" onclick="showView('generate')">➕ AI CBT</div>
-    <div class="nav-pill" id="pill-pyq" onclick="showView('pyq')">📜 पिछले पेपर</div>
+    <div class="nav-pill active" id="pill-home" onclick="showView('home')">⚡ ऑल-इन-वन अपलोड</div>
+    <div class="nav-pill" id="pill-questions" onclick="showView('questions')">1️⃣ Questions</div>
+    <div class="nav-pill" id="pill-notes" onclick="showView('notes')">2️⃣ Notes</div>
+    <div class="nav-pill" id="pill-shortnotes" onclick="showView('shortnotes')">3️⃣ Short Notes</div>
+    <div class="nav-pill" id="pill-tricks" onclick="showView('tricks')">4️⃣ Tricks</div>
+    <div class="nav-pill" id="pill-playcards" onclick="showView('playcards')">5️⃣ Play Cards</div>
   </div>
 
   <div class="container">
 
-    <!-- VIEW 1: MATRIX DASHBOARD -->
+    <!-- VIEW 0: ALL-IN-ONE UPLOADER DASHBOARD -->
     <div id="view-home" class="view-panel active">
-      <div style="background:linear-gradient(135deg, #1e3a8a, #2563eb); color:white; border-radius:16px; padding:16px; margin-bottom:16px;">
-        <h3 id="welcomeStudentBanner" style="font-size:1.15rem; font-weight:800;">नमस्ते, विद्यार्थी! 👋</h3>
-        <p style="font-size:0.8rem; opacity:0.9;">RAMESH GUJJAR LIS Study Portal में आपका स्वागत है।</p>
-      </div>
-
-      <div class="dashboard-matrix">
-        <div class="matrix-card" onclick="showView('smartnotes')" style="border-top:3px solid var(--teal);">
-          <div class="matrix-icon-box" style="background:linear-gradient(135deg, #0d9488, #14b8a6);">📑</div>
-          <h3>1-पेज स्मार्ट नोट्स</h3>
-          <p>PDF से फ्लोचार्ट व डायग्राम सहित नोट्स</p>
-        </div>
-
-        <div class="matrix-card" onclick="showView('cards')" style="border-top:3px solid var(--rose);">
-          <div class="matrix-icon-box" style="background:linear-gradient(135deg, #e11d48, #f43f5e);">🎴</div>
-          <h3>प्ले कार्ड्स (Swipe)</h3>
-          <p>स्वाइप करके फ़्लैशकार्ड्स से त्वरित रिवीज़न</p>
-        </div>
-
-        <div class="matrix-card" onclick="showView('generate')" style="border-top:3px solid var(--accent);">
-          <div class="matrix-icon-box" style="background:linear-gradient(135deg, #2563eb, #3b82f6);">🤖</div>
-          <h3>नया AI CBT टेस्ट</h3>
-          <p>PDF या फोटो से सवाल बैंक तैयार करें</p>
-        </div>
-
-        <div class="matrix-card" onclick="showView('pyq')" style="border-top:3px solid var(--purple);">
-          <div class="matrix-icon-box" style="background:linear-gradient(135deg, #7c3aed, #a855f7);">🏛️</div>
-          <h3>पिछले पेपर (PYQ)</h3>
-          <p>NET, KVS, RSMSSB सॉल्व्ड पेपर्स</p>
-        </div>
-
-        <div class="matrix-card" onclick="startCBT()" style="border-top:3px solid var(--success);">
-          <div class="matrix-icon-box" style="background:linear-gradient(135deg, #10b981, #059669);">🎯</div>
-          <h3>लाइव CBT टेस्ट</h3>
-          <p>टाइमर के साथ परीक्षा अभ्यास</p>
-        </div>
-
-        <div class="matrix-card" onclick="showView('syllabus')" style="border-top:3px solid var(--gold);">
-          <div class="matrix-icon-box" style="background:linear-gradient(135deg, #f59e0b, #d97706);">📖</div>
-          <h3>LIS सिलेबस</h3>
-          <p>8 मुख्य यूनिट्स का पूरा सिलेबस</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- VIEW 2: 1-PAGE SMART NOTES WITH DIAGRAM -->
-    <div id="view-smartnotes" class="view-panel">
-      <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
-      <div class="card">
-        <div class="card-title">
-          <span>📝 1-पेज स्मार्ट नोट्स जनरेटर (with Diagram)</span>
-        </div>
+      <div class="hero-uploader-card">
+        <span class="hero-badge">⚡ RAMESH GUJJAR AI MASTER GENERATOR</span>
+        <h2 style="font-size:1.25rem; font-weight:900; color:var(--primary); margin-bottom:4px;">
+          एक ही PDF से सब कुछ तैयार करें!
+        </h2>
         <p style="font-size:0.84rem; color:var(--text-muted); margin-bottom:14px;">
-          किसी भी PDF/नोट्स की फ़ोटो डालें—AI 1 पेज में <b>फ़्लोचार्ट डायग्राम, मुख्य सारणी और बुलेट पॉइंट्स</b> तैयार कर देगा।
+          बस 1 फ़ाइल अपलोड करें, AI तुरंत <b>Questions ➔ Notes ➔ Short Notes ➔ Tricks ➔ Play Cards</b> एक साथ तैयार कर देगा।
         </p>
 
-        <form id="smartNoteForm">
+        <form id="masterGenForm">
           <div style="margin-bottom:12px;">
-            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">विषय / टॉपिक:</label>
-            <input type="text" id="noteSubject" class="input-box" value="Library Science Classification & Laws" required>
+            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">विषय (Subject):</label>
+            <input type="text" id="masterSubject" class="input-box" value="Library & Information Science" required>
           </div>
           <div style="margin-bottom:14px;">
-            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">Study Material (PDF या 📷 नोट्स की फ़ोटो):</label>
-            <input type="file" id="noteFiles" class="input-box" multiple accept=".pdf,.doc,.docx,image/*" required>
+            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">Study Material (PDF, Doc या 📷 नोट्स की फ़ोटो):</label>
+            <input type="file" id="masterFiles" class="input-box" multiple accept=".pdf,.doc,.docx,image/*" required>
           </div>
-          <button type="submit" id="btnGenNotes" class="btn-login" style="background:linear-gradient(135deg, var(--teal), #0f766e);">
-            ⚡ 1-पेज स्मार्ट नोट्स बनाएं
+          <button type="submit" id="btnMasterGen" class="btn-action" style="background:linear-gradient(135deg, #10b981, #047857);">
+            🚀 एक क्लिक में सब कुछ बनाएं (Generate All)
           </button>
         </form>
+        <div id="masterStatus" style="margin-top:12px; font-weight:800; font-size:0.88rem; text-align:center;"></div>
+      </div>
 
-        <div id="notesStatus" style="font-size:0.85rem; font-weight:700; margin-top:10px; text-align:center;"></div>
+      <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:10px;">
+        <div class="card" onclick="showView('questions')" style="padding:14px; text-align:center; cursor:pointer; margin-bottom:0; border-top:3px solid var(--accent);">
+          <div style="font-size:24px;">🎯</div>
+          <b style="font-size:0.9rem;">1. Questions</b>
+          <p style="font-size:0.72rem; color:var(--text-muted);">CBT मॉक टेस्ट व सवाल</p>
+        </div>
+        <div class="card" onclick="showView('notes')" style="padding:14px; text-align:center; cursor:pointer; margin-bottom:0; border-top:3px solid var(--teal);">
+          <div style="font-size:24px;">📖</div>
+          <b style="font-size:0.9rem;">2. Notes</b>
+          <p style="font-size:0.72rem; color:var(--text-muted);">फ्लोचार्ट सहित विस्तृत नोट्स</p>
+        </div>
+        <div class="card" onclick="showView('shortnotes')" style="padding:14px; text-align:center; cursor:pointer; margin-bottom:0; border-top:3px solid var(--purple);">
+          <div style="font-size:24px;">📝</div>
+          <b style="font-size:0.9rem;">3. Short Notes</b>
+          <p style="font-size:0.72rem; color:var(--text-muted);">माइक्रो पॉइंट्स व टेबल</p>
+        </div>
+        <div class="card" onclick="showView('tricks')" style="padding:14px; text-align:center; cursor:pointer; margin-bottom:0; border-top:3px solid var(--gold);">
+          <div style="font-size:24px;">💡</div>
+          <b style="font-size:0.9rem;">4. Tricks to Learn</b>
+          <p style="font-size:0.72rem; color:var(--text-muted);">याद रखने के जादुई सूत्र</p>
+        </div>
+      </div>
+      <div class="card" onclick="showView('playcards')" style="padding:14px; text-align:center; cursor:pointer; margin-top:10px; border-top:3px solid var(--rose);">
+        <div style="font-size:24px;">🃏</div>
+        <b style="font-size:0.9rem;">5. Play Cards (Flashcards)</b>
+        <p style="font-size:0.72rem; color:var(--text-muted);">स्वाइप करके त्वरित रिवीज़न</p>
+      </div>
+    </div>
 
-        <div id="smartNoteOutput" style="display:none;">
-          <div class="smart-note-sheet">
-            <div class="note-header">
-              <span style="background:#e0f2fe; color:#0369a1; padding:2px 8px; border-radius:12px; font-size:0.75rem; font-weight:800;">RAMESH GUJJAR - SMART REVISION</span>
-              <h2 id="outNoteTitle" style="margin-top:6px;">शीर्षक</h2>
-              <p id="outNoteSummary">सारंश लोड हो रहा है...</p>
-            </div>
-
-            <div style="font-size:0.85rem; font-weight:800; color:var(--primary); margin-top:8px;">📊 विजुअल फ़्लोचार्ट / डायग्राम:</div>
-            <div class="diagram-box">
-              <div class="mermaid" id="outMermaidDiagram">
-                graph TD
-                A[Library Science] --> B[Classification]
-                A --> C[Cataloguing]
-              </div>
-            </div>
-
-            <div style="font-size:0.85rem; font-weight:800; color:var(--primary); margin-top:12px;">📌 महत्वपूर्ण तिथियाँ व नियम (Key Table):</div>
-            <table class="table-summary" id="outKeyTable">
-              <thead><tr><th>अवधारणा / अधिनियम</th><th>वर्ष / विवरण</th></tr></thead>
-              <tbody></tbody>
-            </table>
-
-            <div style="font-size:0.85rem; font-weight:800; color:var(--primary); margin-top:12px;">⚡ परीक्षा उपयोगी मुख्य बिंदु:</div>
-            <ul id="outBulletPoints" style="padding-left:18px; font-size:0.85rem; line-height:1.6; margin-top:6px;"></ul>
-
-            <div class="mnemonic-box" id="outSmartTrick"></div>
-
-            <div style="display:flex; gap:10px; margin-top:16px;">
-              <button onclick="window.print()" style="flex:1; padding:10px; background:var(--primary); color:white; border:none; border-radius:8px; font-weight:700; cursor:pointer;">
-                🖨️ प्रिंट / Save PDF
-              </button>
-            </div>
-          </div>
+    <!-- 1. QUESTIONS VIEW -->
+    <div id="view-questions" class="view-panel">
+      <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
+      <div class="card">
+        <div class="card-title">
+          <span>🎯 1. CBT Questions (अभ्यास सवाल)</span>
+          <button onclick="startActiveCBT()" style="background:var(--success); color:white; border:none; padding:6px 12px; border-radius:8px; font-weight:800; cursor:pointer; font-size:0.8rem;">
+            ⏱️ लाइव टेस्ट दें
+          </button>
+        </div>
+        <div id="questionsContainer">
+          <p style="color:var(--text-muted); font-size:0.85rem;">अभी कोई प्रश्न नहीं है। मुख्य पेज पर PDF अपलोड करके जनरेट करें।</p>
         </div>
       </div>
     </div>
 
-    <!-- VIEW 3: SWIPEABLE PLAY CARDS (FLASHCARDS) -->
-    <div id="view-cards" class="view-panel">
+    <!-- 2. NOTES VIEW -->
+    <div id="view-notes" class="view-panel">
       <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
       <div class="card">
         <div class="card-title">
-          <span>🃏 प्ले कार्ड्स (Swipe Flashcards)</span>
-          <div style="display:flex; gap:6px;">
-            <button onclick="openModal('aiCardModal')" style="background:var(--rose); color:white; border:none; padding:5px 10px; border-radius:6px; font-size:0.75rem; font-weight:700; cursor:pointer;">
-              🤖 AI कार्ड्स
-            </button>
-            <button onclick="openModal('manualCardModal')" style="background:#f1f5f9; color:var(--text); border:1px solid #cbd5e1; padding:5px 10px; border-radius:6px; font-size:0.75rem; font-weight:700; cursor:pointer;">
-              ➕ नया कार्ड
-            </button>
-          </div>
+          <span>📖 2. Detailed Notes (विस्तृत नोट्स)</span>
+          <button onclick="window.print()" style="background:var(--primary); color:white; border:none; padding:5px 10px; border-radius:6px; font-size:0.75rem; cursor:pointer;">🖨️ प्रिंट</button>
         </div>
+        <div id="notesContainer">
+          <p style="color:var(--text-muted); font-size:0.85rem;">PDF अपलोड करने पर यहाँ विस्तृत नोट्स व फ़्लोचार्ट डायग्राम आ जाएगा।</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. SHORT NOTES VIEW -->
+    <div id="view-shortnotes" class="view-panel">
+      <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
+      <div class="card">
+        <div class="card-title">
+          <span>📝 3. Short Notes & Key Points (माइक्रो नोट्स)</span>
+        </div>
+        <div id="shortNotesContainer">
+          <p style="color:var(--text-muted); font-size:0.85rem;">यहाँ परीक्षा उपयोगी त्वरित बिंदु और मुख्य तिथियों की टेबल दिखेगी।</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. TRICKS VIEW -->
+    <div id="view-tricks" class="view-panel">
+      <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
+      <div class="card">
+        <div class="card-title">
+          <span>💡 4. Tricks to Learn (याद रखने के जादुई सूत्र)</span>
+        </div>
+        <div id="tricksContainer">
+          <p style="color:var(--text-muted); font-size:0.85rem;">कठिन नियम व तिथियाँ याद करने की ट्रिक्स यहाँ उपलब्ध होंगी।</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. PLAY CARDS (SWIPE) VIEW -->
+    <div id="view-playcards" class="view-panel">
+      <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
+      <div class="card">
+        <div class="card-title">
+          <span>🃏 5. Play Cards (Swipe Flashcards)</span>
+        </div>
+        <p style="font-size:0.82rem; color:var(--text-muted);">
+          उत्तर देखने के लिए टैप करें और अगला कार्ड देखने के लिए बाएँ/दाएँ स्वाइप करें:
+        </p>
 
         <div class="flashcard-stage">
           <div class="flashcard-container" id="swipeCardContainer">
             <div class="flashcard-inner" id="flashcardInner">
               <div class="flashcard-front">
-                <div class="flashcard-title" id="cardTopicDisplay">TOPIC: LAWS OF LIBRARY</div>
-                <div class="flashcard-text" id="cardQuestionDisplay">लोड हो रहा है...</div>
+                <div style="font-size:0.75rem; font-weight:800; color:#2563eb; margin-bottom:8px;" id="cardTopicDisplay">TOPIC</div>
+                <div style="font-size:1.15rem; font-weight:800; line-height:1.4;" id="cardQuestionDisplay">कार्ड लोड हो रहा है...</div>
                 <div style="font-size:0.72rem; margin-top:12px; opacity:0.7;">👆 उत्तर देखने के लिए टैप करें</div>
               </div>
               <div class="flashcard-back">
-                <div class="flashcard-title" style="color:#cbd5e1;">सही उत्तर / व्याख्या:</div>
-                <div class="flashcard-text" id="cardAnswerDisplay">उत्तर लोड हो रहा है...</div>
+                <div style="font-size:0.75rem; font-weight:800; color:#cbd5e1; margin-bottom:6px;">सही उत्तर / व्याख्या:</div>
+                <div style="font-size:1.1rem; font-weight:800; line-height:1.4;" id="cardAnswerDisplay">उत्तर लोड हो रहा है...</div>
                 <div style="font-size:0.72rem; margin-top:12px; opacity:0.8;">👆 वापस प्रश्न के लिए टैप करें</div>
               </div>
             </div>
@@ -749,82 +545,13 @@
 
         <div class="swipe-hint-bar">
           <span>👈 बाएँ स्वाइप करें (Next)</span>
-          <span id="cardCountDisplay" style="font-weight:900; color:var(--primary); font-size:0.9rem;">1 / 4</span>
+          <span id="cardCountDisplay" style="font-weight:900; color:var(--primary); font-size:0.9rem;">1 / 1</span>
           <span>दाएँ स्वाइप करें (Prev) 👉</span>
         </div>
       </div>
     </div>
 
-    <!-- VIEW 4: AI CBT TEST GENERATOR -->
-    <div id="view-generate" class="view-panel">
-      <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
-      <div class="card">
-        <div class="card-title">📄 नया AI CBT टेस्ट बनाएं</div>
-        <form id="genForm">
-          <div style="margin-bottom:12px;">
-            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">विषय (Subject):</label>
-            <input type="text" id="subject" class="input-box" value="Library Science" required>
-          </div>
-          <div style="margin-bottom:12px;">
-            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">Study Material (PDF, Word या 📷 नोट्स):</label>
-            <input type="file" id="files" class="input-box" multiple accept=".pdf,.doc,.docx,image/*" required>
-          </div>
-          <div style="margin-bottom:12px;">
-            <label style="font-weight:700; font-size:0.85rem; display:block; margin-bottom:4px;">प्रश्नों की संख्या:</label>
-            <select id="limit" class="input-box">
-              <option value="max">🔥 अधिकतम संभव (पूरा निचोड़)</option>
-              <option value="10">10 प्रश्न</option>
-              <option value="20">20 प्रश्न</option>
-            </select>
-          </div>
-          <button type="submit" id="btnGen" class="btn-login" style="background:linear-gradient(135deg, var(--accent), var(--primary));">
-            🚀 Generate & Save to Bank
-          </button>
-        </form>
-        <div id="genStatus" style="margin-top:12px; font-weight:700; text-align:center;"></div>
-      </div>
-    </div>
-
-    <!-- VIEW 5: PYQs -->
-    <div id="view-pyq" class="view-panel">
-      <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
-      <div class="card">
-        <div class="card-title">📜 पिछले वर्षों के प्रश्न पत्र (PYQs)</div>
-        <div class="card" style="background:#f8fafc; margin-bottom:10px;">
-          <h4 style="font-size:0.95rem;">UGC NET Library & Info Science (Dec 2023 Solved)</h4>
-          <p style="font-size:0.78rem; color:#64748b; margin:4px 0 10px;">100 Solved Questions | NTA Official</p>
-          <button onclick="showView('generate')" style="background:var(--purple); color:white; border:none; padding:6px 12px; border-radius:6px; font-size:0.8rem; font-weight:700; cursor:pointer;">⚡ इस पेपर का CBT बनाएं</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- VIEW 6: QUESTION BANK -->
-    <div id="view-bank" class="view-panel">
-      <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
-      <div class="card">
-        <div class="card-title">📂 सहेजा गया क्वेश्चन बैंक</div>
-        <div id="bankList">लोड हो रहा है...</div>
-        <button onclick="startCBT()" class="btn-login" style="margin-top:14px; background:var(--success);">🎯 CBT मॉक टेस्ट शुरू करें</button>
-      </div>
-    </div>
-
-    <!-- VIEW 7: SYLLABUS -->
-    <div id="view-syllabus" class="view-panel">
-      <button class="back-home-btn" onclick="showView('home')">← डैशबोर्ड पर लौटें</button>
-      <div class="card">
-        <div class="card-title">📚 Library Science - 8 Core Units</div>
-        <ul style="line-height: 1.8; padding-left: 20px; font-size: 0.92rem;">
-          <li><b>Unit 1:</b> Data, Information, Knowledge & Wisdom.</li>
-          <li><b>Unit 2:</b> Laws of Library Science & Library Legislation.</li>
-          <li><b>Unit 3:</b> Information Sources: Primary, Secondary, Tertiary.</li>
-          <li><b>Unit 4:</b> Library Classification & Cataloguing (DDC, CC, AACR-2, RDA).</li>
-          <li><b>Unit 5:</b> Library Management & Human Resources.</li>
-          <li><b>Unit 6:</b> Information Technology, Automation & Networks (INFLIBNET, DELNET).</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- VIEW 8: ACTIVE CBT TEST -->
+    <!-- LIVE CBT TEST PANEL -->
     <div id="view-cbt" class="view-panel">
       <div style="background:var(--primary-dark); color:white; padding:10px 14px; border-radius:10px; display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
         <div style="font-weight:800;">RAMESH GUJJAR CBT TEST</div>
@@ -835,8 +562,8 @@
         <div id="cbtQuestion" style="font-size:1.05rem; font-weight:800; margin-bottom:14px;">लोडिंग...</div>
         <div id="cbtOptions"></div>
         <div style="display:flex; justify-content:space-between; gap:10px; margin-top:16px;">
-          <button onclick="prevQuestion()" style="flex:1; padding:10px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700;">← पिछला</button>
-          <button onclick="nextQuestion()" style="flex:1; padding:10px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700;">अगला →</button>
+          <button onclick="prevCBTQ()" style="flex:1; padding:10px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700;">← पिछला</button>
+          <button onclick="nextCBTQ()" style="flex:1; padding:10px; border-radius:8px; border:1px solid #cbd5e1; background:white; font-weight:700;">अगला →</button>
           <button onclick="finishCBT()" style="flex:1; padding:10px; border-radius:8px; background:var(--success); color:white; border:none; font-weight:800;">सबमिट</button>
         </div>
       </div>
@@ -844,55 +571,10 @@
 
   </div>
 
-  <!-- MODALS -->
-  <div class="modal-overlay" id="aiCardModal">
-    <div class="modal-content">
-      <h3 style="color:var(--rose); margin-bottom:10px;">🤖 PDF से AI प्ले कार्ड्स बनाएं</h3>
-      <form id="aiCardForm">
-        <div style="margin-bottom:10px;">
-          <label style="font-size:0.85rem; font-weight:700;">विषय / टॉपिक:</label>
-          <input type="text" id="aiCardSubject" class="input-box" value="Library Science Facts & Years" required>
-        </div>
-        <div style="margin-bottom:12px;">
-          <label style="font-size:0.85rem; font-weight:700;">PDF / नोट्स की फ़ोटो चुनें:</label>
-          <input type="file" id="aiCardFiles" class="input-box" multiple accept=".pdf,.doc,.docx,image/*" required>
-        </div>
-        <div style="display:flex; gap:10px;">
-          <button type="submit" id="btnGenCards" class="btn-login" style="background:var(--rose);">⚡ कार्ड्स बनाएं</button>
-          <button type="button" onclick="closeModal('aiCardModal')" style="padding:10px; border:1px solid #cbd5e1; border-radius:8px; background:white; font-weight:700;">रद्द करें</button>
-        </div>
-      </form>
-      <div id="aiCardStatus" style="margin-top:10px; font-weight:700; text-align:center; font-size:0.85rem;"></div>
-    </div>
-  </div>
-
-  <div class="modal-overlay" id="manualCardModal">
-    <div class="modal-content">
-      <h3 style="color:var(--primary); margin-bottom:10px;">➕ नया प्ले कार्ड जोड़ें</h3>
-      <div style="margin-bottom:10px;">
-        <label style="font-size:0.85rem; font-weight:700;">टॉपिक:</label>
-        <input type="text" id="manTopic" class="input-box" placeholder="उदा: DDC या Laws of Library">
-      </div>
-      <div style="margin-bottom:10px;">
-        <label style="font-size:0.85rem; font-weight:700;">प्रश्न (Front side):</label>
-        <textarea id="manFront" class="input-box" rows="2" placeholder="प्रश्न या अवधारणा"></textarea>
-      </div>
-      <div style="margin-bottom:12px;">
-        <label style="font-size:0.85rem; font-weight:700;">उत्तर (Back side):</label>
-        <textarea id="manBack" class="input-box" rows="2" placeholder="सही उत्तर व व्याख्या"></textarea>
-      </div>
-      <div style="display:flex; gap:10px;">
-        <button onclick="saveManualCard()" class="btn-login" style="background:var(--primary);">सेव करें</button>
-        <button onclick="closeModal('manualCardModal')" style="padding:10px; border:1px solid #cbd5e1; border-radius:8px; background:white; font-weight:700;">रद्द करें</button>
-      </div>
-    </div>
-  </div>
-
   <script>
-    // 1. MENTOR PROFILE DATA & PHOTO SYNC (FORCE RAMESH GUJJAR)
+    // 1. BRANDING & PROFILE SYNC (FORCING RAMESH GUJJAR)
     function initMentor() {
       let name = localStorage.getItem('lis_mentor_name');
-      // Fix: If stored name was LIS GURUJI, reset it to RAMESH GUJJAR
       if (!name || name === 'LIS GURUJI') {
         name = 'RAMESH GUJJAR';
         localStorage.setItem('lis_mentor_name', 'RAMESH GUJJAR');
@@ -950,14 +632,11 @@
 
     // 2. WELCOME SPLASH & LOGIN TRANSITION
     let splashDismissed = false;
-
     function dismissSplash() {
       if (splashDismissed) return;
       splashDismissed = true;
       const splash = document.getElementById('welcomeSplash');
       if (splash) splash.classList.add('hide');
-
-      // Check login status strictly after welcome splash
       checkAuth();
     }
 
@@ -967,7 +646,6 @@
         const student = JSON.parse(session);
         document.getElementById('authOverlay').classList.add('hidden');
         document.getElementById('loggedInStudentName').innerText = student.name;
-        document.getElementById('welcomeStudentBanner').innerText = `नमस्ते, ${student.name}! 👋`;
       } else {
         document.getElementById('authOverlay').classList.remove('hidden');
       }
@@ -1006,335 +684,256 @@
       }
     }
 
-    // 3. 1-PAGE SMART NOTES GENERATOR
-    document.getElementById('smartNoteForm').onsubmit = async (e) => {
+    // 3. MASTER ALL-IN-ONE GENERATOR
+    let currentStudyPack = { questions: [], notes: null, shortNotes: null, tricks: [], playCards: [] };
+
+    document.getElementById('masterGenForm').onsubmit = async (e) => {
       e.preventDefault();
-      const btn = document.getElementById('btnGenNotes');
-      const status = document.getElementById('notesStatus');
-      const output = document.getElementById('smartNoteOutput');
+      const btn = document.getElementById('btnMasterGen');
+      const status = document.getElementById('masterStatus');
       btn.disabled = true;
-      status.innerHTML = '⏳ AI 1-पेज स्मार्ट नोट्स व डायग्राम तैयार कर रहा है...';
+      status.style.color = '#2563eb';
+      status.innerHTML = '⏳ AI अध्ययन कर रहा है... एक साथ सवाल, नोट्स, शॉर्ट नोट्स, ट्रिक्स और प्ले कार्ड्स बनाए जा रहे हैं (1-2 मिनट प्रतीक्षा करें)';
 
       const formData = new FormData();
-      formData.append('subject', document.getElementById('noteSubject').value);
+      formData.append('subject', document.getElementById('masterSubject').value);
       formData.append('lang', 'hi');
 
-      const files = document.getElementById('noteFiles').files;
+      const files = document.getElementById('masterFiles').files;
       for (let i = 0; i < files.length; i++) formData.append('files', files[i]);
 
       try {
-        const res = await fetch('/api/generate-notes', { method: 'POST', body: formData });
+        const res = await fetch('/api/generate-all', { method: 'POST', body: formData });
         const data = await res.json();
-        if (data.success && data.note) {
-          const n = data.note;
-          document.getElementById('outNoteTitle').innerText = n.title || 'स्मार्ट रिवीज़न शीट';
-          document.getElementById('outNoteSummary').innerText = n.summary || '';
+        if (data.success && data.studyPack) {
+          currentStudyPack = data.studyPack;
 
-          const diagramEl = document.getElementById('outMermaidDiagram');
-          diagramEl.removeAttribute('data-processed');
-          diagramEl.innerHTML = n.mermaidDiagram || 'graph TD\nA[Topic] --> B[Subtopic]';
-          try { await mermaid.run({ nodes: [diagramEl] }); } catch(me) {}
+          renderQuestions(currentStudyPack.questions || []);
+          renderNotes(currentStudyPack.notes || {});
+          renderShortNotes(currentStudyPack.shortNotes || {});
+          renderTricks(currentStudyPack.tricks || []);
+          renderPlayCards(currentStudyPack.playCards || []);
 
-          const tbody = document.querySelector('#outKeyTable tbody');
-          tbody.innerHTML = (n.keyTable || []).map(row => `
-            <tr><td><b>${row.concept}</b></td><td>${row.detail}</td></tr>
-          `).join('');
-
-          document.getElementById('outBulletPoints').innerHTML = (n.bulletPoints || []).map(pt => `
-            <li>${pt}</li>
-          `).join('');
-
-          document.getElementById('outSmartTrick').innerHTML = `💡 <b>स्मार्ट ट्रिक (Mnemonic):</b> ${n.smartTrick || 'नियमबद्ध अभ्यास करें।'}`;
-
-          output.style.display = 'block';
-          status.innerHTML = '✅ 1-पेज स्मार्ट नोट्स तैयार!';
-          output.scrollIntoView({ behavior: 'smooth' });
+          status.style.color = '#059669';
+          status.innerHTML = '✅ सफलता! 5-इन-1 पूरा स्टडी पैकेज तैयार हो चुका है।';
+          alert('🎉 आपका पूरा स्टडी पैकेज तैयार हो गया है!\n\n1. Questions\n2. Notes\n3. Short Notes\n4. Tricks to Learn\n5. Play Cards');
+          showView('questions');
         } else {
-          status.innerHTML = '❌ एरर: ' + (data.message || 'नोट्स नहीं बन सके');
+          status.style.color = '#dc2626';
+          status.innerHTML = '❌ एरर: ' + (data.message || 'सामग्री तैयार नहीं हो पाई');
         }
       } catch (err) {
+        status.style.color = '#dc2626';
         status.innerHTML = '❌ नेटवर्क एरर: ' + err.message;
       } finally {
         btn.disabled = false;
       }
     };
 
-    // 4. FLASHCARDS SWIPE ENGINE
-    let cardsList = [
-      { topic: 'LAWS OF LIBRARY', front: 'पुस्तकालय विज्ञान के 5 नियम कब प्रतिपादित और कब प्रकाशित हुए?', back: 'प्रतिपादित: 1928 (अन्नामलाई नगर)\nपुस्तक प्रकाशित: 1931 (मद्रास लाइब्रेरी एसोसिएशन)' },
-      { topic: 'CLASSIFICATION', front: 'DDC का पहला संस्करण कब और किसने तैयार किया?', back: '1876 में मेलविल डेवी (कुल 44 पृष्ठ)' },
-      { topic: 'COLON CLASSIFICATION', front: 'CC (Colon Classification) के रचयिता कौन हैं और पहला संस्करण कब आया?', back: 'डॉ. एस. आर. रंगनाथन (1933)' },
-      { topic: 'ACTS & LEGISLATION', front: 'भारत का पहला पुस्तकालय अधिनियम किस राज्य में पारित हुआ?', back: 'मद्रास (तमिलनाडु) सार्वजनिक पुस्तकालय अधिनियम - 1948' }
+    function renderQuestions(questions) {
+      const container = document.getElementById('questionsContainer');
+      if (!questions || questions.length === 0) {
+        container.innerHTML = '<p style="color:var(--text-muted);">कोई प्रश्न उपलब्ध नहीं है।</p>';
+        return;
+      }
+      container.innerHTML = questions.map((q, idx) => `
+        <div class="question-item">
+          <div style="font-weight:800; font-size:0.98rem; margin-bottom:8px; color:var(--primary-dark);">
+            Q${idx + 1}. ${q.question}
+          </div>
+          ${(q.options || []).map((opt, oIdx) => `
+            <div class="question-opt ${oIdx === q.correctAnswer ? 'correct' : ''}">
+              <b>${String.fromCharCode(65 + oIdx)}.</b> ${opt} ${oIdx === q.correctAnswer ? '✓ (सही उत्तर)' : ''}
+            </div>
+          `).join('')}
+          ${q.explanation ? `<div style="margin-top:8px; font-size:0.78rem; color:#64748b;">💡 <b>व्याख्या:</b> ${q.explanation}</div>` : ''}
+        </div>
+      `).join('');
+    }
+
+    async function renderNotes(notes) {
+      const container = document.getElementById('notesContainer');
+      if (!notes || !notes.title) {
+        container.innerHTML = '<p style="color:var(--text-muted);">नोट्स उपलब्ध नहीं हैं।</p>';
+        return;
+      }
+      container.innerHTML = `
+        <div style="border-bottom:2px dashed var(--gold); padding-bottom:10px; margin-bottom:12px; text-align:center;">
+          <span style="background:#eff6ff; color:#1d4ed8; padding:2px 8px; border-radius:10px; font-size:0.75rem; font-weight:800;">RAMESH GUJJAR REVISION NOTES</span>
+          <h2 style="font-size:1.25rem; font-weight:900; color:var(--primary); margin-top:4px;">${notes.title}</h2>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:4px;">${notes.summary || ''}</p>
+        </div>
+        <div style="font-size:0.88rem; font-weight:800; color:var(--primary); margin-top:12px;">📊 विजुअल फ़्लोचार्ट / डायग्राम:</div>
+        <div class="diagram-box">
+          <div class="mermaid" id="notesMermaidDiagram">${notes.mermaidDiagram || 'graph TD\\nA[Main Topic] --> B[Subtopic]'}</div>
+        </div>
+        <div style="font-size:0.88rem; font-weight:800; color:var(--primary); margin-top:14px;">📖 विस्तृत अवधारणाएँ:</div>
+        <div style="line-height:1.7; font-size:0.9rem; margin-top:6px;">
+          ${(notes.detailedContent || []).map(p => `<p style="margin-bottom:8px;">• ${p}</p>`).join('')}
+        </div>
+      `;
+      try {
+        const d = document.getElementById('notesMermaidDiagram');
+        d.removeAttribute('data-processed');
+        await mermaid.run({ nodes: [d] });
+      } catch(e) {}
+    }
+
+    function renderShortNotes(shortNotes) {
+      const container = document.getElementById('shortNotesContainer');
+      if (!shortNotes) {
+        container.innerHTML = '<p style="color:var(--text-muted);">शॉर्ट नोट्स उपलब्ध नहीं हैं।</p>';
+        return;
+      }
+      container.innerHTML = `
+        <div style="font-size:0.88rem; font-weight:800; color:var(--primary);">⚡ परीक्षा उपयोगी मुख्य बिंदु (Micro Points):</div>
+        <ul style="padding-left:18px; line-height:1.7; font-size:0.88rem; margin:8px 0 14px;">
+          ${(shortNotes.keyPoints || []).map(pt => `<li>${pt}</li>`).join('')}
+        </ul>
+        <div style="font-size:0.88rem; font-weight:800; color:var(--primary); margin-top:12px;">📌 महत्वपूर्ण तिथियाँ व नियम तालिका (Key Table):</div>
+        <table class="table-summary">
+          <thead><tr><th>अवधारणा / अधिनियम</th><th>वर्ष / विवरण</th></tr></thead>
+          <tbody>
+            ${(shortNotes.keyTable || []).map(r => `<tr><td><b>${r.concept}</b></td><td>${r.detail}</td></tr>`).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    function renderTricks(tricks) {
+      const container = document.getElementById('tricksContainer');
+      if (!tricks || tricks.length === 0) {
+        container.innerHTML = '<p style="color:var(--text-muted);">ट्रिक्स उपलब्ध नहीं हैं।</p>';
+        return;
+      }
+      container.innerHTML = tricks.map(t => `
+        <div class="trick-box">
+          <div style="font-weight:800; color:#92400e; font-size:0.95rem;">💡 ${t.title}</div>
+          <div class="trick-formula">⚡ ट्रिक सूत्र: ${t.formula}</div>
+          <div style="font-size:0.84rem; color:#78350f; line-height:1.4;">${t.desc}</div>
+        </div>
+      `).join('');
+    }
+
+    // 5. PLAY CARDS SWIPE LOGIC
+    let playCardsList = [
+      { topic: 'LAWS OF LIBRARY', front: 'पुस्तकालय विज्ञान के 5 नियम कब प्रतिपादित हुए?', back: '1928 में डॉ. रंगनाथन द्वारा (1931 में पुस्तक प्रकाशित)' }
     ];
+    let cardIdx = 0;
+    let isSwiping = false;
 
-    let currentCardIndex = 0;
-    let isSwipingInProgress = false;
+    function renderPlayCards(cards) {
+      if (cards && cards.length > 0) playCardsList = cards;
+      cardIdx = 0;
+      updateCardUI();
+    }
 
-    function renderCurrentCard() {
-      if (cardsList.length === 0) return;
-      if (currentCardIndex >= cardsList.length) currentCardIndex = 0;
-      if (currentCardIndex < 0) currentCardIndex = cardsList.length - 1;
+    function updateCardUI() {
+      if (playCardsList.length === 0) return;
+      if (cardIdx >= playCardsList.length) cardIdx = 0;
+      if (cardIdx < 0) cardIdx = playCardsList.length - 1;
 
-      const c = cardsList[currentCardIndex];
+      const c = playCardsList[cardIdx];
       document.getElementById('cardTopicDisplay').innerText = `TOPIC: ${c.topic || 'GENERAL'}`;
       document.getElementById('cardQuestionDisplay').innerText = c.front;
       document.getElementById('cardAnswerDisplay').innerText = c.back;
-      document.getElementById('cardCountDisplay').innerText = `${currentCardIndex + 1} / ${cardsList.length}`;
-
-      const inner = document.getElementById('flashcardInner');
-      inner.classList.remove('flipped');
+      document.getElementById('cardCountDisplay').innerText = `${cardIdx + 1} / ${playCardsList.length}`;
+      document.getElementById('flashcardInner').classList.remove('flipped');
     }
 
-    function flipFlashcard() {
-      document.getElementById('flashcardInner').classList.toggle('flipped');
-    }
-
+    function flipCard() { document.getElementById('flashcardInner').classList.toggle('flipped'); }
     function nextCard() {
-      if (isSwipingInProgress) return;
-      animateCardSwipe('left', () => {
-        currentCardIndex = (currentCardIndex + 1) % cardsList.length;
-        renderCurrentCard();
-      });
+      if (isSwiping) return;
+      swipeAnim('left', () => { cardIdx = (cardIdx + 1) % playCardsList.length; updateCardUI(); });
     }
-
     function prevCard() {
-      if (isSwipingInProgress) return;
-      animateCardSwipe('right', () => {
-        currentCardIndex = (currentCardIndex - 1 + cardsList.length) % cardsList.length;
-        renderCurrentCard();
-      });
+      if (isSwiping) return;
+      swipeAnim('right', () => { cardIdx = (cardIdx - 1 + playCardsList.length) % playCardsList.length; updateCardUI(); });
     }
-
-    function animateCardSwipe(direction, callback) {
-      isSwipingInProgress = true;
-      const inner = document.getElementById('flashcardInner');
-      inner.style.transition = 'transform 0.24s ease, opacity 0.24s ease';
-      inner.style.transform = direction === 'left' ? 'translateX(-120%) rotate(-12deg)' : 'translateX(120%) rotate(12deg)';
-      inner.style.opacity = '0';
-
+    function swipeAnim(dir, cb) {
+      isSwiping = true;
+      const el = document.getElementById('flashcardInner');
+      el.style.transition = 'transform 0.22s ease, opacity 0.22s ease';
+      el.style.transform = dir === 'left' ? 'translateX(-120%) rotate(-10deg)' : 'translateX(120%) rotate(10deg)';
+      el.style.opacity = '0';
       setTimeout(() => {
-        callback();
-        inner.style.transition = 'none';
-        inner.style.transform = direction === 'left' ? 'translateX(70%) scale(0.92)' : 'translateX(-70%) scale(0.92)';
-        inner.style.opacity = '0';
-
+        cb();
+        el.style.transition = 'none';
+        el.style.transform = dir === 'left' ? 'translateX(70%) scale(0.92)' : 'translateX(-70%) scale(0.92)';
+        el.style.opacity = '0';
         setTimeout(() => {
-          inner.style.transition = 'transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.28s ease';
-          inner.style.transform = 'translateX(0) scale(1)';
-          inner.style.opacity = '1';
-          setTimeout(() => { isSwipingInProgress = false; }, 280);
+          el.style.transition = 'transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.25s ease';
+          el.style.transform = 'translateX(0) scale(1)';
+          el.style.opacity = '1';
+          setTimeout(() => { isSwiping = false; }, 250);
         }, 30);
-      }, 240);
+      }, 220);
     }
 
-    function initCardSwipeEvents() {
-      const cardContainer = document.getElementById('swipeCardContainer');
-      let startX = 0, startY = 0, endX = 0, endY = 0;
-
-      cardContainer.addEventListener('touchstart', (e) => {
-        startX = e.changedTouches[0].clientX;
-        startY = e.changedTouches[0].clientY;
+    function initSwipe() {
+      const box = document.getElementById('swipeCardContainer');
+      let sx = 0, sy = 0, ex = 0, ey = 0;
+      box.addEventListener('touchstart', e => { sx = e.changedTouches[0].clientX; sy = e.changedTouches[0].clientY; }, { passive: true });
+      box.addEventListener('touchend', e => {
+        ex = e.changedTouches[0].clientX; ey = e.changedTouches[0].clientY;
+        const dx = ex - sx, dy = ey - sy;
+        if (Math.abs(dx) < 20 && Math.abs(dy) < 20) flipCard();
+        else if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+          if (dx < 0) nextCard(); else prevCard();
+        }
       }, { passive: true });
-
-      cardContainer.addEventListener('touchend', (e) => {
-        endX = e.changedTouches[0].clientX;
-        endY = e.changedTouches[0].clientY;
-        handleGesture(startX, startY, endX, endY);
-      }, { passive: true });
-
-      let isMouseDown = false;
-      cardContainer.addEventListener('mousedown', (e) => {
-        isMouseDown = true;
-        startX = e.clientX;
-        startY = e.clientY;
-      });
-
-      cardContainer.addEventListener('mouseup', (e) => {
-        if (!isMouseDown) return;
-        isMouseDown = false;
-        endX = e.clientX;
-        endY = e.clientY;
-        handleGesture(startX, startY, endX, endY);
-      });
     }
 
-    function handleGesture(sX, sY, eX, eY) {
-      const diffX = eX - sX;
-      const diffY = eY - sY;
-      if (Math.abs(diffX) < 20 && Math.abs(diffY) < 20) {
-        flipFlashcard();
-        return;
-      }
-      if (Math.abs(diffX) > 45 && Math.abs(diffX) > Math.abs(diffY)) {
-        if (diffX < 0) nextCard();
-        else prevCard();
-      }
-    }
-
-    // AI Card Generation
-    document.getElementById('aiCardForm').onsubmit = async (e) => {
-      e.preventDefault();
-      const btn = document.getElementById('btnGenCards');
-      const status = document.getElementById('aiCardStatus');
-      btn.disabled = true;
-      status.innerHTML = '⏳ AI कार्ड्स बना रहा है...';
-
-      const formData = new FormData();
-      formData.append('subject', document.getElementById('aiCardSubject').value);
-      formData.append('lang', 'hi');
-
-      const files = document.getElementById('aiCardFiles').files;
-      for (let i = 0; i < files.length; i++) formData.append('files', files[i]);
-
-      try {
-        const res = await fetch('/api/generate-cards', { method: 'POST', body: formData });
-        const data = await res.json();
-        if (data.success && data.cards && data.cards.length > 0) {
-          cardsList = data.cards.concat(cardsList);
-          currentCardIndex = 0;
-          renderCurrentCard();
-          closeModal('aiCardModal');
-          alert(`✅ ${data.cards.length} नए AI प्ले कार्ड्स जुड़ गए हैं!`);
-        } else {
-          status.innerHTML = '❌ कार्ड्स नहीं बन पाए';
-        }
-      } catch (err) {
-        status.innerHTML = '❌ एरर: ' + err.message;
-      } finally {
-        btn.disabled = false;
-      }
-    };
-
-    function saveManualCard() {
-      const topic = document.getElementById('manTopic').value.trim();
-      const front = document.getElementById('manFront').value.trim();
-      const back = document.getElementById('manBack').value.trim();
-      if (!front || !back) return alert('प्रश्न और उत्तर दोनों भरें!');
-      cardsList.unshift({ topic: topic || 'GENERAL', front, back });
-      currentCardIndex = 0;
-      renderCurrentCard();
-      closeModal('manualCardModal');
-      document.getElementById('manFront').value = '';
-      document.getElementById('manBack').value = '';
-      alert('✅ नया कार्ड जुड़ गया!');
-    }
-
-    function openModal(id) { 
-      document.getElementById(id).classList.add('open');
-      history.pushState({ modal: id }, '');
-    }
-    function closeModal(id) { 
-      document.getElementById(id).classList.remove('open');
-    }
-
-    // 5. CBT GENERATOR & ENGINE
-    document.getElementById('genForm').onsubmit = async (e) => {
-      e.preventDefault();
-      const btn = document.getElementById('btnGen');
-      const status = document.getElementById('genStatus');
-      btn.disabled = true;
-      status.innerHTML = '⏳ AI सामग्री का अध्ययन करके CBT सवाल बना रहा है...';
-
-      const formData = new FormData();
-      formData.append('subject', document.getElementById('subject').value);
-      formData.append('limit', document.getElementById('limit').value);
-      formData.append('lang', 'hi');
-
-      const files = document.getElementById('files').files;
-      for (let i = 0; i < files.length; i++) formData.append('files', files[i]);
-
-      try {
-        const res = await fetch('/api/generate', { method: 'POST', body: formData });
-        const data = await res.json();
-        if (data.success) {
-          status.innerHTML = `✅ सफलता! ${data.questionsCount} प्रश्न बैंक में जुड़ गए हैं।`;
-          setTimeout(() => showView('bank'), 1000);
-        } else {
-          status.innerHTML = '❌ एरर: ' + (data.message || 'प्रश्न नहीं बन पाए');
-        }
-      } catch (err) {
-        status.innerHTML = '❌ नेटवर्क एरर: ' + err.message;
-      } finally {
-        btn.disabled = false;
-      }
-    };
-
-    let currentQuestions = [];
-    async function loadBank() {
-      const container = document.getElementById('bankList');
-      try {
-        const res = await fetch('/api/questions');
-        currentQuestions = await res.json();
-        if (!currentQuestions || currentQuestions.length === 0) {
-          container.innerHTML = '<p style="color:#64748b;">अभी कोई प्रश्न नहीं है। "नया AI CBT टेस्ट" से प्रश्न बनाएं।</p>';
-          return;
-        }
-        container.innerHTML = `<b>कुल सहेजे गए प्रश्न: ${currentQuestions.length}</b><br><br>` +
-          currentQuestions.slice(0, 5).map((q, i) => `<div style="background:#f8fafc; padding:10px; border-radius:8px; margin-bottom:8px; border:1px solid #e2e8f0;"><b>Q${i+1}.</b> ${q.question}</div>`).join('');
-      } catch (e) { container.innerHTML = 'लोडिंग एरर'; }
-    }
-
-    let qIndex = 0, userAnswers = {}, timerInterval = null, remainingSeconds = 600;
-    function startCBT() {
-      if (!currentQuestions || currentQuestions.length === 0) {
-        alert('टेस्ट के लिए प्रश्न नहीं हैं! पहले प्रश्न बनाएं।');
-        showView('generate');
-        return;
-      }
+    // LIVE CBT TEST ENGINE
+    let cbtQIndex = 0, cbtUserAnswers = {}, cbtTimer = null, cbtSeconds = 600;
+    function startActiveCBT() {
+      const qList = currentStudyPack.questions;
+      if (!qList || qList.length === 0) return alert('टेस्ट के लिए प्रश्न नहीं हैं! पहले मुख्य पेज पर PDF अपलोड करें।');
       showView('cbt');
-      qIndex = 0; userAnswers = {}; remainingSeconds = currentQuestions.length * 60;
-      if (timerInterval) clearInterval(timerInterval);
-      timerInterval = setInterval(() => {
-        remainingSeconds--;
-        const m = Math.floor(remainingSeconds / 60), s = remainingSeconds % 60;
+      cbtQIndex = 0; cbtUserAnswers = {}; cbtSeconds = qList.length * 60;
+      if (cbtTimer) clearInterval(cbtTimer);
+      cbtTimer = setInterval(() => {
+        cbtSeconds--;
+        const m = Math.floor(cbtSeconds / 60), s = cbtSeconds % 60;
         document.getElementById('cbtClock').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
-        if (remainingSeconds <= 0) { clearInterval(timerInterval); alert('समय समाप्त!'); finishCBT(); }
+        if (cbtSeconds <= 0) { clearInterval(cbtTimer); alert('समय समाप्त!'); finishCBT(); }
       }, 1000);
-      renderQuestion();
+      renderCBTQuestion();
     }
-    function renderQuestion() {
-      const q = currentQuestions[qIndex];
-      document.getElementById('cbtProgress').innerText = `Question ${qIndex + 1} of ${currentQuestions.length}`;
+    function renderCBTQuestion() {
+      const qList = currentStudyPack.questions;
+      const q = qList[cbtQIndex];
+      document.getElementById('cbtProgress').innerText = `Question ${cbtQIndex + 1} of ${qList.length}`;
       document.getElementById('cbtQuestion').innerText = q.question;
       const opts = document.getElementById('cbtOptions');
       opts.innerHTML = '';
       q.options.forEach((opt, idx) => {
         const div = document.createElement('div');
-        div.style.cssText = 'background:white; border:2px solid ' + (userAnswers[qIndex] === idx ? '#2563eb' : '#e2e8f0') + '; border-radius:10px; padding:12px; margin-bottom:10px; cursor:pointer; font-size:0.92rem;';
+        div.style.cssText = 'background:white; border:2px solid ' + (cbtUserAnswers[cbtQIndex] === idx ? '#2563eb' : '#e2e8f0') + '; border-radius:10px; padding:12px; margin-bottom:10px; cursor:pointer; font-size:0.92rem;';
         div.innerText = `${String.fromCharCode(65 + idx)}. ${opt}`;
-        div.onclick = () => { userAnswers[qIndex] = idx; renderQuestion(); };
+        div.onclick = () => { cbtUserAnswers[cbtQIndex] = idx; renderCBTQuestion(); };
         opts.appendChild(div);
       });
     }
-    function prevQuestion() { if (qIndex > 0) { qIndex--; renderQuestion(); } }
-    function nextQuestion() { if (qIndex < currentQuestions.length - 1) { qIndex++; renderQuestion(); } }
+    function prevCBTQ() { if (cbtQIndex > 0) { cbtQIndex--; renderCBTQuestion(); } }
+    function nextCBTQ() { if (cbtQIndex < currentStudyPack.questions.length - 1) { cbtQIndex++; renderCBTQuestion(); } }
     function finishCBT() {
-      clearInterval(timerInterval);
+      clearInterval(cbtTimer);
       let score = 0;
-      currentQuestions.forEach((q, idx) => {
-        if (userAnswers[idx] !== undefined && (userAnswers[idx] === q.correctAnswer || userAnswers[idx] === q.correct_option)) score++;
-      });
-      alert(`🎉 टेस्ट समाप्त!\nस्कोर: ${score} / ${currentQuestions.length}`);
-      showView('home');
+      const qList = currentStudyPack.questions;
+      qList.forEach((q, idx) => { if (cbtUserAnswers[idx] !== undefined && cbtUserAnswers[idx] === q.correctAnswer) score++; });
+      alert(`🎉 टेस्ट समाप्त!\nस्कोर: ${score} / ${qList.length}`);
+      showView('questions');
     }
 
-    // Navigation & Views
-    function openSidebar() {
-      document.getElementById('sidebar').classList.add('open');
-      document.getElementById('sidebarOverlay').classList.add('open');
-      history.pushState({ sidebar: true }, '');
-    }
-    function closeSidebar() {
-      document.getElementById('sidebar').classList.remove('open');
-      document.getElementById('sidebarOverlay').classList.remove('open');
-    }
+    // NAVIGATION
+    function openSidebar() { document.getElementById('sidebar').classList.add('open'); document.getElementById('sidebarOverlay').classList.add('open'); }
+    function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebarOverlay').classList.remove('open'); }
     function navFromSidebar(id) { closeSidebar(); showView(id); }
 
     let currentActiveView = 'home';
     function showView(viewId, pushHistory = true) {
-      if (pushHistory && viewId !== currentActiveView) {
-        history.pushState({ view: viewId }, '', '#' + viewId);
-      }
+      if (pushHistory && viewId !== currentActiveView) history.pushState({ view: viewId }, '', '#' + viewId);
       currentActiveView = viewId;
 
       document.querySelectorAll('.view-panel').forEach(el => el.classList.remove('active'));
@@ -1345,36 +944,26 @@
       const pill = document.getElementById('pill-' + viewId);
       if (pill) pill.classList.add('active');
 
-      if (viewId === 'cards') renderCurrentCard();
-      if (viewId === 'bank') loadBank();
+      if (viewId === 'playcards') updateCardUI();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Hardware Back Button (Direct exit, no logout)
-    window.addEventListener('popstate', (e) => {
-      const openModalElem = document.querySelector('.modal-overlay.open');
-      if (openModalElem) {
-        openModalElem.classList.remove('open');
-        return;
-      }
-
+    // HARDWARE BACK BUTTON (DIRECT CLOSE WITHOUT LOGOUT OR POPUP)
+    window.addEventListener('popstate', () => {
       const sidebar = document.getElementById('sidebar');
       if (sidebar && sidebar.classList.contains('open')) {
         closeSidebar();
         return;
       }
-
       if (currentActiveView === 'cbt') {
-        if (timerInterval) clearInterval(timerInterval);
-        showView('home', false);
+        if (cbtTimer) clearInterval(cbtTimer);
+        showView('questions', false);
         return;
       }
-
       if (currentActiveView !== 'home') {
         showView('home', false);
         return;
       }
-
       try {
         window.close();
         if (window.navigator && window.navigator.app && window.navigator.app.exitApp) {
@@ -1383,14 +972,11 @@
       } catch (err) {}
     });
 
-    // Startup Execution
     window.onload = () => {
       initMentor();
-      renderCurrentCard();
-      initCardSwipeEvents();
+      initSwipe();
       history.replaceState({ view: 'home' }, '', '');
 
-      // 3-Second Automatic Splash Transition
       setTimeout(() => {
         dismissSplash();
       }, 3000);

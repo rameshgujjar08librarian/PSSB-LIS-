@@ -7,7 +7,6 @@
 
   <meta property="og:title" content="LIS GURUJI - RAMESH GUJJAR AI Study Portal">
   <meta property="og:description" content="स्मार्ट पढ़ाई, उज्ज्वल भविष्य। UGC-NET & Librarian Exam Portal">
-  <meta property="og:image" content="/profile.jpg">
   <meta name="theme-color" content="#1e3a8a">
 
   <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
@@ -34,33 +33,28 @@
     }
     #welcomeSplash.hide { opacity: 0; visibility: hidden; pointer-events: none; }
     .splash-card {
-      background: #ffffff; border-radius: 24px; padding: 28px 20px; width: 100%;
+      background: #ffffff; border-radius: 24px; padding: 24px 16px; width: 100%;
       max-width: 410px; text-align: center; box-shadow: 0 20px 40px rgba(0,0,0,0.4);
       border-top: 6px solid var(--gold);
     }
     .splash-big-brand {
       display: inline-flex; align-items: center; gap: 8px; background: #eff6ff;
-      padding: 6px 16px; border-radius: 20px; margin-bottom: 12px; border: 1px solid #bfdbfe;
+      padding: 5px 14px; border-radius: 20px; margin-bottom: 8px; border: 1px solid #bfdbfe;
     }
-    .splash-big-brand h1 { font-size: 1.3rem; font-weight: 900; color: var(--primary); }
-    .splash-photo-wrap { position: relative; width: 115px; height: 115px; margin: 6px auto 12px; }
+    .splash-big-brand h1 { font-size: 1.2rem; font-weight: 900; color: var(--primary); }
+    .splash-photo-wrap { position: relative; width: 95px; height: 95px; margin: 4px auto 10px; }
     .splash-photo {
-      width: 115px; height: 115px; border-radius: 50%; object-fit: cover;
-      border: 4px solid var(--gold); box-shadow: 0 8px 22px rgba(245, 158, 11, 0.4);
+      width: 95px; height: 95px; border-radius: 50%; object-fit: cover;
+      border: 3px solid var(--gold); box-shadow: 0 6px 18px rgba(245, 158, 11, 0.4);
       background: #e2e8f0; display: block;
     }
-    .photo-camera-btn {
-      position: absolute; bottom: 2px; right: 2px; background: var(--primary); color: white;
-      width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center;
-      justify-content: center; font-size: 16px; cursor: pointer; border: 2px solid white;
-    }
-    .splash-name { font-size: 1.35rem; font-weight: 900; color: var(--text); display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 2px; }
-    .splash-subtitle { font-size: 0.82rem; color: #b45309; font-weight: 700; margin-bottom: 12px; }
-    .splash-slogan-box { background: linear-gradient(135deg, #fffbeb, #fef3c7); border: 2px dashed var(--gold); border-radius: 14px; padding: 12px 10px; margin: 10px 0 14px; }
-    .splash-slogan-box h2 { font-size: 1.25rem; font-weight: 900; color: #92400e; }
-    .splash-slogan-box p { font-size: 0.76rem; color: #b45309; font-weight: 700; margin-top: 3px; }
-    .splash-phone-box { font-size: 0.92rem; font-weight: 800; color: var(--primary); background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px 14px; border-radius: 10px; display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px; }
-    .splash-timer-bar { width: 100%; height: 4px; background: #e2e8f0; border-radius: 10px; margin-top: 14px; overflow: hidden; }
+    .splash-name { font-size: 1.25rem; font-weight: 900; color: var(--text); margin-bottom: 2px; }
+    .splash-subtitle { font-size: 0.78rem; color: #b45309; font-weight: 700; margin-bottom: 10px; }
+    .splash-slogan-box { background: linear-gradient(135deg, #fffbeb, #fef3c7); border: 2px dashed var(--gold); border-radius: 12px; padding: 10px; margin: 8px 0 12px; }
+    .splash-slogan-box h2 { font-size: 1.15rem; font-weight: 900; color: #92400e; }
+    .splash-slogan-box p { font-size: 0.72rem; color: #b45309; font-weight: 700; margin-top: 2px; }
+    .splash-phone-box { font-size: 0.88rem; font-weight: 800; color: var(--primary); background: #f8fafc; border: 1px solid #e2e8f0; padding: 6px 12px; border-radius: 8px; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 10px; }
+    .splash-timer-bar { width: 100%; height: 4px; background: #e2e8f0; border-radius: 10px; margin-top: 10px; overflow: hidden; }
     .splash-timer-progress { width: 0%; height: 100%; background: linear-gradient(90deg, var(--gold), var(--accent)); animation: splashProgress 3s linear forwards; }
     @keyframes splashProgress { 0% { width: 0%; } 100% { width: 100%; } }
 
@@ -85,6 +79,7 @@
     .input-box { width: 100%; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 10px; font-size: 0.95rem; margin-bottom: 12px; outline: none; }
     .btn-action { width: 100%; padding: 13px; background: linear-gradient(135deg, var(--gold), #ea580c); color: white; border: none; border-radius: 10px; font-size: 1rem; font-weight: 800; cursor: pointer; }
 
+    /* TOP NAVBAR */
     .top-navbar {
       background: linear-gradient(135deg, var(--primary-dark), var(--primary));
       color: white; padding: 8px 14px; position: sticky; top: 0; z-index: 100;
@@ -154,13 +149,10 @@
         <h1>LIS GURUJI</h1>
       </div>
       <div class="splash-photo-wrap">
-        <img id="splashPhoto" class="splash-photo" src="/profile.jpg" alt="RAMESH GUJJAR">
-        <label for="splashPhotoInput" class="photo-camera-btn">📷</label>
-        <input type="file" id="splashPhotoInput" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">
+        <img id="splashPhoto" class="splash-photo" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300" alt="RAMESH GUJJAR">
       </div>
       <div class="splash-name">
         <span id="splashName">RAMESH GUJJAR</span>
-        <span onclick="editMentorDetails()" style="font-size:0.85rem; cursor:pointer;" title="बदलें">✏️</span>
       </div>
       <div class="splash-subtitle">संस्थापक एवं मार्गदर्शक • Library & Info Science</div>
       <div class="splash-slogan-box">
@@ -179,7 +171,7 @@
   <div id="authOverlay" class="hidden">
     <div class="login-card">
       <div class="login-mentor-badge">
-        <img class="login-mentor-img" id="loginMentorImg" src="/profile.jpg" alt="RAMESH GUJJAR">
+        <img class="login-mentor-img" id="loginMentorImg" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300" alt="RAMESH GUJJAR">
         <div class="login-mentor-info">
           <h3>LIS GURUJI</h3>
           <p id="loginMentorSubName">RAMESH GUJJAR</p>
@@ -212,7 +204,7 @@
       </div>
     </div>
     <div class="nav-mentor-profile" onclick="openSidebar()">
-      <img id="navMentorImg" class="mentor-header-photo" src="/profile.jpg" alt="RAMESH GUJJAR">
+      <img id="navMentorImg" class="mentor-header-photo" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300" alt="RAMESH GUJJAR">
       <div class="mentor-header-text">
         <div class="top-title">LIS GURUJI</div>
         <div class="bot-name" id="navMentorName">RAMESH GUJJAR</div>
@@ -226,7 +218,7 @@
     <div class="sidebar-header">
       <button onclick="closeSidebar()" style="position:absolute; top:12px; right:12px; background:none; border:none; color:white; font-size:20px; cursor:pointer;">✕</button>
       <div style="display:flex; align-items:center; gap:12px;">
-        <img id="sideMentorImg" src="/profile.jpg" style="width:52px; height:52px; border-radius:50%; border:2px solid #f59e0b; background:white; object-fit:cover;">
+        <img id="sideMentorImg" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300" style="width:52px; height:52px; border-radius:50%; border:2px solid #f59e0b; background:white; object-fit:cover;">
         <div>
           <h3 id="sideMentorName" style="font-size:1.05rem; font-weight:800;">RAMESH GUJJAR</h3>
           <p id="sideMentorPhone" style="font-size:0.75rem; color:#fde68a;">9549700557</p>
@@ -515,39 +507,10 @@
         localStorage.setItem('lis_mentor_name', 'RAMESH GUJJAR');
       }
       const phone = localStorage.getItem('lis_mentor_phone') || '9549700557';
-      const photo = localStorage.getItem('lis_mentor_photo') || '/profile.jpg';
-
       const nameEls = ['splashName', 'navMentorName', 'sideMentorName', 'loginMentorSubName'];
       nameEls.forEach(id => { const el = document.getElementById(id); if (el) el.innerText = name; });
       const phoneEls = ['splashPhone', 'sideMentorPhone'];
       phoneEls.forEach(id => { const el = document.getElementById(id); if (el) el.innerText = phone; });
-      
-      ['splashPhoto', 'navMentorImg', 'sideMentorImg', 'loginMentorImg'].forEach(id => {
-        const img = document.getElementById(id); if (img) img.src = photo;
-      });
-    }
-
-    function editMentorDetails() {
-      const curName = localStorage.getItem('lis_mentor_name') || 'RAMESH GUJJAR';
-      const curPhone = localStorage.getItem('lis_mentor_phone'] || '9549700557';
-      const nName = prompt('अपना पूरा नाम दर्ज करें:', curName);
-      if (nName && nName.trim()) localStorage.setItem('lis_mentor_name', nName.trim());
-      const nPhone = prompt('अपना मोबाइल नंबर दर्ज करें:', curPhone);
-      if (nPhone && nPhone.trim()) localStorage.setItem('lis_mentor_phone', nPhone.trim());
-      initMentor();
-    }
-
-    function handlePhotoUpload(event) {
-      const f = event.target.files[0];
-      if (f) {
-        const r = new FileReader();
-        r.onload = (e) => {
-          localStorage.setItem('lis_mentor_photo', e.target.result);
-          initMentor();
-          alert('✅ फ़ोटो सेव हो गई!');
-        };
-        r.readAsDataURL(f);
-      }
     }
 
     let splashDismissed = false;
@@ -555,7 +518,10 @@
       if (splashDismissed) return;
       splashDismissed = true;
       const splash = document.getElementById('welcomeSplash');
-      if (splash) splash.classList.add('hide');
+      if (splash) {
+        splash.classList.add('hide');
+        setTimeout(() => splash.remove(), 500);
+      }
       checkAuth();
     }
 
@@ -602,7 +568,6 @@
       }
     }
 
-    // Storage
     function getStore(k, d) { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }
     function setStore(k, v) { localStorage.setItem(k, JSON.stringify(v)); }
 
@@ -753,7 +718,7 @@
         });
       }
       const selVal = document.getElementById(selectId).value;
-      let timeSecs = count * 60; // Smart average: 1 min per question
+      let timeSecs = count * 60;
       if (selVal !== 'auto') {
         timeSecs = parseInt(selVal) * 60;
       }

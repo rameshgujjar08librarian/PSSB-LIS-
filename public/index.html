@@ -37,7 +37,7 @@
     body { background: var(--bg); color: var(--text); padding-bottom: 60px; }
 
     /* ===================================================
-       1. FIRST WELCOME SPLASH SCREEN (NO BUTTON, 3S AUTO)
+       1. FIRST WELCOME SPLASH SCREEN (3S AUTO)
        =================================================== */
     #welcomeSplash {
       position: fixed;
@@ -83,7 +83,6 @@
       letter-spacing: 0.5px;
     }
 
-    /* Photo with Camera Upload Badge */
     .splash-photo-wrap {
       position: relative;
       width: 115px;
@@ -134,7 +133,6 @@
       margin-bottom: 12px;
     }
 
-    /* Slogan Banner */
     .splash-slogan-box {
       background: linear-gradient(135deg, #fffbeb, #fef3c7);
       border: 2px dashed var(--gold);
@@ -188,7 +186,7 @@
     }
 
     /* ===================================================
-       2. STUDENT LOGIN OVERLAY (WITH LIS GURUJI & RAMESH GUJJAR)
+       2. STUDENT LOGIN OVERLAY (LIS GURUJI + RAMESH GUJJAR)
        =================================================== */
     #authOverlay {
       position: fixed;
@@ -212,12 +210,11 @@
       border-top: 5px solid var(--gold);
     }
     
-    /* Login Header: LIS GURUJI on top, RAMESH GUJJAR below */
     .login-mentor-badge {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: 14px;
       margin-bottom: 16px;
       padding-bottom: 14px;
       border-bottom: 1px solid #e2e8f0;
@@ -230,25 +227,25 @@
       object-fit: cover;
       background: #e2e8f0;
     }
+    .login-mentor-info {
+      text-align: left;
+    }
     .login-mentor-info h3 {
       font-size: 1.25rem;
       color: var(--primary);
       font-weight: 900;
-      text-align: left;
       margin-bottom: 2px;
       letter-spacing: 0.5px;
     }
     .login-mentor-info p {
-      font-size: 0.88rem;
+      font-size: 0.92rem;
       color: #b45309;
       font-weight: 800;
-      text-align: left;
       margin-bottom: 1px;
     }
     .login-mentor-info span {
       font-size: 0.72rem;
       color: var(--text-muted);
-      text-align: left;
       display: block;
     }
 
@@ -395,6 +392,7 @@
     .note-header {
       text-align: center; border-bottom: 2px dashed var(--gold); padding-bottom: 10px; margin-bottom: 14px;
     }
+    .note-header h2 { font-size: 1.25rem; color: var(--primary); font-weight: 900; }
     .diagram-box {
       background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px;
       padding: 14px; margin: 14px 0; overflow-x: auto; text-align: center;
@@ -455,7 +453,7 @@
 <body>
 
   <!-- ===================================================
-       PAGE 1: WELCOME SPLASH SCREEN (NO BUTTON, 3S AUTO)
+       PAGE 1: WELCOME SPLASH SCREEN (3S AUTO)
        =================================================== -->
   <div id="welcomeSplash">
     <div class="splash-card">
@@ -464,7 +462,6 @@
         <h1>LIS GURUJI</h1>
       </div>
 
-      <!-- Photo with Camera Upload Button -->
       <div class="splash-photo-wrap">
         <img id="splashPhoto" class="splash-photo" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" alt="RAMESH GUJJAR">
         <label for="splashPhotoInput" class="photo-camera-btn" title="अपनी फ़ोटो बदलें">📷</label>
@@ -477,13 +474,11 @@
       </div>
       <div class="splash-subtitle">संस्थापक एवं मार्गदर्शक • Library & Info Science</div>
 
-      <!-- Slogan -->
       <div class="splash-slogan-box">
         <h2>"स्मार्ट पढ़ाई, उज्ज्वल भविष्य।"</h2>
         <p>⚡ AI संचालित आधुनिक CBT एवं रिवीज़न पोर्टल</p>
       </div>
 
-      <!-- Phone Number -->
       <div>
         <div class="splash-phone-box">
           <span>📞 संपर्क सूत्र:</span>
@@ -491,7 +486,6 @@
         </div>
       </div>
 
-      <!-- Auto Progress Bar -->
       <div class="splash-timer-bar">
         <div class="splash-timer-progress"></div>
       </div>
@@ -505,12 +499,12 @@
   <div id="authOverlay" class="hidden">
     <div class="login-card">
       
-      <!-- Login Badge: LIS GURUJI on top, RAMESH GUJJAR below -->
+      <!-- Fixed: LIS GURUJI on Top, RAMESH GUJJAR Below -->
       <div class="login-mentor-badge">
         <img class="login-mentor-img" id="loginMentorImg" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" alt="RAMESH GUJJAR">
         <div class="login-mentor-info">
           <h3>LIS GURUJI</h3>
-          <p id="loginMentorSubName">RAMESH GUJJAR</p>
+          <p>RAMESH GUJJAR</p>
           <span>संस्थापक एवं मेंटर</span>
         </div>
       </div>
@@ -555,7 +549,7 @@
     <div class="nav-mentor-profile" onclick="openSidebar()">
       <img id="navMentorImg" class="mentor-header-photo" src="/profile.jpg" onerror="this.src='https://api.dicebear.com/7.x/bottts/svg?seed=lis';" alt="RAMESH GUJJAR">
       <div class="mentor-header-text">
-        <h4 id="navMentorName">RAMESH GUJJAR</h4>
+        <h4>RAMESH GUJJAR</h4>
       </div>
     </div>
   </div>
@@ -895,13 +889,19 @@
   </div>
 
   <script>
-    // 1. MENTOR PROFILE DATA & PHOTO SYNC
+    // 1. MENTOR PROFILE DATA & PHOTO SYNC (FORCE RAMESH GUJJAR)
     function initMentor() {
-      const name = localStorage.getItem('lis_mentor_name') || 'RAMESH GUJJAR';
+      let name = localStorage.getItem('lis_mentor_name');
+      // Fix: If stored name was LIS GURUJI, reset it to RAMESH GUJJAR
+      if (!name || name === 'LIS GURUJI') {
+        name = 'RAMESH GUJJAR';
+        localStorage.setItem('lis_mentor_name', 'RAMESH GUJJAR');
+      }
+
       const phone = localStorage.getItem('lis_mentor_phone') || '+91 9876543210';
       const photo = localStorage.getItem('lis_mentor_photo');
 
-      const nameEls = ['splashName', 'navMentorName', 'sideMentorName', 'loginMentorSubName'];
+      const nameEls = ['splashName', 'navMentorName', 'sideMentorName'];
       nameEls.forEach(id => {
         const el = document.getElementById(id);
         if (el) el.innerText = name;
@@ -999,7 +999,6 @@
       }
     }
 
-    // LOGOUT ONLY HAPPENS ON EXPLICIT BUTTON CLICK
     function handleLogout() {
       if (confirm('क्या आप लॉगआउट करना चाहते हैं?')) {
         localStorage.removeItem('lis_student_session');
@@ -1351,9 +1350,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // =========================================================
-    // 6. HARDWARE BACK BUTTON (NO POPUP, DIRECT EXIT ON HOME)
-    // =========================================================
+    // Hardware Back Button (Direct exit, no logout)
     window.addEventListener('popstate', (e) => {
       const openModalElem = document.querySelector('.modal-overlay.open');
       if (openModalElem) {
@@ -1378,7 +1375,6 @@
         return;
       }
 
-      // If already on Home with no previous pages, directly exit app
       try {
         window.close();
         if (window.navigator && window.navigator.app && window.navigator.app.exitApp) {

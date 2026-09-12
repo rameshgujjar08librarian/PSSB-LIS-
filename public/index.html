@@ -44,11 +44,6 @@
       border: 3px solid var(--gold); box-shadow: 0 6px 18px rgba(245, 158, 11, 0.4);
       background: #e2e8f0; display: block;
     }
-    .photo-camera-btn {
-      position: absolute; bottom: 2px; right: 2px; background: var(--primary); color: white;
-      width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center;
-      justify-content: center; font-size: 16px; cursor: pointer; border: 2px solid white;
-    }
     .splash-name { font-size: 1.25rem; font-weight: 900; color: var(--text); margin-bottom: 2px; }
     .splash-subtitle { font-size: 0.78rem; color: #b45309; font-weight: 700; margin-bottom: 10px; }
     .splash-slogan-box { background: linear-gradient(135deg, #fffbeb, #fef3c7); border: 2px dashed var(--gold); border-radius: 12px; padding: 10px; margin: 8px 0 12px; }
@@ -139,7 +134,7 @@
 </head>
 <body>
 
-  <!-- WELCOME SPLASH -->
+  <!-- WELCOME SPLASH (Camera button removed) -->
   <div id="welcomeSplash">
     <div class="splash-card">
       <div class="splash-big-brand">
@@ -147,14 +142,10 @@
         <h1>LIS GURUJI</h1>
       </div>
       <div class="splash-photo-wrap">
-        <!-- Professional Uniform Avatar as permanent high-reliability display -->
         <img id="splashPhoto" class="splash-photo" src="https://api.dicebear.com/7.x/bottts/svg?seed=RameshGujjarOfficial" alt="RAMESH GUJJAR">
-        <label for="splashPhotoInput" class="photo-camera-btn" title="फोटो बदलें">📷</label>
-        <input type="file" id="splashPhotoInput" accept="image/*" style="display:none;" onchange="handlePhotoUpload(event)">
       </div>
       <div class="splash-name">
         <span id="splashName">RAMESH GUJJAR</span>
-        <span onclick="editMentorDetails()" style="font-size:0.85rem; cursor:pointer;" title="बदलें">✏️</span>
       </div>
       <div class="splash-subtitle">संस्थापक एवं मार्गदर्शक • Library & Info Science</div>
       <div class="splash-slogan-box">
@@ -526,19 +517,6 @@
       initMentor();
     }
 
-    function handlePhotoUpload(event) {
-      const f = event.target.files[0];
-      if (f) {
-        const r = new FileReader();
-        r.onload = (e) => {
-          localStorage.setItem('lis_mentor_photo', e.target.result);
-          initMentor();
-          alert('✅ फ़ोटो सेव हो गई!');
-        };
-        r.readAsDataURL(f);
-      }
-    }
-
     let splashDismissed = false;
     function dismissSplash() {
       if (splashDismissed) return;
@@ -655,60 +633,6 @@
         </div>
       `).join('');
     }
-
-    document.getElementById('genForm').onsubmit = async (e) => {
-      e.preventDefault();
-      const btn = document.getElementById('btnGen');
-      const status = document.getElementById('genStatus');
-      btn.disabled = true;
-      status.style.color = '#2563eb';
-      status.innerHTML = '⏳ AI PDF/फ़ोटो पढ़कर सभी विकल्पों में डेटा भर रहा है...';
-
-      const formData = new FormData();
-      formData.append('subject', document.getElementById('subject').value);
-      formData.append('limit', document.getElementById('limit').value);
-      formData.append('lang', document.getElementById('lang').value);
-
-      const files = document.getElementById('files').files;
-      for (let i = 0; i < files.length; i++) formData.append('files', files[i]);
-
-      try {
-        const res = await fetch('/api/generate-all', { method: 'POST', body: formData });
-        const resData = await res.json();
-        if (resData.success && resData.data) {
-          const d = resData.data;
-
-          if (d.playCard) {
-            cardsList.unshift(d.playCard);
-            setStore('lis_cards', cardsList);
-            renderCurrentCard();
-          }
-          if (d.trick) {
-            tricksList.unshift(d.trick);
-            setStore('lis_tricks', tricksList);
-            renderTricks();
-          }
-          if (d.note) {
-            notesList.unshift(d.note);
-            setStore('lis_notes', notesList);
-            renderNotes();
-          }
-
-          loadBank();
-          status.style.color = '#059669';
-          status.innerHTML = `✅ सफलता! ${resData.questionsCount || 20} प्रश्न और सारा अध्ययन सामग्री जुड़ गई है।`;
-          alert('🎉 1 ही PDF से सारा डेटा तैयार होकर सभी पेजों में जुड़ गया है!');
-        } else {
-          status.style.color = '#dc2626';
-          status.innerHTML = '❌ एरर: डेटा नहीं बन पाया';
-        }
-      } catch (err) {
-        status.style.color = '#dc2626';
-        status.innerHTML = '❌ नेटवर्क एरर: ' + err.message;
-      } finally {
-        btn.disabled = false;
-      }
-    };
 
     let currentQuestions = [];
     async function loadBank() {

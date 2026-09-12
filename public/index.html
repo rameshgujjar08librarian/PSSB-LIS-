@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>AI Study + CBT System</title>
+  <style>
+    :root {
+      --primary: #1a4f9c;
+      --primary-dark: #0f346c;
+      --bg: #f4f7fa;
+      --card-bg: #ffffff;
+      --text: #212529;
+      --text-muted: #6c757d;
+      --border: #dee2e6;
+      --success: #28a745;
+      --danger: #dc3545;
+      --warning: #ffc107;
+      --purple: #6f42c1;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif; }
+    body { background: var(--bg); color: var(--text); padding-bottom: 30px; }
+    
+    header { background: var(--primary); color: white; padding: 12px 16px; box-shadow: 0 2px 5px rgba(0,0,0,0.15); display: flex; justify-content: space-between; align-items: center; }
+    header h1 { font-size: 1.1rem; display: flex; align-items: center; gap: 8px; }
+    header span { font-size: 0.75rem; opacity: 0.85; }
+
+    .tabs { display: flex; background: white; border-bottom: 2px solid var(--border); position: sticky; top: 0; z-index: 10; }
+    .tab-btn { flex: 1; padding: 14px 8px; border: none; background: none; font-size: 0.95rem; font-weight: 600; color: var(--text-muted); cursor: pointer; text-align: center; border-bottom: 3px solid transparent; }
+    .tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
+
+    .container { max-width: 720px; margin: 16px auto; padding: 0 12px; }
+    .card { background: var(--card-bg); border-radius: 12px; padding: 20px; box-shadow: 0 3px 10px rgba(0,0,0,0.06); margin-bottom: 16px; border: 1px solid var(--border); }
+    .card h2 { font-size: 1.15rem; margin-bottom: 14px; color: var(--primary); display: flex; align-items: center; gap: 6px; }
+
+    .form-group { margin-bottom: 14px; }
+    label { display: block; font-size: 0.88rem; font-weight: 600; margin-bottom: 6px; color: #333; }
+    input[type="text"], input[type="number"], select, input[type="file"] { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-size: 0.95rem; background: white; }
+    .btn { width: 100%; padding: 13px; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 8px; transition: 0.2s; }
+    .btn:active { background: var(--primary-dark); }
+    .btn-outline { background: transparent; border: 1.5px solid var(--primary); color: var(--primary); }
+    .btn-danger { background: var(--danger); }
+
+    .subject-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 10px; background: #fafbfc; }
+    .sub-info { display: flex; align-items: center; gap: 10px; }
+    .sub-checkbox { width: 20px; height: 20px; accent-color: var(--primary); }
+    .badge { background: #e8f0fe; color: var(--primary); font-size: 0.8rem; font-weight: 700; padding: 4px 10px; border-radius: 12px; }
+
+    .alert { padding: 12px; border-radius: 8px; font-size: 0.88rem; margin-top: 14px; display: none; }
+    .alert-error { background: #fde8e8; color: var(--danger); border: 1px solid #f8b4b4; }
+    .alert-success { background: #def7ec; color: var(--success); border: 1px solid #bcf0da; }
+    .spinner { display: inline-block; width: 18px; height: 18px; border: 3px solid rgba(255,255,255,0.3); border-radius: 50%; border-top-color: white; animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    #cbtView { display: none; }
+    .cbt-header { display: flex; justify-content: space-between; align-items: center; background: #0f172a; color: white; padding: 12px 16px; border-radius: 8px; margin-bottom: 14px; }
+    .cbt-timer { font-size: 1.15rem; font-weight: 700; color: #38bdf8; font-variant-numeric: tabular-nums; }
+    .question-box { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+    .q-subject { font-size: 0.75rem; background: #e2e8f0; padding: 2px 8px; border-radius: 4px; font-weight: 600; color: #475569; display: inline-block; margin-bottom: 8px; }
+    .q-text { font-size: 1.05rem; font-weight: 600; line-height: 1.5; margin-bottom: 16px; }
+    .option-item { display: flex; align-items: flex-start; gap: 10px; padding: 12px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; cursor: pointer; transition: 0.15s; }
+    .option-item:hover, .option-item.selected { background: #e8f2ff; border-color: var(--primary); }
+    .option-item input { margin-top: 3px; accent-color: var(--primary); }
+    
+    .cbt-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+    .palette-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-top: 12px; max-height: 180px; overflow-y: auto; padding: 4px; }
+    .p-btn { padding: 8px 0; text-align: center; border-radius: 6px; font-size: 0.85rem; font-weight: 700; border: 1px solid var(--border); background: white; cursor: pointer; }
+    .p-btn.active { border: 2px solid #000; }
+    .p-btn.answered { background: var(--success); color: white; border-color: var(--success); }
+    .p-btn.review { background: var(--purple); color: white; border-color: var(--purple); }
+
+    #resultView { display: none; }
+    .score-banner { background: #e0f2fe; border: 1px solid #bae6fd; border-radius: 10px; padding: 18px; text-align: center; margin-bottom: 18px; }
+    .score-num { font-size: 2.2rem; font-weight: 800; color: var(--primary); }
+    .review-item { padding: 14px; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 12px; background: white; }
+    .review-item.correct { border-left: 5px solid var(--success); }
+    .review-item.wrong { border-left: 5px solid var(--danger); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div>
+      <h1>📚 AI Study + CBT Master</h1>
+      <span>UGC-NET/JRF • Multi-Subject Question Bank</span>
+    </div>
+  </header>
+
+  <div class="tabs" id="mainTabs">
+    <button class="tab-btn active" onclick="switchTab('genTab')">➕ नया PDF / फोटो अपलोड</button>
+    <button class="tab-btn" onclick="switchTab('bankTab')">🗂️ क्वेश्चन बैंक & CBT</button>
+  </div>
+
+  <div class="container">
+    <!-- TAB 1: GENERATION & INSTANT CBT -->
+    <div id="genTab">
+      <div class="card">
+        <h2>📄 सामग्री से प्रश्न बनाएं और बैंक में जोड़ें</h2>
+        
+        <div class="form-group">
+          <label>विषय (Subject चुनें या नया नाम लिखें):</label>
+          <input type="text" id="subjectInput" list="subjectList" placeholder="उदा. Library Science, Punjabi, General Paper" value="Library Science">
+          <datalist id="subjectList"></datalist>
+        </div>
+
+        <div class="form-group">
+          <label>Study Material (PDF, Word या 📷 नोट्स/किताब की फ़ोटो):</label>
+          <input type="file" id="studyFiles" multiple accept="image/*,.pdf,.docx,.txt">
+        </div>
+
+        <div class="form-group">
+          <label>प्रश्नों की संख्या (Question Limit):</label>
+          <select id="targetCountSelect" onchange="toggleCustomCount()">
+            <option value="max" selected>🔥 अधिकतम संभव (Maximum / पूरा निचोड़ - No Limit)</option>
+            <option value="20">20 प्रश्न (Quick Practice)</option>
+            <option value="35">35 प्रश्न</option>
+            <option value="50">50 प्रश्न (Standard)</option>
+            <option value="75">75 प्रश्न</option>
+            <option value="100">100 प्रश्न (Full Paper)</option>
+            <option value="custom">✏️ कस्टम संख्या (अपनी मर्ज़ी से दर्ज करें)</option>
+          </select>
+          <input type="number" id="customCountInput" placeholder="जैसे: 45, 60 या 120 दर्ज करें" style="display: none; margin-top: 8px;" min="5" max="300">
+        </div>
+
+        <!-- Timer Option for Tab 1 -->
+        <div class="form-group">
+          <label>⏱️ CBT समय सीमा (Exam Timer):</label>
+          <select id="genTimerSelect" onchange="toggleCustomTimer('genTimerSelect', 'genCustomTimerInput')">
+            <option value="auto" selected>⚡ ऑटो (1 मिनट प्रति प्रश्न)</option>
+            <option value="15">15 मिनट</option>
+            <option value="30">30 मिनट</option>
+            <option value="45">45 मिनट</option>
+            <option value="60">60 मिनट (1 घंटा)</option>
+            <option value="90">90 मिनट (1.5 घंटा)</option>
+            <option value="120">120 मिनट (2 घंटे)</option>
+            <option value="custom">✏️ कस्टम मिनट (अपनी पसंद का समय लिखें)</option>
+            <option value="none">♾️ बिना समय सीमा (No Time Limit / अभ्यास मोड)</option>
+          </select>
+          <input type="number" id="genCustomTimerInput" placeholder="मिनट दर्ज करें (जैसे 25 या 40)" style="display: none; margin-top: 8px;" min="1" max="600">
+        </div>
+
+        <div class="form-group">
+          <label>भाषा (Language):</label>
+          <select id="langSelect">
+            <option value="Hindi Devanagari" selected>Hindi Devanagari</option>
+            <option value="English">English</option>
+            <option value="Punjabi">Punjabi</option>
+          </select>
+        </div>
+
+        <button class="btn" id="genBtn" onclick="startGeneration()">
+          <span>🚀 Generate & Save to Bank</span>
+        </button>
+
+        <div class="alert alert-error" id="genError"></div>
+        <div class="alert alert-success" id="genSuccess"></div>
+      </div>
+    </div>
+
+    <!-- TAB 2: BULK QUESTION BANK & CBT -->
+    <div id="bankTab" style="display: none;">
+      <div class="card">
+        <h2>🗂️ सहेजे गए विषय (Select Subjects for CBT)</h2>
+        <div id="subjectsContainer">
+          <p style="color: var(--text-muted); font-size: 0.9rem;">लोड हो रहा है...</p>
+        </div>
+
+        <div style="display: flex; gap: 10px; margin: 14px 0;">
+          <button class="btn btn-outline" style="padding: 8px; font-size: 0.85rem;" onclick="selectAll(true)">सब सेलेक्ट करें</button>
+          <button class="btn btn-outline" style="padding: 8px; font-size: 0.85rem;" onclick="selectAll(false)">अन-सेलेक्ट करें</button>
+        </div>
+
+        <div class="form-group">
+          <label>कितने प्रश्नों का टेस्ट देना है?</label>
+          <select id="cbtCount">
+            <option value="25">25 प्रश्न</option>
+            <option value="50" selected>50 प्रश्न (Standard Mock)</option>
+            <option value="100">100 प्रश्न (Full Paper)</option>
+            <option value="all">सभी उपलब्ध प्रश्न (All in Bank)</option>
+          </select>
+        </div>
+
+        <!-- Timer Option for Tab 2 -->
+        <div class="form-group">
+          <label>⏱️ CBT समय सीमा (Exam Timer):</label>
+          <select id="bankTimerSelect" onchange="toggleCustomTimer('bankTimerSelect', 'bankCustomTimerInput')">
+            <option value="auto" selected>⚡ ऑटो (1 मिनट प्रति प्रश्न)</option>
+            <option value="15">15 मिनट</option>
+            <option value="30">30 मिनट</option>
+            <option value="45">45 मिनट</option>
+            <option value="60">60 मिनट (1 घंटा)</option>
+            <option value="90">90 मिनट (1.5 घंटा)</option>
+            <option value="120">120 मिनट (2 घंटे)</option>
+            <option value="180">180 मिनट (3 घंटे - Full Exam)</option>
+            <option value="custom">✏️ कस्टम मिनट (अपनी पसंद का समय लिखें)</option>
+            <option value="none">♾️ बिना समय सीमा (No Time Limit / अभ्यास मोड)</option>
+          </select>
+          <input type="number" id="bankCustomTimerInput" placeholder="मिनट दर्ज करें (जैसे 35 या 75)" style="display: none; margin-top: 8px;" min="1" max="600">
+        </div>
+
+        <button class="btn" onclick="launchCBT()" style="background: var(--success);">
+          🎯 Start CBT Exam Now
+        </button>
+      </div>
+    </div>
+
+    <!-- CBT EXAM SCREEN -->
+    <div id="cbtView">
+      <div class="cbt-header">
+        <div>
+          <span id="qIndexLabel">Q 1/50</span> | <span id="cbtSubjectBadge" style="color: #38bdf8; font-weight: 600;">Subject</span>
+        </div>
+        <div class="cbt-timer" id="timerLabel">⏳ 60:00</div>
+      </div>
+
+      <div class="question-box">
+        <div class="q-subject" id="currentSubject">General</div>
+        <div class="q-text" id="questionText">प्रश्न लोड हो रहा है...</div>
+        <div id="optionsContainer"></div>
+      </div>
+
+      <div class="cbt-actions">
+        <button class="btn btn-outline" onclick="prevQuestion()">⬅ पिछला</button>
+        <button class="btn" onclick="saveAndNext()">सहेजे और आगे ➡</button>
+        <button class="btn btn-outline" style="color: var(--purple); border-color: var(--purple);" onclick="markForReview()">⭐ Review</button>
+        <button class="btn btn-danger" onclick="confirmSubmit()">🏁 सबमिट टेस्ट</button>
+      </div>
+
+      <div class="card" style="margin-top: 18px;">
+        <h2 style="font-size: 1rem;">Question Palette</h2>
+        <div class="palette-grid" id="paletteGrid"></div>
+      </div>
+    </div>
+
+    <!-- RESULT & EXPLANATIONS SCREEN -->
+    <div id="resultView">
+      <div class="card">
+        <h2>📊 टेस्ट रिजल्ट & स्कोरकार्ड</h2>
+        <div class="score-banner">
+          <div class="score-num" id="finalScore">0 / 0</div>
+          <p id="scoreDetails" style="margin-top: 6px; font-weight: 600; color: var(--text-muted);"></p>
+        </div>
+        <button class="btn btn-outline" onclick="exitToBank()" style="margin-bottom: 16px;">
+          🔙 वापस क्वेश्चन बैंक में जाएं
+        </button>
+        <h3 style="margin-bottom: 12px; font-size: 1.05rem;">उत्तर और विस्तृत व्याख्या (Explanations):</h3>
+        <div id="reviewContainer"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let activeQuestions = [];
+    let latestGeneratedQuestions = [];
+    let userAnswers = {};
+    let reviewStatus = {};
+    let currentIndex = 0;
+    let timerInterval = null;
+    let timeLeft = 3600;
+
+    function toggleCustomCount() {
+      const sel = document.getElementById('targetCountSelect').value;
+      const inp = document.getElementById('customCountInput');
+      inp.style.display = sel === 'custom' ? 'block' : 'none';
+      if (sel === 'custom') inp.focus();
+    }
+
+    function toggleCustomTimer(selectId, inputId) {
+      const sel = document.getElementById(selectId).value;
+      const inp = document.getElementById(inputId);
+      inp.style.display = sel === 'custom' ? 'block' : 'none';
+      if (sel === 'custom') inp.focus();
+    }
+
+    function getTimerSeconds(selectId, inputId, qCount) {
+      const sel = document.getElementById(selectId).value;
+      if (sel === 'auto') return qCount * 60;
+      if (sel === 'none') return null; // No limit
+      if (sel === 'custom') {
+        const val = parseInt(document.getElementById(inputId).value, 10);
+        return (val && val > 0 ? val : qCount) * 60;
+      }
+      return parseInt(sel, 10) * 60;
+    }
+
+    function switchTab(tabId) {
+      document.getElementById('genTab').style.display = tabId === 'genTab' ? 'block' : 'none';
+      document.getElementById('bankTab').style.display = tabId === 'bankTab' ? 'block' : 'none';
+      document.querySelectorAll('.tab-btn').forEach((b, i) => {
+        b.classList.toggle('active', (tabId === 'genTab' && i === 0) || (tabId === 'bankTab' && i === 1));
+      });
+      if (tabId === 'bankTab') loadBankSummary();
+    }
+
+    async function loadBankSummary() {
+      try {
+        const res = await fetch('/api/bank/summary');
+        const data = await res.json();
+        const container = document.getElementById('subjectsContainer');
+        const datalist = document.getElementById('subjectList');
+        
+        datalist.innerHTML = data.subjects.map(s => `<option value="${s.name}">`).join('');
+        
+        if (!data.subjects.length) {
+          container.innerHTML = `<p style="color: var(--text-muted); padding: 10px 0;">अभी कोई प्रश्न सेव नहीं हैं। पहले टैब से PDF या फोटो अपलोड करें।</p>`;
+          return;
+        }
+
+        container.innerHTML = data.subjects.map(s => `
+          <div class="subject-item">
+            <div class="sub-info">
+              <input type="checkbox" class="sub-checkbox" value="${s.name}" checked>
+              <span style="font-weight: 600; font-size: 0.95rem;">${s.name}</span>
+            </div>
+            <div>
+              <span class="badge">${s.count} प्रश्न</span>
+              <button onclick="deleteSubject('${s.name}')" style="background: none; border: none; color: var(--danger); margin-left: 8px; cursor: pointer;">🗑</button>
+            </div>
+          </div>
+        `).join('');
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    async function deleteSubject(name) {
+      if (!confirm(`क्या आप "${name}" के सभी प्रश्न डिलीट करना चाहते हैं?`)) return;
+      await fetch('/api/bank/delete-subject', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ subject: name })
+      });
+      loadBankSummary();
+    }
+
+    function selectAll(val) {
+      document.querySelectorAll('.sub-checkbox').forEach(cb => cb.checked = val);
+    }
+
+    async function startGeneration() {
+      const btn = document.getElementById('genBtn');
+      const errBox = document.getElementById('genError');
+      const succBox = document.getElementById('genSuccess');
+      const files = document.getElementById('studyFiles').files;
+      const subject = document.getElementById('subjectInput').value.trim() || 'General';
+      const lang = document.getElementById('langSelect').value;
+
+      let targetCount = document.getElementById('targetCountSelect').value;
+      if (targetCount === 'custom') {
+        const val = parseInt(document.getElementById('customCountInput').value, 10);
+        if (!val || val < 1) {
+          errBox.textContent = 'कृपया एक मान्य संख्या दर्ज करें!';
+          errBox.style.display = 'block';
+          return;
+        }
+        targetCount = String(val);
+      }
+
+      errBox.style.display = 'none';
+      succBox.style.display = 'none';
+
+      if (!files.length) {
+        errBox.textContent = 'कृपया कम से कम एक PDF या फ़ोटो चुनें!';
+        errBox.style.display = 'block';
+        return;
+      }
+
+      const fd = new FormData();
+      for (const f of files) fd.append('study', f);
+      const sample = document.getElementById('sampleFiles').files;
+      for (const f of sample) fd.append('sample', f);
+      fd.append('subject', subject);
+      fd.append('language', lang);
+      fd.append('targetCount', targetCount);
+
+      btn.disabled = true;
+      btn.innerHTML = `<span class="spinner"></span> AI प्रश्न तैयार कर रहा है (Target: ${targetCount === 'max' ? 'अधिकतम' : targetCount})...`;
+
+      try {
+        const res = await fetch('/api/generate', { method: 'POST', body: fd });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Generation failed');
+
+        latestGeneratedQuestions = data.questions || [];
+
+        succBox.innerHTML = `
+          🎉 <b>${data.added} नए प्रश्न</b> सफलतापूर्वक विषय <b>"${data.subject}"</b> में सहेजे गए!<br>
+          इस विषय में अब कुल: <b>${data.totalInSubject}</b> प्रश्न उपलब्ध हैं।
+          <div style="margin-top: 14px;">
+            <button class="btn" style="background: var(--success); font-size: 0.95rem; padding: 11px;" onclick="launchInstantCBT()">
+              🎯 इन ${data.added} प्रश्नों का तुरंत CBT टेस्ट शुरू करें
+            </button>
+          </div>
+        `;
+        succBox.style.display = 'block';
+        document.getElementById('studyFiles').value = '';
+      } catch (e) {
+        errBox.textContent = e.message;
+        errBox.style.display = 'block';
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<span>🚀 Generate & Save to Bank</span>`;
+      }
+    }
+
+    function startTimer(durationInSeconds) {
+      if (timerInterval) clearInterval(timerInterval);
+      
+      if (durationInSeconds === null) {
+        // No time limit: Stopwatch mode
+        let elapsed = 0;
+        document.getElementById('timerLabel').textContent = '⏱️ 00:00 (No Limit)';
+        timerInterval = setInterval(() => {
+          elapsed++;
+          const m = Math.floor(elapsed / 60);
+          const s = elapsed % 60;
+          document.getElementById('timerLabel').textContent = `⏱️ ${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+        }, 1000);
+      } else {
+        // Countdown timer
+        timeLeft = durationInSeconds;
+        const updateDisplay = () => {
+          const m = Math.floor(timeLeft / 60);
+          const s = timeLeft % 60;
+          document.getElementById('timerLabel').textContent = `⏳ ${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+        };
+        updateDisplay();
+        timerInterval = setInterval(() => {
+          timeLeft--;
+          if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            alert('समय समाप्त! आपका टेस्ट सबमिट किया जा रहा है।');
+            submitExam();
+            return;
+          }
+          updateDisplay();
+        }, 1000);
+      }
+    }
+
+    function startCBTWithQuestions(questions, durationInSeconds) {
+      activeQuestions = questions;
+      userAnswers = {};
+      reviewStatus = {};
+      currentIndex = 0;
+
+      document.getElementById('mainTabs').style.display = 'none';
+      document.getElementById('genTab').style.display = 'none';
+      document.getElementById('bankTab').style.display = 'none';
+      document.getElementById('resultView').style.display = 'none';
+      document.getElementById('cbtView').style.display = 'block';
+
+      startTimer(durationInSeconds);
+      renderQuestion();
+      renderPalette();
+    }
+
+    function launchInstantCBT() {
+      if (!latestGeneratedQuestions || !latestGeneratedQuestions.length) {
+        alert('कोई नए प्रश्न नहीं मिले!');
+        return;
+      }
+      const dur = getTimerSeconds('genTimerSelect', 'genCustomTimerInput', latestGeneratedQuestions.length);
+      startCBTWithQuestions(latestGeneratedQuestions, dur);
+    }
+
+    async function launchCBT() {
+      const checked = Array.from(document.querySelectorAll('.sub-checkbox:checked')).map(c => c.value);
+      if (!checked.length) {
+        alert('कृपया कम से कम एक विषय चुनें!');
+        return;
+      }
+      const count = document.getElementById('cbtCount').value;
+
+      const res = await fetch('/api/bank/cbt-questions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ selectedSubjects: checked, count })
+      });
+      const data = await res.json();
+
+      if (!data.questions || !data.questions.length) {
+        alert('चुने गए विषयों में कोई प्रश्न नहीं मिला!');
+        return;
+      }
+
+      const dur = getTimerSeconds('bankTimerSelect', 'bankCustomTimerInput', data.questions.length);
+      startCBTWithQuestions(data.questions, dur);
+    }
+
+    function renderQuestion() {
+      const q = activeQuestions[currentIndex];
+      document.getElementById('qIndexLabel').textContent = `Q ${currentIndex + 1}/${activeQuestions.length}`;
+      document.getElementById('cbtSubjectBadge').textContent = q.subject || 'Test';
+      document.getElementById('currentSubject').textContent = q.subject || 'General';
+      document.getElementById('questionText').textContent = q.question;
+
+      const optCont = document.getElementById('optionsContainer');
+      optCont.innerHTML = q.options.map((opt, idx) => `
+        <div class="option-item ${userAnswers[currentIndex] === idx ? 'selected' : ''}" onclick="selectOption(${idx})">
+          <input type="radio" name="opt" ${userAnswers[currentIndex] === idx ? 'checked' : ''}>
+          <span><b>(${['A','B','C','D'][idx]})</b> ${opt}</span>
+        </div>
+      `).join('');
+      renderPalette();
+    }
+
+    function selectOption(idx) {
+      userAnswers[currentIndex] = idx;
+      renderQuestion();
+    }
+
+    function saveAndNext() {
+      if (currentIndex < activeQuestions.length - 1) {
+        currentIndex++;
+        renderQuestion();
+      }
+    }
+
+    function prevQuestion() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        renderQuestion();
+      }
+    }
+
+    function markForReview() {
+      reviewStatus[currentIndex] = !reviewStatus[currentIndex];
+      renderQuestion();
+    }
+
+    function renderPalette() {
+      const grid = document.getElementById('paletteGrid');
+      grid.innerHTML = activeQuestions.map((_, i) => {
+        let cls = 'p-btn';
+        if (i === currentIndex) cls += ' active';
+        if (userAnswers[i] !== undefined) cls += ' answered';
+        if (reviewStatus[i]) cls += ' review';
+        return `<div class="${cls}" onclick="jumpTo(${i})">${i + 1}</div>`;
+      }).join('');
+    }
+
+    function jumpTo(i) {
+      currentIndex = i;
+      renderQuestion();
+    }
+
+    function confirmSubmit() {
+      const answered = Object.keys(userAnswers).length;
+      if (confirm(`आपने ${activeQuestions.length} में से ${answered} प्रश्नों के उत्तर दिए हैं। क्या आप टेस्ट सबमिट करना चाहते हैं?`)) {
+        submitExam();
+      }
+    }
+
+    function submitExam() {
+      if (timerInterval) clearInterval(timerInterval);
+      document.getElementById('cbtView').style.display = 'none';
+      document.getElementById('resultView').style.display = 'block';
+
+      let correct = 0;
+      activeQuestions.forEach((q, i) => {
+        if (userAnswers[i] === q.answer) correct++;
+      });
+
+      document.getElementById('finalScore').textContent = `${correct * 2} / ${activeQuestions.length * 2}`;
+      document.getElementById('scoreDetails').textContent = `कुल प्रश्न: ${activeQuestions.length} | सही उत्तर: ${correct} | गलत/छोड़े गए: ${activeQuestions.length - correct}`;
+
+      const revCont = document.getElementById('reviewContainer');
+      revCont.innerHTML = activeQuestions.map((q, i) => {
+        const userChoice = userAnswers[i];
+        const isRight = userChoice === q.answer;
+        return `
+          <div class="review-item ${isRight ? 'correct' : 'wrong'}">
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 4px;">
+              Q.${i + 1} (${q.subject}) ${isRight ? '✅ सही' : (userChoice !== undefined ? '❌ गलत' : '⚠️ हल नहीं किया')}
+            </div>
+            <div style="font-weight: 600; margin-bottom: 8px;">${q.question}</div>
+            <div style="font-size: 0.9rem; margin-bottom: 4px;"><b>आपका उत्तर:</b> ${userChoice !== undefined ? `(${['A','B','C','D'][userChoice]}) ${q.options[userChoice]}` : 'छोड़ा गया'}</div>
+            <div style="font-size: 0.9rem; color: var(--success); margin-bottom: 8px;"><b>सही उत्तर:</b> (${['A','B','C','D'][q.answer]}) ${q.options[q.answer]}</div>
+            <div style="font-size: 0.85rem; background: #f8fafc; padding: 8px; border-radius: 6px; border: 1px dashed #cbd5e1;">
+              💡 <b>व्याख्या:</b> ${q.detailed_explanation || 'उपलब्ध नहीं'}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function exitToBank() {
+      if (timerInterval) clearInterval(timerInterval);
+      document.getElementById('resultView').style.display = 'none';
+      document.getElementById('cbtView').style.display = 'none';
+      document.getElementById('mainTabs').style.display = 'flex';
+      switchTab('bankTab');
+    }
+
+    loadBankSummary();
+  </script>
+</body>
+</html>
